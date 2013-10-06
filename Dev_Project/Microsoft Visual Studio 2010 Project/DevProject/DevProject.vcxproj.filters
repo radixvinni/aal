@@ -1,0 +1,555 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Файлы исходного кода">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="AAL">
+      <UniqueIdentifier>{69797f2f-3e9c-4f91-a39a-e2d301f0a45a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AALT">
+      <UniqueIdentifier>{50bf0e74-8d24-42bc-b312-00719b15b46e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CppUnitLite">
+      <UniqueIdentifier>{f4e21715-b92b-4721-b0c7-5dffef812ba5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="miracl">
+      <UniqueIdentifier>{fd2b4a5b-fc03-43f2-a944-35acc65307f4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\CppUnitLite\TestResult.h">
+      <Filter>CppUnitLite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\CppUnitLite\Failure.h">
+      <Filter>CppUnitLite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\CppUnitLite\Test.h">
+      <Filter>CppUnitLite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\CppUnitLite\TestHarness.h">
+      <Filter>CppUnitLite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\CppUnitLite\TestRegistry.h">
+      <Filter>CppUnitLite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\BasicType.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\Integer.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\Algorithms.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\Polynom.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\IntegerBinomEllipticcurves.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\Matrix.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF3.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\Ellipticcurves.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF2_m_4.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\Converter.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\DecompositionManager.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\EllipticcurvesGF2.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\FactorizationAlgorithms.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\HashClass.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\IntegerBinom.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\karatsuba64.hpp">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\KInteger.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\KInteger.hpp">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\NumberVector.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF2_mY_7.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF7.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF7_m_2.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF7_m_14.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF7_m14.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF7_mY_3.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF7_mY_13.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF7_mY_26.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PrimeTester.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\ProbingDivisionAlgorithmDecomposition.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\ProbingDivisionAlgorithmDecompositionThread.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\TableManager.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\Hash.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\EllipticcurvesGF3.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF3_m_6.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF3_mY_9.h">
+      <Filter>AAL</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="DevProject.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\CppUnitLite\Test.cpp">
+      <Filter>CppUnitLite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\CppUnitLite\TestRegistry.cpp">
+      <Filter>CppUnitLite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\CppUnitLite\TestResult.cpp">
+      <Filter>CppUnitLite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\Integer.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PrimeTester.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\DecompositionManager.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\Matrix.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\Polynom.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\Converter.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\IntegerBinom.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF3.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\TableManager.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\IntegerBinomEllipticcurves.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\Ellipticcurves.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\FactorizationAlgorithms.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\EllipticcurvesGF2.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\NumberVector.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF2_m_4.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF2_mY_7.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\HashClass.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\KInteger.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF7.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF7_m_2.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF7_m_14.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF7_m14.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF7_mY_3.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF7_mY_13.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF7_mY_26.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\ProbingDivisionAlgorithmDecomposition.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\ProbingDivisionAlgorithmDecompositionThread.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\Hash.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\BasicTypeTests.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\big.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\complex.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\flpoly.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\poly.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\poly2.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\poly2mod.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\poly2xy.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\polymod.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\polyxy.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\ps_big.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\ps_zzn.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\ec2.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\ecn.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\ecnzzn.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\flash.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\floating.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\gf2m.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mr87f.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mr87v.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mraes.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mralloc.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrarth0.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrarth1.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrarth2.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrarth3.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrbits.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrbrick.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrbuild.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrcore.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrcrt.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrcurve.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrdouble.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrebrick.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrec2m.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrecn2.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrfast.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrflash.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrflsh1.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrflsh2.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrflsh3.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrflsh4.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrfrnd.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrgcd.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrgcm.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrgf2m.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrio1.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrio2.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrjack.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrlucas.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrmonty.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrmuldv.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrpi.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrpower.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrprime.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrrand.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrround.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrscrt.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrshs.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrshs256.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrshs512.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrsmall.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrsroot.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrstrong.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrxgcd.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrzzn2.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrzzn2b.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrzzn3.c">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\zzn.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\crt.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\modpol.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\schoof.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\sea.cpp">
+      <Filter>miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\EllipticcurvesGF3.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF3_m_6.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF3_mY_9.cpp">
+      <Filter>AAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\DecompositionManagerTests.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\EllipticcurvesGF2Tests.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\EllipticCurvesGF3Tests.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\EllipticCurvesTests.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\IntegerBinomEllipticCurvesTests.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\IntegerBinomTests.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\IntegerTests.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\MatrixTests.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\NumberVectorTests.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\PolynomGF2_m_4Test.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\PolynomGF3Tests.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\PolynomGF7Test.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\PolynomTests.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\TestFoctarizationAlgorithms.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\TestPolynomGF2_mY_7.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\TestPolynomGF3_m_6.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\TestPolynomGF3_mY_10.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\TestPolynomGF7_m_2.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\TestPolynomGF7_m_14.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\TestPolynomGF7_m14.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\TestPolynomGF7_mY_3.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\TestPolynomGF7_mY_13.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AALT\TestPrimeTester.cpp">
+      <Filter>AALT</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

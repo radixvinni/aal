@@ -1,0 +1,470 @@
+--- source/curve/poly2mod.h	2012-03-06 12:17:08.000000000 +0400
++++ source/curve/poly2mod.h	2012-10-29 20:53:45.211947064 +0400
+@@ -18,7 +18,7 @@
+ 
+ #include "poly2.h"
+ 
+-extern Poly2 Modulus;
++extern Poly2 Modulus2;
+ 
+ class Poly2Mod
+ {
+@@ -26,7 +26,7 @@
+     Poly2 p;
+ 
+     Poly2Mod() { }
+-    Poly2Mod(const Poly2& m)     {p=m%Modulus; }
++    Poly2Mod(const Poly2& m)     {p=m%Modulus2; }
+     Poly2Mod(const Poly2Mod& m)  {p=m.p; }
+     void clear()               {p.clear();}
+     term2* addterm(const GF2m& z,int i,term2 *pos=NULL) {return p.addterm(z,i,pos);}
+@@ -36,7 +36,7 @@
+     Poly2Mod& operator=(int m)               {p=m; return *this;}
+     Poly2Mod& operator=(const Poly2Mod& m)    {p=m.p; return *this;}
+     Poly2Mod& operator=(const Poly2& m)       {reduce(m,*this); return *this;}
+-    Poly2Mod& operator+=(const Poly2Mod& m)   {p=(p+m.p)%Modulus;return *this;}
++    Poly2Mod& operator+=(const Poly2Mod& m)   {p=(p+m.p)%Modulus2;return *this;}
+     Poly2Mod& operator+=(const GF2m& z)       {addterm(z,0); return *this; }
+     Poly2Mod& operator*=(const GF2m& z)       {p*=z;return *this;}
+     Poly2Mod& operator/=(const GF2m& z)       {p/=z;return *this;}
+--- source/curve/modpol.cpp	2012-10-29 20:33:33.711946000 +0400
++++ source/curve/modpol.cpp	2012-10-29 20:33:42.719946708 +0400
+@@ -60,7 +60,7 @@
+ 
+ BOOL fout;
+ BOOL append;
+-Miracl precision=20;
++static Miracl precision=20;
+ 
+ ofstream mueller;
+ 
+@@ -79,7 +79,7 @@
+ #define RAISE '#'
+ #endif
+ 
+-Big tt;
++static Big tt;
+ static char *ss;
+ 
+ void eval_power (Big& oldn,Big& n,char op)
+@@ -441,7 +441,7 @@
+     fft_reset();
+ }
+ 
+-int main(int argc,char **argv)
++int modpol_main(int argc,char **argv)
+ {
+     Big p;
+     miracl *mip=get_mip();
+--- source/curve/poly2mod.cpp	2012-10-29 20:31:42.547946673 +0400
++++ source/curve/poly2mod.cpp	2012-10-29 20:25:35.127946563 +0400
+@@ -20,7 +20,7 @@
+ extern miracl *mr_mip;
+ }
+ 
+-Poly2 Modulus;
++Poly2 Modulus2;
+ 
+ big *GF=NULL;
+ big *GRF,*T,*W,*Q;
+@@ -54,7 +54,7 @@
+     big *G;
+     term2 *ptr,*pos=NULL;
+     int n=degree(p);
+-    int degm=degree(Modulus);
++    int degm=degree(Modulus2);
+ 
+     if (n-degm < KARAT_BREAK_EVEN)
+     {
+@@ -98,7 +98,7 @@
+     int i,n,m;
+     Poly2 h;
+     term2 *ptr;
+-    Modulus=p;
++    Modulus2=p;
+ 
+     n=degree(p);
+     if (n<KARAT_BREAK_EVEN) return;
+@@ -167,7 +167,7 @@
+ }
+ 
+ Poly2Mod operator+(const Poly2Mod& a,const Poly2Mod& b)
+-                                     {return (a.p+b.p)%Modulus;}
++                                     {return (a.p+b.p)%Modulus2;}
+ Poly2Mod operator*(const Poly2Mod& a,const GF2m& z)
+                                      {return (z*a.p);}
+ Poly2Mod operator*(const GF2m& z,const Poly2Mod& m)
+@@ -185,11 +185,11 @@
+                                      {return (a.p/z);}
+ 
+ Poly2 gcd(const Poly2Mod& m)
+-{return gcd(m.p,Modulus);}  
++{return gcd(m.p,Modulus2);}  
+ 
+ Poly2Mod inverse(const Poly2Mod& m)
+                                      
+-{return (Poly2Mod)inverse(m.p,Modulus);}
++{return (Poly2Mod)inverse(m.p,Modulus2);}
+ 
+ //
+ // Brent & Kung's First Algorithm
+@@ -204,7 +204,7 @@
+     Poly2Mod C,Q,T; 
+     big t; 
+     term2 *xptr,*yptr;
+-    int i,j,ik,L,n=degree(Modulus);
++    int i,j,ik,L,n=degree(Modulus2);
+     int k=isqrt(n+1,1);
+     if (k*k<n+1) k++;
+ 
+--- source/curve/schoof2.cpp	2012-10-29 20:31:42.547946673 +0400
++++ source/curve/schoof2.cpp	2012-10-29 20:25:50.959946567 +0400
+@@ -106,15 +106,15 @@
+ 
+ using namespace std;
+ 
+-Miracl precision=12;            // max. 12x32 bits per big number
++static Miracl precision=12;            // max. 12x32 bits per big number
+ 
+ Poly2Mod MFX,XX;
+ 
+-Big B;
++static Big B;
+ Big D;
+-Big A;
++static Big A;
+ 
+-void elliptic_dup(Poly2Mod& X,Poly2Mod& Y,Poly2Mod& Yy,Poly2Mod& Z)
++void elliptic_dup_sch2(Poly2Mod& X,Poly2Mod& Y,Poly2Mod& Yy,Poly2Mod& Z)
+ { // point doubling
+     Poly2Mod W1,W2,W3,W4,W5y,W5;
+ 
+@@ -167,7 +167,7 @@
+     {
+         if (iszero(W6) && iszero(W6y))
+         { // should have doubled!
+-            elliptic_dup(XT,YT,YTy,ZT);
++            elliptic_dup_sch2(XT,YT,YTy,ZT);
+             XTy=0;
+             return;
+         }
+@@ -218,9 +218,9 @@
+ #define STORE 80
+ #define HERD 5
+ 
+-EC2 wild[STORE],tame[STORE];
+-Big wdist[STORE],tdist[STORE];
+-int wname[STORE],tname[STORE];
++static EC2 wild[STORE],tame[STORE];
++static Big wdist[STORE],tdist[STORE];
++static int wname[STORE],tname[STORE];
+ 
+ Big kangaroo(Big p,Big order,Big ordermod,int TR,BOOL &found)
+ {
+@@ -460,14 +460,14 @@
+     return nrp;
+ }
+ 
+-int qpow(int x,int y)
+-{ // quick and dirty power function
++int qpow(int x,int y);
++/*{ // quick and dirty power function
+     int r=x;
+     for (int i=1;i<y;i++) r*=x;
+     return r;
+-}
++}*/
+ 
+-int main(int argc,char **argv)
++int shoof2_main(int argc,char **argv)
+ {
+     ofstream ofile;
+     int TR,M,a,b,c,low,lower,ip,lp,i,j,jj,m,n,nl,L,k,tau,lambda,cf;
+@@ -1251,7 +1251,7 @@
+         }
+         if (escape) break;
+     }
+-    Modulus.clear();
++    Modulus2.clear();
+ 
+     for (i=0;i<=L+1;i++) 
+     {
+--- source/curve/schoof.cpp	2012-10-29 20:31:42.547946673 +0400
++++ source/curve/schoof.cpp	2012-10-29 20:15:47.107946389 +0400
+@@ -154,21 +154,21 @@
+ using namespace std;
+ 
+ #ifndef MR_NOFULLWIDTH
+-Miracl precision=10;            // max. 10x32 bits per big number
++static Miracl precision=10;            // max. 10x32 bits per big number
+ #else
+-Miracl precision(10,MAXBASE);
++static Miracl precision(10,MAXBASE);
+ #endif
+ 
+-PolyMod MY2,MY4;
++static PolyMod MY2,MY4;
+ 
+-ZZn A,B;         // Here ZZn are integers mod the prime p
++static ZZn A,B;         // Here ZZn are integers mod the prime p
+                  // Montgomery representation is used internally
+ 
+-BOOL Edwards=FALSE;
++static BOOL Edwards=FALSE;
+ 
+ // Elliptic curve Point duplication formula
+ 
+-void elliptic_dup(PolyMod& X,PolyMod& Y,PolyMod& Z)
++void elliptic_dup_sch(PolyMod& X,PolyMod& Y,PolyMod& Z)
+ { // (X,Y,Z)=2.(X,Y,Z)
+     PolyMod W1,W2,W3,W4;
+ 
+@@ -235,7 +235,7 @@
+     {
+         if (iszero(W2)) 
+         { // should have doubled
+-            elliptic_dup(XT,YT,ZT);
++            elliptic_dup_sch(XT,YT,ZT);
+             return;
+         }
+         else
+@@ -289,9 +289,9 @@
+ #define STORE 80
+ #define HERD 5
+ 
+-ECn wild[STORE],tame[STORE];
+-Big wdist[STORE],tdist[STORE];
+-int wname[STORE],tname[STORE];
++static ECn wild[STORE],tame[STORE];
++static Big wdist[STORE],tdist[STORE];
++static int wname[STORE],tname[STORE];
+ 
+ Big kangaroo(Big p,Big order,Big ordermod)
+ {
+@@ -540,16 +540,16 @@
+ #define RAISE '#'
+ #endif
+ 
+-Big tt;
++static Big tt;
+ static char *ss;
+ 
+-void eval_power (Big& oldn,Big& n,char op)
+-{
++void eval_power (Big& oldn,Big& n,char op);
++/*{
+         if (op) n=pow(oldn,toint(n));    // power(oldn,size(n),n,n);
+-}
++}*/
+ 
+-void eval_product (Big& oldn,Big& n,char op)
+-{
++void eval_product (Big& oldn,Big& n,char op);
++/*{
+         switch (op)
+         {
+         case TIMES:
+@@ -561,10 +561,10 @@
+         case '%':
+                 n=oldn%n;
+         }
+-}
++}*/
+ 
+-void eval_sum (Big& oldn,Big& n,char op)
+-{
++void eval_sum (Big& oldn,Big& n,char op);
++/*{
+         switch (op)
+         {
+         case '+':
+@@ -573,105 +573,9 @@
+         case '-':
+                 n=oldn-n;
+         }
+-}
++}*/
+ 
+-void eval (void)
+-{
+-        Big oldn[3];
+-        Big n;
+-        int i;
+-        char oldop[3];
+-        char op;
+-        char minus;
+-        for (i=0;i<3;i++)
+-        {
+-            oldop[i]=0;
+-        }
+-LOOP:
+-        while (*ss==' ')
+-        ss++;
+-        if (*ss=='-')    /* Unary minus */
+-        {
+-        ss++;
+-        minus=1;
+-        }
+-        else
+-        minus=0;
+-        while (*ss==' ')
+-        ss++;
+-        if (*ss=='(' || *ss=='[' || *ss=='{')    /* Number is subexpression */
+-        {
+-        ss++;
+-        eval ();
+-        n=tt;
+-        }
+-        else            /* Number is decimal value */
+-        {
+-        for (i=0;ss[i]>='0' && ss[i]<='9';i++)
+-                ;
+-        if (!i)         /* No digits found */
+-        {
+-                cout <<  "Error - invalid number" << endl;
+-                exit (20);
+-        }
+-        op=ss[i];
+-        ss[i]=0;
+-        n=atoi(ss);
+-        ss+=i;
+-        *ss=op;
+-        }
+-        if (minus) n=-n;
+-        do
+-        op=*ss++;
+-        while (op==' ');
+-        if (op==0 || op==')' || op==']' || op=='}')
+-        {
+-        eval_power (oldn[2],n,oldop[2]);
+-        eval_product (oldn[1],n,oldop[1]);
+-        eval_sum (oldn[0],n,oldop[0]);
+-        tt=n;
+-        return;
+-        }
+-        else
+-        {
+-        if (op==RAISE)
+-        {
+-                eval_power (oldn[2],n,oldop[2]);
+-                oldn[2]=n;
+-                oldop[2]=RAISE;
+-        }
+-        else
+-        {
+-                if (op==TIMES || op=='/' || op=='%')
+-                {
+-                eval_power (oldn[2],n,oldop[2]);
+-                oldop[2]=0;
+-                eval_product (oldn[1],n,oldop[1]);
+-                oldn[1]=n;
+-                oldop[1]=op;
+-                }
+-                else
+-                {
+-                if (op=='+' || op=='-')
+-                {
+-                        eval_power (oldn[2],n,oldop[2]);
+-                        oldop[2]=0;
+-                        eval_product (oldn[1],n,oldop[1]);
+-                        oldop[1]=0;
+-                        eval_sum (oldn[0],n,oldop[0]);
+-                        oldn[0]=n;
+-                        oldop[0]=op;
+-                }
+-                else    /* Error - invalid operator */
+-                {
+-                        cout <<  "Error - invalid operator" << endl;
+-                        exit (20);
+-                }
+-                }
+-        }
+-        }
+-        goto LOOP;
+-}
++void eval (void);
+ 
+ mr_utype qpow(mr_utype x,int y)
+ { // quick and dirty power function
+@@ -680,7 +584,7 @@
+     return r;
+ }
+ 
+-int main(int argc,char **argv)
++int shoof_main(int argc,char **argv)
+ {
+     ofstream ofile;
+     int low,lower,ip,pbits,lp,i,j,jj,m,n,nl,L,k,tau,lambda;
+--- source/curve/sea.cpp	2012-10-29 20:31:42.547946673 +0400
++++ source/curve/sea.cpp	2012-10-29 20:17:59.087946428 +0400
+@@ -238,21 +238,21 @@
+ using namespace std;
+ 
+ #ifndef MR_NOFULLWIDTH
+-Miracl precision=18;            // max. 18x32 bits per big number
++static Miracl precision=18;            // max. 18x32 bits per big number
+ #else
+-Miracl precision(18,MAXBASE); 
++static Miracl precision(18,MAXBASE); 
+ #endif
+ 
+-PolyMod MY2,MY4;
++static PolyMod MY2,MY4;
+ 
+-ZZn A,B;         // Here ZZn are integers mod the prime p
++static ZZn A,B;         // Here ZZn are integers mod the prime p
+                  // Montgomery representation is used internally
+ 
+-BOOL Edwards=FALSE;
++static BOOL Edwards=FALSE;
+ 
+ // Elliptic curve Point duplication formula
+ 
+-void elliptic_dup(PolyMod& X,PolyMod& Y,PolyMod& Z)
++void elliptic_dup_sea(PolyMod& X,PolyMod& Y,PolyMod& Z)
+ { // (X,Y,Z)=2.(X,Y,Z)
+     PolyMod W1,W2,W3,W4;
+ 
+@@ -303,7 +303,7 @@
+     {
+         if (iszero(W2)) 
+         { // should have doubled
+-            elliptic_dup(XT,YT,ZT);
++            elliptic_dup_sea(XT,YT,ZT);
+             return;
+         }
+         else
+@@ -357,11 +357,11 @@
+ #define STORE 80
+ #define HERD 5
+ 
+-ECn wild[STORE],tame[STORE];
+-Big wdist[STORE],tdist[STORE];
+-int wname[STORE],tname[STORE];
++static ECn wild[STORE],tame[STORE];
++static Big wdist[STORE],tdist[STORE];
++static int wname[STORE],tname[STORE];
+ 
+-Big kangaroo(Big p,Big order,Big ordermod)
++Big kangaroo_sea(Big p,Big order,Big ordermod)
+ {
+     ECn ZERO,K[2*HERD],TE[2*HERD],X,P,G,table[128],trap;
+     Big start[2*HERD],txc,wxc,mean,leaps,upper,lower,middle,a,b,x,y,n,w,t,nrp;
+@@ -657,7 +657,7 @@
+     return r;
+ }
+ 
+-int main(int argc,char **argv)
++int sea_main(int argc,char **argv)
+ {
+     ofstream ofile;
+     ifstream mueller;
+@@ -1589,7 +1589,7 @@
+     ordermod=accum;
+     order=(p+1-CRT.eval(t))%ordermod;    // get order mod product of primes
+ 
+-    nrp=kangaroo(p,order,ordermod);
++    nrp=kangaroo_sea(p,order,ordermod);
+ 
+     if (Edwards)
+ 	{

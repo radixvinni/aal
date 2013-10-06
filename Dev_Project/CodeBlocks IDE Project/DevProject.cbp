@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="MpeiAAL" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="~/MpeiAAL" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Os" />
+					<Add option="-Wall" />
+					<Add option="-pg" />
+					<Add option="-g" />
+					<Add option="-I../.." />
+				</Compiler>
+				<Linker>
+					<Add option="-pg" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/MpeiAAL" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-march=i686" />
+					<Add option="-O2" />
+					<Add option="-I../.." />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="../../AAF/AAL/Algorithms.h" />
+		<Unit filename="../../AAF/AAL/BasicType.h" />
+		<Unit filename="../../AAF/AAL/Converter.cpp" />
+		<Unit filename="../../AAF/AAL/Converter.h" />
+		<Unit filename="../../AAF/AAL/DecompositionManager.cpp" />
+		<Unit filename="../../AAF/AAL/DecompositionManager.h" />
+		<Unit filename="../../AAF/AAL/Ellipticcurves.cpp" />
+		<Unit filename="../../AAF/AAL/Ellipticcurves.h" />
+		<Unit filename="../../AAF/AAL/EllipticcurvesGF2.cpp" />
+		<Unit filename="../../AAF/AAL/EllipticcurvesGF2.h" />
+		<Unit filename="../../AAF/AAL/EllipticcurvesGF3.cpp" />
+		<Unit filename="../../AAF/AAL/EllipticcurvesGF3.h" />
+		<Unit filename="../../AAF/AAL/FactorizationAlgorithms.cpp" />
+		<Unit filename="../../AAF/AAL/FactorizationAlgorithms.h" />
+		<Unit filename="../../AAF/AAL/Hash.cpp" />
+		<Unit filename="../../AAF/AAL/Hash.h" />
+		<Unit filename="../../AAF/AAL/HashClass.cpp" />
+		<Unit filename="../../AAF/AAL/HashClass.h" />
+		<Unit filename="../../AAF/AAL/Integer.cpp" />
+		<Unit filename="../../AAF/AAL/Integer.h" />
+		<Unit filename="../../AAF/AAL/IntegerBinom.cpp" />
+		<Unit filename="../../AAF/AAL/IntegerBinom.h" />
+		<Unit filename="../../AAF/AAL/IntegerBinomEllipticcurves.cpp" />
+		<Unit filename="../../AAF/AAL/IntegerBinomEllipticcurves.h" />
+		<Unit filename="../../AAF/AAL/Matrix.cpp" />
+		<Unit filename="../../AAF/AAL/Matrix.h" />
+		<Unit filename="../../AAF/AAL/NumberVector.cpp" />
+		<Unit filename="../../AAF/AAL/NumberVector.h" />
+		<Unit filename="../../AAF/AAL/Polynom.cpp" />
+		<Unit filename="../../AAF/AAL/Polynom.h" />
+		<Unit filename="../../AAF/AAL/PolynomGF2_mY_7.cpp" />
+		<Unit filename="../../AAF/AAL/PolynomGF2_mY_7.h" />
+		<Unit filename="../../AAF/AAL/PolynomGF2_m_4.cpp" />
+		<Unit filename="../../AAF/AAL/PolynomGF2_m_4.h" />
+		<Unit filename="../../AAF/AAL/PolynomGF3.cpp" />
+		<Unit filename="../../AAF/AAL/PolynomGF3.h" />
+		<Unit filename="../../AAF/AAL/PolynomGF3_mY_9.cpp" />
+		<Unit filename="../../AAF/AAL/PolynomGF3_mY_9.h" />
+		<Unit filename="../../AAF/AAL/PolynomGF3_m_6.cpp" />
+		<Unit filename="../../AAF/AAL/PolynomGF3_m_6.h" />
+		<Unit filename="../../AAF/AAL/PolynomGF7.cpp" />
+		<Unit filename="../../AAF/AAL/PolynomGF7.h" />
+		<Unit filename="../../AAF/AAL/PolynomGF7_m14.cpp" />
+		<Unit filename="../../AAF/AAL/PolynomGF7_m14.h" />
+		<Unit filename="../../AAF/AAL/PolynomGF7_mY_13.cpp" />
+		<Unit filename="../../AAF/AAL/PolynomGF7_mY_13.h" />
+		<Unit filename="../../AAF/AAL/PolynomGF7_mY_26.cpp" />
+		<Unit filename="../../AAF/AAL/PolynomGF7_mY_26.h" />
+		<Unit filename="../../AAF/AAL/PolynomGF7_mY_3.cpp" />
+		<Unit filename="../../AAF/AAL/PolynomGF7_mY_3.h" />
+		<Unit filename="../../AAF/AAL/PolynomGF7_m_14.cpp" />
+		<Unit filename="../../AAF/AAL/PolynomGF7_m_14.h" />
+		<Unit filename="../../AAF/AAL/PolynomGF7_m_2.cpp" />
+		<Unit filename="../../AAF/AAL/PolynomGF7_m_2.h" />
+		<Unit filename="../../AAF/AAL/PrimeTester.cpp" />
+		<Unit filename="../../AAF/AAL/PrimeTester.h" />
+		<Unit filename="../../AAF/AAL/ProbingDivisionAlgorithmDecomposition.cpp" />
+		<Unit filename="../../AAF/AAL/ProbingDivisionAlgorithmDecomposition.h" />
+		<Unit filename="../../AAF/AAL/ProbingDivisionAlgorithmDecompositionThread.cpp" />
+		<Unit filename="../../AAF/AAL/ProbingDivisionAlgorithmDecompositionThread.h" />
+		<Unit filename="../../AAF/AAL/TableManager.cpp" />
+		<Unit filename="../../AAF/AAL/TableManager.h" />
+		<Unit filename="../../AAF/AALT/BasicTypeTests.cpp" />
+		<Unit filename="../../AAF/AALT/DecompositionManagerTests.cpp" />
+		<Unit filename="../../AAF/AALT/EllipticCurvesGF3Tests.cpp" />
+		<Unit filename="../../AAF/AALT/EllipticCurvesTests.cpp" />
+		<Unit filename="../../AAF/AALT/EllipticcurvesGF2Tests.cpp" />
+		<Unit filename="../../AAF/AALT/IntegerBinomEllipticCurvesTests.cpp" />
+		<Unit filename="../../AAF/AALT/IntegerBinomTests.cpp" />
+		<Unit filename="../../AAF/AALT/IntegerTests.cpp" />
+		<Unit filename="../../AAF/AALT/MatrixTests.cpp" />
+		<Unit filename="../../AAF/AALT/NumberVectorTests.cpp" />
+		<Unit filename="../../AAF/AALT/PolynomGF2_m_4Test.cpp" />
+		<Unit filename="../../AAF/AALT/PolynomGF3Tests.cpp" />
+		<Unit filename="../../AAF/AALT/PolynomGF7Test.cpp" />
+		<Unit filename="../../AAF/AALT/PolynomTests.cpp" />
+		<Unit filename="../../AAF/AALT/TestFoctarizationAlgorithms.cpp" />
+		<Unit filename="../../AAF/AALT/TestPolynomGF2_mY_7.cpp" />
+		<Unit filename="../../AAF/AALT/TestPolynomGF3_mY_10.cpp" />
+		<Unit filename="../../AAF/AALT/TestPolynomGF3_m_6.cpp" />
+		<Unit filename="../../AAF/AALT/TestPolynomGF7_m14.cpp" />
+		<Unit filename="../../AAF/AALT/TestPolynomGF7_mY_13.cpp" />
+		<Unit filename="../../AAF/AALT/TestPolynomGF7_mY_3.cpp" />
+		<Unit filename="../../AAF/AALT/TestPolynomGF7_m_14.cpp" />
+		<Unit filename="../../AAF/AALT/TestPolynomGF7_m_2.cpp" />
+		<Unit filename="../../AAF/AALT/TestPrimeTester.cpp" />
+		<Unit filename="../../Bindings/config.h" />
+		<Unit filename="../../CppUnitLite/Failure.h" />
+		<Unit filename="../../CppUnitLite/Test.cpp" />
+		<Unit filename="../../CppUnitLite/Test.h" />
+		<Unit filename="../../CppUnitLite/TestHarness.h" />
+		<Unit filename="../../CppUnitLite/TestRegistry.cpp" />
+		<Unit filename="../../CppUnitLite/TestRegistry.h" />
+		<Unit filename="../../CppUnitLite/TestResult.cpp" />
+		<Unit filename="../../CppUnitLite/TestResult.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<envvars />
+			<code_completion />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

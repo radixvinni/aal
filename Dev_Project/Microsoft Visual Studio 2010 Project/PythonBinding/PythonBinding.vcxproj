@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CAC1F7FF-E618-4082-AF36-EB704EB1554F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>PythonBinding</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>_AAL</TargetName>
+    <TargetExt>.pyd</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <TargetExt>.pyd</TargetExt>
+    <TargetName>_AAL</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;PYTHONBINDING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(PYTHON_INCLUDE);../../..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalDependencies>$(PYTHON_LIB);kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;PYTHONBINDING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../msieve/include;../../../msieve/zlib;$(PYTHON_INCLUDE);../../..;../../../miracl/include;../../../miracl/source/curve;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
+      <OptimizeReferences>false</OptimizeReferences>
+      <AdditionalDependencies>$(PYTHON_LIB);..\..\..\mpir\build.vc10\lib\Win32\$(IntDir)mpir.lib;..\..\..\gmp-ecm\build.vc10\Win32\$(IntDir)libecm.lib;..\..\..\msieve\build.vc10\Win32\$(IntDir)common.lib;..\..\..\msieve\build.vc10\Win32\$(IntDir)gnfs.lib;..\..\..\msieve\build.vc10\Win32\$(IntDir)mpqs.lib;..\..\..\msieve\build.vc10\Win32\$(IntDir)zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>.\Release\wrap.lib</ImportLibrary>
+      <OutputFile>$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\AAF\AAL\Converter.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\DecompositionManager.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\Ellipticcurves.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\EllipticcurvesGF2.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\FactorizationAlgorithms.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\Integer.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\IntegerBinom.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\IntegerBinomEllipticcurves.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\Matrix.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\NumberVector.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\Polynom.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF2_mY_7.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF2_m_4.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF3.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF7.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF7_mY_3.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\PrimeTester.cpp" />
+    <ClCompile Include="..\..\..\AAF\AAL\TableManager.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\big.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\crt.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\curve\complex.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\curve\flpoly.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\curve\modpol.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\curve\poly.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\curve\poly2.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\curve\poly2mod.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\curve\poly2xy.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\curve\polymod.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\curve\polyxy.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\curve\ps_zzn.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\curve\schoof.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\curve\schoof2.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\curve\sea.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\ec2.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\ecn.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\ecnzzn.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\flash.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\floating.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\gf2m.cpp" />
+    <ClCompile Include="..\..\..\miracl\source\mr87f.c" />
+    <ClCompile Include="..\..\..\miracl\source\mr87v.c" />
+    <ClCompile Include="..\..\..\miracl\source\mraes.c" />
+    <ClCompile Include="..\..\..\miracl\source\mralloc.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrarth0.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrarth1.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrarth2.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrarth3.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrbits.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrbrick.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrbuild.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrcore.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrcrt.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrcurve.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrdouble.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrebrick.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrec2m.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrecn2.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrfast.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrflash.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrflsh1.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrflsh2.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrflsh3.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrflsh4.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrfrnd.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrgcd.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrgcm.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrgf2m.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrio1.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrio2.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrjack.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrlucas.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrmonty.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrmuldv.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrpi.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrpower.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrprime.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrrand.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrround.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrscrt.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrshs.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrshs256.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrshs512.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrsmall.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrsroot.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrstrong.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrxgcd.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrzzn2.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrzzn2b.c" />
+    <ClCompile Include="..\..\..\miracl\source\mrzzn3.c" />
+    <ClCompile Include="..\..\..\miracl\source\zzn.cpp" />
+    <ClCompile Include="..\..\..\msieve\common\driver.c" />
+    <ClCompile Include="..\..\..\msieve\demo.c" />
+    <ClCompile Include="AAL_wrap.cxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\AAF\AAL\Algorithms.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\BasicType.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\Converter.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\DecompositionManager.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\Ellipticcurves.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\EllipticcurvesGF2.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\FactorizationAlgorithms.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\Integer.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\IntegerBinom.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\IntegerBinomEllipticcurves.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\Matrix.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\NumberVector.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\Polynom.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF2_mY_7.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF2_m_4.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF3.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF7.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF7_mY_3.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\PrimeTester.h" />
+    <ClInclude Include="..\..\..\AAF\AAL\TableManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="AAL.i">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cd ../../..
+%SWIG% -c++ -python "%(FullPath)"
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(InputName)_wrap.cxx;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cd ../../..
+%SWIG% -c++ -python "%(FullPath)"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(InputName)_wrap.cxx;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

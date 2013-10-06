@@ -1,0 +1,264 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="DevProjec.exe"/>
+    <OBJFILES value="Main.obj ..\..\CppUnitLite\Test.obj ..\..\CppUnitLite\TestResult.obj 
+      ..\..\CppUnitLite\TestRegistry.obj ..\..\AAF\AAL\PrimeTester.obj 
+      ..\..\AAF\AAL\DecompositionManager.obj ..\..\AAF\AAL\Integer.obj 
+      ..\..\AAF\AALT\IntegerTests.obj ..\..\AAF\AALT\BasicTypeTests.obj 
+      ..\..\AAF\AAL\Converter.obj ..\..\AAF\AAL\Ellipticcurves.obj 
+      ..\..\AAF\AAL\EllipticcurvesGF2.obj ..\..\AAF\AAL\EllipticcurvesGF3.obj 
+      ..\..\AAF\AAL\FactorizationAlgorithms.obj ..\..\AAF\AAL\IntegerBinom.obj 
+      ..\..\AAF\AAL\IntegerBinomEllipticcurves.obj ..\..\AAF\AAL\Matrix.obj 
+      ..\..\AAF\AAL\NumberVector.obj ..\..\AAF\AAL\Polynom.obj 
+      ..\..\AAF\AAL\PolynomGF2_m_4.obj ..\..\AAF\AAL\PolynomGF2_mY_7.obj 
+      ..\..\AAF\AAL\PolynomGF3.obj ..\..\AAF\AAL\PolynomGF3_m_6.obj 
+      ..\..\AAF\AAL\PolynomGF3_mY_9.obj ..\..\AAF\AAL\PolynomGF7.obj 
+      ..\..\AAF\AAL\PolynomGF7_m_2.obj ..\..\AAF\AAL\PolynomGF7_m_14.obj 
+      ..\..\AAF\AAL\PolynomGF7_m14.obj ..\..\AAF\AAL\PolynomGF7_mY_3.obj 
+      ..\..\AAF\AAL\PolynomGF7_mY_13.obj ..\..\AAF\AAL\PolynomGF7_mY_26.obj 
+      ..\..\AAF\AAL\ProbingDivisionAlgorithmDecomposition.obj 
+      ..\..\AAF\AAL\ProbingDivisionAlgorithmDecompositionThread.obj 
+      ..\..\AAF\AAL\TableManager.obj 
+      ..\..\AAF\AALT\DecompositionManagerTests.obj ..\..\AAF\AALT\EllipticcurvesGF2Tests.obj 
+      ..\..\AAF\AALT\EllipticCurvesGF3Tests.obj 
+      ..\..\AAF\AALT\EllipticCurvesTests.obj 
+      ..\..\AAF\AALT\IntegerBinomEllipticCurvesTests.obj 
+      ..\..\AAF\AALT\IntegerBinomTests.obj ..\..\AAF\AALT\MatrixTests.obj 
+      ..\..\AAF\AALT\NumberVectorTests.obj ..\..\AAF\AALT\PolynomGF2_m_4Test.obj 
+      ..\..\AAF\AALT\PolynomGF3Tests.obj ..\..\AAF\AALT\PolynomGF7Test.obj 
+      ..\..\AAF\AALT\PolynomTests.obj 
+      ..\..\AAF\AALT\TestFoctarizationAlgorithms.obj 
+      ..\..\AAF\AALT\TestPolynomGF2_mY_7.obj 
+      ..\..\AAF\AALT\TestPolynomGF3_m_6.obj 
+      ..\..\AAF\AALT\TestPolynomGF3_mY_10.obj 
+      ..\..\AAF\AALT\TestPolynomGF7_m_2.obj 
+      ..\..\AAF\AALT\TestPolynomGF7_m_14.obj 
+      ..\..\AAF\AALT\TestPolynomGF7_m14.obj 
+      ..\..\AAF\AALT\TestPolynomGF7_mY_3.obj 
+      ..\..\AAF\AALT\TestPolynomGF7_mY_13.obj ..\..\AAF\AALT\TestPrimeTester.obj 
+      ..\..\AAF\AAL\Hash.obj ..\..\AAF\AAL\HashClass.obj"/>
+    <RESFILES value="DevProjec.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES)"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value=""/>
+    <SPARELIBS value="vcl.lib rtl.lib"/>
+    <PACKAGES value="vcl.bpi rtl.bpi dbrtl.bpi adortl.bpi vcldb.bpi vclx.bpi bdertl.bpi 
+      vcldbx.bpi ibxpress.bpi dsnap.bpi cds.bpi bdecds.bpi qrpt.bpi teeui.bpi 
+      teedb.bpi tee.bpi dss.bpi teeqr.bpi visualclx.bpi visualdbclx.bpi 
+      dsnapcrba.bpi dsnapcon.bpi bcbsmp.bpi vclie.bpi xmlrtl.bpi inet.bpi 
+      inetdbbde.bpi inetdbxpress.bpi inetdb.bpi nmfast.bpi webdsnap.bpi 
+      bcbie.bpi websnap.bpi soaprtl.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi 
+      indy.bpi bcb2kaxserver.bpi"/>
+    <PATHCPP value=".;..\..\CppUnitLite;..\..\CppUnitLite;..\..\CppUnitLite;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AAL;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AALT;..\..\AAF\AAL;..\..\AAF\AAL"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT;_NO_VCL;_RTLDLL;USEPACKAGES"/>
+    <MAINSOURCE value="DevProjec.bpf"/>
+    <INCLUDEPATH value="..\..\..\..\diplom\diplom\trunk\MPEI_ASK\AAF\AALT;&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;&quot;E:\Program Files\Borland\CBuilder6\Projects&quot;;..\..\CppUnitLite;..\..;..\..\AAF\AALT;..\..\AAF\AAL;..\MPEI_ASK\CppUnitLite;..\AALT;..\AAL;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="..\..\..\..\diplom\diplom\trunk\MPEI_ASK\AAF\AALT;&quot;C:\Program Files\Borland\CBuilder6\Projects&quot;;&quot;E:\Program Files\Borland\CBuilder6\Projects&quot;;..\..\AAF\AALT;..\..\AAF\AAL;..\..\CppUnitLite;..\CppUnitLite;..\AALT;..\AAL;&quot;C:\MPEI_VSS\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project&quot;;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\..\..\..\diplom\diplom\trunk\MPEI_ASK\AAF\AALT 
+      -I&quot;C:\Program Files\Borland\CBuilder6\Projects&quot; 
+      -I&quot;E:\Program Files\Borland\CBuilder6\Projects&quot; -I..\..\CppUnitLite 
+      -I..\.. -I..\..\AAF\AALT -I..\..\AAF\AAL -I..\MPEI_ASK\CppUnitLite 
+      -I..\AALT -I..\AAL -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp 
+      -D_DEBUG -boa"/>
+    <CFLAG1 value="-Od -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -tWC -tWM -c"/>
+    <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zd"/>
+    <LFLAGS value="-D&quot;&quot; -ap -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0x32.obj $(PACKAGES) $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cw32mti.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="DevProjec.res" FORMNAME="" UNITNAME="DevProjec.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="DevProjec.bpf" FORMNAME="" UNITNAME="DevProjec" CONTAINERID="BPF" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Main.cpp" FORMNAME="" UNITNAME="Main" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\CppUnitLite\Test.cpp" FORMNAME="" UNITNAME="Test.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\CppUnitLite\TestResult.cpp" FORMNAME="" UNITNAME="TestResult.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="HashTestFile.txt" FORMNAME="" UNITNAME="HashTestFile.txt" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\CppUnitLite\Failure.h" FORMNAME="" UNITNAME="Failure.h" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\CppUnitLite\Test.h" FORMNAME="" UNITNAME="Test.h" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\CppUnitLite\TestHarness.h" FORMNAME="" UNITNAME="TestHarness.h" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\CppUnitLite\TestRegistry.cpp" FORMNAME="" UNITNAME="TestRegistry.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\CppUnitLite\TestRegistry.h" FORMNAME="" UNITNAME="TestRegistry.h" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\CppUnitLite\TestResult.h" FORMNAME="" UNITNAME="TestResult.h" CONTAINERID="" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\PrimeTester.cpp" FORMNAME="" UNITNAME="PrimeTester.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\DecompositionManager.cpp" FORMNAME="" UNITNAME="DecompositionManager.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\Integer.cpp" FORMNAME="" UNITNAME="Integer.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\IntegerTests.cpp" FORMNAME="" UNITNAME="IntegerTests.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\BasicTypeTests.cpp" FORMNAME="" UNITNAME="BasicTypeTests.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\Converter.cpp" FORMNAME="" UNITNAME="Converter.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\Ellipticcurves.cpp" FORMNAME="" UNITNAME="Ellipticcurves.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\EllipticcurvesGF2.cpp" FORMNAME="" UNITNAME="EllipticcurvesGF2.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\EllipticcurvesGF3.cpp" FORMNAME="" UNITNAME="EllipticcurvesGF3.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\FactorizationAlgorithms.cpp" FORMNAME="" UNITNAME="FactorizationAlgorithms.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\IntegerBinom.cpp" FORMNAME="" UNITNAME="IntegerBinom.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\IntegerBinomEllipticcurves.cpp" FORMNAME="" UNITNAME="IntegerBinomEllipticcurves.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\Matrix.cpp" FORMNAME="" UNITNAME="Matrix.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\NumberVector.cpp" FORMNAME="" UNITNAME="NumberVector.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\Polynom.cpp" FORMNAME="" UNITNAME="Polynom.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\PolynomGF2_m_4.cpp" FORMNAME="" UNITNAME="PolynomGF2_m_4.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\PolynomGF2_mY_7.cpp" FORMNAME="" UNITNAME="PolynomGF2_mY_7.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\PolynomGF3.cpp" FORMNAME="" UNITNAME="PolynomGF3.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\PolynomGF3_m_6.cpp" FORMNAME="" UNITNAME="PolynomGF3_m_6.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\PolynomGF3_mY_9.cpp" FORMNAME="" UNITNAME="PolynomGF3_mY_9.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\PolynomGF7.cpp" FORMNAME="" UNITNAME="PolynomGF7.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\PolynomGF7_m_2.cpp" FORMNAME="" UNITNAME="PolynomGF7_m_2.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\PolynomGF7_m_14.cpp" FORMNAME="" UNITNAME="PolynomGF7_m_14.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\PolynomGF7_m14.cpp" FORMNAME="" UNITNAME="PolynomGF7_m14.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\PolynomGF7_mY_3.cpp" FORMNAME="" UNITNAME="PolynomGF7_mY_3.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\PolynomGF7_mY_13.cpp" FORMNAME="" UNITNAME="PolynomGF7_mY_13.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\PolynomGF7_mY_26.cpp" FORMNAME="" UNITNAME="PolynomGF7_mY_26.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\ProbingDivisionAlgorithmDecomposition.cpp" FORMNAME="" UNITNAME="ProbingDivisionAlgorithmDecomposition.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\ProbingDivisionAlgorithmDecompositionThread.cpp" FORMNAME="" UNITNAME="ProbingDivisionAlgorithmDecompositionThread.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\TableManager.cpp" FORMNAME="" UNITNAME="TableManager.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\DecompositionManagerTests.cpp" FORMNAME="" UNITNAME="DecompositionManagerTests.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\EllipticcurvesGF2Tests.cpp" FORMNAME="" UNITNAME="EllipticcurvesGF2Tests.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\EllipticCurvesGF3Tests.cpp" FORMNAME="" UNITNAME="EllipticCurvesGF3Tests.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\EllipticCurvesTests.cpp" FORMNAME="" UNITNAME="EllipticCurvesTests.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\IntegerBinomEllipticCurvesTests.cpp" FORMNAME="" UNITNAME="IntegerBinomEllipticCurvesTests.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\IntegerBinomTests.cpp" FORMNAME="" UNITNAME="IntegerBinomTests.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\MatrixTests.cpp" FORMNAME="" UNITNAME="MatrixTests.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\NumberVectorTests.cpp" FORMNAME="" UNITNAME="NumberVectorTests.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\PolynomGF2_m_4Test.cpp" FORMNAME="" UNITNAME="PolynomGF2_m_4Test.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\PolynomGF3Tests.cpp" FORMNAME="" UNITNAME="PolynomGF3Tests.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\PolynomGF7Test.cpp" FORMNAME="" UNITNAME="PolynomGF7Test.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\PolynomTests.cpp" FORMNAME="" UNITNAME="PolynomTests.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\TestFoctarizationAlgorithms.cpp" FORMNAME="" UNITNAME="TestFoctarizationAlgorithms.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\TestPolynomGF2_mY_7.cpp" FORMNAME="" UNITNAME="TestPolynomGF2_mY_7.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\TestPolynomGF3_m_6.cpp" FORMNAME="" UNITNAME="TestPolynomGF3_m_6.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\TestPolynomGF3_mY_10.cpp" FORMNAME="" UNITNAME="TestPolynomGF3_mY_10.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\TestPolynomGF7_m_2.cpp" FORMNAME="" UNITNAME="TestPolynomGF7_m_2.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\TestPolynomGF7_m_14.cpp" FORMNAME="" UNITNAME="TestPolynomGF7_m_14.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\TestPolynomGF7_m14.cpp" FORMNAME="" UNITNAME="TestPolynomGF7_m14.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\TestPolynomGF7_mY_3.cpp" FORMNAME="" UNITNAME="TestPolynomGF7_mY_3.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\TestPolynomGF7_mY_13.cpp" FORMNAME="" UNITNAME="TestPolynomGF7_mY_13.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AALT\TestPrimeTester.cpp" FORMNAME="" UNITNAME="TestPrimeTester.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\Hash.cpp" FORMNAME="" UNITNAME="Hash.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\..\AAF\AAL\HashClass.cpp" FORMNAME="" UNITNAME="HashClass.cpp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1049
+CodePage=1251
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[HistoryLists\hlIncludePath]
+Count=21
+Item0=..\..\..\..\diplom\diplom\trunk\MPEI_ASK\AAF\AALT;C:\Program Files\Borland\CBuilder6\Projects;E:\Program Files\Borland\CBuilder6\Projects;..\..\CppUnitLite;..\..;..\..\AAF\AALT;..\..\AAF\AAL;..\MPEI_ASK\CppUnitLite;..\AALT;..\AAL;$(BCB)\include;$(BCB)\include\vcl
+Item1=E:\Program Files\Borland\CBuilder6\Projects;..\..\CppUnitLite;..\..;..\..\AAF\AALT;..\..\AAF\AAL;..\MPEI_ASK\CppUnitLite;..\AALT;..\AAL;$(BCB)\include;$(BCB)\include\vcl
+Item2=..\..\CppUnitLite;..\..;..\..\AAF\AALT;..\..\AAF\AAL;..\MPEI_ASK\CppUnitLite;..\AALT;..\AAL;$(BCB)\include;$(BCB)\include\vcl
+Item3=..\..\;..\..\AAF\AALT;..\..\AAF\AAL;..\MPEI_ASK\CppUnitLite;..\AALT;..\AAL;$(BCB)\include;$(BCB)\include\vcl
+Item4=..\..\CppUnitLite;..\..\AAF\AALT;..\..\AAF\AAL;..\MPEI_ASK\CppUnitLite;..\AALT;..\AAL;$(BCB)\include;$(BCB)\include\vcl
+Item5=..\..\AAF\AALT;..\..\AAF\AAL;..\MPEI_ASK\CppUnitLite;..\AALT;..\AAL;$(BCB)\include;$(BCB)\include\vcl
+Item6=..\..\CppUnitLite;..\..\AAF\AALT;..\..\AAF\AAL;..\MPEI_ASK\CppUnitLite;..\AALT;..\AAL;$(BCB)\include;$(BCB)\include\vcl;
+Item7=..\..\CppUnitLite;C:\Program Files\Borland\CBuilder6\Projects;..\..\AAF\AALT;..\..\AAF\AAL;..\MPEI_ASK\CppUnitLite;..\AALT;..\AAL;$(BCB)\include;$(BCB)\include\vcl
+Item8=..\..\CppUnitLite;C:\Program Files\Borland\CBuilder6\Projects;..\..\AAF\AALT;..\..\AAF\AAL;..\MPEI_ASK\CppUnitLite;..\AALT;..\AAL;$(BCB)\include;$(BCB)\include\vcl;
+Item9=..\..\CppUnitLite;C:\Program Files\Borland\CBuilder6\Projects;..\..\AAF\AALT;..\..\AAF\AAL;..\MPEI_ASK\CppUnitLite;..\AALT;..\AAL;D:\My Documents\C++ Builder6 Projects\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project;$(BCB)\include;$(BCB)\include\vcl;D:\My Documents\C++ Builder6 Projects\MPEI_ASK
+Item10=C:\Program Files\Borland\CBuilder6\Projects;..\..\AAF\AALT;..\..\AAF\AAL;..\MPEI_ASK\CppUnitLite;..\AALT;..\AAL;D:\My Documents\C++ Builder6 Projects\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project;$(BCB)\include;$(BCB)\include\vcl;D:\My Documents\C++ Builder6 Projects\MPEI_ASK
+Item11=..\..\CppUnitLite;C:\Program Files\Borland\CBuilder6\Projects;..\..\AAF\AALT;..\..\AAF\AAL;..\CppUnitLite;..\AALT;..\AAL;D:\My Documents\C++ Builder6 Projects\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project;$(BCB)\include;$(BCB)\include\vcl;D:\My Documents\C++ Builder6 Projects\MPEI_ASK
+Item12=C:\Program Files\Borland\CBuilder6\Projects;..\..\AAF\AALT;..\..\AAF\AAL;..\CppUnitLite;..\AALT;..\AAL;D:\My Documents\C++ Builder6 Projects\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project;$(BCB)\include;$(BCB)\include\vcl;D:\My Documents\C++ Builder6 Projects\MPEI_ASK
+Item13=C:\Program Files\Borland\CBuilder6\Projects;..\..\AAF\AALT;..\..\AAF\AAL;..\..\CppUnitLite;..\CppUnitLite;..\AALT;..\AAL;D:\My Documents\C++ Builder6 Projects\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project;$(BCB)\include;$(BCB)\include\vcl;D:\My Documents\C++ Builder6 Projects\MPEI_ASK
+Item14=..\CppUnitLite;..\AALT;..\AAL;D:\My Documents\C++ Builder6 Projects\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project;$(BCB)\include;$(BCB)\include\vcl;D:\My Documents\C++ Builder6 Projects\MPEI_ASK
+Item15=..\..\AAF\AALT;..\..\AAF\AAL;..\..\CppUnitLite;..\CppUnitLite;..\AALT;..\AAL;D:\My Documents\C++ Builder6 Projects\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project;$(BCB)\include;$(BCB)\include\vcl;D:\My Documents\C++ Builder6 Projects\MPEI_ASK
+Item16=..\..\AAF\AALT;..\..\AAF\AAL;..\..\CppUnitLite;..\CppUnitLite;..\AALT;..\AAL;C:\MPEI_VSS\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project;$(BCB)\include;$(BCB)\include\vcl;C:\MPEI_VSS\MPEI_ASK
+Item17=..\..\CppUnitLite;..\CppUnitLite;..\AALT;..\AAL;C:\MPEI_VSS\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project;$(BCB)\include;$(BCB)\include\vcl;C:\MPEI_VSS\MPEI_ASK
+Item18=..\..\CppUnitLite;..\CppUnitLite;..\AALT;..\AAL;C:\Alex\MPEI_ASK\AAF\Borland C++ Builder 6.0 Project;$(BCB)\include;$(BCB)\include\vcl;C:\Alex\MPEI_ASK\AAF
+Item19=..\CppUnitLite;..\AALT;..\AAL;C:\Alex\MPEI_ASK\AAF\Borland C++ Builder 6.0 Project;$(BCB)\include;$(BCB)\include\vcl;C:\Alex\MPEI_ASK\AAF
+Item20=..\CppUnitLite;..\AALT;..\AAL;C:\Alex\MPEI_ASK\AAF\Borland C++ Builder 6.0 Project;$(BCB)\include;$(BCB)\include\vcl
+
+[HistoryLists\hlLibraryPath]
+Count=7
+Item0=..\..\..\..\diplom\diplom\trunk\MPEI_ASK\AAF\AALT;C:\Program Files\Borland\CBuilder6\Projects;E:\Program Files\Borland\CBuilder6\Projects;..\..\AAF\AALT;..\..\AAF\AAL;..\..\CppUnitLite;..\CppUnitLite;..\AALT;..\AAL;C:\MPEI_VSS\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project;$(BCB)\lib\obj;$(BCB)\lib
+Item1=E:\Program Files\Borland\CBuilder6\Projects;..\..\AAF\AALT;..\..\AAF\AAL;..\..\CppUnitLite;..\CppUnitLite;..\AALT;..\AAL;C:\MPEI_VSS\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project;$(BCB)\lib\obj;$(BCB)\lib
+Item2=..\..\AAF\AALT;..\..\AAF\AAL;..\..\CppUnitLite;..\CppUnitLite;..\AALT;..\AAL;C:\MPEI_VSS\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project;$(BCB)\lib\obj;$(BCB)\lib
+Item3=C:\Program Files\Borland\CBuilder6\Projects;..\..\AAF\AALT;..\..\AAF\AAL;..\..\CppUnitLite;..\CppUnitLite;..\AALT;..\AAL;C:\MPEI_VSS\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project;$(BCB)\lib\obj;$(BCB)\lib
+Item4=..\..\CppUnitLite;..\CppUnitLite;..\AALT;..\AAL;C:\MPEI_VSS\MPEI_ASK\Dev_Project\Borland C++ Builder 6.0 Project;$(BCB)\lib\obj;$(BCB)\lib
+Item5=..\..\CppUnitLite;..\CppUnitLite;..\AALT;..\AAL;C:\Alex\MPEI_ASK\AAF\Borland C++ Builder 6.0 Project;$(BCB)\lib\obj;$(BCB)\lib
+Item6=..\CppUnitLite;..\AALT;..\AAL;C:\Alex\MPEI_ASK\AAF\Borland C++ Builder 6.0 Project;$(BCB)\lib\obj;$(BCB)\lib
+
+[HistoryLists\hlDebugSourcePath]
+Count=1
+Item0=$(BCB)\source\vcl
+
+[HistoryLists\hlConditionals]
+Count=1
+Item0=_DEBUG
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

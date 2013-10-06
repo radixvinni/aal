@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Файлы исходного кода">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы исходного кода\miracl">
+      <UniqueIdentifier>{c8fe612d-d65c-42c3-8ed7-f046cc3083e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\msieve">
+      <UniqueIdentifier>{98586ea0-1b74-4a44-9ce1-dbb7bdd870ea}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\AAF\AAL\Integer.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\DecompositionManager.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PrimeTester.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="AAL_wrap.cxx">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\Converter.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\Ellipticcurves.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\IntegerBinom.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\IntegerBinomEllipticcurves.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\Matrix.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\NumberVector.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\Polynom.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF3.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\TableManager.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\modpol.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\schoof.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\sea.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\ecn.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\zzn.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\poly.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\polymod.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\polyxy.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\complex.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\flpoly.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\poly2.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\poly2mod.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\poly2xy.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\big.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\crt.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\ec2.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\ecnzzn.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\flash.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\floating.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\gf2m.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\ps_zzn.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\EllipticcurvesGF2.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\FactorizationAlgorithms.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF2_m_4.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF2_mY_7.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF7.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\AAF\AAL\PolynomGF7_mY_3.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\curve\schoof2.cpp">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\msieve\demo.c">
+      <Filter>Файлы исходного кода\msieve</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\msieve\common\driver.c">
+      <Filter>Файлы исходного кода\msieve</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mr87f.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mr87v.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mraes.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mralloc.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrarth0.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrarth1.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrarth2.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrarth3.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrbits.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrbrick.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrbuild.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrcore.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrcrt.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrcurve.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrdouble.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrebrick.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrec2m.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrecn2.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrfast.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrflash.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrflsh1.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrflsh2.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrflsh3.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrflsh4.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrfrnd.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrgcd.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrgcm.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrgf2m.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrio1.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrio2.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrjack.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrlucas.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrmonty.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrmuldv.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrpi.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrpower.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrprime.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrrand.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrround.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrscrt.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrshs.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrshs256.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrshs512.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrsmall.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrsroot.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrstrong.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrxgcd.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrzzn2.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrzzn2b.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\miracl\source\mrzzn3.c">
+      <Filter>Файлы исходного кода\miracl</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\AAF\AAL\Integer.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\DecompositionManager.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\Algorithms.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\BasicType.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\Converter.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\Ellipticcurves.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\IntegerBinom.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\IntegerBinomEllipticcurves.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\Matrix.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\Polynom.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF3.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PrimeTester.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\EllipticcurvesGF2.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\FactorizationAlgorithms.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\NumberVector.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF2_m_4.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF2_mY_7.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\TableManager.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF7.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\AAF\AAL\PolynomGF7_mY_3.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="AAL.i" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,11 @@
+--- Makefile	2012-10-29 21:31:00.987947000 +0400
++++ Makefile	2012-10-29 21:42:00.515947924 +0400
+@@ -14,7 +14,7 @@
+ 
+ # gcc with basic optimization (-march flag could
+ # get overridden by architecture-specific builds)
+-CC = gcc -D_FILE_OFFSET_BITS=64
++CC = gcc -D_FILE_OFFSET_BITS=64 -fPIC
+ WARN_FLAGS = -Wall -W
+ OPT_FLAGS = -O3 -fomit-frame-pointer -march=k8 -DNDEBUG -D_LARGEFILE64_SOURCE
+ 

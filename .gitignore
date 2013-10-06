@@ -1,0 +1,15 @@
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake
+CTestTestfile.cmake
+install_manifest.txt
+
+*.so
+*.a
+*.o
+*.exe
+*.dll
+
+AAL.py
+.svn

@@ -11,12 +11,12 @@
    try {
       $action
    } catch (AAL::Exception* e) {
-	  PyErr_SetString(PyExc_RuntimeError, const_cast<char*>(e->cp1251()));
+      PyErr_SetString(PyExc_RuntimeError, const_cast<char*>(e->cp1251()));
       return NULL;
    } catch(...) { 
-	  PyErr_SetString(PyExc_RuntimeError, "Unknown Exception");
+      PyErr_SetString(PyExc_RuntimeError, "Unknown Exception");
       return NULL; 
-	}
+    }
 }
 
 %feature("autodoc", "1");
@@ -67,31 +67,31 @@ using namespace AAL;
 %include "./AAF/AAL/PolynomGF7.h"
 namespace std {
   %template(IntVector) vector<int>;
-	%template(DecompositionMemberVector) vector<AAL::DecompositionMember>;
-	%template(IntegerBinomVector) vector<AAL::IntegerBinom>;
-	%template(IntegerBinomEllipticPointVector) vector<AAL::IntegerBinomEllipticPoint>;
-	%template(IntegerPVector) vector<AAL::Integer*>;
-	%template(IntegerVector) vector<AAL::Integer>;
+    %template(DecompositionMemberVector) vector<AAL::DecompositionMember>;
+    %template(IntegerBinomVector) vector<AAL::IntegerBinom>;
+    %template(IntegerBinomEllipticPointVector) vector<AAL::IntegerBinomEllipticPoint>;
+    %template(IntegerPVector) vector<AAL::Integer*>;
+    %template(IntegerVector) vector<AAL::Integer>;
 }
 
 %extend std::vector<AAL::DecompositionMember> {
   char *__repr__() {
-	  static char tmp[1024];
-	  PyObject* result = PyList_New($self->size());
-	  for(int i = 0; i < $self->size(); i++) {
-		  PyList_SetItem(result, i, Py_BuildValue("(ss)", $self->at(i).getNumber().ToString().c_str(), $self->at(i).getDegree().ToString().c_str()));
-	  }
-	  PyObject* objectsRepresentation = PyObject_Repr(result);
+      static char tmp[1024];
+      PyObject* result = PyList_New($self->size());
+      for(int i = 0; i < $self->size(); i++) {
+          PyList_SetItem(result, i, Py_BuildValue("(ss)", $self->at(i).getNumber().ToString().c_str(), $self->at(i).getDegree().ToString().c_str()));
+      }
+      PyObject* objectsRepresentation = PyObject_Repr(result);
     const char* s = PyString_AsString(objectsRepresentation);
     sprintf(tmp,"AAL.DecompositionMemberVector(%d): %s", $self->size(), s);
     return tmp;
-	}
+    }
   PyObject *toList() {
-	  PyObject* result = PyList_New($self->size());
-	  for(int i = 0; i < $self->size(); i++) {
-		  PyList_SetItem(result, i, Py_BuildValue("(ss)", $self->at(i).getNumber().ToString().c_str(), $self->at(i).getDegree().ToString().c_str()));
-	  }
-	  return result;
+      PyObject* result = PyList_New($self->size());
+      for(int i = 0; i < $self->size(); i++) {
+          PyList_SetItem(result, i, Py_BuildValue("(ss)", $self->at(i).getNumber().ToString().c_str(), $self->at(i).getDegree().ToString().c_str()));
+      }
+      return result;
   }
 }
 
@@ -192,6 +192,9 @@ namespace std {
 %extend AAL::EllipticPointGF2 {
    char *__repr__() {
        static char tmp[1024];
+       if (isInfinite())
+       sprintf(tmp,"AAL.EllipticPointGF2(точка на бесконечности)");
+       else
        sprintf(tmp,"AAL.EllipticPointGF2(x=%s,y=%s)", $self->getX().ToString().c_str(),$self->getY().ToString().c_str());
        return tmp;
    }
@@ -199,6 +202,9 @@ namespace std {
 %extend AAL::EllipticPointGF3 {
    char *__repr__() {
        static char tmp[1024];
+       if (isInfinite())
+       sprintf(tmp,"AAL.EllipticPointGF3(точка на бесконечности)");
+       else
        sprintf(tmp,"AAL.EllipticPointGF3(x=%s,y=%s)", $self->getX().ToString().c_str(),$self->getY().ToString().c_str());
        return tmp;
    }
@@ -220,6 +226,9 @@ namespace std {
 %extend AAL::SuperSingularEllipticPoint {
    char *__repr__() {
        static char tmp[1024];
+       if (isInfinite())
+       sprintf(tmp,"AAL.SuperSingularEllipticPoint(точка на бесконечности)");
+       else
        sprintf(tmp,"AAL.SuperSingularEllipticPoint(x=%s,y=%s)", $self->getX().ToString().c_str(),$self->getY().ToString().c_str());
        return tmp;
    }
@@ -227,6 +236,9 @@ namespace std {
 %extend AAL::NonSuperSingularEllipticPoint {
    char *__repr__() {
        static char tmp[1024];
+       if (isInfinite())
+       sprintf(tmp,"AAL.NonSuperSingularEllipticPoint(точка на бесконечности)");
+       else
        sprintf(tmp,"AAL.NonSuperSingularEllipticPoint(x=%s,y=%s)", $self->getX().ToString().c_str(),$self->getY().ToString().c_str());
        return tmp;
    }

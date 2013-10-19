@@ -192,7 +192,7 @@ namespace std {
 %extend AAL::EllipticPointGF2 {
    char *__repr__() {
        static char tmp[1024];
-       if (isInfinite())
+       if ($self->isInfinite())
        sprintf(tmp,"AAL.EllipticPointGF2(точка на бесконечности)");
        else
        sprintf(tmp,"AAL.EllipticPointGF2(x=%s,y=%s)", $self->getX().ToString().c_str(),$self->getY().ToString().c_str());
@@ -202,7 +202,7 @@ namespace std {
 %extend AAL::EllipticPointGF3 {
    char *__repr__() {
        static char tmp[1024];
-       if (isInfinite())
+       if ($self->isInfinite())
        sprintf(tmp,"AAL.EllipticPointGF3(точка на бесконечности)");
        else
        sprintf(tmp,"AAL.EllipticPointGF3(x=%s,y=%s)", $self->getX().ToString().c_str(),$self->getY().ToString().c_str());
@@ -226,7 +226,7 @@ namespace std {
 %extend AAL::SuperSingularEllipticPoint {
    char *__repr__() {
        static char tmp[1024];
-       if (isInfinite())
+       if ($self->isInfinite())
        sprintf(tmp,"AAL.SuperSingularEllipticPoint(точка на бесконечности)");
        else
        sprintf(tmp,"AAL.SuperSingularEllipticPoint(x=%s,y=%s)", $self->getX().ToString().c_str(),$self->getY().ToString().c_str());
@@ -236,7 +236,7 @@ namespace std {
 %extend AAL::NonSuperSingularEllipticPoint {
    char *__repr__() {
        static char tmp[1024];
-       if (isInfinite())
+       if ($self->isInfinite())
        sprintf(tmp,"AAL.NonSuperSingularEllipticPoint(точка на бесконечности)");
        else
        sprintf(tmp,"AAL.NonSuperSingularEllipticPoint(x=%s,y=%s)", $self->getX().ToString().c_str(),$self->getY().ToString().c_str());

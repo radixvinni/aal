@@ -163,7 +163,8 @@ endif (USE_MIRACL)
 if (USE_MSIEVE)
 	ExternalProject_Add(msieve
 	  PREFIX .
-	  SVN_REPOSITORY https://msieve.svn.sourceforge.net/svnroot/msieve/trunk
+	#  SVN_REPOSITORY https://msieve.svn.sourceforge.net/svnroot/msieve/trunk
+	  SVN_REPOSITORY https://svn.code.sf.net/p/msieve/code/trunk
 	  CONFIGURE_COMMAND ""
 	 # PATCH_COMMAND patch -t -N -p0 < ../../msieve.patch
 	  BUILD_COMMAND make -C ../msieve all

@@ -9,7 +9,14 @@
 /*Get rid of this. Try handle exceptions, where it is needed, or use something like %include <python/exception.i> */
 %exception {
    try {
+%#ifdef __unix__
+      signal(SIGALRM, py_int);
+      alarm(10);
+%#endif
       $action
+%#ifdef __unix__
+      alarm(0);
+%#endif
    } catch (AAL::Exception* e) {
       PyErr_SetString(PyExc_RuntimeError, const_cast<char*>(e->cp1251()));
       return NULL;
@@ -33,8 +40,17 @@
 #include "./AAF/AAL/PolynomGF7.h"
 
 #include <vector>
-#include <string> 
+#include <string>
 
+#ifdef __unix__
+#include <signal.h>
+void py_int(int signum)
+{
+	printf("\nAAL command interrupted.\n");
+	raise(SIGINT);
+	PyErr_CheckSignals();
+}
+#endif
 using namespace AAL;
 %}
 

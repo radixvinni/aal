@@ -1,7 +1,7 @@
 /*
-		MPEI Algebraic Abstractions Library,
-		2007-2011,
-		Moscow Power Engineering Institute
+        MPEI Algebraic Abstractions Library,
+        2007-2011,
+        Moscow Power Engineering Institute
 
         This file contains definitions and implementations of the following classes:
 
@@ -19,15 +19,15 @@
 namespace AAL
 {
  //***********************************  Конструкторы  *******************************************
-	//(c) Belova, TEST(PolynomGF2_m_4, EmptyConstructor)
-/*	PolynomGF2_m_4::PolynomGF2_m_4() :
+    //(c) Belova, TEST(PolynomGF2_m_4, EmptyConstructor)
+/*  PolynomGF2_m_4::PolynomGF2_m_4() :
         _a0(), _a1(), _a2(), _a3(), _module(), _modPolynom("11001")
         {
         }   */
 //------------------------------------------------------------------------------
-	//(c) Belova, TEST(PolynomGF2_m_4, CopyConstructor)
-	PolynomGF2_m_4::PolynomGF2_m_4(const PolynomGF2_m_4 &polynom)
-	{
+    //(c) Belova, TEST(PolynomGF2_m_4, CopyConstructor)
+    PolynomGF2_m_4::PolynomGF2_m_4(const PolynomGF2_m_4 &polynom)
+    {
      _a0 = polynom._a0;
      _a1 = polynom._a1;
      _a2 = polynom._a2;
@@ -37,13 +37,13 @@ namespace AAL
     }
 //------------------------------------------------------------------------------
 
-	//(c) Belova, TEST(PolynomGF2_m_4, StringConstructor)
-	PolynomGF2_m_4::PolynomGF2_m_4(const std::string a0,
+    //(c) Belova, TEST(PolynomGF2_m_4, StringConstructor)
+    PolynomGF2_m_4::PolynomGF2_m_4(const std::string a0,
      const std::string a1, const std::string a2,
      const std::string a3, const std::string module):
      _a0(a0), _a1(a1), _a2(a2), _a3(a3), _module(module), _modPolynom("11001")
-	{
-	}
+    {
+    }
 //------------------------------------------------------------------------------
     bool PolynomGF2_m_4::isZero() const
     {
@@ -64,18 +64,18 @@ namespace AAL
     }
 //------------------------------------------------------------------------------
 
-	//simple method
-	PolynomGF2_m_4& PolynomGF2_m_4::setZero()
-	{
+    //simple method
+    PolynomGF2_m_4& PolynomGF2_m_4::setZero()
+    {
         _a0.setZero();
         _a1.setZero();
         _a2.setZero();
         _a3.setZero();
-		return *this;
-	}
+        return *this;
+    }
     //simple method
-	PolynomGF2_m_4& PolynomGF2_m_4::setOne()
-	{
+    PolynomGF2_m_4& PolynomGF2_m_4::setOne()
+    {
         _a0.setOne();
         _a1.setZero();
         _a2.setZero();
@@ -84,17 +84,17 @@ namespace AAL
     }
 //------------------------------------------------------------------------------
 
-	//(c) Belova, TEST(PolynomGF2_m_4, Equal)
-	bool operator==(const PolynomGF2_m_4& a, const PolynomGF2_m_4& b)
-	{
-		if(a._a0 == b._a0 && a._a1 == b._a1 && a._a2 == b._a2 && a._a3 == b._a3)
-			return true;
-		return false;
-	}
+    //(c) Belova, TEST(PolynomGF2_m_4, Equal)
+    bool operator==(const PolynomGF2_m_4& a, const PolynomGF2_m_4& b)
+    {
+        if(a._a0 == b._a0 && a._a1 == b._a1 && a._a2 == b._a2 && a._a3 == b._a3)
+            return true;
+        return false;
+    }
 //------------------------------------------------------------------------------
-	//(c) Belova, TEST(Polynom, operatorEqual)
-	PolynomGF2_m_4& PolynomGF2_m_4::operator= (const PolynomGF2_m_4& polynom)
-	{
+    //(c) Belova, TEST(Polynom, operatorEqual)
+    PolynomGF2_m_4& PolynomGF2_m_4::operator= (const PolynomGF2_m_4& polynom)
+    {
         if(this == &polynom)
             return *this;
 
@@ -105,13 +105,13 @@ namespace AAL
         _modPolynom = polynom._modPolynom;
         _module=polynom._module;
         return *this;
-	}
+    }
 //------------------------------------------------------------------------------
 //simple method
-	bool operator!=(const PolynomGF2_m_4& a, const PolynomGF2_m_4& b)
-	{
-		return !(a == b);
-	}
+    bool operator!=(const PolynomGF2_m_4& a, const PolynomGF2_m_4& b)
+    {
+        return !(a == b);
+    }
 //------------------------------------------------------------------------------
   const Polynom& PolynomGF2_m_4::getA0() const
   {
@@ -174,24 +174,24 @@ namespace AAL
     }
 //------------------------------------------------------------------------------
 //******************************    Операция сложения    ***************************************
-	//simple method
-	PolynomGF2_m_4 operator+(const PolynomGF2_m_4 &a, const PolynomGF2_m_4 &b)
-	{
-		PolynomGF2_m_4 result, copy_a(a), copy_b(b);
-		return result.Add(copy_a, copy_b);
-	}
-//------------------------------------------------------------------------------
-
-	//simple method
-	PolynomGF2_m_4& PolynomGF2_m_4::operator+=(PolynomGF2_m_4 &polynom)
-	{
-		return Add(*this, polynom);
-	}
+    //simple method
+    PolynomGF2_m_4 operator+(const PolynomGF2_m_4 &a, const PolynomGF2_m_4 &b)
+    {
+        PolynomGF2_m_4 result, copy_a(a), copy_b(b);
+        return result.Add(copy_a, copy_b);
+    }
 //------------------------------------------------------------------------------
 
     //simple method
-	PolynomGF2_m_4& PolynomGF2_m_4::Add(PolynomGF2_m_4 &a, PolynomGF2_m_4 &b)
-	{
+    PolynomGF2_m_4& PolynomGF2_m_4::operator+=(PolynomGF2_m_4 &polynom)
+    {
+        return Add(*this, polynom);
+    }
+//------------------------------------------------------------------------------
+
+    //simple method
+    PolynomGF2_m_4& PolynomGF2_m_4::Add(PolynomGF2_m_4 &a, PolynomGF2_m_4 &b)
+    {
         if(a.getModPolynom() != b.getModPolynom() || a.getModule() != b.getModule())
                         throw new Exception("модулярные многочлены должны быть равны");
          if(a.getModPolynom().isIrreducible() == false || b.getModPolynom().isIrreducible() == false)
@@ -207,28 +207,28 @@ namespace AAL
         _a3.ModAdd(a._a3, b._a3, _module);
          s = _a3.ToString();
         return *this;
-	}
+    }
 //******************************    Операция умножения    **************************************
-	//simple method
-	PolynomGF2_m_4 operator*(const PolynomGF2_m_4 &a, const PolynomGF2_m_4 &b)
-	{
-		PolynomGF2_m_4 result;
+    //simple method
+    PolynomGF2_m_4 operator*(const PolynomGF2_m_4 &a, const PolynomGF2_m_4 &b)
+    {
+        PolynomGF2_m_4 result;
         PolynomGF2_m_4 copy_a(a), copy_b(b);
- 		return result.Mul(copy_a, copy_b);
-	}
+        return result.Mul(copy_a, copy_b);
+    }
 //------------------------------------------------------------------------------
 
-	//simple method
-	PolynomGF2_m_4& PolynomGF2_m_4::operator*=(PolynomGF2_m_4 &polynom)
-	{
-		return Mul(*this, polynom);
-	}
+    //simple method
+    PolynomGF2_m_4& PolynomGF2_m_4::operator*=(PolynomGF2_m_4 &polynom)
+    {
+        return Mul(*this, polynom);
+    }
 //------------------------------------------------------------------------------
 
-	// (c) Morozov, TEST(PolynomGF2_m_4, Mul)
-	PolynomGF2_m_4& PolynomGF2_m_4::Mul(PolynomGF2_m_4 &a, PolynomGF2_m_4 &b)
-	{
-		Polynom e0;
+    // (c) Morozov, TEST(PolynomGF2_m_4, Mul)
+    PolynomGF2_m_4& PolynomGF2_m_4::Mul(PolynomGF2_m_4 &a, PolynomGF2_m_4 &b)
+    {
+        Polynom e0;
         Polynom e1,e11,e12;
         Polynom e2,e21,e22,e23;
         Polynom e3,e31,e32,e33,e34;
@@ -241,8 +241,8 @@ namespace AAL
 
         _modPolynom = a._modPolynom;
         _module = a._module;
-		if(a.isZero() || b.isZero())
-  			return setZero();
+        if(a.isZero() || b.isZero())
+            return setZero();
         e0.ModMul(a._a0,b._a0, _module);
         e1 = e1.ModMul(a._a1,b._a0,_module) + e2.ModMul(a._a0, b._a1, _module);
         e2 = e21.ModMul(a._a2,b._a0,_module) + e22.ModMul(a._a1,b._a1,_module) + e23.ModMul(a._a0,b._a2,_module);
@@ -258,19 +258,19 @@ namespace AAL
         s = _a2.ToString();
         _a3 = e3 + e6;
         s = _a3.ToString();
-		return *this;
-	}
+        return *this;
+    }
 // простой метод возведения в степень 2 по модулю
-	PolynomGF2_m_4& PolynomGF2_m_4::Square(PolynomGF2_m_4 &a)
-	{
-		Polynom e0;
+    PolynomGF2_m_4& PolynomGF2_m_4::Square(PolynomGF2_m_4 &a)
+    {
+        Polynom e0;
         Polynom e2,e22;
         Polynom e4,e42;
         Polynom e6;
         _modPolynom = a._modPolynom;
         _module = a._module;
-		if(a.isZero())
-  			return setZero();
+        if(a.isZero())
+            return setZero();
          if(a.getModPolynom().isIrreducible() == false)
                         throw new Exception("f(x) - должен быть неприводим");
 
@@ -286,8 +286,8 @@ namespace AAL
         s = _a2.ToString();
         _a3 = e6;
         s = _a3.ToString();
-		return *this;
-	}
+        return *this;
+    }
   //возведение в степень
   PolynomGF2_m_4& PolynomGF2_m_4::Pow(PolynomGF2_m_4 &a, Integer n)
   {
@@ -328,11 +328,11 @@ namespace AAL
   //инвертирование
   //------------------------------------------------------------------------------
 
-	//simple method
-	PolynomGF2_m_4& PolynomGF2_m_4::Inverse(Polynom &module)
-	{
-		return Inverse(*this, module);
-	}
+    //simple method
+    PolynomGF2_m_4& PolynomGF2_m_4::Inverse(Polynom &module)
+    {
+        return Inverse(*this, module);
+    }
   //определение степени многочлена
     int PolynomGF2_m_4::deg() const
     {
@@ -388,9 +388,9 @@ namespace AAL
 
 //------------------------------------------------------------------------------
 
-	//(c) Belova, TEST(PolynomGF2_m_4, Inverse)
-	PolynomGF2_m_4& PolynomGF2_m_4::Inverse(PolynomGF2_m_4 &polynom, Polynom &module)
-	{
+    //(c) Belova, TEST(PolynomGF2_m_4, Inverse)
+    PolynomGF2_m_4& PolynomGF2_m_4::Inverse(PolynomGF2_m_4 &polynom, Polynom &module)
+    {
                  if(polynom.getModPolynom().isIrreducible() == false)
                         throw new Exception("f(x) - должен быть неприводим");
 
@@ -576,6 +576,7 @@ namespace AAL
    //тест образующего элемента, определение порядка элемента
    Integer& PolynomGF2_m_4::elementOrder(Polynom &groupModule, PolynomGF2_m_4 &polynom,std::vector<DecompositionMember> vector, const Integer &ord )
 {
+  if(!groupModule.isIrreducible()) throw new Exception("Модуль должен быть неприводим.");
   if(vector.size() >= 1)
   {
     std::vector<DecompositionMember>::iterator it;
@@ -587,7 +588,7 @@ namespace AAL
       AAL::Integer p(it->getNumber());
       AAL::Integer e(it->getDegree());
       AAL::Integer ex ;
-      ex.ModPow(p,e, t);
+      ex.ModPow(p,e,ord);
       std::string s = ex.ToString();
       t = t/(ex);
       PolynomGF2_m_4 a1;

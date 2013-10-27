@@ -1,7 +1,7 @@
 /*
-		MPEI Algebraic Abstractions Library,
-		2007-2011,
-		Moscow Power Engineering Institute
+        MPEI Algebraic Abstractions Library,
+        2007-2011,
+        Moscow Power Engineering Institute
 
         This file contains definitions and implementations of the following classes:
 
@@ -49,8 +49,8 @@ namespace AAL
         SuperSingularEllipticCurve::SuperSingularEllipticCurve()
         {
                 _module = new Polynom("1101");
-		_a3 = new Polynom("1");
-		_a4 = new Polynom("1");
+        _a3 = new Polynom("1");
+        _a4 = new Polynom("1");
                 _a6 = new Polynom("1");
         }
         SuperSingularEllipticCurve::SuperSingularEllipticCurve(Polynom &module, Polynom &a3, Polynom &a4, Polynom &a6)
@@ -58,17 +58,17 @@ namespace AAL
                 if(a3.isZero())
                         throw new Exception("Коэффициент a3 не может быть равен 0");
                 if(!module.isIrreducible())
-			throw  new Exception("Модуль является приводимым многочленом");
+            throw  new Exception("Модуль является приводимым многочленом");
 
-		_module = new Polynom(module);
-		_a3 = new Polynom(a3);
-		_a4 = new Polynom(a4);
+        _module = new Polynom(module);
+        _a3 = new Polynom(a3);
+        _a4 = new Polynom(a4);
                 _a6 = new Polynom(a6);
         }
         SuperSingularEllipticCurve::SuperSingularEllipticCurve(const SuperSingularEllipticCurve &eCurve)
         {
                 _module = new Polynom(eCurve.getModule());
-		_a3 = new Polynom(eCurve.getA3());
+        _a3 = new Polynom(eCurve.getA3());
                 _a4 = new Polynom(eCurve.getA4());
                 _a6 = new Polynom(eCurve.getA6());
         }
@@ -80,7 +80,7 @@ namespace AAL
 //*****************************        Методы акцепторы        **********************************
         Polynom& SuperSingularEllipticCurve::getA3() const
         {
-        	return *_a3;
+            return *_a3;
         }
         Polynom& SuperSingularEllipticCurve::getA4() const
         {
@@ -93,36 +93,36 @@ namespace AAL
         Polynom& SuperSingularEllipticCurve::setModule(const Polynom &module)
         {
                 if(!module.isIrreducible())
-			throw new Exception("Модуль является приводимым многочленом");
+            throw new Exception("Модуль является приводимым многочленом");
                 Polynom a3;
                 a3.Mod(*_a3, module);
                 if(a3.isZero())
-                       	throw new Exception("Коэффициент a3 не может быть равен 0");
-		*_module = module;
-		_a3->Mod(*_module);
-		_a4->Mod(*_module);
+                        throw new Exception("Коэффициент a3 не может быть равен 0");
+        *_module = module;
+        _a3->Mod(*_module);
+        _a4->Mod(*_module);
                 _a6->Mod(*_module);
-		return *_module;
+        return *_module;
         }
         Polynom& SuperSingularEllipticCurve::setA3(Polynom &a3)
         {
                 if(a3.isZero())
                         throw new Exception("Коэффициент a3 не может быть равен 0");
                 *_a3 = a3;
-		_a3->Mod(*_module);
-		return *_a3;
+        _a3->Mod(*_module);
+        return *_a3;
         }
         Polynom& SuperSingularEllipticCurve::setA4(Polynom &a4)
         {
                 *_a4 = a4;
-		_a4->Mod(*_module);
-		return *_a4;
+        _a4->Mod(*_module);
+        return *_a4;
         }
         Polynom& SuperSingularEllipticCurve::setA6(Polynom &a6)
         {
                 *_a6 = a6;
-		_a6->Mod(*_module);
-		return *_a6;
+        _a6->Mod(*_module);
+        return *_a6;
         }
         bool SuperSingularEllipticCurve::isSuperSingular() const
         {
@@ -306,30 +306,30 @@ namespace AAL
   // Ждём, пока процесс не выполнится:
                                 WaitForSingleObject(PrInfo.hProcess,INFINITE);
 #else
-							//ref:shoof2_main
-							char** argv=new char*[9];
-							for(int i=0;i<9;i++)argv[i]=new char[256];
-							strcpy(argv[0],"./shoof2.exe");
-							strcpy(argv[1],A2.strr().c_str());
-							strcpy(argv[2],A6.strr().c_str());
-							strcpy(argv[3],module.strr().c_str());
-							strcpy(argv[4],a1.strr().c_str());
-							strcpy(argv[5],a2.strr().c_str());
-							strcpy(argv[6],a3.strr().c_str());
-							strcpy(argv[7],"-o");
-							strcpy(argv[8],"curveorder.log");
-							shoof2_main(9,(char**)argv);
-							for(int i=0;i<9;i++)delete[] argv[i];
-							delete[] argv;
+                            //ref:shoof2_main
+                            char** argv=new char*[9];
+                            for(int i=0;i<9;i++)argv[i]=new char[256];
+                            strcpy(argv[0],"./shoof2.exe");
+                            strcpy(argv[1],A2.strr().c_str());
+                            strcpy(argv[2],A6.strr().c_str());
+                            strcpy(argv[3],module.strr().c_str());
+                            strcpy(argv[4],a1.strr().c_str());
+                            strcpy(argv[5],a2.strr().c_str());
+                            strcpy(argv[6],a3.strr().c_str());
+                            strcpy(argv[7],"-o");
+                            strcpy(argv[8],"curveorder.log");
+                            shoof2_main(9,(char**)argv);
+                            for(int i=0;i<9;i++)delete[] argv[i];
+                            delete[] argv;
 #endif
 
                                 std::vector<std::string> result;
                 try
                         {
                                 std::ifstream ifs("curveorder.log");
-								std::string temp;
-								while( getline( ifs, temp ) )
-									result.push_back( temp );
+                                std::string temp;
+                                while( getline( ifs, temp ) )
+                                    result.push_back( temp );
 
                         }
                 catch(...)
@@ -368,10 +368,10 @@ namespace AAL
         SuperSingularEllipticCurve& SuperSingularEllipticCurve::operator=(const SuperSingularEllipticCurve &eCurve)
         {
                 *_module = *eCurve._module;
-		*_a3 = *eCurve._a3;
+        *_a3 = *eCurve._a3;
                 *_a4 = *eCurve._a4;
                 *_a6 = *eCurve._a6;
-		return *this;
+        return *this;
         }
 
 //***********************************************************************************************
@@ -385,7 +385,7 @@ namespace AAL
         }
 //***********************************************************************************************
 //*************************        Принадлежность точки к кривой      ***************************
-	bool SuperSingularEllipticCurve::inGroup(Polynom &x, Polynom &y) const
+    bool SuperSingularEllipticCurve::inGroup(Polynom &x, Polynom &y) const
         {
                 Polynom temp1;
                 temp1.ModMul(y, y, *_module);
@@ -431,26 +431,28 @@ namespace AAL
         {
                 return *_curve;
         }
-	Polynom& EllipticPointGF2::getX()
+    Polynom& EllipticPointGF2::getX()
         {
-                 return *_x;
+                 if(!isInfinite()) return *_x;
+                 throw new Exception("Точка на бесконечности");
         }
-	Polynom& EllipticPointGF2::getY()
+    Polynom& EllipticPointGF2::getY()
         {
-                return *_y;
+                if(!isInfinite()) return *_y;
+                throw new Exception("Точка на бесконечности");
         }
         EllipticPointGF2& EllipticPointGF2::setXY(Polynom &x, Polynom &y)
         {
-               	bool infinite = _infinite;
+                bool infinite = _infinite;
                 _infinite = false;
                 *_x = x;
                 *_y = y;
-		_x->Mod(_curve->getModule());
-		_y->Mod(_curve->getModule());
+        _x->Mod(_curve->getModule());
+        _y->Mod(_curve->getModule());
                 if(!_curve->inGroup(*_x, *_y))
                 {
-		        _infinite = infinite;
-			throw new Exception("Точка не лежит на кривой");
+                _infinite = infinite;
+            throw new Exception("Точка не лежит на кривой");
                 }
                 return *this;
         }
@@ -458,24 +460,24 @@ namespace AAL
         {
                 return _infinite;
         }
-	EllipticPointGF2& EllipticPointGF2::setInfinite(bool infinite)
+    EllipticPointGF2& EllipticPointGF2::setInfinite(bool infinite)
         {
                 _infinite = infinite;
-		return *this;
+        return *this;
         }
 //*********************************       Операции сравнения        *****************************
-	bool operator==(const EllipticPointGF2 &ePoint1, const EllipticPointGF2 &ePoint2)
+    bool operator==(const EllipticPointGF2 &ePoint1, const EllipticPointGF2 &ePoint2)
         {
                 if(ePoint1._curve->isSuperSingular() != ePoint2._curve->isSuperSingular())
-			return false;
+            return false;
                 if(ePoint1.isInfinite() && ePoint2.isInfinite())
-			return true;
-		if(*ePoint1._curve != *ePoint2._curve)
-			return false;
+            return true;
+        if(*ePoint1._curve != *ePoint2._curve)
+            return false;
 
-		return  *ePoint1._x == *ePoint2._x && *ePoint1._y == *ePoint2._y;
+        return  *ePoint1._x == *ePoint2._x && *ePoint1._y == *ePoint2._y;
         }
-	bool operator!=(const EllipticPointGF2 &ePoint1, const EllipticPointGF2 &ePoint2)
+    bool operator!=(const EllipticPointGF2 &ePoint1, const EllipticPointGF2 &ePoint2)
         {
                 return !(ePoint1 == ePoint2);
         }
@@ -493,16 +495,16 @@ namespace AAL
         }
 //***********************************************************************************************
 //******************************      Операция удвоения       ***********************************
-	EllipticPointGF2& EllipticPointGF2::Double()
+    EllipticPointGF2& EllipticPointGF2::Double()
         {
                 return this->Double(*this);
         }
 //***********************************************************************************************
 //**************************    Операция умножения на константу    ******************************
-	EllipticPointGF2& EllipticPointGF2::operator*=(Integer &i)
-	{
-		return Mul(*this, i);
-	}
+    EllipticPointGF2& EllipticPointGF2::operator*=(Integer &i)
+    {
+        return Mul(*this, i);
+    }
 //***********************************************************************************************
 //*********************************    Генерация точки    ***************************************
         EllipticPointGF2& EllipticPointGF2::Generate()
@@ -723,8 +725,8 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
     str = bt.getA3().ToString();
 
     for(i = 1; i <= n ; i++)
-	{
-	al.Pow(al,Integer(2));// alpha = (alpha^2)
+    {
+    al.Pow(al,Integer(2));// alpha = (alpha^2)
     str = al.getA0().ToString();
     str = al.getA1().ToString();
     str = al.getA2().ToString();
@@ -828,7 +830,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         y.Pow(y,pw);//x=x^(2^(m-1))
         x.Pow(x,pw);//y = y^(2^(m-1))
     }
-	Integer three_n;
+    Integer three_n;
         three_n.Mul(2,n);
         three_n.Pow(2,three_n);
     f->Pow(*f,three_n-1);//f= f^(2^((2m)-1))
@@ -845,23 +847,23 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         SuperSingularEllipticPoint::SuperSingularEllipticPoint()
         {
                 _curve = new SuperSingularEllipticCurve();
-		_x = new Polynom();
-		_y = new Polynom();
-		_infinite = true;
+        _x = new Polynom();
+        _y = new Polynom();
+        _infinite = true;
         }
-	SuperSingularEllipticPoint::SuperSingularEllipticPoint(const SuperSingularEllipticCurve &eCurve)
+    SuperSingularEllipticPoint::SuperSingularEllipticPoint(const SuperSingularEllipticCurve &eCurve)
         {
                 _curve = new SuperSingularEllipticCurve(eCurve);
-		_x = new Polynom();
-		_y = new Polynom();
-		_infinite = true;
+        _x = new Polynom();
+        _y = new Polynom();
+        _infinite = true;
         }
-	SuperSingularEllipticPoint::SuperSingularEllipticPoint(const SuperSingularEllipticPoint &ePoint)
+    SuperSingularEllipticPoint::SuperSingularEllipticPoint(const SuperSingularEllipticPoint &ePoint)
         {
                 _curve = new SuperSingularEllipticCurve(dynamic_cast<SuperSingularEllipticCurve &>(*ePoint._curve));
-		_x = new Polynom(*ePoint._x);
-		_y = new Polynom(*ePoint._y);
-		_infinite = ePoint._infinite;
+        _x = new Polynom(*ePoint._x);
+        _y = new Polynom(*ePoint._y);
+        _infinite = ePoint._infinite;
         }
         SuperSingularEllipticPoint::~SuperSingularEllipticPoint()
         {
@@ -869,35 +871,35 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         }
 //***********************************************************************************************
 //****************************       Методы акцепторы        ************************************
-       	SuperSingularEllipticCurve& SuperSingularEllipticPoint::setCurve(EllipticCurveGF2 &eCurve)
+        SuperSingularEllipticCurve& SuperSingularEllipticPoint::setCurve(EllipticCurveGF2 &eCurve)
         {
                 if(!eCurve.isSuperSingular())
                         throw new Exception("Кривая не суперсингулярна");
                 //dynamic_cast<SuperSingularEllipticCurve &>(*_curve) = eCurve;
                 SuperSingularEllipticCurve & _curveref = dynamic_cast<SuperSingularEllipticCurve &>(*_curve);
                 _curveref = dynamic_cast<SuperSingularEllipticCurve &>(eCurve);
-		if(!isInfinite())
-		{
-			_x->Mod(_curve->getModule());
-			_y->Mod(_curve->getModule());
-			//if(!_curve->inGroup(*_x, *_y))
+        if(!isInfinite())
+        {
+            _x->Mod(_curve->getModule());
+            _y->Mod(_curve->getModule());
+            //if(!_curve->inGroup(*_x, *_y))
                         if(!_curveref.inGroup(*_x, *_y))
-				_infinite = true;
-		}
-		//return dynamic_cast<SuperSingularEllipticCurve &>(*_curve);
+                _infinite = true;
+        }
+        //return dynamic_cast<SuperSingularEllipticCurve &>(*_curve);
                 return _curveref;
         }
 
 
 //***********************************************************************************************
 //****************************         Унарные операции          ********************************
-	SuperSingularEllipticPoint& SuperSingularEllipticPoint::operator=(const SuperSingularEllipticPoint &ePoint)
+    SuperSingularEllipticPoint& SuperSingularEllipticPoint::operator=(const SuperSingularEllipticPoint &ePoint)
         {
                 dynamic_cast<SuperSingularEllipticCurve &>(*_curve) = dynamic_cast<SuperSingularEllipticCurve &>(*ePoint._curve);
-		*_x = *ePoint._x;
-		*_y = *ePoint._y;
-		_infinite = ePoint._infinite;
-		return *this;
+        *_x = *ePoint._x;
+        *_y = *ePoint._y;
+        _infinite = ePoint._infinite;
+        return *this;
         }
 //***********************************************************************************************
 //**************************   Операция взятия противоположной точки   **************************
@@ -924,29 +926,29 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         /*SuperSingularEllipticPoint operator+(SuperSingularEllipticPoint &ePoint1, SuperSingularEllipticPoint &ePoint2)
         {
                 SuperSingularEllipticPoint res;
-		return res.Add(ePoint1, ePoint2);
+        return res.Add(ePoint1, ePoint2);
         }*/
-	EllipticPointGF2& SuperSingularEllipticPoint::Add(EllipticPointGF2 &ePoint1, EllipticPointGF2 &ePoint2)
+    EllipticPointGF2& SuperSingularEllipticPoint::Add(EllipticPointGF2 &ePoint1, EllipticPointGF2 &ePoint2)
         {
                 if(!(ePoint1._curve->isSuperSingular() && ePoint2._curve->isSuperSingular()))
                         throw  new Exception("Не все точки лежат на суперсингулярных кривых");// TODO: поменять
                 if(*ePoint1._curve != *ePoint2._curve)
-			throw new Exception("Точки лежат на разных кривых");
+            throw new Exception("Точки лежат на разных кривых");
 
-		if(ePoint1.isInfinite() && ePoint2.isInfinite())
-			return setInfinite(true);
-		if(ePoint1.isInfinite())
-		{
-			*_x = *ePoint2._x;
-			*_y = *ePoint2._y;
-			return setInfinite(false);
-		}
-		if(ePoint2.isInfinite())
-		{
-			*_x = *ePoint1._x;
-			*_y = *ePoint1._y;
-			return setInfinite(false);
-		}
+        if(ePoint1.isInfinite() && ePoint2.isInfinite())
+            return setInfinite(true);
+        if(ePoint1.isInfinite())
+        {
+            *_x = *ePoint2._x;
+            *_y = *ePoint2._y;
+            return setInfinite(false);
+        }
+        if(ePoint2.isInfinite())
+        {
+            *_x = *ePoint1._x;
+            *_y = *ePoint1._y;
+            return setInfinite(false);
+        }
 
                 SuperSingularEllipticPoint negateEPoint1;
                 negateEPoint1.Negate(ePoint1);
@@ -957,42 +959,42 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 //dynamic_cast<SuperSingularEllipticCurve &>(*this->_curve) = dynamic_cast<SuperSingularEllipticCurve &>(*ePoint1._curve);
                 _curveref = dynamic_cast<SuperSingularEllipticCurve &>(*ePoint1._curve);
 
-		setInfinite(false);
+        setInfinite(false);
 
-		Polynom l, p, x1(*ePoint1._x), x2(*ePoint2._x), y1(*ePoint1._y), y2(*ePoint2._y);
-		x1.Mod(_curveref.getModule());
-		x2.Mod(_curveref.getModule());
+        Polynom l, p, x1(*ePoint1._x), x2(*ePoint2._x), y1(*ePoint1._y), y2(*ePoint2._y);
+        x1.Mod(_curveref.getModule());
+        x2.Mod(_curveref.getModule());
 
-		if(x1 == x2)
-		{
-			y1.Mod(_curveref.getModule());
-			y2.Mod(_curveref.getModule());
+        if(x1 == x2)
+        {
+            y1.Mod(_curveref.getModule());
+            y2.Mod(_curveref.getModule());
 
-			l.ModMul(x1, x1, _curveref.getModule());
-			l.ModAdd(l, _curveref.getA4(), _curveref.getModule());
+            l.ModMul(x1, x1, _curveref.getModule());
+            l.ModAdd(l, _curveref.getA4(), _curveref.getModule());
                         p.Inverse(_curveref.getA3(), _curveref.getModule());
                         l.ModMul(l, p, _curveref.getModule());
                         _x->ModMul(l, l, _curveref.getModule());
                         _y->ModAdd(x1, *_x, _curveref.getModule());
-        		_y->ModMul(*_y, l, _curveref.getModule());
-        		_y->ModAdd(*_y, y1, _curveref.getModule());
+                _y->ModMul(*_y, l, _curveref.getModule());
+                _y->ModAdd(*_y, y1, _curveref.getModule());
                         _y->ModAdd(*_y, _curveref.getA3(), _curveref.getModule());
-		}
-		else
-		{
-			l.ModAdd(y2, y1, _curveref.getModule());
-			p.ModAdd(x2, x1, _curveref.getModule());
+        }
+        else
+        {
+            l.ModAdd(y2, y1, _curveref.getModule());
+            p.ModAdd(x2, x1, _curveref.getModule());
                         p.Inverse(_curveref.getModule());
-        		l.ModMul(l, p, _curveref.getModule());
+                l.ModMul(l, p, _curveref.getModule());
                         _x->ModMul(l, l, _curveref.getModule());
-        		_x->ModAdd(*_x, x1, _curveref.getModule());
-        		_x->ModAdd(*_x, x2, _curveref.getModule());
+                _x->ModAdd(*_x, x1, _curveref.getModule());
+                _x->ModAdd(*_x, x2, _curveref.getModule());
                         _y->ModAdd(x1, *_x, _curveref.getModule());
-        		_y->ModMul(*_y, l, _curveref.getModule());
-        		_y->ModAdd(*_y, y1, _curveref.getModule());
+                _y->ModMul(*_y, l, _curveref.getModule());
+                _y->ModAdd(*_y, y1, _curveref.getModule());
                         _y->ModAdd(*_y,  _curveref.getA3(), _curveref.getModule());
-		}
-		return *this;
+        }
+        return *this;
         }
 //***********************************************************************************************
 //******************************      Операция удвоения       ***********************************
@@ -1000,13 +1002,13 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         {
                 return EllipticPointGF2::Double();
         }
-	EllipticPointGF2& SuperSingularEllipticPoint::Double(EllipticPointGF2 &ePoint)
+    EllipticPointGF2& SuperSingularEllipticPoint::Double(EllipticPointGF2 &ePoint)
         {
                 if(!ePoint._curve->isSuperSingular())
                         throw  new Exception("Точка лежит на суперсингулярной кривой");// TODO: поменять
 
-		if(ePoint.isInfinite())
-			return setInfinite(true);
+        if(ePoint.isInfinite())
+            return setInfinite(true);
 
                 SuperSingularEllipticPoint negateEPoint;
                 negateEPoint.Negate(ePoint);
@@ -1017,42 +1019,42 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 //dynamic_cast<SuperSingularEllipticCurve &>(*this->_curve) = dynamic_cast<SuperSingularEllipticCurve &>(*e._curve);
                 _curveref = dynamic_cast<SuperSingularEllipticCurve &>(*ePoint._curve);
 
-		setInfinite(false);
+        setInfinite(false);
                 Polynom l, p, x(*ePoint._x), y(*ePoint._y);
                 y.Mod(_curveref.getModule());
 
-		l.ModMul(x, x, _curveref.getModule());
-		l.ModAdd(l, _curveref.getA4(), _curveref.getModule());
+        l.ModMul(x, x, _curveref.getModule());
+        l.ModAdd(l, _curveref.getA4(), _curveref.getModule());
                 p.Inverse(_curveref.getA3(), _curveref.getModule());
                 l.ModMul(l, p, _curveref.getModule());
                 _x->ModMul(l, l, _curveref.getModule());
                 _y->ModAdd(x, *_x, _curveref.getModule());
-        	_y->ModMul(*_y, l, _curveref.getModule());
-        	_y->ModAdd(*_y, y, _curveref.getModule());
+            _y->ModMul(*_y, l, _curveref.getModule());
+            _y->ModAdd(*_y, y, _curveref.getModule());
                 _y->ModAdd(*_y, _curveref.getA3(), _curveref.getModule());
                 return *this;
         }
 
 //***********************************************************************************************
 //**************************    Операция умножения на константу    ******************************
-	/*SuperSingularEllipticPoint operator*(const SuperSingularEllipticPoint &ePoint, const Integer &i)
-	{
-		SuperSingularEllipticPoint res, copy_ePoint(ePoint);
-		Integer copy_i(i);
-		return res.Mul(copy_ePoint, copy_i);
-	}
+    /*SuperSingularEllipticPoint operator*(const SuperSingularEllipticPoint &ePoint, const Integer &i)
+    {
+        SuperSingularEllipticPoint res, copy_ePoint(ePoint);
+        Integer copy_i(i);
+        return res.Mul(copy_ePoint, copy_i);
+    }
 
-	SuperSingularEllipticPoint operator*(const Integer &i, const SuperSingularEllipticPoint &ePoint)
-	{
-		SuperSingularEllipticPoint res, copy_ePoint(ePoint);
-		Integer copy_i(i);
-		return res.Mul(copy_ePoint, copy_i);
-	}
+    SuperSingularEllipticPoint operator*(const Integer &i, const SuperSingularEllipticPoint &ePoint)
+    {
+        SuperSingularEllipticPoint res, copy_ePoint(ePoint);
+        Integer copy_i(i);
+        return res.Mul(copy_ePoint, copy_i);
+    }
 
-	SuperSingularEllipticPoint& SuperSingularEllipticPoint::operator*=(Integer &i)
-	{
-		return Mul(*this, i);
-	}
+    SuperSingularEllipticPoint& SuperSingularEllipticPoint::operator*=(Integer &i)
+    {
+        return Mul(*this, i);
+    }
         SuperSingularEllipticPoint& SuperSingularEllipticPoint::Mul(Integer &i, SuperSingularEllipticPoint &ePoint)
         {
                 return Mul(ePoint, i);
@@ -1062,34 +1064,34 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 if(!ePoint._curve->isSuperSingular())
                         throw new Exception("Точка лежит на суперсингулярной кривой");// TODO: поменять
 
-		if(ePoint.isInfinite() || integer.isZero())
+        if(ePoint.isInfinite() || integer.isZero())
                 {
                         setInfinite(true);
-			return *this;
+            return *this;
                 }
 
-		SuperSingularEllipticPoint p(dynamic_cast<SuperSingularEllipticPoint &>(ePoint));
+        SuperSingularEllipticPoint p(dynamic_cast<SuperSingularEllipticPoint &>(ePoint));
                 setInfinite(true);
                 dynamic_cast<SuperSingularEllipticCurve &>(*this->_curve) = dynamic_cast<SuperSingularEllipticCurve &>(*ePoint._curve);
 
-		uint ii=0,bit = integer.getNumberBits();
-		for(uint i=0; i<bit; i++)
-		{
-			if(integer.getBit(i))
-			{
-				for(uint j=0;j<i-ii;j++)
-					p.Double();
-				*this += p;
-				ii = i;
-			}
-		}
-		return *this;
+        uint ii=0,bit = integer.getNumberBits();
+        for(uint i=0; i<bit; i++)
+        {
+            if(integer.getBit(i))
+            {
+                for(uint j=0;j<i-ii;j++)
+                    p.Double();
+                *this += p;
+                ii = i;
+            }
+        }
+        return *this;
         }
 //***********************************************************************************************
 //**************************    Генерация точки                    ******************************
         SuperSingularEllipticPoint& SuperSingularEllipticPoint::GenerateImpl(const Polynom * xforwrap)
         {
-		if(!dynamic_cast<SuperSingularEllipticCurve *>(_curve)->getA3().isOne())
+        if(!dynamic_cast<SuperSingularEllipticCurve *>(_curve)->getA3().isOne())
                         throw new Exception("Коэффициент a3 не равен 1");
 
                 if(xforwrap != NULL)
@@ -1110,15 +1112,15 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 while(!_curveref.hasY(x));
 
                 setInfinite(false);
-		        *_x = x;
+                *_x = x;
                 if(n % 2 == 1)
                         *_y = findYOddCase(_curveref.rightSide(x));
                 else
                         *_y = findYEvenCase(_curveref.rightSide(x));
-		_x->Mod(_curve->getModule());
-		_y->Mod(_curve->getModule());
+        _x->Mod(_curve->getModule());
+        _y->Mod(_curve->getModule());
 
-		return *this;
+        return *this;
         }
 //-----------------------------------------------------------------------------------
 
@@ -1128,22 +1130,22 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         NonSuperSingularEllipticCurve::NonSuperSingularEllipticCurve()
         {
                 _module = new Polynom("1101");
-		_a2 = new Polynom("1");
+        _a2 = new Polynom("1");
                 _a6 = new Polynom("1");
         }
         NonSuperSingularEllipticCurve::NonSuperSingularEllipticCurve(Polynom &module, Polynom &a2, Polynom &a6)
         {
                 if(!module.isIrreducible())
-			throw  new Exception("Модуль является приводимым многочленом");
+            throw  new Exception("Модуль является приводимым многочленом");
 
-		_module = new Polynom(module);
-        	_a2 = new Polynom(a2);
+        _module = new Polynom(module);
+            _a2 = new Polynom(a2);
                 _a6 = new Polynom(a6);
         }
         NonSuperSingularEllipticCurve::NonSuperSingularEllipticCurve(const NonSuperSingularEllipticCurve &eCurve)
         {
                 _module = new Polynom(eCurve.getModule());
-		_a2 = new Polynom(eCurve.getA2());
+        _a2 = new Polynom(eCurve.getA2());
                 _a6 = new Polynom(eCurve.getA6());
         }
         NonSuperSingularEllipticCurve::~NonSuperSingularEllipticCurve()
@@ -1154,7 +1156,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
 //*****************************        Методы акцепторы        **********************************
         Polynom& NonSuperSingularEllipticCurve::getA2() const
         {
-        	return *_a2;
+            return *_a2;
         }
         Polynom& NonSuperSingularEllipticCurve::getA6() const
         {
@@ -1163,23 +1165,23 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         Polynom& NonSuperSingularEllipticCurve::setModule(const Polynom &module)
         {
                 if(!module.isIrreducible())
-			throw new Exception("Модуль является приводимым многочленом");
-		*_module = module;
-		_a2->Mod(*_module);
+            throw new Exception("Модуль является приводимым многочленом");
+        *_module = module;
+        _a2->Mod(*_module);
                 _a6->Mod(*_module);
-		return *_module;
+        return *_module;
         }
         Polynom& NonSuperSingularEllipticCurve::setA2(Polynom &a2)
         {
                 *_a2 = a2;
-		_a2->Mod(*_module);
-		return *_a2;
+        _a2->Mod(*_module);
+        return *_a2;
         }
         Polynom& NonSuperSingularEllipticCurve::setA6(Polynom &a6)
         {
                 *_a6 = a6;
-		_a6->Mod(*_module);
-		return *_a6;
+        _a6->Mod(*_module);
+        return *_a6;
         }
         bool NonSuperSingularEllipticCurve::isSuperSingular() const
         {
@@ -1194,9 +1196,9 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         NonSuperSingularEllipticCurve& NonSuperSingularEllipticCurve::operator=(const NonSuperSingularEllipticCurve &eCurve)
         {
                 *_module = *eCurve._module;
-		*_a2 = *eCurve._a2;
+        *_a2 = *eCurve._a2;
                 *_a6 = *eCurve._a6;
-		return *this;
+        return *this;
         }
 //***********************************************************************************************
 //********************************      Операции сравнения      *********************************
@@ -1208,7 +1210,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         }
 //***********************************************************************************************
 //*************************        Принадлежность точки к кривой      ***************************
-	bool NonSuperSingularEllipticCurve::inGroup(Polynom &x, Polynom &y) const
+    bool NonSuperSingularEllipticCurve::inGroup(Polynom &x, Polynom &y) const
         {
                 Polynom temp1;
                 temp1.ModMul(y, y, *_module);
@@ -1260,23 +1262,23 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         NonSuperSingularEllipticPoint::NonSuperSingularEllipticPoint()
         {
                 _curve = new NonSuperSingularEllipticCurve();
-		_x = new Polynom();
-		_y = new Polynom();
-		_infinite = true;
+        _x = new Polynom();
+        _y = new Polynom();
+        _infinite = true;
         }
-	NonSuperSingularEllipticPoint::NonSuperSingularEllipticPoint(const NonSuperSingularEllipticCurve &eCurve)
+    NonSuperSingularEllipticPoint::NonSuperSingularEllipticPoint(const NonSuperSingularEllipticCurve &eCurve)
         {
                 _curve = new NonSuperSingularEllipticCurve(eCurve);
-		_x = new Polynom();
-		_y = new Polynom();
-		_infinite = true;
+        _x = new Polynom();
+        _y = new Polynom();
+        _infinite = true;
         }
-	NonSuperSingularEllipticPoint::NonSuperSingularEllipticPoint(const NonSuperSingularEllipticPoint &ePoint)
+    NonSuperSingularEllipticPoint::NonSuperSingularEllipticPoint(const NonSuperSingularEllipticPoint &ePoint)
         {
                 _curve = new NonSuperSingularEllipticCurve(dynamic_cast<NonSuperSingularEllipticCurve &>(*ePoint._curve));
-		_x = new Polynom(*ePoint._x);
-		_y = new Polynom(*ePoint._y);
-		_infinite = ePoint._infinite;
+        _x = new Polynom(*ePoint._x);
+        _y = new Polynom(*ePoint._y);
+        _infinite = ePoint._infinite;
         }
         NonSuperSingularEllipticPoint::~NonSuperSingularEllipticPoint()
         {
@@ -1284,31 +1286,31 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         }
 //***********************************************************************************************
 //****************************       Методы акцепторы        ************************************
-       	NonSuperSingularEllipticCurve& NonSuperSingularEllipticPoint::setCurve(EllipticCurveGF2 &eCurve)
+        NonSuperSingularEllipticCurve& NonSuperSingularEllipticPoint::setCurve(EllipticCurveGF2 &eCurve)
         {
                 if(!eCurve.isNonSuperSingular())
                         throw new Exception("Кривая не несуперсингулярна");
 
                 NonSuperSingularEllipticCurve & _curveref = dynamic_cast<NonSuperSingularEllipticCurve &>(*_curve);
                 _curveref = dynamic_cast<NonSuperSingularEllipticCurve &>(eCurve);
-		if(!isInfinite())
-		{
-			_x->Mod(_curve->getModule());
-			_y->Mod(_curve->getModule());
+        if(!isInfinite())
+        {
+            _x->Mod(_curve->getModule());
+            _y->Mod(_curve->getModule());
                         if(!_curveref.inGroup(*_x, *_y))
-				_infinite = true;
-		}
+                _infinite = true;
+        }
                 return _curveref;
         }
 //***********************************************************************************************
 //****************************         Унарные операции          ********************************
-	NonSuperSingularEllipticPoint& NonSuperSingularEllipticPoint::operator=(const NonSuperSingularEllipticPoint &ePoint)
+    NonSuperSingularEllipticPoint& NonSuperSingularEllipticPoint::operator=(const NonSuperSingularEllipticPoint &ePoint)
         {
                 dynamic_cast<NonSuperSingularEllipticCurve &>(*_curve) = dynamic_cast<NonSuperSingularEllipticCurve &>(*ePoint._curve);
-		*_x = *ePoint._x;
-		*_y = *ePoint._y;
-		_infinite = ePoint._infinite;
-		return *this;
+        *_x = *ePoint._x;
+        *_y = *ePoint._y;
+        _infinite = ePoint._infinite;
+        return *this;
         }
 //***********************************************************************************************
 //**************************   Операция взятия противоположной точки   **************************
@@ -1331,27 +1333,27 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         }
 //***********************************************************************************************
 //*****************************        Операция сложение        *********************************
-	EllipticPointGF2& NonSuperSingularEllipticPoint::Add(EllipticPointGF2 &ePoint1, EllipticPointGF2 &ePoint2)
+    EllipticPointGF2& NonSuperSingularEllipticPoint::Add(EllipticPointGF2 &ePoint1, EllipticPointGF2 &ePoint2)
         {
                 if(!(ePoint1._curve->isNonSuperSingular() && ePoint2._curve->isNonSuperSingular()))
                         throw  new Exception("Не все точки лежат на несуперсингулярных кривых");// TODO: поменять
                 if(*ePoint1._curve != *ePoint2._curve)
-			throw new Exception("Точки лежат на разных кривых");
+            throw new Exception("Точки лежат на разных кривых");
 
-		if(ePoint1.isInfinite() && ePoint2.isInfinite())
-			return setInfinite(true);
-		if(ePoint1.isInfinite())
-		{
-			*_x = *ePoint2._x;
-			*_y = *ePoint2._y;
-			return setInfinite(false);
-		}
-		if(ePoint2.isInfinite())
-		{
-			*_x = *ePoint1._x;
-			*_y = *ePoint1._y;
-			return setInfinite(false);
-		}
+        if(ePoint1.isInfinite() && ePoint2.isInfinite())
+            return setInfinite(true);
+        if(ePoint1.isInfinite())
+        {
+            *_x = *ePoint2._x;
+            *_y = *ePoint2._y;
+            return setInfinite(false);
+        }
+        if(ePoint2.isInfinite())
+        {
+            *_x = *ePoint1._x;
+            *_y = *ePoint1._y;
+            return setInfinite(false);
+        }
 
                 NonSuperSingularEllipticPoint negateEPoint1;
                 negateEPoint1.Negate(ePoint1);
@@ -1361,16 +1363,16 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 NonSuperSingularEllipticCurve & _curveref = dynamic_cast<NonSuperSingularEllipticCurve &>(*_curve);
                 _curveref = dynamic_cast<NonSuperSingularEllipticCurve &>(*ePoint1._curve);
 
-		setInfinite(false);
+        setInfinite(false);
 
-		Polynom l, p, x1(*ePoint1._x), x2(*ePoint2._x), y1(*ePoint1._y), y2(*ePoint2._y);
-		x1.Mod(_curveref.getModule());
-		x2.Mod(_curveref.getModule());
+        Polynom l, p, x1(*ePoint1._x), x2(*ePoint2._x), y1(*ePoint1._y), y2(*ePoint2._y);
+        x1.Mod(_curveref.getModule());
+        x2.Mod(_curveref.getModule());
 
-		if(x1 == x2)
-		{
-			y1.Mod(_curveref.getModule());
-			y2.Mod(_curveref.getModule());
+        if(x1 == x2)
+        {
+            y1.Mod(_curveref.getModule());
+            y2.Mod(_curveref.getModule());
 
                         p.Inverse(x1, _curveref.getModule());
                         l.ModMul(y1, p, _curveref.getModule());
@@ -1382,9 +1384,9 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                         p.ModMul(l, *_x, _curveref.getModule());
                         p.ModAdd(p, *_x, _curveref.getModule());
                         _y->ModAdd(*_y, p, _curveref.getModule());
-		}
-		else
-		{
+        }
+        else
+        {
                         l.ModAdd(y2, y1, _curveref.getModule());
                         p.ModAdd(x2, x1, _curveref.getModule());
                         p.Inverse(_curveref.getModule());
@@ -1398,8 +1400,8 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                         _y->ModMul(*_y, l, _curveref.getModule());
                         _y->ModAdd(*_y, y1, _curveref.getModule());
                         _y->ModAdd(*_y, *_x, _curveref.getModule());
-		}
-		return *this;
+        }
+        return *this;
         }
 //***********************************************************************************************
 //******************************      Операция удвоения       ***********************************
@@ -1407,13 +1409,13 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         {
                 return EllipticPointGF2::Double();
         }
-	EllipticPointGF2& NonSuperSingularEllipticPoint::Double(EllipticPointGF2 &ePoint)
+    EllipticPointGF2& NonSuperSingularEllipticPoint::Double(EllipticPointGF2 &ePoint)
         {
                 if(!ePoint._curve->isNonSuperSingular())
                         throw new  Exception("Точка лежит на несуперсингулярной кривой");// TODO: поменять
 
-		if(ePoint.isInfinite())
-			return setInfinite(true);
+        if(ePoint.isInfinite())
+            return setInfinite(true);
 
                 NonSuperSingularEllipticPoint negateEPoint;
                 negateEPoint.Negate(ePoint);
@@ -1423,7 +1425,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                  NonSuperSingularEllipticCurve & _curveref = dynamic_cast<NonSuperSingularEllipticCurve &>(*_curve);
                 _curveref = dynamic_cast<NonSuperSingularEllipticCurve &>(*ePoint._curve);
 
-		setInfinite(false);
+        setInfinite(false);
 
                 Polynom l, p, x(*ePoint._x), y(*ePoint._y);
                 y.Mod(_curveref.getModule());
@@ -1449,28 +1451,28 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 if(!ePoint._curve->isNonSuperSingular())
                         throw new Exception("Точка лежит на несуперсингулярной кривой");// TODO: поменять
 
-		if(ePoint.isInfinite() || integer.isZero())
+        if(ePoint.isInfinite() || integer.isZero())
                 {
                         setInfinite(true);
-			return *this;
+            return *this;
                 }
 
-		NonSuperSingularEllipticPoint p(dynamic_cast<NonSuperSingularEllipticPoint &>(ePoint));
+        NonSuperSingularEllipticPoint p(dynamic_cast<NonSuperSingularEllipticPoint &>(ePoint));
                 setInfinite(true);
                 dynamic_cast<NonSuperSingularEllipticCurve &>(*this->_curve) = dynamic_cast<NonSuperSingularEllipticCurve &>(*ePoint._curve);
 
-		uint ii=0,bit = integer.getNumberBits();
-		for(uint i=0; i<bit; i++)
-		{
-			if(integer.getBit(i))
-			{
-				for(uint j=0;j<i-ii;j++)
-					p.Double();
-				*this += p;
-				ii = i;
-			}
-		}
-		return *this;
+        uint ii=0,bit = integer.getNumberBits();
+        for(uint i=0; i<bit; i++)
+        {
+            if(integer.getBit(i))
+            {
+                for(uint j=0;j<i-ii;j++)
+                    p.Double();
+                *this += p;
+                ii = i;
+            }
+        }
+        return *this;
         }
 //***********************************************************************************************
 //**************************    Генерация точки                    ******************************
@@ -1480,7 +1482,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                         if(getCurve().getModule().getNumberBits() - xforwrap->getNumberBits() < 4)
                                 throw new Exception("В размещаемой информации должно быть на 4 бита меньше чем в модуле");
 
-		uint n = _curve->getModule().getNumberBits()-1;
+        uint n = _curve->getModule().getNumberBits()-1;
 
                 NonSuperSingularEllipticCurve & _curveref = dynamic_cast<NonSuperSingularEllipticCurve &>(*_curve);
                 Polynom x, y, changedright;
@@ -1503,10 +1505,10 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 else
                         *_y = findYEvenCase(changedright);
                 _y->ModMul(*_x, *_y, _curveref.getModule());
-		_x->Mod(_curve->getModule());
-		_y->Mod(_curve->getModule());
+        _x->Mod(_curve->getModule());
+        _y->Mod(_curve->getModule());
 
-		return *this;
+        return *this;
         }
 //***********************************************************************************************
 }

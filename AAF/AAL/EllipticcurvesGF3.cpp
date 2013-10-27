@@ -1,7 +1,7 @@
 /*
-		MPEI Algebraic Abstractions Library,
-		2007-2011,
-		Moscow Power Engineering Institute
+        MPEI Algebraic Abstractions Library,
+        2007-2011,
+        Moscow Power Engineering Institute
 
         This file contains definitions and implementations of the following classes:
 
@@ -21,24 +21,24 @@ namespace AAL
         EllipticCurveGF3::EllipticCurveGF3()
         {
                 _module = new PolynomGF3("1101");
-		            _a2 = new PolynomGF3("1");
-		            _a4 = new PolynomGF3("1");
+                    _a2 = new PolynomGF3("1");
+                    _a4 = new PolynomGF3("1");
                 _a6 = new PolynomGF3("1");
         }
         EllipticCurveGF3::EllipticCurveGF3(PolynomGF3 &module, PolynomGF3 &a2, PolynomGF3 &a4, PolynomGF3 &a6)
         {
-               	_module = new PolynomGF3(module);
+                _module = new PolynomGF3(module);
                 a2%=module;
                 a4%=module;
                 a6%=module;
-            		_a2 = new PolynomGF3(a2);
+                    _a2 = new PolynomGF3(a2);
                 _a4 = new PolynomGF3(a4);
                 _a6 = new PolynomGF3(a6);
         }
         EllipticCurveGF3::EllipticCurveGF3(const EllipticCurveGF3 &eCurve)
         {
                 _module = new PolynomGF3(eCurve.getModule());
-            		_a2 = new PolynomGF3(eCurve.getA2());
+                    _a2 = new PolynomGF3(eCurve.getA2());
                 _a4 = new PolynomGF3(eCurve.getA4());
                 _a6 = new PolynomGF3(eCurve.getA6());
         }
@@ -54,7 +54,7 @@ namespace AAL
         }
         PolynomGF3& EllipticCurveGF3::getA2() const
         {
-        	return *_a2;
+            return *_a2;
         }
         PolynomGF3& EllipticCurveGF3::getA4() const
         {
@@ -68,28 +68,28 @@ namespace AAL
         {
 
               *_module = module;
-	            *_a2%=*_module;
-	            *_a4%=*_module;
+                *_a2%=*_module;
+                *_a4%=*_module;
               *_a6%=*_module;
               return *_module;
         }
         PolynomGF3& EllipticCurveGF3::setA2(PolynomGF3 &a2)
         {
                 *_a2 = a2;
-	              *_a2%=*_module;
-          		return *_a2;
+                  *_a2%=*_module;
+                return *_a2;
         }
         PolynomGF3& EllipticCurveGF3::setA4(PolynomGF3 &a4)
         {
                 *_a4 = a4;
                 *_a4%=*_module;
-        		return *_a4;
+                return *_a4;
         }
         PolynomGF3& EllipticCurveGF3::setA6(PolynomGF3 &a6)
         {
                 *_a6 = a6;
-      	        *_a6%=*_module;
-		        return *_a6;
+                *_a6%=*_module;
+                return *_a6;
         }
 
 //***********************************************************************************************
@@ -97,10 +97,10 @@ namespace AAL
         EllipticCurveGF3& EllipticCurveGF3::operator=(const EllipticCurveGF3 &eCurve)
         {
                 *_module = *eCurve._module;
-		            *_a2 = *eCurve._a2;
+                    *_a2 = *eCurve._a2;
                 *_a4 = *eCurve._a4;
                 *_a6 = *eCurve._a6;
-		      return *this;
+              return *this;
         }
 //***********************************************************************************************
 //********************************      Операции сравнения      *********************************
@@ -121,7 +121,7 @@ namespace AAL
         }
 //***********************************************************************************************
 //*************************        Принадлежность точки к кривой      ***************************
-	bool EllipticCurveGF3::inGroup(PolynomGF3 &x, PolynomGF3 &y) const
+    bool EllipticCurveGF3::inGroup(PolynomGF3 &x, PolynomGF3 &y) const
         {
                 PolynomGF3 temp1("0"),m(this->getModule());
                 PolynomGF3 temp2("0"),temp3("0");
@@ -160,23 +160,23 @@ namespace AAL
       EllipticPointGF3::EllipticPointGF3()
         {
                 _curve = new EllipticCurveGF3();
-		            _x = new PolynomGF3();
-		            _y = new PolynomGF3();
-		            _infinite = true;
+                    _x = new PolynomGF3();
+                    _y = new PolynomGF3();
+                    _infinite = true;
         }
-	EllipticPointGF3::EllipticPointGF3(const EllipticCurveGF3 &eCurve)
+    EllipticPointGF3::EllipticPointGF3(const EllipticCurveGF3 &eCurve)
         {
                 _curve = new EllipticCurveGF3(eCurve);
-	            	_x = new PolynomGF3();
-		            _y = new PolynomGF3();
-		            _infinite = true;
+                    _x = new PolynomGF3();
+                    _y = new PolynomGF3();
+                    _infinite = true;
         }
-	EllipticPointGF3::EllipticPointGF3(const EllipticPointGF3 &ePoint)
+    EllipticPointGF3::EllipticPointGF3(const EllipticPointGF3 &ePoint)
         {
                 _curve = new EllipticCurveGF3(*ePoint._curve);
-		            _x = new PolynomGF3(*ePoint._x);
-		            _y = new PolynomGF3(*ePoint._y);
-		            _infinite = ePoint._infinite;
+                    _x = new PolynomGF3(*ePoint._x);
+                    _y = new PolynomGF3(*ePoint._y);
+                    _infinite = ePoint._infinite;
         }
        EllipticPointGF3::~EllipticPointGF3()
         {
@@ -191,36 +191,38 @@ namespace AAL
         {
 
                 *_curve =eCurve;
-               	if(!isInfinite())
-		            {
-			            *_x%=_curve->getModule();
+                if(!isInfinite())
+                    {
+                        *_x%=_curve->getModule();
                   *_y%=_curve->getModule();
                   if(!_curve->inGroup(*_x, *_y))
-			          	_infinite = true;
-		            }
+                        _infinite = true;
+                    }
 
                 return *_curve;
         }
-	PolynomGF3& EllipticPointGF3::getX()
+    PolynomGF3& EllipticPointGF3::getX()
         {
-                 return *_x;
+                 if(!isInfinite()) return *_x;
+                 throw new Exception("Точка на бесконечности");
         }
-	PolynomGF3& EllipticPointGF3::getY()
+    PolynomGF3& EllipticPointGF3::getY()
         {
-                return *_y;
+                if(!isInfinite()) return *_y;
+                throw new Exception("Точка на бесконечности");
         }
         EllipticPointGF3& EllipticPointGF3::setXY(PolynomGF3 &x, PolynomGF3 &y)
         {
-               	bool infinite = _infinite;
+                bool infinite = _infinite;
                 _infinite = false;
                 *_x = x;
                 *_y = y;
-		            *_x%=_curve->getModule();
-		            *_y%=_curve->getModule();
+                    *_x%=_curve->getModule();
+                    *_y%=_curve->getModule();
                 if(!_curve->inGroup(*_x, *_y))
                 {
                   _infinite = infinite;
-                	throw new Exception("Точка не лежит на кривой");
+                    throw new Exception("Точка не лежит на кривой");
                 }
                 return *this;
         }
@@ -228,22 +230,22 @@ namespace AAL
         {
                 return _infinite;
         }
-	EllipticPointGF3& EllipticPointGF3::setInfinite(bool infinite)
+    EllipticPointGF3& EllipticPointGF3::setInfinite(bool infinite)
         {
                 _infinite = infinite;
                 return *this;
         }
 //*********************************       Операции сравнения        *****************************
-	bool operator==(const EllipticPointGF3 &ePoint1, const EllipticPointGF3 &ePoint2)
+    bool operator==(const EllipticPointGF3 &ePoint1, const EllipticPointGF3 &ePoint2)
         {
                 if(ePoint1.isInfinite() && ePoint2.isInfinite())
-		            	return true;
-		            if(*ePoint1._curve != *ePoint2._curve)
-			            return false;
+                        return true;
+                    if(*ePoint1._curve != *ePoint2._curve)
+                        return false;
 
-		            return  *ePoint1._x == *ePoint2._x && *ePoint1._y == *ePoint2._y;
+                    return  *ePoint1._x == *ePoint2._x && *ePoint1._y == *ePoint2._y;
         }
-	bool operator!=(const EllipticPointGF3 &ePoint1, const EllipticPointGF3 &ePoint2)
+    bool operator!=(const EllipticPointGF3 &ePoint1, const EllipticPointGF3 &ePoint2)
         {
                 return !(ePoint1 == ePoint2);
         }
@@ -274,76 +276,76 @@ namespace AAL
 
 //***********************************************************************************************
 //******************************      Операция удвоения       ***********************************
-	EllipticPointGF3& EllipticPointGF3::Double()
+    EllipticPointGF3& EllipticPointGF3::Double()
         {
                 return this->Double(*this);
         }
 //***********************************************************************************************
 //**************************    Операция умножения на константу    ******************************
-       	EllipticPointGF3& EllipticPointGF3::operator*=(Integer &i)
-       	{
-       		return Mul(*this, i);
-       	}
+        EllipticPointGF3& EllipticPointGF3::operator*=(Integer &i)
+        {
+            return Mul(*this, i);
+        }
         EllipticPointGF3& EllipticPointGF3::Mul(EllipticPointGF3 &ePoint,Integer &integer)
         {       //this->setCurve(*ePoint._curve);
                 setInfinite(true);
-		            if(ePoint.isInfinite() || integer.isZero())
-		            	return *this;
+                    if(ePoint.isInfinite() || integer.isZero())
+                        return *this;
 
-	     	        EllipticPointGF3 p(ePoint);
+                    EllipticPointGF3 p(ePoint);
                 *this->_curve =*ePoint._curve;
 
-		            uint ii=0,bit = integer.getNumberBits();
-	            	for(uint i=0; i<bit; i++)
-	            	{
-		            	if(integer.getBit(i))
-			              {
-				              for(uint j=0;j<i-ii;j++)
-					              p.Double();
+                    uint ii=0,bit = integer.getNumberBits();
+                    for(uint i=0; i<bit; i++)
+                    {
+                        if(integer.getBit(i))
+                          {
+                              for(uint j=0;j<i-ii;j++)
+                                  p.Double();
                       *this += p;
-				              ii = i;
-			              }
-		            }
-	            	return *this;
+                              ii = i;
+                          }
+                    }
+                    return *this;
         }
 //***************************          Унарные операции         *********************************
         EllipticPointGF3& EllipticPointGF3::operator=(const EllipticPointGF3 &ePoint)
         {
                 *_curve= *ePoint._curve;
-	            	*_x = *ePoint._x;
-		            *_y = *ePoint._y;
-		            _infinite = ePoint._infinite;
-		          return *this;
+                    *_x = *ePoint._x;
+                    *_y = *ePoint._y;
+                    _infinite = ePoint._infinite;
+                  return *this;
         }
 
 //**************************   Операция сложения   **************************
-  	EllipticPointGF3& EllipticPointGF3::Add(EllipticPointGF3 &ePoint1, EllipticPointGF3 &ePoint2)
+    EllipticPointGF3& EllipticPointGF3::Add(EllipticPointGF3 &ePoint1, EllipticPointGF3 &ePoint2)
         {
                 *this->_curve =*ePoint1._curve;
                 if(*ePoint1._curve != *ePoint2._curve)
-			            throw new Exception("Точки на разных кривых");
+                        throw new Exception("Точки на разных кривых");
 
-		            if(ePoint1.isInfinite() && ePoint2.isInfinite())
-		          	{return setInfinite(true);}
-		            if(ePoint1.isInfinite())
-		            {
-			            *_x = *ePoint2._x;
-			            *_y = *ePoint2._y;
-			            return setInfinite(false);
-		            }
+                    if(ePoint1.isInfinite() && ePoint2.isInfinite())
+                    {return setInfinite(true);}
+                    if(ePoint1.isInfinite())
+                    {
+                        *_x = *ePoint2._x;
+                        *_y = *ePoint2._y;
+                        return setInfinite(false);
+                    }
                 if(ePoint2.isInfinite())
-		            {
-			            *_x = *ePoint1._x;
-			            *_y = *ePoint1._y;
-			            return setInfinite(false);
-		            }
+                    {
+                        *_x = *ePoint1._x;
+                        *_y = *ePoint1._y;
+                        return setInfinite(false);
+                    }
                 EllipticPointGF3 a(ePoint1),b(ePoint2);
                 PolynomGF3 lam("0"),beta("0"),module(a._curve->getModule()),x3("0"),y3("0"),temp1("0"),temp2("0");
                 EllipticPointGF3 negateEPoint1;
                 negateEPoint1.Negate(ePoint1);
                 if(negateEPoint1 == ePoint2)
                 {return setInfinite(true);}
-               	setInfinite(false);
+                setInfinite(false);
                 if (a!=b)
                 {
                   temp1.Sub(*b._y,*a._y);
@@ -393,15 +395,15 @@ namespace AAL
 //***********************************************************************************************
 //******************************      Удвоение       ***********************************
 
-	EllipticPointGF3& EllipticPointGF3::Double(EllipticPointGF3 &ePoint)
+    EllipticPointGF3& EllipticPointGF3::Double(EllipticPointGF3 &ePoint)
         {       *this->_curve =*ePoint._curve;
                 if(ePoint.isInfinite())
-			            return setInfinite(true);
+                        return setInfinite(true);
                 EllipticPointGF3 negateEPoint;
                 negateEPoint.Negate(ePoint);
                 if(negateEPoint == ePoint)
                   return setInfinite(true);
-		            setInfinite(false);
+                    setInfinite(false);
                 EllipticPointGF3 a(ePoint);
                 PolynomGF3 lam("0"),beta("0"),module(a._curve->getModule()),x3("0"),y3("0");
 
@@ -499,10 +501,10 @@ namespace AAL
                 }
                 while(c==m); // Проверка: существует ли корень
               while(!_curve->inGroup(x,c));
-		*_x = x;
+        *_x = x;
                 *_y = c;
 
-		return *this;
+        return *this;
         }
 // генерация точки с вложением данных
       EllipticPointGF3& EllipticPointGF3::Generate(const PolynomGF3 &mes)
@@ -566,10 +568,10 @@ namespace AAL
                 }
                 while(c==m); // Проверка: существует ли корень
               while(!_curve->inGroup(x,c));
-		*_x = x;
+        *_x = x;
                 *_y = c;
 
-		return *this;
+        return *this;
         }
 //***********************************************************************************************
 PolynomGF3_m_6& EllipticPointGF3::findRo(PolynomGF3 &mod,PolynomGF3_m_6 &b )
@@ -747,7 +749,7 @@ PolynomGF3_m_6& EllipticPointGF3::DLK(EllipticPointGF3 &ePoint1,EllipticPointGF3
     int i;
     PolynomGF3 a11("1"),b11("2");
     for(i = 1; i <= n ; i++)
-	{
+    {
       if(i == 3)
        { int t = 0; t++;}
       all.FastCube(all,n);
@@ -758,7 +760,7 @@ PolynomGF3_m_6& EllipticPointGF3::DLK(EllipticPointGF3 &ePoint1,EllipticPointGF3
 
     //    al.Cube(al);
 //    al.Cube(al);
-	//al.Pow(al,9);// alpha = (alpha^3)^3
+    //al.Pow(al,9);// alpha = (alpha^3)^3
     //btt.ModPow(btt,9,mod);// = btt*btt*btt;
     btt.FastCube(btt,n);
     btt.FastCube(btt,n);
@@ -768,8 +770,8 @@ PolynomGF3_m_6& EllipticPointGF3::DLK(EllipticPointGF3 &ePoint1,EllipticPointGF3
 
     //        bt.Cube(bt);
 //        bt.Cube(bt);
-       //	bt.Pow(bt,9);// beta = (beta^3)^3
-    	PolynomGF3_m_6 mu;
+       //   bt.Pow(bt,9);// beta = (beta^3)^3
+        PolynomGF3_m_6 mu;
        mu.setModule(mod) ;
        mu.Add(al,x);  // alpha+x
         mu.Add(mu,d); //mu = alpha+x+d
@@ -782,7 +784,7 @@ PolynomGF3_m_6& EllipticPointGF3::DLK(EllipticPointGF3 &ePoint1,EllipticPointGF3
         lambda.Mul(si,bt); //sigma*beta
        lambda.Mul(lambda,y); //sigma*beta*y
         lambda.Add(lambda,mu_2);//lambda = sigma*beta*y - mu^2
-    	f->Cube(*f); //f^3
+        f->Cube(*f); //f^3
     PolynomGF3_m_6 muro, ro_2,mlt;
    muro.setModule(mod);
    ro_2.setModule(mod);
@@ -802,7 +804,7 @@ PolynomGF3_m_6& EllipticPointGF3::DLK(EllipticPointGF3 &ePoint1,EllipticPointGF3
        b1.Mul(b,two);//-b
         d.Add(d,b1); //d = d-b
    }
-	Integer three_n;
+    Integer three_n;
         three_n.Mul(3,n);
  //       three_n.Pow(3,three_n);
         PolynomGF3_m_6 ff(*f);

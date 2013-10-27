@@ -1,7 +1,7 @@
 /*
-		MPEI Algebraic Abstractions Library,
-		2007-2011,
-		Moscow Power Engineering Institute
+        MPEI Algebraic Abstractions Library,
+        2007-2011,
+        Moscow Power Engineering Institute
 
         This file contains definitions and implementations of the following classes:
 
@@ -46,11 +46,11 @@ namespace AAL
         {
                 return getModulePolynom().getModule();
         }
-	const IntegerBinom& IntegerBinomEllipticCurve::getA() const
+    const IntegerBinom& IntegerBinomEllipticCurve::getA() const
         {
                 return *_a;
         }
-	const IntegerBinom& IntegerBinomEllipticCurve::getB() const
+    const IntegerBinom& IntegerBinomEllipticCurve::getB() const
         {
                 return *_b;
         }
@@ -264,34 +264,34 @@ namespace AAL
 
 //**********************************  Класс точка эллиптичиской кривой  *************************
 //********************************      Конструкторы       **************************************
-	IntegerBinomEllipticPoint::IntegerBinomEllipticPoint()
-	{
-		_curve = new IntegerBinomEllipticCurve();
-		_x = new IntegerBinom();
-		_y = new IntegerBinom();
-		_infinite = true;
-	}
+    IntegerBinomEllipticPoint::IntegerBinomEllipticPoint()
+    {
+        _curve = new IntegerBinomEllipticCurve();
+        _x = new IntegerBinom();
+        _y = new IntegerBinom();
+        _infinite = true;
+    }
 
         IntegerBinomEllipticPoint::IntegerBinomEllipticPoint(const IntegerBinomEllipticCurve &eCurve)
-	{
-		_curve = new IntegerBinomEllipticCurve(eCurve);
-		_x = new IntegerBinom();
+    {
+        _curve = new IntegerBinomEllipticCurve(eCurve);
+        _x = new IntegerBinom();
                 _x->setModulePolynom(eCurve.getModulePolynom());
-		_y = new IntegerBinom();
+        _y = new IntegerBinom();
                 _y->setModulePolynom(eCurve.getModulePolynom());
-		_infinite = true;
-	}
+        _infinite = true;
+    }
         IntegerBinomEllipticPoint::IntegerBinomEllipticPoint(const IntegerBinomEllipticPoint &ePoint)
-	{
-		_curve = new IntegerBinomEllipticCurve(*ePoint._curve);
-		_x = new IntegerBinom(*ePoint._x);
-		_y = new IntegerBinom(*ePoint._y);
-		_infinite = ePoint._infinite;
-	}
+    {
+        _curve = new IntegerBinomEllipticCurve(*ePoint._curve);
+        _x = new IntegerBinom(*ePoint._x);
+        _y = new IntegerBinom(*ePoint._y);
+        _infinite = ePoint._infinite;
+    }
         IntegerBinomEllipticPoint::~IntegerBinomEllipticPoint()
-	{
-		delete _curve, _x, _y;
-	}
+    {
+        delete _curve, _x, _y;
+    }
 
 //***********************************************************************************************
 //****************************       Методы акцепторы        ************************************
@@ -301,23 +301,25 @@ namespace AAL
         }
         const IntegerBinom& IntegerBinomEllipticPoint::getX()
         {
-                return *_x;
+                if(!isInfinite())return *_x;
+                throw new Exception("Точка на бесконечности");
         }
         const IntegerBinom& IntegerBinomEllipticPoint::getY()
         {
-                return *_y;
+                if(!isInfinite())return *_y;
+                throw new Exception("Точка на бесконечности");
         }
         IntegerBinomEllipticCurve& IntegerBinomEllipticPoint::setCurve(IntegerBinomEllipticCurve &eCurve)
         {
                 *_curve = eCurve;
                 _x->setModulePolynom(_curve->getModulePolynom());
                 _y->setModulePolynom(_curve->getModulePolynom());
-		if(!isInfinite())
-		{
-			if(!_curve->inGroup(*_x, *_y))
-				_infinite = true;
-		}
-		return *_curve;
+        if(!isInfinite())
+        {
+            if(!_curve->inGroup(*_x, *_y))
+                _infinite = true;
+        }
+        return *_curve;
         }
         IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::setXY(const IntegerBinom &x, const IntegerBinom &y)
         {
@@ -325,12 +327,12 @@ namespace AAL
                 _infinite = false;
                 *_x = x;
                 *_y = y;
-		        _x->setModulePolynom(_curve->getModulePolynom());
+                _x->setModulePolynom(_curve->getModulePolynom());
                 _y->setModulePolynom(_curve->getModulePolynom());
                 if(!_curve->inGroup(*_x, *_y))
                 {
-			        _infinite = infinite;
-			        throw new Exception("Точка не лежит на кривой");
+                    _infinite = infinite;
+                    throw new Exception("Точка не лежит на кривой");
                 }
                 return *this;
         }
@@ -341,7 +343,7 @@ namespace AAL
         IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::setInfinite(bool infinite)
         {
                 _infinite = infinite;
-		return *this;
+        return *this;
         }
         bool IntegerBinomEllipticPoint::isSelfnegative()
         {
@@ -354,25 +356,25 @@ namespace AAL
         IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::operator=(const IntegerBinomEllipticPoint &ePoint)
         {
                 *_curve = *ePoint._curve;
-		        *_x = *ePoint._x;
-		        *_y = *ePoint._y;
-		        _infinite = ePoint._infinite;
-		        return *this;
+                *_x = *ePoint._x;
+                *_y = *ePoint._y;
+                _infinite = ePoint._infinite;
+                return *this;
         }
 //***********************************************************************************************
 //*********************************       Операции сравнения        *****************************
         bool operator==(const IntegerBinomEllipticPoint &ePoint1, const IntegerBinomEllipticPoint &ePoint2)
         {
                 if(ePoint1.isInfinite() && ePoint2.isInfinite())
-			return true;
+            return true;
                 if(ePoint1.isInfinite() || ePoint2.isInfinite())
                         return false;
-		if(*ePoint1._curve != *ePoint2._curve)
-			return false;
+        if(*ePoint1._curve != *ePoint2._curve)
+            return false;
 
-		return  *ePoint1._x == *ePoint2._x && *ePoint1._y == *ePoint2._y;
+        return  *ePoint1._x == *ePoint2._x && *ePoint1._y == *ePoint2._y;
         }
-	bool operator!=(const IntegerBinomEllipticPoint &ePoint1, const IntegerBinomEllipticPoint &ePoint2)
+    bool operator!=(const IntegerBinomEllipticPoint &ePoint1, const IntegerBinomEllipticPoint &ePoint2)
         {
                 return !(ePoint1 == ePoint2);
         }
@@ -398,72 +400,72 @@ namespace AAL
         IntegerBinomEllipticPoint operator+(IntegerBinomEllipticPoint &ePoint1, IntegerBinomEllipticPoint &ePoint2)
         {
                 IntegerBinomEllipticPoint res;
-		return res.Add(ePoint1, ePoint2);
+        return res.Add(ePoint1, ePoint2);
         }
-	IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::operator+=(IntegerBinomEllipticPoint &ePoint)
+    IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::operator+=(IntegerBinomEllipticPoint &ePoint)
         {
                 return Add(*this, ePoint);
         }
-	IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::Add(IntegerBinomEllipticPoint &ePoint1, IntegerBinomEllipticPoint &ePoint2)
+    IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::Add(IntegerBinomEllipticPoint &ePoint1, IntegerBinomEllipticPoint &ePoint2)
         {
                 if(*ePoint1._curve != *ePoint2._curve)
-			throw new Exception("Точки лежат на разных кривых");
+            throw new Exception("Точки лежат на разных кривых");
 
-		*_curve = *ePoint1._curve;
+        *_curve = *ePoint1._curve;
 
-		if(ePoint1.isInfinite() && ePoint2.isInfinite())
-			return setInfinite(true);
-		if(ePoint1.isInfinite())
-		{
-			*_x = *ePoint2._x;
-			*_y = *ePoint2._y;
-			return setInfinite(false);
-		}
-		if(ePoint2.isInfinite())
-		{
-			*_x = *ePoint1._x;
-			*_y = *ePoint1._y;
-			return setInfinite(false);
-		}
+        if(ePoint1.isInfinite() && ePoint2.isInfinite())
+            return setInfinite(true);
+        if(ePoint1.isInfinite())
+        {
+            *_x = *ePoint2._x;
+            *_y = *ePoint2._y;
+            return setInfinite(false);
+        }
+        if(ePoint2.isInfinite())
+        {
+            *_x = *ePoint1._x;
+            *_y = *ePoint1._y;
+            return setInfinite(false);
+        }
 
                 IntegerBinomEllipticPoint negateEPoint1;
                 negateEPoint1.Negate(ePoint1);
                 if(negateEPoint1 == ePoint2)
                         return setInfinite(true);
 
-		setInfinite(false);
+        setInfinite(false);
 
-	        IntegerBinom l(Integer("0") , Integer("0"), getCurve().getModulePolynom()),
+            IntegerBinom l(Integer("0") , Integer("0"), getCurve().getModulePolynom()),
                 p(Integer("3") , Integer("0"), getCurve().getModulePolynom()),
                 x1(*ePoint1._x), x2(*ePoint2._x), y1(*ePoint1._y), y2(*ePoint2._y);
 
-		if(x1 == x2)
-		{
-			l.Mul(x1, x1);
-			l.Mul(l, p);
-			l.Add(l, const_cast<IntegerBinom &>(_curve->getA()));
+        if(x1 == x2)
+        {
+            l.Mul(x1, x1);
+            l.Mul(l, p);
+            l.Add(l, const_cast<IntegerBinom &>(_curve->getA()));
 
                         IntegerBinom two(Integer("2") , Integer("0"), getCurve().getModulePolynom());
                         p.Mul(y1, two);
-		}
-		else
-		{
-			l.Sub(y2, y1);
-			p.Sub(x2, x1);
-		}
+        }
+        else
+        {
+            l.Sub(y2, y1);
+            p.Sub(x2, x1);
+        }
 
-        	p.Inverse();
-		l.Mul(l, p);
+            p.Inverse();
+        l.Mul(l, p);
 
-		_x->Mul(l, l);
-		_x->Sub(*_x, x1);
-		_x->Sub(*_x, x2);
+        _x->Mul(l, l);
+        _x->Sub(*_x, x1);
+        _x->Sub(*_x, x2);
 
-		_y->Sub(x1, *_x);
-		_y->Mul(*_y, l);
-		_y->Sub(*_y, y1);
+        _y->Sub(x1, *_x);
+        _y->Mul(*_y, l);
+        _y->Sub(*_y, y1);
 
-		return *this;
+        return *this;
         }
 //***********************************************************************************************
 //******************************      Операция удвоения       ***********************************
@@ -479,31 +481,31 @@ namespace AAL
 
 //***********************************************************************************************
 //**************************    Операция умножения на константу    ******************************
-	IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::Mul(IntegerBinomEllipticPoint &ePoint, Integer &integer)
-	{
-		if(ePoint.isInfinite() || integer.isZero())
+    IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::Mul(IntegerBinomEllipticPoint &ePoint, Integer &integer)
+    {
+        if(ePoint.isInfinite() || integer.isZero())
                 {
                         setInfinite(true);
-			return *this;
+            return *this;
                 }
 
-		IntegerBinomEllipticPoint p(ePoint);
-		*_curve = *ePoint._curve;
+        IntegerBinomEllipticPoint p(ePoint);
+        *_curve = *ePoint._curve;
                 setInfinite(true);
 
-		uint ii=0,bit = integer.getNumberBits();
-		for(uint i=0; i<bit; i++)
-		{
-			if(integer.getBit(i))
-			{
-				for(uint j=0;j<i-ii;j++)
-					p.Double();
-				*this += p;
-				ii = i;
-			}
-		}
-		return *this;
-	}
+        uint ii=0,bit = integer.getNumberBits();
+        for(uint i=0; i<bit; i++)
+        {
+            if(integer.getBit(i))
+            {
+                for(uint j=0;j<i-ii;j++)
+                    p.Double();
+                *this += p;
+                ii = i;
+            }
+        }
+        return *this;
+    }
 //***********************************************************************************************
 //**************************    Операция нахождения порядка точки  ******************************
         // простой алгоритм, последовательное сложение

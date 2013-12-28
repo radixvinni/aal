@@ -12,7 +12,7 @@
 #include "./AAF/AAL/BasicType.h"
 #include <vector>
 
-#if defined(__linux__) && defined(__GNUC__) || defined (__APPLE_CC__)
+#if defined(__GNUC__) || defined (__APPLE_CC__)
 	char *itoa(int value, char* result, int base);
 	char *ltoa(unsigned int value, char* result, int base);
 	char *strrev(char *s);

@@ -16,7 +16,7 @@
 #include <memory>
 #include <exception>
 #include <stdexcept>
-#include <cstring>
+#include <string>
 
 /*
     ISO C99 supports data types for integers that are at least 64 bits wide, and as an extension

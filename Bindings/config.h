@@ -1,4 +1,4 @@
-/* #undef USE_MIRACL */
+#define USE_MIRACL
 /* #undef USE_MSIEVE */
 
 #ifdef USE_MIRACL

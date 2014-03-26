@@ -331,13 +331,29 @@ namespace AAL
                                 while( getline( ifs, temp ) )
                                     result.push_back( temp );
 
+                                std::string s;
+                                s.append("schoof2.exe ");
+                                s.append(A2.strr());
+                                s.append(" ");
+                                s.append(A6.strr());
+                                s.append(" ");
+                                s.append(module.strr());
+                                s.append(" ");
+                                s.append(a1.strr());
+                                s.append(" ");
+                                s.append(a2.strr());
+                                s.append(" ");
+                                s.append(a3.strr());
+                                s.append(" -o curveorder.log");
+                                printf("command: %s, result len: %u\n",s.c_str(),result.size());
+
                         }
                 catch(...)
                         {
                                  throw new Exception("Невозможно прочитать curveorder.log ");
                                  return Integer("0");
                         }
-                if (result.size()<10)
+                if (result.size()<9)
                         {
                                 throw new Exception("Операция отменена пользователем");
                                 return Integer("0");
@@ -350,7 +366,7 @@ namespace AAL
                                 Integer np(0);
                                 np.Mul(prnp,cf);
                                 //Integer e(crvord.c_str(),NumericSystem(Hex));
-                                return np;
+                                return prnp;
 
      };
 

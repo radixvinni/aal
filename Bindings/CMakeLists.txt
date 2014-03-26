@@ -145,17 +145,17 @@ if (USE_MIRACL)
 	  PREFIX .
 	#  URL http://www.certivox.com/wp-content/themes/certivox/res/miracl.zip
 	#  URL http://www.shamus.ie/uploads/File/miracl3.zip
-	  GIT_REPOSITORY git://github.com/CertiVox/MIRACL.git
-	#  UPDATE_COMMAND ""
-	  PATCH_COMMAND patch -t -N -p0 < ../../miracl.patch
-	  CONFIGURE_COMMAND cmake ..
+	#  GIT_REPOSITORY git://github.com/CertiVox/MIRACL.git
+	  GIT_REPOSITORY git://github.com/radixvinni/MIRACL.git
+    #UPDATE_COMMAND ""
+	#  PATCH_COMMAND patch -t -N -p0 < ../../miracl.patch
+	#  CONFIGURE_COMMAND cmake .
 	#  BUILD_COMMAND make -C ..
-	  INSTALL_COMMAND ""
+	#  INSTALL_COMMAND ""
 	)
 	
-	add_library(imp_miracl STATIC IMPORTED)
-  set_property(TARGET imp_miracl PROPERTY
-                IMPORTED_LOCATION src/miracl-build/libMiracl.a)
+	add_library(imp_miracl dlopen.cpp) #note: linux only by now
+	target_link_libraries(imp_miracl dl)
   add_dependencies(imp_miracl miracl)
 	target_link_libraries(AAL imp_miracl)
 endif (USE_MIRACL)

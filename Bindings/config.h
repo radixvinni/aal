@@ -1,5 +1,5 @@
 #define USE_MIRACL
-/* #undef USE_MSIEVE */
+#define USE_MSIEVE
 
 #ifdef USE_MIRACL
 

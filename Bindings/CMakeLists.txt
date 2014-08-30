@@ -151,7 +151,7 @@ if (USE_MIRACL)
 	#  PATCH_COMMAND patch -t -N -p0 < ../../miracl.patch
 	#  CONFIGURE_COMMAND cmake .
 	#  BUILD_COMMAND make -C ..
-	#  INSTALL_COMMAND ""
+	  INSTALL_COMMAND ""
 	)
 	
 	add_library(imp_miracl dlopen.cpp) #note: linux only by now

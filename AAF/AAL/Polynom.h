@@ -1,11 +1,3 @@
-/*
-		MPEI Algebraic Abstractions Library,
-		2007-2011,
-		Moscow Power Engineering Institute
-
-        This file contains definitions and implementations of the following classes:
-
-*/
 #ifndef __POLYNOM_H__
 #define __POLYNOM_H__
 
@@ -16,63 +8,10 @@
 
 namespace AAL
 {
-
-       struct TWord
-  {
-   union
-   {
-     unsigned int a;
-      struct
-         {
-           unsigned int b1:16;
-           unsigned int b2:16;
-
-         };
-      struct
-        {
-          unsigned int a1:1;
-          unsigned int a2:1;
-          unsigned int a3:1;
-          unsigned int a4:1;
-          unsigned int a5:1;
-          unsigned int a6:1;
-          unsigned int a7:1;
-          unsigned int a8:1;
-          unsigned int a9:1;
-          unsigned int a10:1;
-          unsigned int a11:1;
-          unsigned int a12:1;
-          unsigned int a13:1;
-          unsigned int a14:1;
-          unsigned int a15:1;
-          unsigned int a16:1;
-          unsigned int a17:1;
-          unsigned int a18:1;
-          unsigned int a19:1;
-          unsigned int a20:1;
-          unsigned int a21:1;
-          unsigned int a22:1;
-          unsigned int a23:1;
-          unsigned int a24:1;
-          unsigned int a25:1;
-          unsigned int a26:1;
-          unsigned int a27:1;
-          unsigned int a28:1;
-          unsigned int a29:1;
-          unsigned int a30:1;
-          unsigned int a31:1;
-          unsigned int a32:1;
-        };
-
-
-   };
-   };
-
-
 	class Converter;
   class Matrix;
-	enum PolynomSystem {BackHex=16, BackBin=2, BackDec=10};
-	class Polynom : public BasicType<uint>
+	enum PolynomSystem {BackHex=16, BackBin=2 };
+	class Polynom : public BasicType<uchar>
 	{
 	private:
     friend class Converter;
@@ -80,11 +19,6 @@ namespace AAL
     friend class Matrix;
 	//Конструкторы
 	public:
-                static unsigned int *TAB();
-                static unsigned int **Pos();
-                static unsigned int *GenerateTab();
-                static unsigned int **GeneratePos();
-
 		Polynom();
 		Polynom(const Polynom &polynom);
 		Polynom(const std::string dataString, PolynomSystem system=BackBin);
@@ -93,18 +27,17 @@ namespace AAL
 	//Преобразование и считывание из строк
 	public:
 		Polynom& Parse(const std::string dataString, PolynomSystem system=BackBin, bool cancel = false);
+		std::string ToString(const std::string dataString) const;
 		std::string ToString(PolynomSystem system=BackBin) const;
-                std::string ToString(const std::string dataString) const;
-                std::string tostring() const;
-std::string i_to_str(uint x) const;
+        std::string i_to_str(uint x) const;
 	//Методы акцепторы
 	public:
 		Polynom& setOne();
-		Polynom& setPolynom(uint);
+		Polynom& setPolynom(uchar);
 		Polynom& setZero();
                 Polynom& setUnit(uint degree);
                 std::set<uint> getPowersOfPolynom() const;
-		bool isPolynom(uint polynom) const;
+		bool isPolynom(uchar polynom) const;
 		bool isNormal() const;
 		bool isIrreducible() const;
     bool isPrimitivity() const;
@@ -172,10 +105,8 @@ std::string i_to_str(uint x) const;
 		Polynom *Copy(Polynom &polynom, Polynom *polynomNotEqual = NULL);
 		void DisposalCopy(Polynom &polynom, Polynom *polynomNotEqual = NULL);
         public:
-                  static TWord *WordByWord(TWord a,TWord b,int n);
-                  TWord Lop16(TWord a,TWord b);
-                  TWord *Lop32(TWord a,TWord b);
-                  ushort MulElemPolynoms(uchar u, uchar v);
+
+                static ushort MulElemPolynoms(uchar u, uchar v);
 	public:
 		friend Polynom operator*(const Polynom &a, const Polynom &b);
 		Polynom& operator*=(Polynom &polynom);
@@ -206,7 +137,7 @@ std::string i_to_str(uint x) const;
 		ushort SquareElemPolynom(uchar u);
 		Polynom& Square(Polynom &a, Integer &n, Polynom *module = NULL);
 		Polynom& PowImpl(Polynom &a, Integer &n, Polynom *module = NULL);
-	public:		
+	public:
 		Polynom& Pow(Polynom &a, Integer &n);
 		Polynom& ModPow(Polynom &a, Integer &n, Polynom &module);
    	Polynom& PowGF2_n(Polynom &a, Integer &n, Polynom &module);
@@ -220,7 +151,7 @@ std::string i_to_str(uint x) const;
 		Polynom& Euclid(const Polynom &a, Polynom &b);
 		Polynom& BinaryGCD(const Polynom &a, Polynom &b);
 		Polynom& ExEuclid(Polynom &a, Polynom &b, Polynom &x, Polynom &y);
-                
+
 	//Генерация полиномов
 	//TODO: Доработать добавив новые методы
 	public:
@@ -271,6 +202,7 @@ std::string i_to_str(uint x) const;
     // Тесты степеней поля на образование ГНБ
     bool GNBTest(const uint n, const int type) const;
 
+
 	//Операции мультипликативной группы и поля
 	public:
 		bool InMulGroup(Polynom &groupModule);
@@ -281,7 +213,7 @@ std::string i_to_str(uint x) const;
 		Polynom& Trace(Polynom &polynom, Polynom &module);
     Integer& elementOrder(Polynom &groupModule, Polynom &polynom,std::vector<DecompositionMember> vector, const Integer &ord );
     bool isGenerator(Polynom &groupModule, Polynom &polynom,std::vector<DecompositionMember> vector, const Integer &ord);
-         Polynom Impl(Polynom& a, Polynom& b);
-	};	
+
+	};
 };
 #endif

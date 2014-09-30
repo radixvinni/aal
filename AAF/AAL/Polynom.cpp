@@ -1,11 +1,3 @@
-/*
-		MPEI Algebraic Abstractions Library,
-		2007-2011,
-		Moscow Power Engineering Institute
-
-        This file contains definitions and implementations of the following classes:
-
-*/
 #include "Polynom.h"
 #include "Converter.h"
 #include "Algorithms.h"
@@ -14,12 +6,11 @@
 #include <stdlib.h>
 #include <math.h>
 #include "DecompositionManager.h"
+
+
+
 namespace AAL
 {
-
-
-
-
   //(c) Chernysheva
   //------->>>>>>>>>-----------------
   // приведение числа по модулю
@@ -39,28 +30,25 @@ namespace AAL
 
 //***********************************  Конструкторы  *******************************************
 	//(c) Mamontov, TEST(Polynom, EmptyConstructor)
-	Polynom::Polynom() : BasicType<uint>()
+	Polynom::Polynom() : BasicType<uchar>()
 	{}
 //------------------------------------------------------------------------------
 	//(c) Mamontov, TEST(Polynom, CopyConstructor)
-	Polynom::Polynom(const Polynom &polynom) : BasicType<uint>(polynom)
-	{Assign_Base(polynom);}
+	Polynom::Polynom(const Polynom &polynom) : BasicType<uchar>(polynom)
+	{}
 //------------------------------------------------------------------------------
 
 	//(c) Mamontov, TEST(Polynom, StringConstructor)
 	Polynom::Polynom(const std::string dataString, PolynomSystem system)
 	{
 		SetData(0, 0);
-                Parse(dataString, system);
-                
+		Parse(dataString, system);
 	}
 //------------------------------------------------------------------------------
 
         //(c) Belova, TEST(Polynom, DegreeStringConstructor)
         Polynom::Polynom(const std::string dataString, bool in_degres, bool cancel){
                 if(in_degres == true) {
-                        int i,j,m,length,ColWords;
-                        TWord word;
                         int cancelling_from_deg = cancel ? 1 : 0;
                         std::vector<int> polynom_degrees;
                         std::string result;
@@ -89,14 +77,8 @@ namespace AAL
                                 }
                                 result.push_back('1');
                         }
-
-
-
-
         		SetData(0, 0);
-
         		Parse(result, BackBin);
-                        
                 }
 }
 //**********************************************************************************************
@@ -105,93 +87,18 @@ namespace AAL
 	///(c) Mamontov
 	Polynom& Polynom::Parse(const std::string dataString, PolynomSystem system, bool cancel)
 	{
-    if (system == BackDec)
+    if (system == Dec)
     {
       Polynom pl(dataString, true, cancel);
       *this = pl;
     }
-    else        
-                 {   /* *this = Converter::ToPolynom(dataString, system);
-                 необходимо заменить на код ниже, чтобы входные данные нужным образом упаковывались в машинные слова*/
-               int length= (unsigned int)dataString.length();
-               for(int i=0;i<length;i++)
-                   if(dataString[i]=='1')this->setBit(i,true);
-                   else this->setBit(i,false);}
-
+    else
+		  *this = Converter::ToPolynom(dataString, system);
 		return *this;
 	}
-    unsigned int**   Polynom::Pos()
-    {
-        static unsigned int** Pos = GeneratePos();
-        return Pos;
-    }
-    unsigned int**   Polynom::GeneratePos()//Генерация таблиц
-    {
-           TWord a,b;
-    int i,j,m;
-        unsigned int** Pos = new unsigned int*[65536];
-    for(i=0;i<65536;i++)
-        Pos[i]=new unsigned int[16];
-    for(i=0;i<65536;i++)
-       for(j=0;j<16;j++)
-          Pos[i][j]=17;
-    for(i=0;i<65536;i++)
-         { a.a=i;m=0;
-          if(a.a1==1){Pos[i][m]=0;m++;}
-          if(a.a2==1){Pos[i][m]=1;m++;}
-          if(a.a3==1){Pos[i][m]=2;m++;}
-          if(a.a4==1){Pos[i][m]=3;m++;}
-          if(a.a5==1){Pos[i][m]=4;m++;}
-          if(a.a6==1){Pos[i][m]=5;m++;}
-          if(a.a7==1){Pos[i][m]=6;m++;}
-          if(a.a8==1){Pos[i][m]=7;m++;}
-          if(a.a9==1){Pos[i][m]=8;m++;}
-          if(a.a10==1){Pos[i][m]=9;m++;}
-          if(a.a11==1){Pos[i][m]=10;m++;}
-          if(a.a12==1){Pos[i][m]=11;m++;}
-          if(a.a13==1){Pos[i][m]=12;m++;}
-          if(a.a14==1){Pos[i][m]=13;m++;}
-          if(a.a15==1){Pos[i][m]=14;m++;}
-          if(a.a16==1){Pos[i][m]=15;m++;}
-          }
-    return Pos;    
-    }
-    unsigned int*   Polynom::TAB()
-    {
-        static unsigned int* TAB = GenerateTab();
-        return TAB;
-    }
-    unsigned int*   Polynom::GenerateTab()//Генерация таблиц
-        {
-           TWord a,b;
-    int i,j,m;
-    
-    unsigned int* TAB = new unsigned int[65536];
-     for(i=0;i<65536;i++)
-       {
-         b.a=i;
-         TAB[i]=WordByWord(b,b,32)[0].a;
-        }
-        return TAB;
-        }
 //------------------------------------------------------------------------------
 //TEST(Polynom, getPowersString)
-
-        /*Polynom Polynom::ToPolynom(const std::string &dataString, PolynomSystem system)
-           {
-              int i;
-              unsigned int length = (unsigned int)dataString.length();
-               for(i=0;i<length;i++)
-              	if(dataString[i] >= '0' && dataString[i] <= '9')
-					digit._digits[0] = dataString[i] - '0';
-				else if(dataString[i] >= 'A' && dataString[i] <= 'F')
-					digit._digits[0] = dataString[i] - 'A' + 10;
-				else if(dataString[i] >= 'a' && dataString[i] <= 'f')
-					digit._digits[0] = dataString[i] - 'a' + 10;
-           } */
-
         std::string Polynom::ToString(const std::string dataString) const {
-                        if (isZero()) return std::string("0");
                         std::string result = "";
                         int degree_count = -1;
                         for(unsigned int i = 0  ; i < dataString.length(); i++)
@@ -212,36 +119,20 @@ namespace AAL
                         }
          return  result;
         }
-    //Изменено обратное преобразование машинных слов в строку
-   std::string Polynom::tostring() const
-              {
-                 std::string result="";
-                 int i;
-                    for(i=0;i<this->getNumberBits();i++)
-                       if (this->getBit(i))result+="1";
-                       else result+="0";
-                      if(result == "0")
-                        {
-                            result = "";
-                        }
-                     return result;
 
-              }
 //------------------------------------------------------------------------------
 	//(c) Mamontov
 	std::string Polynom::ToString(PolynomSystem system) const
 	{
-                if (isZero()) return std::string("0");
-                if(system == BackDec){
-                        std::string polynom_str =tostring();
-                        //Converter::ToString(*this, BackBin);
+                if(system == Dec){
+                        std::string polynom_str = Converter::ToString(*this, BackBin);
                         if(polynom_str == "0")
                         {
                             polynom_str = "";
                         }
                         return  Polynom::ToString(polynom_str);
                 }
-		return tostring();//Converter::ToString(*this, system);
+		return Converter::ToString(*this, system);
 	}
 //**********************************************************************************************
 //***************************************  Методы акцепторы   **********************************
@@ -254,7 +145,7 @@ namespace AAL
 //------------------------------------------------------------------------------
 
 	//simple method
-	Polynom& Polynom::setPolynom(uint polynom) //uchar заменено на uint
+	Polynom& Polynom::setPolynom(uchar polynom)
 	{
 		setNumber_Base(polynom);
 		return *this;
@@ -270,7 +161,7 @@ namespace AAL
 //------------------------------------------------------------------------------
 
 	//simple method
-	bool Polynom::isPolynom(uint polynom) const  //uchar заменено на uint
+	bool Polynom::isPolynom(uchar polynom) const
 	{
 		return isNumber_Base(polynom);
 	}
@@ -338,7 +229,7 @@ Polynom& Polynom::setUnit(uint degree)
         if ((k%3 == 1 || k%3 == 2) && (n+k)%3 == 0 && n > 2)
           return false;
         if (SchtilbergSuonTheorem(k, n))
-          return false; 
+          return false;
       }
     }
     bool useFastMod = false;
@@ -440,18 +331,13 @@ Polynom& Polynom::setUnit(uint degree)
 	//(c) Mamontov, TEST(Polynom, OnesComplement)
 	Polynom& Polynom::OnesComplement()
 	{
-		Polynom mask;
-        mask.setUnit(this->getNumberBits()-1);
-		Xor_Base(*this,mask);
+		OnesComplement_Base();
 		return *this;
 	}
 //------------------------------------------------------------------------------
-        /*
-           Этот метод неоюходимо выкинуть, т.к. конструктор копирования не будет работать и
-           перенести  Assign_Base(polynom); в тело этого конструктора
-           */
+
 	//(c) Mamontov, TEST(Polynom, operatorEqual)
-       	Polynom& Polynom::operator= (const Polynom& polynom)
+	Polynom& Polynom::operator= (const Polynom& polynom)
 	{
 		Assign_Base(polynom);
 		return *this;
@@ -585,9 +471,8 @@ Polynom& Polynom::setUnit(uint degree)
 	//(c) Mamontov, TEST(Polynom, Or)
 	Polynom& Polynom::Or(Polynom &a, const Polynom &b)
 	{
-		
-                Polynom copy_b=Polynom(b);
-                Or_Base(a, copy_b);
+		Polynom copy_b=Polynom(b);
+		Or_Base(a, copy_b);
 		return *this;
 	}
 //------------------------------------------------------------------------------
@@ -697,7 +582,7 @@ Polynom& Polynom::setUnit(uint degree)
 	{
                 if(!module.isIrreducible())
                 {
-                        throw new  Exception("Полином не является неприводимым.");
+                        throw new AAL::Exception("Полином не является неприводимым.");
                 }
 
                 return ModAdd(a,b,module);
@@ -742,7 +627,7 @@ Polynom& Polynom::setUnit(uint degree)
 		  return Sub(copy_a, copy_b) %= module;
     }
     else
-     throw new Exception("Полином не является неприводимым.");
+     throw new AAL::Exception("Полином не является неприводимым.");
 	}
 
 //**********************************************************************************************
@@ -778,19 +663,13 @@ Polynom& Polynom::setUnit(uint degree)
 	}
 //------------------------------------------------------------------------------
 
-	// (c) Morozov, TEST(Polynom, Mul)	
+	// (c) Morozov, TEST(Polynom, Mul)
 	Polynom& Polynom::Mul(Polynom &a, Polynom &b)
 	{
-
 		if(a.isZero() || b.isZero())
 			return setZero();
 		Polynom *aa = Copy(a), *bb =Copy(b);
-
-
-
-		TWord *cur_mul;
-                TWord A,B;
-
+		ushort cur_mul;
 
 		setNumberDigits(aa->_numberDigits + bb->_numberDigits);
 		std::memset(_digits, 0, getDigitSizeInBytes()*_numberDigits);
@@ -799,14 +678,10 @@ Polynom& Polynom::setUnit(uint degree)
 		{
 			for(uint i = 0; i<bb->_numberDigits;i++)
 			{
-
-				 A.a=aa->_digits[j]; B.a=bb->_digits[i];
-				//cur_mul = MulElemPolynoms(aa->_digits[j],bb->_digits[i]);
-                                cur_mul=WordByWord(A,B,32);
-				_digits[i+j] ^= cur_mul[0].a;
-				_digits[i+j+1] ^= cur_mul[1].a;
-
-			}		
+				cur_mul = MulElemPolynoms(aa->_digits[j],bb->_digits[i]);
+				_digits[i+j] ^= (uchar)(cur_mul % 256);
+				_digits[i+j+1] ^= (uchar)(cur_mul >> 8);
+			}
 		}
 
 		RemoveElderNulls();
@@ -814,110 +689,21 @@ Polynom& Polynom::setUnit(uint degree)
 		bb->DisposalCopy(b);
 
 		return *this;
-
 	}
-
 //------------------------------------------------------------------------------
-     //Алгоритмы умножения полиномов степени не выше 31
-      TWord *Polynom::WordByWord(TWord a,TWord b,int n)
-        {
-             TWord t[2];
-          unsigned __int64 k,c;
-
-            c=0; k=0;
-             t[0].a=0;t[1].a=0;
-             c=b.a;
-             while(a.a!=0)
-
-                {
-                 if(a.a&1==1)
-                   {
-
-
-
-                   t[0].a=t[0].a^b.a;
-                   k=k^c;
-
-
-
-
-
-                   }
-
-                   b.a=b.a+b.a;
-                   c=c+c;
-                   //m=m+m;
-
-                   a.a=a.a>>1;
-
-
-                }
-
-                t[1].a=(unsigned int)(k>>32);
-
-
-
-          return t;
-        }
-
-    TWord Polynom::Lop16(TWord a,TWord b)
-      {
-        //unsigned int B[16];
-        TWord C;
-        int i,j;
-        C.a=0;
-            /*for(i=0;i<16;i++)
-               {
-                  B[i]=b.a;
-                  b.a=b.a<<1;
-               }
-              j=0;
-
-           while(Pos[a.a][j]<16)
-             {
-               C.a=C.a^B[Pos[a.a][j]];
-               j++;
-             }*/
-        for(i=0;i<16 && Pos()[a.a][i]<16;i++)
-            C.a^=b.a<<Pos()[a.a][i];
-        return C;
-
-      }
-
-  TWord *Polynom::Lop32(TWord a,TWord b)
-     {
-        TWord C[2];
-        TWord c1,c2;
-           C[0].a=0; C[1].a=0;
-           c1.a=a.b1; c2.a=b.b1;
-           C[0].a^=Lop16(c1,c2).a;
-           c1.a=a.b2; c2.a=b.b1;
-           C[0].b2^=Lop16(c1,c2).b1;
-           c1.a=a.b1; c2.a=b.b2;
-           C[0].b2^=Lop16(c1,c2).b1;
-           c1.a=a.b2; c2.a=b.b1;
-           C[1].b1^=Lop16(c1,c2).b2;
-           c1.a=a.b1; c2.a=b.b2;
-           C[1].b1^=Lop16(c1,c2).b2;
-           c1.a=a.b2; c2.a=b.b2;
-           C[1].a^=Lop16(c1,c2).a;
-           return C;
-
-     }
- //------------------------------------------------------------------------------------------------------
 
 	//simple method
 	Polynom& Polynom::ModMul(Polynom a, Polynom b, Polynom &module)
 	{
-		
+		Polynom copy_a(a), copy_b(b);
 		//return Mul(copy_a, copy_b) %= module;
-        return FastMod(Mul(a, b), module);
+        return FastMod(Mul(copy_a, copy_b), module);
 	}
   Polynom& Polynom::MulGF2_n(Polynom &a, Polynom &b, Polynom &module)
 	{
                 if(!module.isIrreducible())
                 {
-                        throw new Exception("Полином не является неприводимым.");
+                        throw new AAL::Exception("Полином не является неприводимым.");
                 }
 
                 return ModMul(a, b, module);
@@ -948,31 +734,31 @@ Polynom& Polynom::setUnit(uint degree)
 //------------------------------------------------------------------------------
 
 	// (c) Morozov, TEST(Polynom, Div)
-	// классический алгоритм деления	
+	// классический алгоритм деления
 	Polynom& Polynom::Div(Polynom &a, const Polynom &b, Polynom *remainder)
 	{
 		if(this == remainder)
-			throw new Exception("Частное и остаток не могут быть одним полиномом");
+			throw new AAL::Exception("Частное и остаток не могут быть одним полиномом");
 		if(b.isZero())
-			throw new Exception("Деление на ноль");
+			throw new AAL::Exception("Деление на ноль");
 
 		CompareIndicator compare = a.CmpImpl(b);
-		
+
 		if(compare == Equal)
 		{
 			if(remainder != NULL)
 				remainder->setZero();
 			return setOne();
 		}
-		
+
 		Polynom copy_a(a), copy_b(b);
-		
+
 		uint p = copy_a.getNumberBits();
 		uint t = copy_b.getNumberBits();
 
 		if(a.isZero() || (p < t))
 		{
-			if(remainder != NULL)				
+			if(remainder != NULL)
 				*remainder = a;
 			return setZero();
 		}
@@ -994,15 +780,15 @@ Polynom& Polynom::setUnit(uint degree)
 			if(copy_a.getBit(p-1))
 			{
 				setBit(0,true);
-				copy_a += copy_b;	
+				copy_a += copy_b;
 			}
 		}
 		if(remainder != NULL)
-		{			
-			copy_a.RemoveElderNulls();			
+		{
+			copy_a.RemoveElderNulls();
 			*remainder = copy_a >> (p-t);
-		}					
-		return *this;		
+		}
+		return *this;
 	}
 //------------------------------------------------------------------------------
 
@@ -1011,7 +797,7 @@ Polynom& Polynom::setUnit(uint degree)
 	{
                 if(!module.isIrreducible())
                 {
-                        throw new Exception("f(X) не является неприводимым.");
+                        throw new AAL::Exception("f(X) не является неприводимым.");
                 }
 
                 return ModDiv(a, b, module, remainder);
@@ -1026,7 +812,7 @@ Polynom& Polynom::setUnit(uint degree)
 		  return *this;
     }
     else
-      throw new Exception("A1  и А2 должны быть взаимно просты с f(X).");
+      throw new AAL::Exception("A1  и А2 должны быть взаимно просты с f(X).");
 	}
 
 //**********************************************************************************************
@@ -1047,7 +833,7 @@ Polynom& Polynom::setUnit(uint degree)
 	}
 //------------------------------------------------------------------------------
 
-	//(c) Morozov, TEST(Polynom, Mod)	
+	//(c) Morozov, TEST(Polynom, Mod)
 	Polynom& Polynom::Mod(Polynom &a, const Polynom &b)
 	{
 		//TODO: додумать, оптимизировать, т.к. можно не считать частное.
@@ -1076,7 +862,7 @@ Polynom& Polynom::setUnit(uint degree)
                 else
                 {
                 Polynom copy_a(a), copy_b(b);
-                Polynom result; 
+                Polynom result;
                 Polynom Word("0");
 
                 uint *Positions;
@@ -1129,6 +915,7 @@ Polynom& Polynom::setUnit(uint degree)
 
                  i=lengthB;
                  j=lengthA;
+
                  for (int l=0;l<AmountOfTrueBits;l++)
                  {
                   i=Positions[l];
@@ -1143,41 +930,16 @@ Polynom& Polynom::setUnit(uint degree)
               }
 		return *this;
 
-	}    
+	}
 //**********************************************************************************************
 
 //***************************    Операция возведение в степень    ******************************
 	//private method
 	// простой метод возведения в степень 2 по модулю
-
-          /* TWord *TForm1::InSquare(TWord *a,int dimA)
-          {
-              TWord *C;
-              int i;
-                  C=new TWord[2*dimA];
-                  for(i=0;i<2*dimA;i++)
-                   {
-                      C[i].a=0;
-                   }
-                   for(i=0;i<dimA;i++)
-                   {
-                      C[2*i].a^=TAB[a[i].b1];
-                      C[2*i+1].a^=TAB[a[i].b2];
-                   }
-
-
-              return C;
-
-          } */
-
-
-
-
-       Polynom& Polynom::Square(Polynom &a, Integer &n, Polynom *module)
-	{	uint i;
-                TWord A;
+	Polynom& Polynom::Square(Polynom &a, Integer &n, Polynom *module)
+	{
 		if(n.isNegative())
-			throw new Exception("Степень не может быть отрицательной");
+			throw new AAL::Exception("Степень не может быть отрицательной");
 
 		if(n.isZero())
 		{
@@ -1187,17 +949,14 @@ Polynom& Polynom::setUnit(uint degree)
 
 		Polynom cur_pol(a);
 
-
 		for(Integer k(0);k < n;k++)
 		{
 			setNumberDigits(cur_pol.getNumberDigits()*2);
-                        for(i=0;i<2*cur_pol.getNumberDigits();i++)
-                              _digits[i]=0;
-			for(i = 0;i < cur_pol.getNumberDigits();i++)
-			{        A.a=cur_pol.getDigit(i);
-				//ushort cur_square = cur_pol.SquareElemPolynom(cur_pol.getDigit(i));
-				_digits[2*i] ^= TAB()[A.b1];
-				_digits[2*i+1] ^= TAB()[A.b2];
+			for(uint i = 0;i < cur_pol.getNumberDigits();i++)
+			{
+				ushort cur_square = cur_pol.SquareElemPolynom(cur_pol.getDigit(i));
+				_digits[2*i] = (uchar)(cur_square % 256);
+				_digits[2*i+1] = (uchar)(cur_square >> 8);
 			}
 			if(module != NULL)
                  *this = FastMod(*this, *module);
@@ -1212,7 +971,7 @@ Polynom& Polynom::setUnit(uint degree)
 	Polynom& Polynom::PowImpl(Polynom &a, Integer &n, Polynom *module)
 	{
 		if(n.isNegative())
-			throw new Exception("Степень не может быть отрицательной");
+			throw new AAL::Exception("Степень не может быть отрицательной");
 
 		if(n.isZero())
 			return setOne();
@@ -1224,7 +983,7 @@ Polynom& Polynom::setUnit(uint degree)
 
 		setOne();
 		uint s = n.getNumberBits();
-	
+
                 Integer one(1);
                 for(uint i=0;i<s;i++)
 		{
@@ -1247,7 +1006,7 @@ Polynom& Polynom::setUnit(uint degree)
 		return *this;
 	}
 //------------------------------------------------------------------------------
-  
+
 	//(c) Morozov, TEST(Polynom, Pow)
 	Polynom& Polynom::Pow(Polynom &a, Integer &n)
 	{
@@ -1264,13 +1023,13 @@ Polynom& Polynom::setUnit(uint degree)
 	{
                 if(!module.isIrreducible())
                 {
-                        throw new Exception("f(X) не является неприводимым.");
+                        throw new AAL::Exception("f(X) не является неприводимым.");
                 }
 
                 return ModPow(a, n, module);
 	}
 
-       	ushort Polynom::SquareElemPolynom(uchar u)
+	ushort Polynom::SquareElemPolynom(uchar u)
 	{
 		ushort square = 0;
 		uchar mask = 1;
@@ -1285,7 +1044,7 @@ Polynom& Polynom::setUnit(uint degree)
 			mask <<= 1;
 		}
                 return square;
-	} 
+	}
 //**********************************************************************************************
 
 //********************************   Алгоритмы Евклида   ***************************************
@@ -1319,9 +1078,9 @@ Polynom& Polynom::setUnit(uint degree)
 	Polynom& Polynom::ExEuclid(Polynom &a, Polynom &b, Polynom &x, Polynom &y)
 	{
 		if(this == &x || this == &y || &x == &y)
-			throw new Exception("НОД(a,b) и полиномы x и y такие, что ax+by=НОД(a,b) не могут совпадать");
+			throw new AAL::Exception("НОД(a,b) и полиномы x и y такие, что ax+by=НОД(a,b) не могут совпадать");
 		if(a.isZero() && b.isZero())
-			throw new Exception("a и b не могут быть оба равны 0");
+			throw new AAL::Exception("a и b не могут быть оба равны 0");
 
 		if(a.isZero())
 			return simpleExEuclid(b, x, y);
@@ -1375,7 +1134,8 @@ Polynom& Polynom::setUnit(uint degree)
 				_digits[i] = ((rand() % 2)<<(getDigitSizeInBits()-1)) + (rand()<<(getDigitSizeInBits()/2)) + ((rand() % 2)<<(getDigitSizeInBits()/2 - 1)) + rand();
 
 			int shift = (upperBit!=0)? getDigitSizeInBits()-upperBit : 0;
-			_digits[_numberDigits-1] &= uint(-1)>>shift;
+			_digits[_numberDigits-1] &= 0xFF>>shift;
+			//_digits[_numberDigits-1] |= 0x80>>shift; // установление бита (numberBits - 1) в 1
 		}
                 RemoveElderNulls();
 		return *this;
@@ -1390,18 +1150,18 @@ Polynom& Polynom::setUnit(uint degree)
 		return *this;
 	}
 //------------------------------------------------------------------------------
-  
+
 	//(c) Morozov TEST(Polynom, WrappingGenerate)
         Polynom& Polynom::WrappingGenerate(const Polynom& forwrap, const Polynom &module)
         {
                 if(forwrap.getNumberBits() >= module.getNumberBits())
-                        throw new Exception("В размещаемой информации должно быть меньше битов чем в модуле");
+                        throw new AAL::Exception("В размещаемой информации должно быть меньше битов чем в модуле");
 
                 Generate(module);
 
                 *this >>= forwrap.getNumberBits();
                 *this <<= forwrap.getNumberBits();
-                this->Or(*this, forwrap);
+                this->Or(*this, (forwrap));
                 return *this;
         }
 //------------------------------------------------------------------------------
@@ -1414,11 +1174,11 @@ Polynom& Polynom::setUnit(uint degree)
   Polynom& Polynom::GenerateIrreducible(uint nMinNumberBits, uint nMaxNumberBits, uint nDegree)
   {
     if (nMaxNumberBits < nMinNumberBits)
-      throw new Exception("Минимальное число 1 в полиноме больше максимального");
+      throw new AAL::Exception("Минимальное число 1 в полиноме больше максимального");
     if (nMinNumberBits < 3)
-      throw new Exception("Минимальное число 1 в полиноме меньше 3");
+      throw new AAL::Exception("Минимальное число 1 в полиноме меньше 3");
     if (nDegree < nMaxNumberBits-1)
-      throw new Exception("Степень полинома меньше максимального числа 1");
+      throw new AAL::Exception("Степень полинома меньше максимального числа 1");
 
     Polynom plGen("1");
     plGen.setBit(nDegree, true);
@@ -1544,22 +1304,22 @@ Polynom& Polynom::setUnit(uint degree)
       }
     }
     if (!isGen)
-      throw new Exception("Не удалось сгенерировать многочлен с данными параметрами");
+      throw new AAL::Exception("Не удалось сгенерировать многочлен с данными параметрами");
     else
       return *this;
   }
 //------------------------------------------------------------------------------
-  
+
   // (c) Chernysheva, TEST(Polynom, GenerateIrreduciblePrimitivity)
   // Генерация неприводимого примитивного многочлена
   Polynom& Polynom::GenerateIrreduciblePrimitivity(uint nMinNumberBits, uint nMaxNumberBits, uint nDegree)
   {
     if (nMaxNumberBits < nMinNumberBits)
-      throw new Exception("Минимальное число 1 в полиноме больше максимального");
+      throw new AAL::Exception("Минимальное число 1 в полиноме больше максимального");
     if (nMinNumberBits < 3)
-      throw new Exception("Минимальное число 1 в полиноме меньше 3");
+      throw new AAL::Exception("Минимальное число 1 в полиноме меньше 3");
     if (nDegree < nMaxNumberBits-1)
-      throw new Exception("Степень полинома меньше максимального числа 1");
+      throw new AAL::Exception("Степень полинома меньше максимального числа 1");
 
     Polynom plGen("1");
     plGen.setBit(nDegree, true);
@@ -1574,7 +1334,7 @@ Polynom& Polynom::setUnit(uint degree)
       {
         Polynom plCur(plGen);
         for (uint i = 1; i < FreeOne + 1; ++i)
-          plCur.setBit(i, true);     
+          plCur.setBit(i, true);
         if (plCur.isIrreducible() && plCur.isPrimitivity())
         {
           // многочлен неприводим и примитивен
@@ -1664,12 +1424,12 @@ Polynom& Polynom::setUnit(uint degree)
       }
     }
     if (!isGen)
-      throw new Exception("Не удалось сгенерировать многочлен с данными параметрами");
+      throw new AAL::Exception("Не удалось сгенерировать многочлен с данными параметрами");
     else
       return *this;
   }
 //------------------------------------------------------------------------------
-  
+
     // (c) Chernysheva, TEST(Polynom, GenerateIrreducibleTrinomial)
   // Генерация неприводимого трехчлена
   Polynom& Polynom::GenerateIrreducibleTrinomial(const uint nDegree)
@@ -1702,7 +1462,7 @@ Polynom& Polynom::setUnit(uint degree)
             qi = qi.FastMod(qi, plCur);
           }
           else
-            qi = (qi * qi) % plCur; 
+            qi = (qi * qi) % plCur;
           uint s = nDegree/i;
           Integer integer(s);
           if (s != 1 && s < nDegree && nDegree%s == 0 && nDegree%i == 0 && integer.isPrime())
@@ -1717,7 +1477,7 @@ Polynom& Polynom::setUnit(uint degree)
                 curFlag = false;
               else
                 flagNOD = true;
-            } 
+            }
           }
         }
         if (qi == q0 && flagNOD && curFlag)
@@ -1736,7 +1496,7 @@ Polynom& Polynom::setUnit(uint degree)
       return *this;
     }
     else
-      throw new Exception("Не удалось сгенерировать неприводимый трехчлен данной степени");
+      throw new AAL::Exception("Не удалось сгенерировать неприводимый трехчлен данной степени");
   }
 //------------------------------------------------------------------------------
 
@@ -1766,11 +1526,11 @@ Polynom& Polynom::setUnit(uint degree)
   Polynom& Polynom::GenerateNormal(uint nMinNumberBits, uint nMaxNumberBits, uint nDegree)
   {
     if (nMaxNumberBits < nMinNumberBits)
-      throw new Exception("Минимальное число 1 в полиноме больше максимального");
+      throw new AAL::Exception("Минимальное число 1 в полиноме больше максимального");
     if (nMinNumberBits < 3)
-      throw new Exception("Минимальное число 1 в полиноме меньше 3");
+      throw new AAL::Exception("Минимальное число 1 в полиноме меньше 3");
     if (nDegree < nMaxNumberBits-1)
-      throw new Exception("Степень полинома меньше максимального числа 1");
+      throw new AAL::Exception("Степень полинома меньше максимального числа 1");
 
 
     // все параметры согласованы
@@ -1850,7 +1610,7 @@ Polynom& Polynom::setUnit(uint degree)
                   plCur.setBit(i, true);
                 for (uint i = numOne + 1; i < pos; ++i)
                   plCur.setBit(i, false);
-                // проверка условия 
+                // проверка условия
                 if (plCur.isNormal())
                 {
                   // многочлен нормальный
@@ -1879,7 +1639,7 @@ Polynom& Polynom::setUnit(uint degree)
           break;
       }
       if (!isGen)
-        throw new Exception("Не удалось сгенерировать многочлен с данными параметрами");
+        throw new AAL::Exception("Не удалось сгенерировать многочлен с данными параметрами");
       else
         return *this;
     }
@@ -1889,7 +1649,7 @@ Polynom& Polynom::setUnit(uint degree)
       if (plGen.isNormal())
         return *this;
       else
-        throw new Exception("Не удалось сгенерировать многочлен с данными параметрами");
+        throw new AAL::Exception("Не удалось сгенерировать многочлен с данными параметрами");
     }
   }
 
@@ -1966,7 +1726,7 @@ Polynom& Polynom::setUnit(uint degree)
       {
         number = i->getNumber();
         pow = (p - 1)/number;
-        mod.ModPow(2, pow, p);
+        mod.ModPow(Integer(2), pow, p);
         if (mod == 1)
           return false;
       }
@@ -1989,7 +1749,7 @@ Polynom& Polynom::setUnit(uint degree)
       {
         number = i->getNumber();
         pow = (p - 1)/number;
-        mod.ModPow(2, pow, p);
+        mod.ModPow(Integer(2), pow, p);
         if (mod == 1)
           return false;
       }
@@ -2007,7 +1767,7 @@ Polynom& Polynom::setUnit(uint degree)
     if (n%2)
     {
       Integer p(2*n + 1), condition;
-      condition.ModPow(2, n, p);
+      condition.ModPow(Integer(2), Integer(n), p);
       if (p.isPrime() && condition == 1)
       {
         std::vector<DecompositionMember> vector(DecompositionManager::Instance().getPrimeDecomposition(n));
@@ -2016,7 +1776,7 @@ Polynom& Polynom::setUnit(uint degree)
         {
           number = i->getNumber();
           pow = n/number;
-          mod.ModPow(2, pow, p);
+          mod.ModPow(Integer(2), pow, p);
           if (mod == 1)
             return false;
         }
@@ -2050,7 +1810,7 @@ Polynom& Polynom::setUnit(uint degree)
       for (int i = 0; i < n; ++i)
       {
         m[i].Parse("0", Dec);
-        m[i].ModPow(2, i, n + 1);
+        m[i].ModPow(Integer(2), Integer(i), Integer(n + 1));
       }
 
       for (int i = 0; i < n; ++i)
@@ -2120,7 +1880,7 @@ Polynom& Polynom::setUnit(uint degree)
       for (int k = 0; k <= 2*n; ++k)
       {
         m[k].Parse("0", Dec);
-        m[k].ModPow(2, k, p);
+        m[k].ModPow(Integer(2), Integer(k), Integer(p));
       }
 
       // вычисляем delta(k) = dlog(m + 1) mod p mod n
@@ -2190,7 +1950,7 @@ Polynom& Polynom::setUnit(uint degree)
       for (int k = 0; k <= 2*n; ++k)
       {
         m[k].Parse("0", Dec);
-        m[k].ModPow(2, k, p);
+        m[k].ModPow(Integer(2), Integer(k), Integer(p));
         s = m[k].ToString(Dec);
       }
 
@@ -2354,7 +2114,7 @@ Polynom& Polynom::setUnit(uint degree)
   bool Polynom::GNBTest(const uint n, const int type) const
   {
     if (type < 3 || type > 6)
-      throw new Exception("Тип ГНБ должен быть от 3 до 6");
+      throw new AAL::Exception("Тип ГНБ должен быть от 3 до 6");
 
     Integer p(type*n + 1);
     if (p.isPrime())
@@ -2366,7 +2126,7 @@ Polynom& Polynom::setUnit(uint degree)
       {
         number = i->getNumber();
         pow = (p - 1)/number;
-        mod.ModPow(2, pow, p);
+        mod.ModPow(Integer(2), pow, p);
         if (mod == 1)
           return false;
       }
@@ -2403,9 +2163,9 @@ Polynom& Polynom::setUnit(uint degree)
     if(Euclid(*p,*m).isOne())
     {
        polynom = *p;
-       module = *m; 
+       module = *m;
     if(!polynom.InMulGroup(module))
-			throw new Exception("Полином не принадлежит мультипликативной группе");
+			throw new AAL::Exception("Полином не принадлежит мультипликативной группе");
 
 		Polynom temp,temp2,i(polynom);
                 i.Mod(module);
@@ -2414,14 +2174,14 @@ Polynom& Polynom::setUnit(uint degree)
 		return *this;
    }
    else
-    throw new Exception("A1 и f(X) должны быть взаимно просты.");
+    throw new AAL::Exception("A1 и f(X) должны быть взаимно просты.");
 	}
 
  	Polynom& Polynom::InverseGF2_n(Polynom &polynom, Polynom &module)
 	{
                 if(!module.isIrreducible())
                 {
-                        throw new Exception("f(X) должны быть неприводимым.");
+                        throw new AAL::Exception("f(X) должны быть неприводимым.");
                 }
 
 		return Inverse(polynom, module);
@@ -2439,9 +2199,9 @@ Polynom& Polynom::setUnit(uint degree)
 	Polynom& Polynom::Trace(Polynom &polynom, Polynom &module)
 	{
                 if(!module.isIrreducible())
-                        throw new Exception("Полином должен быть неприводимым");
+                        throw new AAL::Exception("Полином должен быть неприводимым");
                 if(!polynom.InMulGroup(module))
-			throw new Exception("Полином не принадлежит мультипликативной группе");
+			throw new AAL::Exception("Полином не принадлежит мультипликативной группе");
 
 		Polynom temp(polynom);
                 Integer two(2);
@@ -2460,7 +2220,7 @@ Polynom& Polynom::setUnit(uint degree)
 Integer& Polynom::elementOrder(Polynom &groupModule, Polynom &polynom,std::vector<DecompositionMember> vector, const Integer &ord )
 {
   if(!polynom.InMulGroup(groupModule))
-    throw new Exception("Полином не принадлежит мультипликативной группе");
+    throw new AAL::Exception("Полином не принадлежит мультипликативной группе");
   if(vector.size() >= 1)
   {
     std::vector<DecompositionMember>::iterator it;
@@ -2488,13 +2248,14 @@ Integer& Polynom::elementOrder(Polynom &groupModule, Polynom &polynom,std::vecto
     return *rez;
   }
   else
-     throw new Exception("Введите разложение порядка группы.");
+     throw new AAL::Exception("Введите разложение порядка группы.");
 }
 bool Polynom::isGenerator(Polynom &groupModule, Polynom &polynom,std::vector<DecompositionMember> vector, const Integer &ord)
 {
   if(!polynom.InMulGroup(groupModule))
-    throw new Exception("Полином не принадлежит мультипликативной группе");
-    if(vector.size() >= 1)
+    throw new AAL::Exception("Полином не принадлежит мультипликативной группе");
+    if (vector.size() == 1) return true;
+    if(vector.size() > 1)
     {   AAL::Integer m(ord-1);
        // AAL::Integer b(polynom.ToString(),Bin);
       Integer t = elementOrder(groupModule, polynom,vector,ord-1);
@@ -2502,14 +2263,11 @@ bool Polynom::isGenerator(Polynom &groupModule, Polynom &polynom,std::vector<Dec
         return true;
     }
   else
-   throw new Exception("Введите разложение порядка группы.");
+   throw new AAL::Exception("Введите разложение порядка группы.");
 return false;
 }
 
 //----------------------------------------------------------------------------------------
-Polynom Polynom::Impl(Polynom& a, Polynom& b)
-{
-        return (!a)|b;
-}
+
 //**********************************************************************************************
 };

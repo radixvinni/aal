@@ -852,8 +852,9 @@ Polynom& Polynom::setUnit(uint degree)
 //--------------------------------------------------------------------------------
 //(c) Mamontov, TEST(Polynom, Mod)
 	Polynom& Polynom::FastMod(Polynom &a, Polynom &b)
-	{
-                int lengthA;
+	{	//error with: a=101001, b=11
+                return Mod(a,b);
+		int lengthA;
                 int lengthB;
                 lengthA = a.getNumberBits()-1;
                 lengthB = b.getNumberBits()-1;

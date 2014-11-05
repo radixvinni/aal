@@ -218,6 +218,9 @@ Integer.InverseInFp = lambda s,a,m: s.InverseInFp_(a,m).Add(s,m) if s.InverseInF
 %extend AAL::EllipticPoint {
    char *__repr__() {
        static char tmp[1024];
+       if ($self->isInfinite())
+       sprintf(tmp,"AAL.EllipticPoint(точка на бесконечности)");
+       else
        sprintf(tmp,"AAL.EllipticPoint(x=%s,y=%s)", $self->getX().ToString().c_str(),$self->getY().ToString().c_str());
        return tmp;
    }

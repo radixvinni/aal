@@ -118,20 +118,22 @@ Integer.ModSqrt_ = Integer.ModSqrt
 Integer.Inverse_ = Integer.Inverse
 Integer.InverseInFp_ = Integer.InverseInFp
 
-Integer.ModAdd = lambda s,a,b,m: s.ModAdd_(a,b,m).Add(s,m) if s.ModAdd_(a,b,m).isNegative() else s.ModAdd_(a,b,m)
-Integer.ModAddInFp = lambda s,a,b,m: s.ModAddInFp_(a,b,m).Add(s,m) if s.ModAddInFp_(a,b,m).isNegative() else s.ModAddInFp_(a,b,m)
-Integer.ModSub = lambda s,a,b,m: s.ModSub_(a,b,m).Add(s,m) if s.ModSub_(a,b,m).isNegative() else s.ModSub_(a,b,m)
-Integer.SubInFp = lambda s,a,b,m: s.SubInFp_(a,b,m).Add(s,m) if s.SubInFp_(a,b,m).isNegative() else s.SubInFp_(a,b,m)
-Integer.ModMul = lambda s,a,b,m: s.ModMul_(a,b,m).Add(s,m) if s.ModMul_(a,b,m).isNegative() else s.ModMul_(a,b,m)
-Integer.MulInFp = lambda s,a,b,m: s.MulInFp_(a,b,m).Add(s,m) if s.MulInFp_(a,b,m).isNegative() else s.MulInFp_(a,b,m)
-Integer.ModDiv = lambda s,a,b,m: s.ModDiv_(a,b,m).Add(s,m) if s.ModDiv_(a,b,m).isNegative() else s.ModDiv_(a,b,m)
-Integer.DivInFp = lambda s,a,b,m: s.DivInFp_(a,b,m).Add(s,m) if s.DivInFp_(a,b,m).isNegative() else s.DivInFp_(a,b,m)
-Integer.ModPow = lambda s,a,b,m: s.ModPow_(a,b,m).Add(s,m) if s.ModPow_(a,b,m).isNegative() else s.ModPow_(a,b,m)
-Integer.PowInFp = lambda s,a,b,m: s.PowInFp_(a,b,m).Add(s,m) if s.PowInFp_(a,b,m).isNegative() else s.PowInFp_(a,b,m)
+temp = Integer()
 
-Integer.ModSqrt = lambda s,a,m: s.ModSqrt_(a,m).Add(s,m) if s.ModSqrt_(a,m).isNegative() else s.ModSqrt_(a,m)
-Integer.Inverse = lambda s,a,m: s.Inverse_(a,m).Add(s,m) if s.Inverse_(a,m).isNegative() else s.Inverse_(a,m)
-Integer.InverseInFp = lambda s,a,m: s.InverseInFp_(a,m).Add(s,m) if s.InverseInFp_(a,m).isNegative() else s.InverseInFp_(a,m)
+Integer.ModAdd = lambda s,a,b,m: s.ModAdd_(a,b,m).Add(s,m) if temp.ModAdd_(a,b,m).isNegative() else s.ModAdd_(a,b,m)
+Integer.ModAddInFp = lambda s,a,b,m: s.ModAddInFp_(a,b,m).Add(s,m) if temp.ModAddInFp_(a,b,m).isNegative() else s.ModAddInFp_(a,b,m)
+Integer.ModSub = lambda s,a,b,m: s.ModSub_(a,b,m).Add(s,m) if temp.ModSub_(a,b,m).isNegative() else s.ModSub_(a,b,m)
+Integer.SubInFp = lambda s,a,b,m: s.SubInFp_(a,b,m).Add(s,m) if temp.SubInFp_(a,b,m).isNegative() else s.SubInFp_(a,b,m)
+Integer.ModMul = lambda s,a,b,m: s.ModMul_(a,b,m).Add(s,m) if temp.ModMul_(a,b,m).isNegative() else s.ModMul_(a,b,m)
+Integer.MulInFp = lambda s,a,b,m: s.MulInFp_(a,b,m).Add(s,m) if temp.MulInFp_(a,b,m).isNegative() else s.MulInFp_(a,b,m)
+Integer.ModDiv = lambda s,a,b,m: s.ModDiv_(a,b,m).Add(s,m) if temp.ModDiv_(a,b,m).isNegative() else s.ModDiv_(a,b,m)
+Integer.DivInFp = lambda s,a,b,m: s.DivInFp_(a,b,m).Add(s,m) if temp.DivInFp_(a,b,m).isNegative() else s.DivInFp_(a,b,m)
+Integer.ModPow = lambda s,a,b,m: s.ModPow_(a,b,m).Add(s,m) if temp.ModPow_(a,b,m).isNegative() else s.ModPow_(a,b,m)
+Integer.PowInFp = lambda s,a,b,m: s.PowInFp_(a,b,m).Add(s,m) if temp.PowInFp_(a,b,m).isNegative() else s.PowInFp_(a,b,m)
+
+Integer.ModSqrt = lambda s,a,m: s.ModSqrt_(a,m).Add(s,m) if temp.ModSqrt_(a,m).isNegative() else s.ModSqrt_(a,m)
+Integer.Inverse = lambda s,a,m: s.Inverse_(a,m).Add(s,m) if temp.Inverse_(a,m).isNegative() else s.Inverse_(a,m)
+Integer.InverseInFp = lambda s,a,m: s.InverseInFp_(a,m).Add(s,m) if temp.InverseInFp_(a,m).isNegative() else s.InverseInFp_(a,m)
 
 %}
 

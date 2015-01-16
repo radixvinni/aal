@@ -561,17 +561,13 @@ namespace AAL
 		if(b.isZero())
 			throw new Exception("Деление на ноль");
 
-                if(a.isZero())
+                if(a.isZero() || a.getNumberBits()<b.getNumberBits())
 		{
 			if(remainder != NULL)
 				*remainder = a;
 			return setZero();
 		}
-	        if (a.getNumberBits()<b.getNumberBits())
-                {
-                    *this = a;
-		    return *this;
-                }
+	        
 		if(a == b)
 		{
 			if(remainder != NULL)

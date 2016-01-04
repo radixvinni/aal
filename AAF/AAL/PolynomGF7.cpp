@@ -434,7 +434,7 @@ namespace AAL
 		return !(a < b);
 	}
 //**********************************************************************************************
-
+*/
 //***************************    Îïåðàöèè ïîáèòîâîãî ñäâèãà    *********************************
 	//simple method
 	PolynomGF3 PolynomGF3::operator<<(int numberBits) const
@@ -448,6 +448,7 @@ namespace AAL
 	{
 	        A0<<=numberBits;
                 A1<<=numberBits;
+		A2<<=numberBits;
 		return *this;
 	}
 
@@ -463,11 +464,32 @@ namespace AAL
 	{
 	        A0>>=numberBits;
                 A1>>=numberBits;
+                A2>>=numberBits;
                 return *this;
 	}
-   */
+   
 //**********************************************************************************************
+	//simple method
+	PolynomGF7 PolynomGF7::operator-(const PolynomGF7 &b) const
+	{
+		PolynomGF7 result;
+		return result.Sub(*this, b);
+	}
 
+	//simple method
+	PolynomGF7& PolynomGF7::operator-=(const PolynomGF7 &polynom)
+	{
+		return Sub(*this, polynom);
+	}
+
+	//simple method
+	PolynomGF7& PolynomGF7::Sub(const PolynomGF7 &a, const PolynomGF7 &b)
+	{
+		PolynomGF7 copy_a(a), copy_b(b);
+		for (int i=0;i<b.getNumberBits();++i) 
+			if (b.getBit(i)) copy_b.setBit(i, 7-b.getBit(i));
+		return Add(copy_a, copy_b);
+	}
 
 //******************************    Îïåðàöèÿ ñëîæåíèÿ    ***************************************
 	//simple method

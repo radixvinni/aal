@@ -437,14 +437,14 @@ namespace AAL
 */
 //***************************    Îïåðàöèè ïîáèòîâîãî ñäâèãà    *********************************
 	//simple method
-	PolynomGF3 PolynomGF7::operator<<(int numberBits) const
+	PolynomGF7 PolynomGF7::operator<<(int numberBits) const
 	{
 		PolynomGF7 result(*this);
 		return result<<=numberBits;
 	}
 
 	//(c) Mamontov, TEST(Polynom, SHL)
-	PolynomGF3& PolynomGF7::operator<<=(int numberBits)
+	PolynomGF7& PolynomGF7::operator<<=(int numberBits)
 	{
 	        A0<<=numberBits;
                 A1<<=numberBits;
@@ -453,14 +453,14 @@ namespace AAL
 	}
 
 	//simple method
-	PolynomGF3 PolynomGF7::operator>>(int numberBits) const
+	PolynomGF7 PolynomGF7::operator>>(int numberBits) const
 	{
 		PolynomGF7 result(*this);
 		return result>>=numberBits;
 	}
 
 	//(c) Mamontov, TEST(Polynom, SHR)
-	PolynomGF3& PolynomGF7::operator>>=(int numberBits)
+	PolynomGF7& PolynomGF7::operator>>=(int numberBits)
 	{
 	        A0>>=numberBits;
                 A1>>=numberBits;
@@ -691,6 +691,11 @@ namespace AAL
 	{
 		return Div(*this, polynom);
 	}
+	int intPow(int x, int p) {
+	  if (p == 0) return 1;
+	  if (p == 1) return x;
+	  return x * intPow(x, p-1);
+	}
 	PolynomGF7& PolynomGF7::Div(const PolynomGF7 &a, const PolynomGF7 &b, PolynomGF7 *remainder = NULL)
 	{
                	if(this == remainder)
@@ -724,7 +729,7 @@ namespace AAL
                 copy_b <<= lengthA-lengthB;
                 for (uint i=0;i<=(lengthA-lengthB);i++)
                 {
-                     buf.setBit(0, copy_a.getBit(lengthA-i)*std::pow(copy_b.getBit(lengthA-i), 5) % 7));
+                     buf.setBit(0, copy_a.getBit(lengthA-i)*intPow(copy_b.getBit(lengthA-i), 5) % 7);
                      result = result+buf;
                      
                      result<<=1;

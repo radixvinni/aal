@@ -26,14 +26,14 @@ namespace AAL
                 Polynom A1;
                 Polynom A2;
 
-	//Конструкторы
+	//ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г°Г»
 	public:
 		PolynomGF7();
     PolynomGF7(const PolynomGF7 &polynom);
 		PolynomGF7(const std::string dataString);
     ~PolynomGF7();
 
-	//Преобразование и считывание из сторк
+	//ГЏГ°ГҐГ®ГЎГ°Г Г§Г®ГўГ Г­ГЁГҐ ГЁ Г±Г·ГЁГІГ»ГўГ Г­ГЁГҐ ГЁГ§ Г±ГІГ®Г°ГЄ
 	public:
        		PolynomGF7& Parse(const std::string dataString);
 		std::string ToString() const;
@@ -42,13 +42,13 @@ namespace AAL
                 bool isZero() const;
                 bool isOne() const;
 
-  //Унарные операции
+  //Г“Г­Г Г°Г­Г»ГҐ Г®ГЇГҐГ°Г Г¶ГЁГЁ
 	public:
 		//Polynom operator~() const;
 		//Polynom& OnesComplement();
 		PolynomGF7& operator= (const PolynomGF7& polynom);
 
-        //Методы акцепторы
+        //ГЊГҐГІГ®Г¤Г» Г ГЄГ¶ГҐГЇГІГ®Г°Г»
 	public:
 //    bool isIrreducible() const;
 //    bool isPrimitivity() const;
@@ -59,7 +59,7 @@ namespace AAL
 
     uint getBit(uint index) const;
     void setBit(uint index, uint bit);
-        //Операции сравнения
+        //ГЋГЇГҐГ°Г Г¶ГЁГЁ Г±Г°Г ГўГ­ГҐГ­ГЁГї
 	public:
     friend bool operator==(const PolynomGF7& a, const PolynomGF7& b);
 		friend bool operator!=(const PolynomGF7& a, const PolynomGF7& b);
@@ -68,28 +68,32 @@ namespace AAL
 		friend bool operator>(const PolynomGF3& a, const PolynomGF3& b);
 		friend bool operator>=(const PolynomGF3& a, const PolynomGF3& b);
 */
-       //Операции побитового сдвига
+       //ГЋГЇГҐГ°Г Г¶ГЁГЁ ГЇГ®ГЎГЁГІГ®ГўГ®ГЈГ® Г±Г¤ГўГЁГЈГ 
 	public:
-/*		PolynomGF3 operator<<(int numberBits) const;
-		PolynomGF3& operator<<=(int numberBits);
-		PolynomGF3 operator>>(int numberBits) const;
-		PolynomGF3& operator>>=(int numberBits);
+		PolynomGF7 operator<<(int numberBits) const;
+		PolynomGF7& operator<<=(int numberBits);
+		PolynomGF7 operator>>(int numberBits) const;
+		PolynomGF7& operator>>=(int numberBits);
 
-*/
-       //Операция сложения
+
+       //ГЋГЇГҐГ°Г Г¶ГЁГї Г±Г«Г®Г¦ГҐГ­ГЁГї
 	public:
+		PolynomGF7 operator-(const PolynomGF7 &b) const;
+		PolynomGF7& operator-=(const PolynomGF7 &polynom);
+		PolynomGF7& Sub(const PolynomGF7 &a, const PolynomGF7 &b);
+
 		friend PolynomGF7 operator+(const PolynomGF7 &a, const PolynomGF7 &b);
 		PolynomGF7& operator+=(PolynomGF7 &polynom);
 		PolynomGF7& Add(PolynomGF7 &a, PolynomGF7 &b);
     PolynomGF7& ModAdd(PolynomGF7 &a, PolynomGF7 &b, PolynomGF7 &module);
 /*    PolynomGF3& AddInGF3_n(PolynomGF3 &a, PolynomGF3 &b, PolynomGF3 &module);
-       //Операция вычитания
+       //ГЋГЇГҐГ°Г Г¶ГЁГї ГўГ»Г·ГЁГІГ Г­ГЁГї
 	public:
 		friend PolynomGF3 operator-(const PolynomGF3 &a, const PolynomGF3 &b);
 		PolynomGF3& operator-=(PolynomGF3 &polynom);
 		PolynomGF3& Sub(PolynomGF3 &a, PolynomGF3 &b);
 */
-        //Операция умножения
+        //ГЋГЇГҐГ°Г Г¶ГЁГї ГіГ¬Г­Г®Г¦ГҐГ­ГЁГї
 	public:
 		friend PolynomGF7 operator*(const PolynomGF7 &a, const PolynomGF7 &b);
 		PolynomGF7& operator*=(PolynomGF7 &polynom);
@@ -101,13 +105,13 @@ namespace AAL
                 PolynomGF7& MulGF7_2n(PolynomGF7 &a, PolynomGF7 &b,PolynomGF7 &c, PolynomGF7 &d, PolynomGF7 &module,PolynomGF7 *g = NULL);
                 PolynomGF7& MulGF7_14n(PolynomGF7 &a, PolynomGF7 &b,PolynomGF7 &module);
 
-        //Операция деление
+        //ГЋГЇГҐГ°Г Г¶ГЁГї Г¤ГҐГ«ГҐГ­ГЁГҐ
 /* 	public:
 		friend PolynomGF3 operator/(const PolynomGF3 &a, const PolynomGF3 &b);
 		PolynomGF3& operator/=(PolynomGF3 &polynom);
 		PolynomGF3& Div(PolynomGF3 &a, PolynomGF3 &b, PolynomGF3 *remainder = NULL);
 */
-        //Операция приведения по модулю
+        //ГЋГЇГҐГ°Г Г¶ГЁГї ГЇГ°ГЁГўГҐГ¤ГҐГ­ГЁГї ГЇГ® Г¬Г®Г¤ГіГ«Гѕ
 	public:
 		friend PolynomGF7 operator%(const PolynomGF7 &a, const PolynomGF7 &b);
 		PolynomGF7& operator%=(PolynomGF7 &polynom);
@@ -149,17 +153,17 @@ namespace AAL
      std::string ToStringByPowers() const;
 
 
-	  // Тесты поля на образование ОНБ и ГНБ
-      // ОНБ 1
+	  // Г’ГҐГ±ГІГ» ГЇГ®Г«Гї Г­Г  Г®ГЎГ°Г Г§Г®ГўГ Г­ГЁГҐ ГЋГЌГЃ ГЁ ГѓГЌГЃ
+      // ГЋГЌГЃ 1
       bool ONB1Test(const uint n) const;
-      // ОНБ 2
+      // ГЋГЌГЃ 2
       bool ONB2Test(const uint n) const;
-      // ОНБ 3
+      // ГЋГЌГЃ 3
       bool ONB3Test(const uint n) const;
-      // ГНБ
+      // ГѓГЌГЃ
       bool GNBTest(const uint n, const int type) const;
 
-     //тест образующего элемента и определение порядка элемента в группе
+     //ГІГҐГ±ГІ Г®ГЎГ°Г Г§ГіГѕГ№ГҐГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  ГЁ Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГҐ ГЇГ®Г°ГїГ¤ГЄГ  ГЅГ«ГҐГ¬ГҐГ­ГІГ  Гў ГЈГ°ГіГЇГЇГҐ
      Integer& elementOrder(PolynomGF3 &groupModule, PolynomGF3 &polynom,std::vector<DecompositionMember> vector, Integer &ord );
      bool isGenerator(PolynomGF3 &groupModule, PolynomGF3 &polynom,std::vector<DecompositionMember> vector, Integer &ord);
    */

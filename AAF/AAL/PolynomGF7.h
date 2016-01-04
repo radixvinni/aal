@@ -106,11 +106,11 @@ namespace AAL
                 PolynomGF7& MulGF7_14n(PolynomGF7 &a, PolynomGF7 &b,PolynomGF7 &module);
 
         //Îïåðàöèÿ äåëåíèå
-/* 	public:
-		friend PolynomGF3 operator/(const PolynomGF3 &a, const PolynomGF3 &b);
-		PolynomGF3& operator/=(PolynomGF3 &polynom);
-		PolynomGF3& Div(PolynomGF3 &a, PolynomGF3 &b, PolynomGF3 *remainder = NULL);
-*/
+ 	public:
+		PolynomGF7 operator/(const PolynomGF7 &b) const;
+		PolynomGF7& operator/=(const PolynomGF7 &polynom);
+		PolynomGF7& Div(const PolynomGF7 &a, const PolynomGF7 &b, PolynomGF7 *remainder = NULL);
+
         //Îïåðàöèÿ ïðèâåäåíèÿ ïî ìîäóëþ
 	public:
 		friend PolynomGF7 operator%(const PolynomGF7 &a, const PolynomGF7 &b);

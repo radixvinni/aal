@@ -724,7 +724,7 @@ namespace AAL
                 copy_b <<= lengthA-lengthB;
                 for (uint i=0;i<=(lengthA-lengthB);i++)
                 {
-                     buf.setBit(0, copy_a.getBit(lengthA-i)*std::pow(copy_b.getBit(lengthA-i), 5) % 7))
+                     buf.setBit(0, copy_a.getBit(lengthA-i)*std::pow(copy_b.getBit(lengthA-i), 5) % 7));
                      result = result+buf;
                      
                      result<<=1;

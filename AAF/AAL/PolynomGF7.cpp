@@ -437,14 +437,14 @@ namespace AAL
 */
 //***************************    Îïåðàöèè ïîáèòîâîãî ñäâèãà    *********************************
 	//simple method
-	PolynomGF3 PolynomGF3::operator<<(int numberBits) const
+	PolynomGF3 PolynomGF7::operator<<(int numberBits) const
 	{
-		PolynomGF3 result(*this);
+		PolynomGF7 result(*this);
 		return result<<=numberBits;
 	}
 
 	//(c) Mamontov, TEST(Polynom, SHL)
-	PolynomGF3& PolynomGF3::operator<<=(int numberBits)
+	PolynomGF3& PolynomGF7::operator<<=(int numberBits)
 	{
 	        A0<<=numberBits;
                 A1<<=numberBits;
@@ -453,14 +453,14 @@ namespace AAL
 	}
 
 	//simple method
-	PolynomGF3 PolynomGF3::operator>>(int numberBits) const
+	PolynomGF3 PolynomGF7::operator>>(int numberBits) const
 	{
-		PolynomGF3 result(*this);
+		PolynomGF7 result(*this);
 		return result>>=numberBits;
 	}
 
 	//(c) Mamontov, TEST(Polynom, SHR)
-	PolynomGF3& PolynomGF3::operator>>=(int numberBits)
+	PolynomGF3& PolynomGF7::operator>>=(int numberBits)
 	{
 	        A0>>=numberBits;
                 A1>>=numberBits;

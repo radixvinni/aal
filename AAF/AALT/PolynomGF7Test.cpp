@@ -269,7 +269,15 @@ TEST(PolynomGF7, MulGF7_2n)
 /*
 	Îïåðàöèÿ ïðèâåäåíèÿ ïî ìîäóëþ
 */
-
+TEST(PolynomGF7, Div)
+{
+	PolynomGF7 a("162025");
+	PolynomGF7 b("333333");
+	PolynomGF7 ab("30665636001");
+	PolynomGF7 r, rm;
+	CHECK(ab/a == b);
+	CHECK(r.Div(ab,b,rm) == a && rm.isZero());
+}
 TEST(PolynomGF7, Mod)
 {
 	PolynomGF7 j("1200000001");

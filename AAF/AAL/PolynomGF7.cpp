@@ -696,7 +696,7 @@ namespace AAL
 	  if (p == 1) return x;
 	  return x * intPow(x, p-1);
 	}
-	PolynomGF7& PolynomGF7::Div(const PolynomGF7 &a, const PolynomGF7 &b, PolynomGF7 *remainder = NULL)
+	PolynomGF7& PolynomGF7::Div(const PolynomGF7 &a, const PolynomGF7 &b, PolynomGF7 *remainder)
 	{
                	if(this == remainder)
 			throw new Exception("×àñòíîå è îñòàòîê íå ìîãóò áûòü îäíèì ÷èñëîì");

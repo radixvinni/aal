@@ -682,6 +682,65 @@ namespace AAL
            *this = e;   */
            return *this;
          }
+	PolynomGF7 PolynomGF7::operator/(const PolynomGF7 &b) const
+	{
+		PolynomGF7 result;
+		return result.Div(*this, b);
+	}
+	PolynomGF7& PolynomGF7::operator/=(const PolynomGF7 &polynom)
+	{
+		return Div(*this, polynom);
+	}
+	PolynomGF7& PolynomGF7::Div(const PolynomGF7 &a, const PolynomGF7 &b, PolynomGF7 *remainder = NULL)
+	{
+               	if(this == remainder)
+			throw new Exception("×àñòíîå è îñòàòîê íå ìîãóò áûòü îäíèì ÷èñëîì");
+		if(b.isZero())
+			throw new Exception("Äåëåíèå íà íîëü");
+
+                if(a.isZero() || a.getNumberBits()<b.getNumberBits())
+		{
+			if(remainder != NULL)
+				*remainder = a;
+			return setZero();
+		}
+	        
+		if(a == b)
+		{
+			if(remainder != NULL)
+				remainder->setZero();
+			return setOne();
+		}
+
+		PolynomGF7 copy_a(a), copy_b(b);
+                PolynomGF7 buf("1");
+                PolynomGF7 result;
+                
+                uint lengthA;
+                uint lengthB;
+
+                lengthA = copy_a.getNumberBits()-1;
+                lengthB = copy_b.getNumberBits()-1;
+                copy_b <<= lengthA-lengthB;
+                for (uint i=0;i<=(lengthA-lengthB);i++)
+                {
+                     buf.setBit(0, copy_a.getBit(lengthA-i)*std::pow(copy_b.getBit(lengthA-i), 5) % 7))
+                     result = result+buf;
+                     
+                     result<<=1;
+                     copy_a = copy_a-copy_b*buf;
+                     copy_b>>=1;
+                }
+                result>>=1;
+                *this=result;
+
+                if(remainder != NULL)
+		{
+                   *remainder = copy_a;
+		}
+
+		return *this;
+	}
 
 //***************************    Îïåðàöèÿ ïðèâåäåíèÿ ïî ìîäóëþ    ******************************
 	//simple method

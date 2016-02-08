@@ -124,6 +124,8 @@ namespace AAL
 	//(c) Mamontov
 	std::string PolynomGF7::ToString() const
 	{
+    // removing elder nulls. if there are (1,1,1) set them to (0,0,0)
+    for(int i=0; i < getNumberBits(); ++i) setBit(i,getBit(i));
     std::string StringA0;
     std::string StringA1;
     std::string StringA2;

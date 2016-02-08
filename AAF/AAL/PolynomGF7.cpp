@@ -65,9 +65,9 @@ namespace AAL
 		     {
 		          if(dataString[i] == '0')
                           {
-		               polynomA1.append(one);
-                               polynomA0.append(one);
-                               polynomA2.append(one);
+		               polynomA1.append(zero);
+                               polynomA0.append(zero);
+                               polynomA2.append(zero);
                           }
 			  else if(dataString[i] == '1')
                           {

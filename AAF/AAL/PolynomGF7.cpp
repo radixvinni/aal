@@ -287,9 +287,9 @@ namespace AAL
     switch(bit)
     {
       case 0:
-        A0.setBit(index, true);
-        A1.setBit(index, true);
-        A2.setBit(index, true);
+        A0.setBit(index, false);
+        A1.setBit(index, false);
+        A2.setBit(index, false);
         break;
       case 1:
         A0.setBit(index, true);

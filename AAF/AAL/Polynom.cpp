@@ -2223,7 +2223,7 @@ Integer& Polynom::elementOrder(Polynom &groupModule, Polynom &polynom,std::vecto
   if(!polynom.InMulGroup(groupModule))
     throw new AAL::Exception("Ïîëèíîì íå ïðèíàäëåæèò ìóëüòèïëèêàòèâíîé ãðóïïå");
   if(vector.size() == 1 && vector[0].getDegree() == 1)
-    return vector[0].getNumber()
+    return vector[0].getNumber();
   if(vector.size() >= 1)
   {
     std::vector<DecompositionMember>::iterator it;

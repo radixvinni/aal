@@ -13,7 +13,7 @@ namespace AAL
 {
   //(c) Chernysheva
   //------->>>>>>>>>-----------------
-  // приведение числа по модулю
+  // ГЇГ°ГЁГўГҐГ¤ГҐГ­ГЁГҐ Г·ГЁГ±Г«Г  ГЇГ® Г¬Г®Г¤ГіГ«Гѕ
   int mod(int x, int module)
   {
     if (x >= 0)
@@ -28,7 +28,7 @@ namespace AAL
     }
   }
 
-//***********************************  Конструкторы  *******************************************
+//***********************************  ГЉГ®Г­Г±ГІГ°ГіГЄГІГ®Г°Г»  *******************************************
 	//(c) Mamontov, TEST(Polynom, EmptyConstructor)
 	Polynom::Polynom() : BasicType<uchar>()
 	{}
@@ -83,7 +83,7 @@ namespace AAL
 }
 //**********************************************************************************************
 
-//*************************  Преобразование и считывание из сторк ******************************
+//*************************  ГЏГ°ГҐГ®ГЎГ°Г Г§Г®ГўГ Г­ГЁГҐ ГЁ Г±Г·ГЁГІГ»ГўГ Г­ГЁГҐ ГЁГ§ Г±ГІГ®Г°ГЄ ******************************
 	///(c) Mamontov
 	Polynom& Polynom::Parse(const std::string dataString, PolynomSystem system, bool cancel)
 	{
@@ -135,7 +135,7 @@ namespace AAL
 		return Converter::ToString(*this, system);
 	}
 //**********************************************************************************************
-//***************************************  Методы акцепторы   **********************************
+//***************************************  ГЊГҐГІГ®Г¤Г» Г ГЄГ¶ГҐГЇГІГ®Г°Г»   **********************************
 	//simple method
 	Polynom& Polynom::setOne()
 	{
@@ -192,7 +192,7 @@ Polynom& Polynom::setUnit(uint degree)
 //------------------------------------------------------------------------------
 
 	//(c) Chernysheva, TEST(Polynom, isNormal)
-  //нормальность многочлена
+  //Г­Г®Г°Г¬Г Г«ГјГ­Г®Г±ГІГј Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­Г 
 	bool Polynom::isNormal() const
 	{
     uint n = this->getNumberBits();
@@ -203,7 +203,7 @@ Polynom& Polynom::setUnit(uint degree)
 //------------------------------------------------------------------------------
 
 	//(c) Chernysheva, TEST(Polynom, isIrreducible)
-	//неприводимость многочлена
+	//Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬Г®Г±ГІГј Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­Г 
 	bool Polynom::isIrreducible() const
 	{
     std::set<uint> powers(getPowersOfPolynom());
@@ -211,17 +211,17 @@ Polynom& Polynom::setUnit(uint degree)
       return false;
     if (powers.size() == 3)
     {
-      // если полином - трехчлен
-      // в этом случае прежде чем прибегать к трудоемким проверкам
-      // можно использовать признаки приводимости
+      // ГҐГ±Г«ГЁ ГЇГ®Г«ГЁГ­Г®Г¬ - ГІГ°ГҐГµГ·Г«ГҐГ­
+      // Гў ГЅГІГ®Г¬ Г±Г«ГіГ·Г ГҐ ГЇГ°ГҐГ¦Г¤ГҐ Г·ГҐГ¬ ГЇГ°ГЁГЎГҐГЈГ ГІГј ГЄ ГІГ°ГіГ¤Г®ГҐГ¬ГЄГЁГ¬ ГЇГ°Г®ГўГҐГ°ГЄГ Г¬
+      // Г¬Г®Г¦Г­Г® ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ ГІГј ГЇГ°ГЁГ§Г­Г ГЄГЁ ГЇГ°ГЁГўГ®Г¤ГЁГ¬Г®Г±ГІГЁ
       std::set<uint>:: iterator i = powers.begin();
       if (*i == 0)
       {
-        // нулевая степень есть
+        // Г­ГіГ«ГҐГўГ Гї Г±ГІГҐГЇГҐГ­Гј ГҐГ±ГІГј
         int k = 0, n = 0;
         i++;
         k = *i;
-        // максимальная степень трехчлена
+        // Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г Гї Г±ГІГҐГЇГҐГ­Гј ГІГ°ГҐГµГ·Г«ГҐГ­Г 
         i++;
         n = *i;
         if (k%2 == 0 && n%2 == 0)
@@ -235,7 +235,7 @@ Polynom& Polynom::setUnit(uint degree)
     bool useFastMod = false;
     if (powers.size() >= 2)
     {
-      // для возможности использование fastmod нужно, чтобы разница между последним и предпоследним битом была 32
+      // Г¤Г«Гї ГўГ®Г§Г¬Г®Г¦Г­Г®Г±ГІГЁ ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г­ГЁГҐ fastmod Г­ГіГ¦Г­Г®, Г·ГІГ®ГЎГ» Г°Г Г§Г­ГЁГ¶Г  Г¬ГҐГ¦Г¤Гі ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ¬ ГЁ ГЇГ°ГҐГ¤ГЇГ®Г±Г«ГҐГ¤Г­ГЁГ¬ ГЎГЁГІГ®Г¬ ГЎГ»Г«Г  32
       std::set<uint>:: iterator i = powers.begin();
       int k = 0, n = 0;
       k = *i;
@@ -288,7 +288,7 @@ Polynom& Polynom::setUnit(uint degree)
 //------------------------------------------------------------------------------
 
   //(c) Chernysheva, TEST(Polynom, isPrimitivity)
-  //примитивность многочлена
+  //ГЇГ°ГЁГ¬ГЁГІГЁГўГ­Г®Г±ГІГј Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­Г 
   bool Polynom::isPrimitivity() const
   {
     Polynom plCur(*this);
@@ -319,7 +319,7 @@ Polynom& Polynom::setUnit(uint degree)
 
 //**********************************************************************************************
 
-//************************************  Унарные операции   *************************************
+//************************************  Г“Г­Г Г°Г­Г»ГҐ Г®ГЇГҐГ°Г Г¶ГЁГЁ   *************************************
 	//(c) Mamontov, TEST(Polynom, unaryOperatorOnesComplement)
 	Polynom Polynom::operator~() const
 	{
@@ -344,7 +344,7 @@ Polynom& Polynom::setUnit(uint degree)
 	}
 //**********************************************************************************************
 
-//*****************************    Операции сравнения    ***************************************
+//*****************************    ГЋГЇГҐГ°Г Г¶ГЁГЁ Г±Г°Г ГўГ­ГҐГ­ГЁГї    ***************************************
 	//(c) Mamontov, TEST(Polynom, Compare)
 	Polynom Polynom::Compare(const Polynom& polynom) const
 	{
@@ -401,7 +401,7 @@ Polynom& Polynom::setUnit(uint degree)
 	}
 //**********************************************************************************************
 
-//********************************    Логические операции    ***********************************
+//********************************    Г‹Г®ГЈГЁГ·ГҐГ±ГЄГЁГҐ Г®ГЇГҐГ°Г Г¶ГЁГЁ    ***********************************
 	//private method
 	Polynom* Polynom::Max(Polynom &a, Polynom &b, CompareIndicator ind)
 	{
@@ -516,7 +516,7 @@ Polynom& Polynom::setUnit(uint degree)
 	}
 //**********************************************************************************************
 
-//***************************    Операции побитового сдвига    *********************************
+//***************************    ГЋГЇГҐГ°Г Г¶ГЁГЁ ГЇГ®ГЎГЁГІГ®ГўГ®ГЈГ® Г±Г¤ГўГЁГЈГ     *********************************
 	//simple method
 	Polynom Polynom::operator<<(int numberBits) const
 	{
@@ -549,7 +549,7 @@ Polynom& Polynom::setUnit(uint degree)
 	}
 //**********************************************************************************************
 
-//******************************    Операция сложения    ***************************************
+//******************************    ГЋГЇГҐГ°Г Г¶ГЁГї Г±Г«Г®Г¦ГҐГ­ГЁГї    ***************************************
 	//simple method
 	Polynom operator+(const Polynom &a, const Polynom &b)
 	{
@@ -582,7 +582,7 @@ Polynom& Polynom::setUnit(uint degree)
 	{
                 if(!module.isIrreducible())
                 {
-                        throw new AAL::Exception("Полином не является неприводимым.");
+                        throw new AAL::Exception("ГЏГ®Г«ГЁГ­Г®Г¬ Г­ГҐ ГїГўГ«ГїГҐГІГ±Гї Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬Г»Г¬.");
                 }
 
                 return ModAdd(a,b,module);
@@ -590,7 +590,7 @@ Polynom& Polynom::setUnit(uint degree)
 
 //**********************************************************************************************
 
-//******************************    Операция вычитания    **************************************
+//******************************    ГЋГЇГҐГ°Г Г¶ГЁГї ГўГ»Г·ГЁГІГ Г­ГЁГї    **************************************
 	//simple method
 	Polynom operator-(const Polynom &a, const Polynom &b)
 	{
@@ -627,12 +627,12 @@ Polynom& Polynom::setUnit(uint degree)
 		  return Sub(copy_a, copy_b) %= module;
     }
     else
-     throw new AAL::Exception("Полином не является неприводимым.");
+     throw new AAL::Exception("ГЏГ®Г«ГЁГ­Г®Г¬ Г­ГҐ ГїГўГ«ГїГҐГІГ±Гї Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬Г»Г¬.");
 	}
 
 //**********************************************************************************************
 
-//******************************    Операция умножения    **************************************
+//******************************    ГЋГЇГҐГ°Г Г¶ГЁГї ГіГ¬Г­Г®Г¦ГҐГ­ГЁГї    **************************************
 	//private method
 	Polynom* Polynom::Copy(Polynom &polynom, Polynom *polynomNotEqual)
 	{
@@ -703,7 +703,7 @@ Polynom& Polynom::setUnit(uint degree)
 	{
                 if(!module.isIrreducible())
                 {
-                        throw new AAL::Exception("Полином не является неприводимым.");
+                        throw new AAL::Exception("ГЏГ®Г«ГЁГ­Г®Г¬ Г­ГҐ ГїГўГ«ГїГҐГІГ±Гї Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬Г»Г¬.");
                 }
 
                 return ModMul(a, b, module);
@@ -717,7 +717,7 @@ Polynom& Polynom::setUnit(uint degree)
 	}
 //**********************************************************************************************
 
-//******************************    Операция деления    ****************************************
+//******************************    ГЋГЇГҐГ°Г Г¶ГЁГї Г¤ГҐГ«ГҐГ­ГЁГї    ****************************************
 	//simple method
 	Polynom operator/(const Polynom &a, const Polynom &b)
 	{
@@ -734,13 +734,13 @@ Polynom& Polynom::setUnit(uint degree)
 //------------------------------------------------------------------------------
 
 	// (c) Morozov, TEST(Polynom, Div)
-	// классический алгоритм деления
+	// ГЄГ«Г Г±Г±ГЁГ·ГҐГ±ГЄГЁГ© Г Г«ГЈГ®Г°ГЁГІГ¬ Г¤ГҐГ«ГҐГ­ГЁГї
 	Polynom& Polynom::Div(Polynom &a, const Polynom &b, Polynom *remainder)
 	{
 		if(this == remainder)
-			throw new AAL::Exception("Частное и остаток не могут быть одним полиномом");
+			throw new AAL::Exception("Г—Г Г±ГІГ­Г®ГҐ ГЁ Г®Г±ГІГ ГІГ®ГЄ Г­ГҐ Г¬Г®ГЈГіГІ ГЎГ»ГІГј Г®Г¤Г­ГЁГ¬ ГЇГ®Г«ГЁГ­Г®Г¬Г®Г¬");
 		if(b.isZero())
-			throw new AAL::Exception("Деление на ноль");
+			throw new AAL::Exception("Г„ГҐГ«ГҐГ­ГЁГҐ Г­Г  Г­Г®Г«Гј");
 
 		CompareIndicator compare = a.CmpImpl(b);
 
@@ -767,14 +767,14 @@ Polynom& Polynom::setUnit(uint degree)
 		std::memset(_digits, 0, getDigitSizeInBytes()*_numberDigits);
 		copy_b <<= (p-t);
 
-		if(copy_a.getBit(p-1))// По идее можно от него избавиться, т.к. старший бит всегда 1???
+		if(copy_a.getBit(p-1))// ГЏГ® ГЁГ¤ГҐГҐ Г¬Г®Г¦Г­Г® Г®ГІ Г­ГҐГЈГ® ГЁГ§ГЎГ ГўГЁГІГјГ±Гї, ГІ.ГЄ. Г±ГІГ Г°ГёГЁГ© ГЎГЁГІ ГўГ±ГҐГЈГ¤Г  1???
 		{
 			setBit(0,true);
 			copy_a += copy_b;
 		}
 		for(uint i=0; i<(p-t);i++)
 		{
-			copy_a.setBit(p-1,false);// для того чтобы не было смещения 1.
+			copy_a.setBit(p-1,false);// Г¤Г«Гї ГІГ®ГЈГ® Г·ГІГ®ГЎГ» Г­ГҐ ГЎГ»Г«Г® Г±Г¬ГҐГ№ГҐГ­ГЁГї 1.
 			copy_a <<= 1;
 			*this <<= 1;
 			if(copy_a.getBit(p-1))
@@ -797,7 +797,7 @@ Polynom& Polynom::setUnit(uint degree)
 	{
                 if(!module.isIrreducible())
                 {
-                        throw new AAL::Exception("f(X) не является неприводимым.");
+                        throw new AAL::Exception("f(X) Г­ГҐ ГїГўГ«ГїГҐГІГ±Гї Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬Г»Г¬.");
                 }
 
                 return ModDiv(a, b, module, remainder);
@@ -812,12 +812,12 @@ Polynom& Polynom::setUnit(uint degree)
 		  return *this;
     }
     else
-      throw new AAL::Exception("A1  и А2 должны быть взаимно просты с f(X).");
+      throw new AAL::Exception("A1  ГЁ ГЂ2 Г¤Г®Г«Г¦Г­Г» ГЎГ»ГІГј ГўГ§Г ГЁГ¬Г­Г® ГЇГ°Г®Г±ГІГ» Г± f(X).");
 	}
 
 //**********************************************************************************************
 
-//***************************    Операция приведения по модулю    ******************************
+//***************************    ГЋГЇГҐГ°Г Г¶ГЁГї ГЇГ°ГЁГўГҐГ¤ГҐГ­ГЁГї ГЇГ® Г¬Г®Г¤ГіГ«Гѕ    ******************************
 	//simple method
 	Polynom operator%(const Polynom &a, const Polynom &b)
 	{
@@ -836,7 +836,7 @@ Polynom& Polynom::setUnit(uint degree)
 	//(c) Morozov, TEST(Polynom, Mod)
 	Polynom& Polynom::Mod(Polynom &a, const Polynom &b)
 	{
-		//TODO: додумать, оптимизировать, т.к. можно не считать частное.
+		//TODO: Г¤Г®Г¤ГіГ¬Г ГІГј, Г®ГЇГІГЁГ¬ГЁГ§ГЁГ°Г®ГўГ ГІГј, ГІ.ГЄ. Г¬Г®Г¦Г­Г® Г­ГҐ Г±Г·ГЁГІГ ГІГј Г·Г Г±ГІГ­Г®ГҐ.
 		Polynom div;
 		div.Div(a,b,this);
 		return *this;
@@ -934,13 +934,13 @@ Polynom& Polynom::setUnit(uint degree)
 	}
 //**********************************************************************************************
 
-//***************************    Операция возведение в степень    ******************************
+//***************************    ГЋГЇГҐГ°Г Г¶ГЁГї ГўГ®Г§ГўГҐГ¤ГҐГ­ГЁГҐ Гў Г±ГІГҐГЇГҐГ­Гј    ******************************
 	//private method
-	// простой метод возведения в степень 2 по модулю
+	// ГЇГ°Г®Г±ГІГ®Г© Г¬ГҐГІГ®Г¤ ГўГ®Г§ГўГҐГ¤ГҐГ­ГЁГї Гў Г±ГІГҐГЇГҐГ­Гј 2 ГЇГ® Г¬Г®Г¤ГіГ«Гѕ
 	Polynom& Polynom::Square(Polynom &a, Integer &n, Polynom *module)
 	{
 		if(n.isNegative())
-			throw new AAL::Exception("Степень не может быть отрицательной");
+			throw new AAL::Exception("Г‘ГІГҐГЇГҐГ­Гј Г­ГҐ Г¬Г®Г¦ГҐГІ ГЎГ»ГІГј Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г®Г©");
 
 		if(n.isZero())
 		{
@@ -972,7 +972,7 @@ Polynom& Polynom::setUnit(uint degree)
 	Polynom& Polynom::PowImpl(Polynom &a, Integer &n, Polynom *module)
 	{
 		if(n.isNegative())
-			throw new AAL::Exception("Степень не может быть отрицательной");
+			throw new AAL::Exception("Г‘ГІГҐГЇГҐГ­Гј Г­ГҐ Г¬Г®Г¦ГҐГІ ГЎГ»ГІГј Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г®Г©");
 
 		if(n.isZero())
 			return setOne();
@@ -1024,7 +1024,7 @@ Polynom& Polynom::setUnit(uint degree)
 	{
                 if(!module.isIrreducible())
                 {
-                        throw new AAL::Exception("f(X) не является неприводимым.");
+                        throw new AAL::Exception("f(X) Г­ГҐ ГїГўГ«ГїГҐГІГ±Гї Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬Г»Г¬.");
                 }
 
                 return ModPow(a, n, module);
@@ -1048,7 +1048,7 @@ Polynom& Polynom::setUnit(uint degree)
 	}
 //**********************************************************************************************
 
-//********************************   Алгоритмы Евклида   ***************************************
+//********************************   ГЂГ«ГЈГ®Г°ГЁГІГ¬Г» Г…ГўГЄГ«ГЁГ¤Г    ***************************************
         //(c) Shilkin, TEST(Polynom, Euclid)
 	Polynom& Polynom::Euclid(const Polynom &a, Polynom &b)
 	{
@@ -1079,9 +1079,9 @@ Polynom& Polynom::setUnit(uint degree)
 	Polynom& Polynom::ExEuclid(Polynom &a, Polynom &b, Polynom &x, Polynom &y)
 	{
 		if(this == &x || this == &y || &x == &y)
-			throw new AAL::Exception("НОД(a,b) и полиномы x и y такие, что ax+by=НОД(a,b) не могут совпадать");
+			throw new AAL::Exception("ГЌГЋГ„(a,b) ГЁ ГЇГ®Г«ГЁГ­Г®Г¬Г» x ГЁ y ГІГ ГЄГЁГҐ, Г·ГІГ® ax+by=ГЌГЋГ„(a,b) Г­ГҐ Г¬Г®ГЈГіГІ Г±Г®ГўГЇГ Г¤Г ГІГј");
 		if(a.isZero() && b.isZero())
-			throw new AAL::Exception("a и b не могут быть оба равны 0");
+			throw new AAL::Exception("a ГЁ b Г­ГҐ Г¬Г®ГЈГіГІ ГЎГ»ГІГј Г®ГЎГ  Г°Г ГўГ­Г» 0");
 
 		if(a.isZero())
 			return simpleExEuclid(b, x, y);
@@ -1118,10 +1118,10 @@ Polynom& Polynom::setUnit(uint degree)
 	}
 //**********************************************************************************************
 
-//*******************************   Генерация полиномов   **************************************
+//*******************************   ГѓГҐГ­ГҐГ°Г Г¶ГЁГї ГЇГ®Г«ГЁГ­Г®Г¬Г®Гў   **************************************
 	//simple method
 	//(c) Morozov
-  // генерируется многочлен с старшим битом <= numberBits
+  // ГЈГҐГ­ГҐГ°ГЁГ°ГіГҐГІГ±Гї Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г± Г±ГІГ Г°ГёГЁГ¬ ГЎГЁГІГ®Г¬ <= numberBits
 	Polynom& Polynom::Generate(uint numberBits)
 	{
                 if(!numberBits)
@@ -1136,7 +1136,7 @@ Polynom& Polynom::setUnit(uint degree)
 
 			int shift = (upperBit!=0)? getDigitSizeInBits()-upperBit : 0;
 			_digits[_numberDigits-1] &= 0xFF>>shift;
-			//_digits[_numberDigits-1] |= 0x80>>shift; // установление бита (numberBits - 1) в 1
+			//_digits[_numberDigits-1] |= 0x80>>shift; // ГіГ±ГІГ Г­Г®ГўГ«ГҐГ­ГЁГҐ ГЎГЁГІГ  (numberBits - 1) Гў 1
 		}
                 RemoveElderNulls();
 		return *this;
@@ -1156,7 +1156,7 @@ Polynom& Polynom::setUnit(uint degree)
         Polynom& Polynom::WrappingGenerate(const Polynom& forwrap, const Polynom &module)
         {
                 if(forwrap.getNumberBits() >= module.getNumberBits())
-                        throw new AAL::Exception("В размещаемой информации должно быть меньше битов чем в модуле");
+                        throw new AAL::Exception("Г‚ Г°Г Г§Г¬ГҐГ№Г ГҐГ¬Г®Г© ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГЁ Г¤Г®Г«Г¦Г­Г® ГЎГ»ГІГј Г¬ГҐГ­ГјГёГҐ ГЎГЁГІГ®Гў Г·ГҐГ¬ Гў Г¬Г®Г¤ГіГ«ГҐ");
 
                 Generate(module);
 
@@ -1168,18 +1168,18 @@ Polynom& Polynom::setUnit(uint degree)
 //------------------------------------------------------------------------------
 
   //(c) Chernysheva, TEST(Polynom, GenerateIrreducible)
-	// генерация неприводимого многочлена
-  // nMinNumberBits - минимальное число 1 (д.б. >= 3)
-  // nMaxNumberBits - максимальное число 1 (д.б. nMaxNumberBits >= nMinNumberBits)
-  // nDegree - степень многочлена (д.б. nDegree >= nMaxNumberBits-1)
+	// ГЈГҐГ­ГҐГ°Г Г¶ГЁГї Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬Г®ГЈГ® Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­Г 
+  // nMinNumberBits - Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГҐ Г·ГЁГ±Г«Г® 1 (Г¤.ГЎ. >= 3)
+  // nMaxNumberBits - Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГҐ Г·ГЁГ±Г«Г® 1 (Г¤.ГЎ. nMaxNumberBits >= nMinNumberBits)
+  // nDegree - Г±ГІГҐГЇГҐГ­Гј Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­Г  (Г¤.ГЎ. nDegree >= nMaxNumberBits-1)
   Polynom& Polynom::GenerateIrreducible(uint nMinNumberBits, uint nMaxNumberBits, uint nDegree)
   {
     if (nMaxNumberBits < nMinNumberBits)
-      throw new AAL::Exception("Минимальное число 1 в полиноме больше максимального");
+      throw new AAL::Exception("ГЊГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГҐ Г·ГЁГ±Г«Г® 1 Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ ГЎГ®Г«ГјГёГҐ Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГЈГ®");
     if (nMinNumberBits < 3)
-      throw new AAL::Exception("Минимальное число 1 в полиноме меньше 3");
+      throw new AAL::Exception("ГЊГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГҐ Г·ГЁГ±Г«Г® 1 Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ Г¬ГҐГ­ГјГёГҐ 3");
     if (nDegree < nMaxNumberBits-1)
-      throw new AAL::Exception("Степень полинома меньше максимального числа 1");
+      throw new AAL::Exception("Г‘ГІГҐГЇГҐГ­Гј ГЇГ®Г«ГЁГ­Г®Г¬Г  Г¬ГҐГ­ГјГёГҐ Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГЈГ® Г·ГЁГ±Г«Г  1");
 
     Polynom plGen("1");
     plGen.setBit(nDegree, true);
@@ -1199,16 +1199,16 @@ Polynom& Polynom::setUnit(uint degree)
         }
         catch(Exception *E)
         {
-          // если не удалось сгенерировать трехчлен, то сразу задаем условия для генерации пятичлена
+          // ГҐГ±Г«ГЁ Г­ГҐ ГіГ¤Г Г«Г®Г±Гј Г±ГЈГҐГ­ГҐГ°ГЁГ°Г®ГўГ ГІГј ГІГ°ГҐГµГ·Г«ГҐГ­, ГІГ® Г±Г°Г Г§Гі Г§Г Г¤Г ГҐГ¬ ГіГ±Г«Г®ГўГЁГї Г¤Г«Гї ГЈГҐГ­ГҐГ°Г Г¶ГЁГЁ ГЇГїГІГЁГ·Г«ГҐГ­Г 
           isTrinominal = false;
           nMinNumberBits = 5;
         }
       }
       if (nMinNumberBits > 3 || !isTrinominal)
       {
-        // количество занятых единичек
+        // ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г§Г Г­ГїГІГ»Гµ ГҐГ¤ГЁГ­ГЁГ·ГҐГЄ
         uint CurOne = 2;
-        // количество расставляемых единиц от nMinNumberBits до nMaxNumberBits
+        // ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г°Г Г±Г±ГІГ ГўГ«ГїГҐГ¬Г»Гµ ГҐГ¤ГЁГ­ГЁГ¶ Г®ГІ nMinNumberBits Г¤Г® nMaxNumberBits
         uint FreeOne = nMinNumberBits - 2;
         while (CurOne + FreeOne <= nMaxNumberBits)
         {
@@ -1217,7 +1217,7 @@ Polynom& Polynom::setUnit(uint degree)
             plCur.setBit(i, true);
           if (plCur.isIrreducible())
           {
-            // многочлен неприводим
+            // Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬
             isGen = true;
             *this = plCur;
             break;
@@ -1232,17 +1232,17 @@ Polynom& Polynom::setUnit(uint degree)
               bool bit = plCur.getBit(1);
               if (bit)
               {
-                // текущая позиция курсора в полиноме
+                // ГІГҐГЄГіГ№Г Гї ГЇГ®Г§ГЁГ¶ГЁГї ГЄГіГ°Г±Г®Г°Г  Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ
                 uint pos = 2;
-                // перемещаемся до первого 0 в полиноме
+                // ГЇГҐГ°ГҐГ¬ГҐГ№Г ГҐГ¬Г±Гї Г¤Г® ГЇГҐГ°ГўГ®ГЈГ® 0 Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ
                 while (plCur.getBit(pos))
                   pos++;
-                // переносим 1 на одну позицию вперед
+                // ГЇГҐГ°ГҐГ­Г®Г±ГЁГ¬ 1 Г­Г  Г®Г¤Г­Гі ГЇГ®Г§ГЁГ¶ГЁГѕ ГўГЇГҐГ°ГҐГ¤
                 plCur.setBit(pos, true);
                 plCur.setBit(pos - 1, false);
                 if (plCur.isIrreducible())
                 {
-                  // многочлен неприводим
+                  // Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬
                   isGen = true;
                   *this = plCur;
                   break;
@@ -1250,34 +1250,34 @@ Polynom& Polynom::setUnit(uint degree)
               }
               else
               {
-                // текущая позиция курсора в полиноме
+                // ГІГҐГЄГіГ№Г Гї ГЇГ®Г§ГЁГ¶ГЁГї ГЄГіГ°Г±Г®Г°Г  Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ
                 uint pos = 2;
-                // счетчик 1
+                // Г±Г·ГҐГІГ·ГЁГЄ 1
                 uint numOne = 0;
-                // перемещаемся до первой 1
+                // ГЇГҐГ°ГҐГ¬ГҐГ№Г ГҐГ¬Г±Гї Г¤Г® ГЇГҐГ°ГўГ®Г© 1
                 while (!plCur.getBit(pos))
                   pos++;
-                // перемещаемся до первого 0
+                // ГЇГҐГ°ГҐГ¬ГҐГ№Г ГҐГ¬Г±Гї Г¤Г® ГЇГҐГ°ГўГ®ГЈГ® 0
                 while (plCur.getBit(pos))
                 {
                   pos++;
                   numOne++;
                 }
-                // переносим 1 на одну позицию вперед
+                // ГЇГҐГ°ГҐГ­Г®Г±ГЁГ¬ 1 Г­Г  Г®Г¤Г­Гі ГЇГ®Г§ГЁГ¶ГЁГѕ ГўГЇГҐГ°ГҐГ¤
                 plCur.setBit(pos, true);
                 plCur.setBit(pos - 1, false);
                 numOne -= 1;
-                // в соответствии с показаниями счетчика, изменим оставшуюся часть полинома
+                // Гў Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГЁ Г± ГЇГ®ГЄГ Г§Г Г­ГЁГїГ¬ГЁ Г±Г·ГҐГІГ·ГЁГЄГ , ГЁГ§Г¬ГҐГ­ГЁГ¬ Г®Г±ГІГ ГўГёГіГѕГ±Гї Г·Г Г±ГІГј ГЇГ®Г«ГЁГ­Г®Г¬Г 
                 if (numOne > 0)
                 {
                   for (uint i = 1; i < numOne + 1; ++i)
                     plCur.setBit(i, true);
                   for (uint i = numOne + 1; i < pos; ++i)
                     plCur.setBit(i, false);
-                  // проверка условия
+                  // ГЇГ°Г®ГўГҐГ°ГЄГ  ГіГ±Г«Г®ГўГЁГї
                   if (plCur.isIrreducible())
                   {
-                    // многочлен неприводим
+                    // Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬
                     isGen = true;
                     *this = plCur;
                     break;
@@ -1285,10 +1285,10 @@ Polynom& Polynom::setUnit(uint degree)
                 }
                 if (numOne == 0)
                 {
-                  // проверка условия
+                  // ГЇГ°Г®ГўГҐГ°ГЄГ  ГіГ±Г«Г®ГўГЁГї
                   if (plCur.isIrreducible())
                   {
-                    // многочлен неприводим
+                    // Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬
                     isGen = true;
                     *this = plCur;
                     break;
@@ -1305,31 +1305,31 @@ Polynom& Polynom::setUnit(uint degree)
       }
     }
     if (!isGen)
-      throw new AAL::Exception("Не удалось сгенерировать многочлен с данными параметрами");
+      throw new AAL::Exception("ГЌГҐ ГіГ¤Г Г«Г®Г±Гј Г±ГЈГҐГ­ГҐГ°ГЁГ°Г®ГўГ ГІГј Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г± Г¤Г Г­Г­Г»Г¬ГЁ ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ГЁ");
     else
       return *this;
   }
 //------------------------------------------------------------------------------
 
   // (c) Chernysheva, TEST(Polynom, GenerateIrreduciblePrimitivity)
-  // Генерация неприводимого примитивного многочлена
+  // ГѓГҐГ­ГҐГ°Г Г¶ГЁГї Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬Г®ГЈГ® ГЇГ°ГЁГ¬ГЁГІГЁГўГ­Г®ГЈГ® Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­Г 
   Polynom& Polynom::GenerateIrreduciblePrimitivity(uint nMinNumberBits, uint nMaxNumberBits, uint nDegree)
   {
     if (nMaxNumberBits < nMinNumberBits)
-      throw new AAL::Exception("Минимальное число 1 в полиноме больше максимального");
+      throw new AAL::Exception("ГЊГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГҐ Г·ГЁГ±Г«Г® 1 Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ ГЎГ®Г«ГјГёГҐ Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГЈГ®");
     if (nMinNumberBits < 3)
-      throw new AAL::Exception("Минимальное число 1 в полиноме меньше 3");
+      throw new AAL::Exception("ГЊГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГҐ Г·ГЁГ±Г«Г® 1 Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ Г¬ГҐГ­ГјГёГҐ 3");
     if (nDegree < nMaxNumberBits-1)
-      throw new AAL::Exception("Степень полинома меньше максимального числа 1");
+      throw new AAL::Exception("Г‘ГІГҐГЇГҐГ­Гј ГЇГ®Г«ГЁГ­Г®Г¬Г  Г¬ГҐГ­ГјГёГҐ Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГЈГ® Г·ГЁГ±Г«Г  1");
 
     Polynom plGen("1");
     plGen.setBit(nDegree, true);
     bool isGen = false;
     if (nMaxNumberBits >= 3)
     {
-      // количество занятых единичек
+      // ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г§Г Г­ГїГІГ»Гµ ГҐГ¤ГЁГ­ГЁГ·ГҐГЄ
       uint CurOne = 2;
-      // количество расставляемых единиц от nMinNumberBits до nMaxNumberBits
+      // ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г°Г Г±Г±ГІГ ГўГ«ГїГҐГ¬Г»Гµ ГҐГ¤ГЁГ­ГЁГ¶ Г®ГІ nMinNumberBits Г¤Г® nMaxNumberBits
       uint FreeOne = nMinNumberBits - 2;
       while (CurOne + FreeOne <= nMaxNumberBits)
       {
@@ -1338,7 +1338,7 @@ Polynom& Polynom::setUnit(uint degree)
           plCur.setBit(i, true);
         if (plCur.isIrreducible() && plCur.isPrimitivity())
         {
-          // многочлен неприводим и примитивен
+          // Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬ ГЁ ГЇГ°ГЁГ¬ГЁГІГЁГўГҐГ­
           isGen = true;
           *this = plCur;
            break;
@@ -1353,17 +1353,17 @@ Polynom& Polynom::setUnit(uint degree)
             bool bit = plCur.getBit(1);
             if (bit)
             {
-              // текущая позиция курсора в полиноме
+              // ГІГҐГЄГіГ№Г Гї ГЇГ®Г§ГЁГ¶ГЁГї ГЄГіГ°Г±Г®Г°Г  Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ
               uint pos = 2;
-              // перемещаемся до первого 0 в полиноме
+              // ГЇГҐГ°ГҐГ¬ГҐГ№Г ГҐГ¬Г±Гї Г¤Г® ГЇГҐГ°ГўГ®ГЈГ® 0 Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ
               while (plCur.getBit(pos))
                 pos++;
-              // переносим 1 на одну позицию вперед
+              // ГЇГҐГ°ГҐГ­Г®Г±ГЁГ¬ 1 Г­Г  Г®Г¤Г­Гі ГЇГ®Г§ГЁГ¶ГЁГѕ ГўГЇГҐГ°ГҐГ¤
               plCur.setBit(pos, true);
               plCur.setBit(pos - 1, false);
               if (plCur.isIrreducible() && plCur.isPrimitivity())
               {
-                // многочлен неприводим и примитивен
+                // Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬ ГЁ ГЇГ°ГЁГ¬ГЁГІГЁГўГҐГ­
                 isGen = true;
                 *this = plCur;
                 break;
@@ -1371,34 +1371,34 @@ Polynom& Polynom::setUnit(uint degree)
             }
             else
             {
-              // текущая позиция курсора в полиноме
+              // ГІГҐГЄГіГ№Г Гї ГЇГ®Г§ГЁГ¶ГЁГї ГЄГіГ°Г±Г®Г°Г  Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ
               uint pos = 2;
-              // счетчик 1
+              // Г±Г·ГҐГІГ·ГЁГЄ 1
               uint numOne = 0;
-              // перемещаемся до первой 1
+              // ГЇГҐГ°ГҐГ¬ГҐГ№Г ГҐГ¬Г±Гї Г¤Г® ГЇГҐГ°ГўГ®Г© 1
               while (!plCur.getBit(pos))
                 pos++;
-              // перемещаемся до первого 0
+              // ГЇГҐГ°ГҐГ¬ГҐГ№Г ГҐГ¬Г±Гї Г¤Г® ГЇГҐГ°ГўГ®ГЈГ® 0
               while (plCur.getBit(pos))
               {
                 pos++;
                 numOne++;
               }
-              // переносим 1 на одну позицию вперед
+              // ГЇГҐГ°ГҐГ­Г®Г±ГЁГ¬ 1 Г­Г  Г®Г¤Г­Гі ГЇГ®Г§ГЁГ¶ГЁГѕ ГўГЇГҐГ°ГҐГ¤
               plCur.setBit(pos, true);
               plCur.setBit(pos - 1, false);
               numOne -= 1;
-              // в соответствии с показаниями счетчика, изменим оставшуюся часть полинома
+              // Гў Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГЁ Г± ГЇГ®ГЄГ Г§Г Г­ГЁГїГ¬ГЁ Г±Г·ГҐГІГ·ГЁГЄГ , ГЁГ§Г¬ГҐГ­ГЁГ¬ Г®Г±ГІГ ГўГёГіГѕГ±Гї Г·Г Г±ГІГј ГЇГ®Г«ГЁГ­Г®Г¬Г 
               if (numOne > 0)
               {
                 for (uint i = 1; i < numOne + 1; ++i)
                   plCur.setBit(i, true);
                 for (uint i = numOne + 1; i < pos; ++i)
                   plCur.setBit(i, false);
-                // проверка условия
+                // ГЇГ°Г®ГўГҐГ°ГЄГ  ГіГ±Г«Г®ГўГЁГї
                 if (plCur.isIrreducible() && plCur.isPrimitivity())
                 {
-                  // многочлен неприводим и примитивен
+                  // Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬ ГЁ ГЇГ°ГЁГ¬ГЁГІГЁГўГҐГ­
                   isGen = true;
                   *this = plCur;
                   break;
@@ -1406,10 +1406,10 @@ Polynom& Polynom::setUnit(uint degree)
               }
               if (numOne == 0)
               {
-                // проверка условия
+                // ГЇГ°Г®ГўГҐГ°ГЄГ  ГіГ±Г«Г®ГўГЁГї
                 if (plCur.isIrreducible() && plCur.isPrimitivity())
                 {
-                  // многочлен неприводим и примитивен
+                  // Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬ ГЁ ГЇГ°ГЁГ¬ГЁГІГЁГўГҐГ­
                   isGen = true;
                   *this = plCur;
                   break;
@@ -1425,14 +1425,14 @@ Polynom& Polynom::setUnit(uint degree)
       }
     }
     if (!isGen)
-      throw new AAL::Exception("Не удалось сгенерировать многочлен с данными параметрами");
+      throw new AAL::Exception("ГЌГҐ ГіГ¤Г Г«Г®Г±Гј Г±ГЈГҐГ­ГҐГ°ГЁГ°Г®ГўГ ГІГј Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г± Г¤Г Г­Г­Г»Г¬ГЁ ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ГЁ");
     else
       return *this;
   }
 //------------------------------------------------------------------------------
 
     // (c) Chernysheva, TEST(Polynom, GenerateIrreducibleTrinomial)
-  // Генерация неприводимого трехчлена
+  // ГѓГҐГ­ГҐГ°Г Г¶ГЁГї Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬Г®ГЈГ® ГІГ°ГҐГµГ·Г«ГҐГ­Г 
   Polynom& Polynom::GenerateIrreducibleTrinomial(const uint nDegree)
   {
     Polynom plGen("1"), plCur;
@@ -1443,10 +1443,10 @@ Polynom& Polynom::setUnit(uint degree)
            (nDegree%2 != 0 && k <= nDegree/2 && !flag && nDegree > 2) ||
            (nDegree == 2 && !flag && k < nDegree))
     {
-      bool Ben_Or = false; // результат отсеивания
+      bool Ben_Or = false; // Г°ГҐГ§ГіГ«ГјГІГ ГІ Г®ГІГ±ГҐГЁГўГ Г­ГЁГї
       if ((k%3 == 1 || k%3 == 2) && (nDegree+k)%3 == 0 && nDegree > 2)
         Ben_Or = true;
-      bool chet = false; // отсеивание по четности
+      bool chet = false; // Г®ГІГ±ГҐГЁГўГ Г­ГЁГҐ ГЇГ® Г·ГҐГІГ­Г®Г±ГІГЁ
       if (k%2 == 0 && nDegree%2 == 0)
         chet = true;
       if (!SchtilbergSuonTheorem(k, nDegree) && !Ben_Or && !chet)
@@ -1497,14 +1497,14 @@ Polynom& Polynom::setUnit(uint degree)
       return *this;
     }
     else
-      throw new AAL::Exception("Не удалось сгенерировать неприводимый трехчлен данной степени");
+      throw new AAL::Exception("ГЌГҐ ГіГ¤Г Г«Г®Г±Гј Г±ГЈГҐГ­ГҐГ°ГЁГ°Г®ГўГ ГІГј Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬Г»Г© ГІГ°ГҐГµГ·Г«ГҐГ­ Г¤Г Г­Г­Г®Г© Г±ГІГҐГЇГҐГ­ГЁ");
   }
 //------------------------------------------------------------------------------
 
 
 	//(c) Mamontov, TEST(Polynom, GenerateNormal)
-	//(c) Mamontov: пока заглушка
-	//TODO: реализовать
+	//(c) Mamontov: ГЇГ®ГЄГ  Г§Г ГЈГ«ГіГёГЄГ 
+	//TODO: Г°ГҐГ Г«ГЁГ§Г®ГўГ ГІГј
 	Polynom& Polynom::GenerateNormal(uint numberBits)
 	{
 		return *this;
@@ -1512,40 +1512,40 @@ Polynom& Polynom::setUnit(uint degree)
 //------------------------------------------------------------------------------
 
 	//(c) Mamontov, TEST(Polynom, GenerateNormal)
-	//(c) Mamontov: пока заглушка
-	//TODO: реализовать
+	//(c) Mamontov: ГЇГ®ГЄГ  Г§Г ГЈГ«ГіГёГЄГ 
+	//TODO: Г°ГҐГ Г«ГЁГ§Г®ГўГ ГІГј
 	Polynom& Polynom::GenerateNormal(const Polynom& module)
 	{
 		return *this;
 	}
 //------------------------------------------------------------------------------
     //(c) Chernysheva, TEST(Polynom, GenerateIrreducible)
-	// генерация нормального многочлена
-  // nMinNumberBits - минимальное число 1 (д.б. >= 3)
-  // nMaxNumberBits - максимальное число 1 (д.б. nMaxNumberBits >= nMinNumberBits)
-  // nDegree - степень многочлена (д.б. nDegree >= nMaxNumberBits-1)
+	// ГЈГҐГ­ГҐГ°Г Г¶ГЁГї Г­Г®Г°Г¬Г Г«ГјГ­Г®ГЈГ® Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­Г 
+  // nMinNumberBits - Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГҐ Г·ГЁГ±Г«Г® 1 (Г¤.ГЎ. >= 3)
+  // nMaxNumberBits - Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГҐ Г·ГЁГ±Г«Г® 1 (Г¤.ГЎ. nMaxNumberBits >= nMinNumberBits)
+  // nDegree - Г±ГІГҐГЇГҐГ­Гј Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­Г  (Г¤.ГЎ. nDegree >= nMaxNumberBits-1)
   Polynom& Polynom::GenerateNormal(uint nMinNumberBits, uint nMaxNumberBits, uint nDegree)
   {
     if (nMaxNumberBits < nMinNumberBits)
-      throw new AAL::Exception("Минимальное число 1 в полиноме больше максимального");
+      throw new AAL::Exception("ГЊГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГҐ Г·ГЁГ±Г«Г® 1 Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ ГЎГ®Г«ГјГёГҐ Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГЈГ®");
     if (nMinNumberBits < 3)
-      throw new AAL::Exception("Минимальное число 1 в полиноме меньше 3");
+      throw new AAL::Exception("ГЊГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГҐ Г·ГЁГ±Г«Г® 1 Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ Г¬ГҐГ­ГјГёГҐ 3");
     if (nDegree < nMaxNumberBits-1)
-      throw new AAL::Exception("Степень полинома меньше максимального числа 1");
+      throw new AAL::Exception("Г‘ГІГҐГЇГҐГ­Гј ГЇГ®Г«ГЁГ­Г®Г¬Г  Г¬ГҐГ­ГјГёГҐ Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГЈГ® Г·ГЁГ±Г«Г  1");
 
 
-    // все параметры согласованы
-    // нулевая степень 1
+    // ГўГ±ГҐ ГЇГ Г°Г Г¬ГҐГІГ°Г» Г±Г®ГЈГ«Г Г±Г®ГўГ Г­Г»
+    // Г­ГіГ«ГҐГўГ Гї Г±ГІГҐГЇГҐГ­Гј 1
     Polynom plGen("1");
-    // коэффициенты при степени многочлена и при степени nDegree - 1 в 1
+    // ГЄГ®ГЅГґГґГЁГ¶ГЁГҐГ­ГІГ» ГЇГ°ГЁ Г±ГІГҐГЇГҐГ­ГЁ Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­Г  ГЁ ГЇГ°ГЁ Г±ГІГҐГЇГҐГ­ГЁ nDegree - 1 Гў 1
     plGen.setBit(nDegree, true);
     plGen.setBit(nDegree - 1, true);
     bool isGen = false;
     if (nMaxNumberBits > 3)
     {
-      // количество занятых единичек
+      // ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г§Г Г­ГїГІГ»Гµ ГҐГ¤ГЁГ­ГЁГ·ГҐГЄ
       uint CurOne = 3;
-      // количество расставляемых единиц от nMinNumberBits до nMaxNumberBits
+      // ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г°Г Г±Г±ГІГ ГўГ«ГїГҐГ¬Г»Гµ ГҐГ¤ГЁГ­ГЁГ¶ Г®ГІ nMinNumberBits Г¤Г® nMaxNumberBits
       uint FreeOne = nMinNumberBits - 3;
       while (CurOne + FreeOne <= nMaxNumberBits)
       {
@@ -1554,7 +1554,7 @@ Polynom& Polynom::setUnit(uint degree)
           plCur.setBit(i, true);
         if (plCur.isNormal())
         {
-          // многочлен нормальный
+          // Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г­Г®Г°Г¬Г Г«ГјГ­Г»Г©
           isGen = true;
           *this = plCur;
            break;
@@ -1569,17 +1569,17 @@ Polynom& Polynom::setUnit(uint degree)
             bool bit = plCur.getBit(1);
             if (bit)
             {
-              // текущая позиция курсора в полиноме
+              // ГІГҐГЄГіГ№Г Гї ГЇГ®Г§ГЁГ¶ГЁГї ГЄГіГ°Г±Г®Г°Г  Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ
               uint pos = 2;
-              // перемещаемся до первого 0 в полиноме
+              // ГЇГҐГ°ГҐГ¬ГҐГ№Г ГҐГ¬Г±Гї Г¤Г® ГЇГҐГ°ГўГ®ГЈГ® 0 Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ
               while (plCur.getBit(pos))
                 pos++;
-              // переносим 1 на одну позицию вперед
+              // ГЇГҐГ°ГҐГ­Г®Г±ГЁГ¬ 1 Г­Г  Г®Г¤Г­Гі ГЇГ®Г§ГЁГ¶ГЁГѕ ГўГЇГҐГ°ГҐГ¤
               plCur.setBit(pos, true);
               plCur.setBit(pos - 1, false);
               if (plCur.isNormal())
               {
-                // многочлен нормальный
+                // Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г­Г®Г°Г¬Г Г«ГјГ­Г»Г©
                 isGen = true;
                 *this = plCur;
                 break;
@@ -1587,34 +1587,34 @@ Polynom& Polynom::setUnit(uint degree)
             }
             else
             {
-              // текущая позиция курсора в полиноме
+              // ГІГҐГЄГіГ№Г Гї ГЇГ®Г§ГЁГ¶ГЁГї ГЄГіГ°Г±Г®Г°Г  Гў ГЇГ®Г«ГЁГ­Г®Г¬ГҐ
               uint pos = 2;
-              // счетчик 1
+              // Г±Г·ГҐГІГ·ГЁГЄ 1
               uint numOne = 0;
-              // перемещаемся до первой 1
+              // ГЇГҐГ°ГҐГ¬ГҐГ№Г ГҐГ¬Г±Гї Г¤Г® ГЇГҐГ°ГўГ®Г© 1
               while (!plCur.getBit(pos))
                 pos++;
-              // перемещаемся до первого 0
+              // ГЇГҐГ°ГҐГ¬ГҐГ№Г ГҐГ¬Г±Гї Г¤Г® ГЇГҐГ°ГўГ®ГЈГ® 0
               while (plCur.getBit(pos))
               {
                 pos++;
                 numOne++;
               }
-              // переносим 1 на одну позицию вперед
+              // ГЇГҐГ°ГҐГ­Г®Г±ГЁГ¬ 1 Г­Г  Г®Г¤Г­Гі ГЇГ®Г§ГЁГ¶ГЁГѕ ГўГЇГҐГ°ГҐГ¤
               plCur.setBit(pos, true);
               plCur.setBit(pos - 1, false);
               numOne -= 1;
-              // в соответствии с показаниями счетчика, изменим оставшуюся часть полинома
+              // Гў Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГЁ Г± ГЇГ®ГЄГ Г§Г Г­ГЁГїГ¬ГЁ Г±Г·ГҐГІГ·ГЁГЄГ , ГЁГ§Г¬ГҐГ­ГЁГ¬ Г®Г±ГІГ ГўГёГіГѕГ±Гї Г·Г Г±ГІГј ГЇГ®Г«ГЁГ­Г®Г¬Г 
               if (numOne > 0)
               {
                 for (uint i = 1; i < numOne + 1; ++i)
                   plCur.setBit(i, true);
                 for (uint i = numOne + 1; i < pos; ++i)
                   plCur.setBit(i, false);
-                // проверка условия
+                // ГЇГ°Г®ГўГҐГ°ГЄГ  ГіГ±Г«Г®ГўГЁГї
                 if (plCur.isNormal())
                 {
-                  // многочлен нормальный
+                  // Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г­Г®Г°Г¬Г Г«ГјГ­Г»Г©
                   isGen = true;
                   *this = plCur;
                   break;
@@ -1622,10 +1622,10 @@ Polynom& Polynom::setUnit(uint degree)
               }
               if (numOne == 0)
               {
-                // проверка условия
+                // ГЇГ°Г®ГўГҐГ°ГЄГ  ГіГ±Г«Г®ГўГЁГї
                 if (plCur.isNormal())
                 {
-                  // многочлен нормальный
+                  // Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г­Г®Г°Г¬Г Г«ГјГ­Г»Г©
                   isGen = true;
                   *this = plCur;
                   break;
@@ -1640,24 +1640,24 @@ Polynom& Polynom::setUnit(uint degree)
           break;
       }
       if (!isGen)
-        throw new AAL::Exception("Не удалось сгенерировать многочлен с данными параметрами");
+        throw new AAL::Exception("ГЌГҐ ГіГ¤Г Г«Г®Г±Гј Г±ГЈГҐГ­ГҐГ°ГЁГ°Г®ГўГ ГІГј Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г± Г¤Г Г­Г­Г»Г¬ГЁ ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ГЁ");
       else
         return *this;
     }
     else
     {
-      // если число 1 в многочлене равно 3, проверяем полученный многочлен на нормальность
+      // ГҐГ±Г«ГЁ Г·ГЁГ±Г«Г® 1 Гў Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ГҐ Г°Г ГўГ­Г® 3, ГЇГ°Г®ГўГҐГ°ГїГҐГ¬ ГЇГ®Г«ГіГ·ГҐГ­Г­Г»Г© Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г­Г  Г­Г®Г°Г¬Г Г«ГјГ­Г®Г±ГІГј
       if (plGen.isNormal())
         return *this;
       else
-        throw new AAL::Exception("Не удалось сгенерировать многочлен с данными параметрами");
+        throw new AAL::Exception("ГЌГҐ ГіГ¤Г Г«Г®Г±Гј Г±ГЈГҐГ­ГҐГ°ГЁГ°Г®ГўГ ГІГј Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г± Г¤Г Г­Г­Г»Г¬ГЁ ГЇГ Г°Г Г¬ГҐГІГ°Г Г¬ГЁ");
     }
   }
 
-//*******************************  Теоремы, проверки и др. вспоможение  ************************
-  // Теорема Штильберга-Суона
-  // Применяется для проверки трехчленов поля GF(2) вида 1 + X^k + X^n на неприводимость
-  // Если вернули true многочлен заведомо приводим
+//*******************************  Г’ГҐГ®Г°ГҐГ¬Г», ГЇГ°Г®ГўГҐГ°ГЄГЁ ГЁ Г¤Г°. ГўГ±ГЇГ®Г¬Г®Г¦ГҐГ­ГЁГҐ  ************************
+  // Г’ГҐГ®Г°ГҐГ¬Г  ГГІГЁГ«ГјГЎГҐГ°ГЈГ -Г‘ГіГ®Г­Г 
+  // ГЏГ°ГЁГ¬ГҐГ­ГїГҐГІГ±Гї Г¤Г«Гї ГЇГ°Г®ГўГҐГ°ГЄГЁ ГІГ°ГҐГµГ·Г«ГҐГ­Г®Гў ГЇГ®Г«Гї GF(2) ГўГЁГ¤Г  1 + X^k + X^n Г­Г  Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬Г®Г±ГІГј
+  // Г…Г±Г«ГЁ ГўГҐГ°Г­ГіГ«ГЁ true Г¬Г­Г®ГЈГ®Г·Г«ГҐГ­ Г§Г ГўГҐГ¤Г®Г¬Г® ГЇГ°ГЁГўГ®Г¤ГЁГ¬
   // (c) Chernysheva
   bool Polynom::SchtilbergSuonTheorem(const uint k, const uint n) const
   {
@@ -1689,7 +1689,7 @@ Polynom& Polynom::setUnit(uint degree)
 //----------------------------------------------------------------------------------
   //(c) Chernysheva
   //------->>>>>>>>>-----------------
-  // перевод числа в строку
+  // ГЇГҐГ°ГҐГўГ®Г¤ Г·ГЁГ±Г«Г  Гў Г±ГІГ°Г®ГЄГі
   std::string Polynom::i_to_str(uint x) const
   {
     std::string str = "";
@@ -1713,8 +1713,8 @@ Polynom& Polynom::setUnit(uint degree)
     return str;
   }
 
-    // Тесты степеней полиномов на образование ОНБ и ГНБ
-  // ОНБ 1
+    // Г’ГҐГ±ГІГ» Г±ГІГҐГЇГҐГ­ГҐГ© ГЇГ®Г«ГЁГ­Г®Г¬Г®Гў Г­Г  Г®ГЎГ°Г Г§Г®ГўГ Г­ГЁГҐ ГЋГЌГЃ ГЁ ГѓГЌГЃ
+  // ГЋГЌГЃ 1
   // (c) Chernysheva, TEST(Polynom, ONB1)
   bool Polynom::ONB1Test(const uint n) const
   {
@@ -1737,7 +1737,7 @@ Polynom& Polynom::setUnit(uint degree)
       return false;
   }
 
-  // ОНБ 2
+  // ГЋГЌГЃ 2
   // (c) Chernysheva, TEST(Polynom, ONB2)
   bool Polynom::ONB2Test(const uint n) const
   {
@@ -1760,11 +1760,11 @@ Polynom& Polynom::setUnit(uint degree)
       return false;
   }
 
-  // ОНБ 3
+  // ГЋГЌГЃ 3
   // (c) Chernysheva, TEST(Polynom, ONB3)
   bool Polynom::ONB3Test(const uint n) const
   {
-    // n - нечетно
+    // n - Г­ГҐГ·ГҐГІГ­Г®
     if (n%2)
     {
       Integer p(2*n + 1), condition;
@@ -1790,9 +1790,9 @@ Polynom& Polynom::setUnit(uint degree)
       return false;
   }
 
-   // Генерации оптимального нормального базиса, заданной степени расширения поля
-  // вход: n - степень расширения поля
-  // выход: b - полином, A - таблица умножения или false - ОНБ 1го типа не существует
+   // ГѓГҐГ­ГҐГ°Г Г¶ГЁГЁ Г®ГЇГІГЁГ¬Г Г«ГјГ­Г®ГЈГ® Г­Г®Г°Г¬Г Г«ГјГ­Г®ГЈГ® ГЎГ Г§ГЁГ±Г , Г§Г Г¤Г Г­Г­Г®Г© Г±ГІГҐГЇГҐГ­ГЁ Г°Г Г±ГёГЁГ°ГҐГ­ГЁГї ГЇГ®Г«Гї
+  // ГўГµГ®Г¤: n - Г±ГІГҐГЇГҐГ­Гј Г°Г Г±ГёГЁГ°ГҐГ­ГЁГї ГЇГ®Г«Гї
+  // ГўГ»ГµГ®Г¤: b - ГЇГ®Г«ГЁГ­Г®Г¬, A - ГІГ ГЎГ«ГЁГ¶Г  ГіГ¬Г­Г®Г¦ГҐГ­ГЁГї ГЁГ«ГЁ false - ГЋГЌГЃ 1ГЈГ® ГІГЁГЇГ  Г­ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ
   // (c) Chernysheva, TEST(Polynom, CreateONB)
   bool Polynom::GenerateONB1(const uint n, Polynom& b, Matrix& A)
   {
@@ -1801,11 +1801,11 @@ Polynom& Polynom::setUnit(uint degree)
       return false;
     else
     {
-      // единичный вектор
+      // ГҐГ¤ГЁГ­ГЁГ·Г­Г»Г© ГўГҐГЄГІГ®Г°
       b.setUnit(n);
-      // пустая матрица T
+      // ГЇГіГ±ГІГ Гї Г¬Г ГІГ°ГЁГ¶Г  T
       Matrix T(Matrix::ON_LINE, n, n, 0);
-      // вычисляем вектор m = 2^i mod p, p = n + 1;
+      // ГўГ»Г·ГЁГ±Г«ГїГҐГ¬ ГўГҐГЄГІГ®Г° m = 2^i mod p, p = n + 1;
       vector<Integer> m;
       m.resize(n);
       for (int i = 0; i < n; ++i)
@@ -1816,13 +1816,13 @@ Polynom& Polynom::setUnit(uint degree)
 
       for (int i = 0; i < n; ++i)
       {
-        // проверяем условие m = 2^i mod p < n
-        // и по результатам заполняем матрицу T
+        // ГЇГ°Г®ГўГҐГ°ГїГҐГ¬ ГіГ±Г«Г®ГўГЁГҐ m = 2^i mod p < n
+        // ГЁ ГЇГ® Г°ГҐГ§ГіГ«ГјГІГ ГІГ Г¬ Г§Г ГЇГ®Г«Г­ГїГҐГ¬ Г¬Г ГІГ°ГЁГ¶Гі T
         if (m[i] < n)
         {
-          // условие выполено, нужно включить в список j = dlog(m + 1) mod p
+          // ГіГ±Г«Г®ГўГЁГҐ ГўГ»ГЇГ®Г«ГҐГ­Г®, Г­ГіГ¦Г­Г® ГўГЄГ«ГѕГ·ГЁГІГј Гў Г±ГЇГЁГ±Г®ГЄ j = dlog(m + 1) mod p
           Integer m1 = m[i] + 1;
-          // поиск в векторе m
+          // ГЇГ®ГЁГ±ГЄ Гў ГўГҐГЄГІГ®Г°ГҐ m
           int j = 0;
           for (int k = 0; k < n; ++k)
           {
@@ -1841,8 +1841,8 @@ Polynom& Polynom::setUnit(uint degree)
         }
       }
 
-      // заполняем матрицу А
-      // обязательно надо, чтобы на входе она была нулевой
+      // Г§Г ГЇГ®Г«Г­ГїГҐГ¬ Г¬Г ГІГ°ГЁГ¶Гі ГЂ
+      // Г®ГЎГїГ§Г ГІГҐГ«ГјГ­Г® Г­Г Г¤Г®, Г·ГІГ®ГЎГ» Г­Г  ГўГµГ®Г¤ГҐ Г®Г­Г  ГЎГ»Г«Г  Г­ГіГ«ГҐГўГ®Г©
       for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j)
         {
@@ -1854,8 +1854,8 @@ Polynom& Polynom::setUnit(uint degree)
     }
   }
 
-  // вход: n - степень расширения поля
-  // выход: b - полином, A - таблица умножения или false - ОНБ 2го типа не существует
+  // ГўГµГ®Г¤: n - Г±ГІГҐГЇГҐГ­Гј Г°Г Г±ГёГЁГ°ГҐГ­ГЁГї ГЇГ®Г«Гї
+  // ГўГ»ГµГ®Г¤: b - ГЇГ®Г«ГЁГ­Г®Г¬, A - ГІГ ГЎГ«ГЁГ¶Г  ГіГ¬Г­Г®Г¦ГҐГ­ГЁГї ГЁГ«ГЁ false - ГЋГЌГЃ 2ГЈГ® ГІГЁГЇГ  Г­ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ
   // (c) Chernysheva, TEST(Polynom, CreateONB)
   bool Polynom::GenerateONB2(const uint n, Polynom& b, Matrix& A)
   {
@@ -1865,7 +1865,7 @@ Polynom& Polynom::setUnit(uint degree)
     else
     {
       int p = 2*n + 1;
-      // заполняем вектор b
+      // Г§Г ГЇГ®Г«Г­ГїГҐГ¬ ГўГҐГЄГІГ®Г° b
       for (int j = 0; j <= n; ++j)
       {
         int N = (n + j)/2, M = j;
@@ -1875,7 +1875,7 @@ Polynom& Polynom::setUnit(uint degree)
           b.setBit(j, true);
       }
 
-      // вычисляем вектор m = 2^k mod p, p = 2n + 1;
+      // ГўГ»Г·ГЁГ±Г«ГїГҐГ¬ ГўГҐГЄГІГ®Г° m = 2^k mod p, p = 2n + 1;
       vector<Integer> m;
       m.resize(p);
       for (int k = 0; k <= 2*n; ++k)
@@ -1884,12 +1884,12 @@ Polynom& Polynom::setUnit(uint degree)
         m[k].ModPow(Integer(2), Integer(k), Integer(p));
       }
 
-      // вычисляем delta(k) = dlog(m + 1) mod p mod n
-      // и заполняем матрицу A
+      // ГўГ»Г·ГЁГ±Г«ГїГҐГ¬ delta(k) = dlog(m + 1) mod p mod n
+      // ГЁ Г§Г ГЇГ®Г«Г­ГїГҐГ¬ Г¬Г ГІГ°ГЁГ¶Гі A
       for (int k = 0; k < n; ++k)
       {
         Integer dk = m[k] + 1;
-        // поиск в векторе m
+        // ГЇГ®ГЁГ±ГЄ Гў ГўГҐГЄГІГ®Г°ГҐ m
         int j = 0;
         for (int i = 0; i <= 2*n; ++i)
         {
@@ -1902,12 +1902,12 @@ Polynom& Polynom::setUnit(uint degree)
         A.setBit(k, mod(j, n), true);
       }
 
-      // вычисляем mu(k) = dlog(m - 1) mod p mod n
-      // и заполняем матрицу A
+      // ГўГ»Г·ГЁГ±Г«ГїГҐГ¬ mu(k) = dlog(m - 1) mod p mod n
+      // ГЁ Г§Г ГЇГ®Г«Г­ГїГҐГ¬ Г¬Г ГІГ°ГЁГ¶Гі A
       for (int k = 1; k < n; ++k)
       {
         Integer mk = m[k] - 1;
-        // поиск в векторе m
+        // ГЇГ®ГЁГ±ГЄ Гў ГўГҐГЄГІГ®Г°ГҐ m
         int j = 0;
         for (int i = 0; i <= 2*n; ++i)
         {
@@ -1923,8 +1923,8 @@ Polynom& Polynom::setUnit(uint degree)
     }
   }
 
-  // вход: n - степень расширения поля
-  // выход: b - полином, A - таблица умножения или false - ОНБ 3го типа не существует
+  // ГўГµГ®Г¤: n - Г±ГІГҐГЇГҐГ­Гј Г°Г Г±ГёГЁГ°ГҐГ­ГЁГї ГЇГ®Г«Гї
+  // ГўГ»ГµГ®Г¤: b - ГЇГ®Г«ГЁГ­Г®Г¬, A - ГІГ ГЎГ«ГЁГ¶Г  ГіГ¬Г­Г®Г¦ГҐГ­ГЁГї ГЁГ«ГЁ false - ГЋГЌГЃ 3ГЈГ® ГІГЁГЇГ  Г­ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ
   // (c) Chernysheva
   bool Polynom::GenerateONB3(const uint n, Polynom& b, Matrix& A)
   {
@@ -1934,7 +1934,7 @@ Polynom& Polynom::setUnit(uint degree)
     else
     {
       int p = 2*n + 1;
-      // заполняем вектор b
+      // Г§Г ГЇГ®Г«Г­ГїГҐГ¬ ГўГҐГЄГІГ®Г° b
       for (int j = 0; j <= n; ++j)
       {
         int N = (n + j)/2, M = j;
@@ -1944,7 +1944,7 @@ Polynom& Polynom::setUnit(uint degree)
           b.setBit(j, true);
       }
 
-      // вычисляем вектор m = 2^k mod p, p = 2n + 1;
+      // ГўГ»Г·ГЁГ±Г«ГїГҐГ¬ ГўГҐГЄГІГ®Г° m = 2^k mod p, p = 2n + 1;
       vector<Integer> m;
       m.resize(p);
       std::string s;
@@ -1955,15 +1955,15 @@ Polynom& Polynom::setUnit(uint degree)
         s = m[k].ToString(Dec);
       }
 
-      // вычисляем delta(k) = dlog(1 + m) mod p mod n
-      // и заполняем матрицу A
+      // ГўГ»Г·ГЁГ±Г«ГїГҐГ¬ delta(k) = dlog(1 + m) mod p mod n
+      // ГЁ Г§Г ГЇГ®Г«Г­ГїГҐГ¬ Г¬Г ГІГ°ГЁГ¶Гі A
       for (int k = 0; k < n; ++k)
       {
         Integer dk = 1 + m[k];
         s = dk.ToString(Dec);
-        // поиск в векторе m
+        // ГЇГ®ГЁГ±ГЄ Гў ГўГҐГЄГІГ®Г°ГҐ m
         int j = 0;
-        // флаг наличия числа в векторе
+        // ГґГ«Г ГЈ Г­Г Г«ГЁГ·ГЁГї Г·ГЁГ±Г«Г  Гў ГўГҐГЄГІГ®Г°ГҐ
         bool is = false;
         for (int i = 0; i <= 2*n; ++i)
         {
@@ -1978,18 +1978,18 @@ Polynom& Polynom::setUnit(uint degree)
           A.setBit(k, mod(j, n), true);
       }
 
-      // вычисляем delta(k) = dlog(-1 - m) mod p mod n
-      // и заполняем матрицу A
+      // ГўГ»Г·ГЁГ±Г«ГїГҐГ¬ delta(k) = dlog(-1 - m) mod p mod n
+      // ГЁ Г§Г ГЇГ®Г«Г­ГїГҐГ¬ Г¬Г ГІГ°ГЁГ¶Гі A
       for (int k = 0; k < n; ++k)
       {
         Integer dk = -1 - m[k];
         s = dk.ToString(Dec);
-        // т.к. класс Integer не приводит отрицательные числа по модулю, приведем его сложением
+        // ГІ.ГЄ. ГЄГ«Г Г±Г± Integer Г­ГҐ ГЇГ°ГЁГўГ®Г¤ГЁГІ Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г»ГҐ Г·ГЁГ±Г«Г  ГЇГ® Г¬Г®Г¤ГіГ«Гѕ, ГЇГ°ГЁГўГҐГ¤ГҐГ¬ ГҐГЈГ® Г±Г«Г®Г¦ГҐГ­ГЁГҐГ¬
         dk = dk + p;
         s = dk.ToString(Dec);
-        // поиск в векторе m
+        // ГЇГ®ГЁГ±ГЄ Гў ГўГҐГЄГІГ®Г°ГҐ m
         int j = 0;
-        // флаг наличия числа в векторе
+        // ГґГ«Г ГЈ Г­Г Г«ГЁГ·ГЁГї Г·ГЁГ±Г«Г  Гў ГўГҐГЄГІГ®Г°ГҐ
         bool is = false;
         for (int i = 0; i <= 2*n; ++i)
         {
@@ -2004,15 +2004,15 @@ Polynom& Polynom::setUnit(uint degree)
           A.setBit(k, mod(j, n), true);
       }
 
-      // вычисляем mu(k) = dlog(-1 + m) mod p mod n
-      // и заполняем матрицу A
+      // ГўГ»Г·ГЁГ±Г«ГїГҐГ¬ mu(k) = dlog(-1 + m) mod p mod n
+      // ГЁ Г§Г ГЇГ®Г«Г­ГїГҐГ¬ Г¬Г ГІГ°ГЁГ¶Гі A
       for (int k = 1; k < n; ++k)
       {
         Integer mk = -1 + m[k];
         s = mk.ToString(Dec);
-        // поиск в векторе m
+        // ГЇГ®ГЁГ±ГЄ Гў ГўГҐГЄГІГ®Г°ГҐ m
         int j = 0;
-        // флаг наличия числа в векторе
+        // ГґГ«Г ГЈ Г­Г Г«ГЁГ·ГЁГї Г·ГЁГ±Г«Г  Гў ГўГҐГЄГІГ®Г°ГҐ
         bool is = false;
         for (int i = 0; i <= 2*n; ++i)
         {
@@ -2027,17 +2027,17 @@ Polynom& Polynom::setUnit(uint degree)
           A.setBit(k, mod(j, n), true);
       }
 
-      // вычисляем mu(k) = dlog(1 - m) mod p mod n
-      // и заполняем матрицу A
+      // ГўГ»Г·ГЁГ±Г«ГїГҐГ¬ mu(k) = dlog(1 - m) mod p mod n
+      // ГЁ Г§Г ГЇГ®Г«Г­ГїГҐГ¬ Г¬Г ГІГ°ГЁГ¶Гі A
       for (int k = 1; k < n; ++k)
       {
         Integer mk = 1 - m[k];
         s = mk.ToString(Dec);
         mk = mk + p;
         s = mk.ToString(Dec);
-        // поиск в векторе m
+        // ГЇГ®ГЁГ±ГЄ Гў ГўГҐГЄГІГ®Г°ГҐ m
         int j = 0;
-        // флаг наличия числа в векторе
+        // ГґГ«Г ГЈ Г­Г Г«ГЁГ·ГЁГї Г·ГЁГ±Г«Г  Гў ГўГҐГЄГІГ®Г°ГҐ
         bool is = false;
         for (int i = 0; i <= 2*n; ++i)
         {
@@ -2062,7 +2062,7 @@ Polynom& Polynom::setUnit(uint degree)
       return false;
     else
     {
-      // единичный вектор
+      // ГҐГ¤ГЁГ­ГЁГ·Г­Г»Г© ГўГҐГЄГІГ®Г°
       b.setUnit(n);
       return true;
     }
@@ -2076,7 +2076,7 @@ Polynom& Polynom::setUnit(uint degree)
     else
     {
       int p = 2*n + 1;
-      // заполняем вектор b
+      // Г§Г ГЇГ®Г«Г­ГїГҐГ¬ ГўГҐГЄГІГ®Г° b
       for (int j = 0; j <= n; ++j)
       {
         int N = (n + j)/2, M = j;
@@ -2097,7 +2097,7 @@ Polynom& Polynom::setUnit(uint degree)
     else
     {
       int p = 2*n + 1;
-      // заполняем вектор b
+      // Г§Г ГЇГ®Г«Г­ГїГҐГ¬ ГўГҐГЄГІГ®Г° b
       for (int j = 0; j <= n; ++j)
       {
         int N = (n + j)/2, M = j;
@@ -2110,17 +2110,17 @@ Polynom& Polynom::setUnit(uint degree)
     }
   }
 
-   // ГНБ
+   // ГѓГЌГЃ
   // (c) Chernysheva, TEST(Polynom, GNB)
   bool Polynom::GNBTest(const uint n, const int type) const
   {
     if (type < 3 || type > 6)
-      throw new AAL::Exception("Тип ГНБ должен быть от 3 до 6");
+      throw new AAL::Exception("Г’ГЁГЇ ГѓГЌГЃ Г¤Г®Г«Г¦ГҐГ­ ГЎГ»ГІГј Г®ГІ 3 Г¤Г® 6");
 
     Integer p(type*n + 1);
     if (p.isPrime())
     {
-      // проверку неделимости 2 на p опускаем, т.к. это очевидно
+      // ГЇГ°Г®ГўГҐГ°ГЄГі Г­ГҐГ¤ГҐГ«ГЁГ¬Г®Г±ГІГЁ 2 Г­Г  p Г®ГЇГіГ±ГЄГ ГҐГ¬, ГІ.ГЄ. ГЅГІГ® Г®Г·ГҐГўГЁГ¤Г­Г®
       std::vector<DecompositionMember> vector(DecompositionManager::Instance().getPrimeDecomposition(n));
       Integer number, mod, pow;
       for (std::vector<DecompositionMember>::iterator i = vector.begin(); i != vector.end(); ++i)
@@ -2139,9 +2139,9 @@ Polynom& Polynom::setUnit(uint degree)
 
 //**********************************************************************************************
 
-//************************  Операции мультипликативной группы и поля  **************************
+//************************  ГЋГЇГҐГ°Г Г¶ГЁГЁ Г¬ГіГ«ГјГІГЁГЇГ«ГЁГЄГ ГІГЁГўГ­Г®Г© ГЈГ°ГіГЇГЇГ» ГЁ ГЇГ®Г«Гї  **************************
 	//simple method
-        // TODO: рефакторить под простой алгоритм Евклида
+        // TODO: Г°ГҐГґГ ГЄГІГ®Г°ГЁГІГј ГЇГ®Г¤ ГЇГ°Г®Г±ГІГ®Г© Г Г«ГЈГ®Г°ГЁГІГ¬ Г…ГўГЄГ«ГЁГ¤Г 
 	bool Polynom::InMulGroup(Polynom &groupModule)
 	{
 		Polynom result, x, y;
@@ -2166,7 +2166,7 @@ Polynom& Polynom::setUnit(uint degree)
        polynom = *p;
        module = *m;
     if(!polynom.InMulGroup(module))
-			throw new AAL::Exception("Полином не принадлежит мультипликативной группе");
+			throw new AAL::Exception("ГЏГ®Г«ГЁГ­Г®Г¬ Г­ГҐ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ Г¬ГіГ«ГјГІГЁГЇГ«ГЁГЄГ ГІГЁГўГ­Г®Г© ГЈГ°ГіГЇГЇГҐ");
 
 		Polynom temp,temp2,i(polynom);
                 i.Mod(module);
@@ -2175,14 +2175,14 @@ Polynom& Polynom::setUnit(uint degree)
 		return *this;
    }
    else
-    throw new AAL::Exception("A1 и f(X) должны быть взаимно просты.");
+    throw new AAL::Exception("A1 ГЁ f(X) Г¤Г®Г«Г¦Г­Г» ГЎГ»ГІГј ГўГ§Г ГЁГ¬Г­Г® ГЇГ°Г®Г±ГІГ».");
 	}
 
  	Polynom& Polynom::InverseGF2_n(Polynom &polynom, Polynom &module)
 	{
                 if(!module.isIrreducible())
                 {
-                        throw new AAL::Exception("f(X) должны быть неприводимым.");
+                        throw new AAL::Exception("f(X) Г¤Г®Г«Г¦Г­Г» ГЎГ»ГІГј Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬Г»Г¬.");
                 }
 
 		return Inverse(polynom, module);
@@ -2200,9 +2200,9 @@ Polynom& Polynom::setUnit(uint degree)
 	Polynom& Polynom::Trace(Polynom &polynom, Polynom &module)
 	{
                 if(!module.isIrreducible())
-                        throw new AAL::Exception("Полином должен быть неприводимым");
+                        throw new AAL::Exception("ГЏГ®Г«ГЁГ­Г®Г¬ Г¤Г®Г«Г¦ГҐГ­ ГЎГ»ГІГј Г­ГҐГЇГ°ГЁГўГ®Г¤ГЁГ¬Г»Г¬");
                 if(!polynom.InMulGroup(module))
-			throw new AAL::Exception("Полином не принадлежит мультипликативной группе");
+			throw new AAL::Exception("ГЏГ®Г«ГЁГ­Г®Г¬ Г­ГҐ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ Г¬ГіГ«ГјГІГЁГЇГ«ГЁГЄГ ГІГЁГўГ­Г®Г© ГЈГ°ГіГЇГЇГҐ");
 
 		Polynom temp(polynom);
                 Integer two(2);
@@ -2221,7 +2221,9 @@ Polynom& Polynom::setUnit(uint degree)
 Integer& Polynom::elementOrder(Polynom &groupModule, Polynom &polynom,std::vector<DecompositionMember> vector, const Integer &ord )
 {
   if(!polynom.InMulGroup(groupModule))
-    throw new AAL::Exception("Полином не принадлежит мультипликативной группе");
+    throw new AAL::Exception("ГЏГ®Г«ГЁГ­Г®Г¬ Г­ГҐ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ Г¬ГіГ«ГјГІГЁГЇГ«ГЁГЄГ ГІГЁГўГ­Г®Г© ГЈГ°ГіГЇГЇГҐ");
+  if(vector.size() == 1 && vector[0].getDegree() == 1)
+    return vector[0].getNumber()
   if(vector.size() >= 1)
   {
     std::vector<DecompositionMember>::iterator it;
@@ -2249,12 +2251,12 @@ Integer& Polynom::elementOrder(Polynom &groupModule, Polynom &polynom,std::vecto
     return *rez;
   }
   else
-     throw new AAL::Exception("Введите разложение порядка группы.");
+     throw new AAL::Exception("Г‚ГўГҐГ¤ГЁГІГҐ Г°Г Г§Г«Г®Г¦ГҐГ­ГЁГҐ ГЇГ®Г°ГїГ¤ГЄГ  ГЈГ°ГіГЇГЇГ».");
 }
 bool Polynom::isGenerator(Polynom &groupModule, Polynom &polynom,std::vector<DecompositionMember> vector, const Integer &ord)
 {
   if(!polynom.InMulGroup(groupModule))
-    throw new AAL::Exception("Полином не принадлежит мультипликативной группе");
+    throw new AAL::Exception("ГЏГ®Г«ГЁГ­Г®Г¬ Г­ГҐ ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦ГЁГІ Г¬ГіГ«ГјГІГЁГЇГ«ГЁГЄГ ГІГЁГўГ­Г®Г© ГЈГ°ГіГЇГЇГҐ");
     if (vector.size() == 1) return true;
     if(vector.size() > 1)
     {   AAL::Integer m(ord-1);
@@ -2264,7 +2266,7 @@ bool Polynom::isGenerator(Polynom &groupModule, Polynom &polynom,std::vector<Dec
         return true;
     }
   else
-   throw new AAL::Exception("Введите разложение порядка группы.");
+   throw new AAL::Exception("Г‚ГўГҐГ¤ГЁГІГҐ Г°Г Г§Г«Г®Г¦ГҐГ­ГЁГҐ ГЇГ®Г°ГїГ¤ГЄГ  ГЈГ°ГіГЇГЇГ».");
 return false;
 }
 

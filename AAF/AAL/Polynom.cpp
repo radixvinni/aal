@@ -2218,7 +2218,7 @@ Polynom& Polynom::setUnit(uint degree)
 		return *this;
 	}
 //-----------------------------------------------------------------------------
-Integer& Polynom::elementOrder(Polynom &groupModule, Polynom &polynom,std::vector<DecompositionMember> vector, const Integer &ord )
+Integer Polynom::elementOrder(Polynom &groupModule, Polynom &polynom,std::vector<DecompositionMember> vector, const Integer &ord )
 {
   if(!polynom.InMulGroup(groupModule))
     throw new AAL::Exception("Ïîëèíîì íå ïðèíàäëåæèò ìóëüòèïëèêàòèâíîé ãðóïïå");

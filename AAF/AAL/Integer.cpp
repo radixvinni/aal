@@ -1855,6 +1855,7 @@ return false;
 			Integer n(2);
 			while(n.LegendreSymbol(*p) != -1)
 				n.Generate(*p);
+				while(n.isZero()) n.Generate(*p);
 
 			Integer s(prom);
 			s >>= alpha;

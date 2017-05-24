@@ -1658,8 +1658,10 @@ Integer& Integer::WrappingGenerate(Integer& forwrap, const Integer &module)
 	int Integer::LegendreSymbol(Integer& module)
 	{
         if(module.MillerRabinTest())
-        {	if(isZero() || module.isZero())
-		  	throw new Exception("Входные параметры не могут быть 0");
+        {	if(isZero())
+		  	throw new Exception("Входной параметр не может быть 0");
+		if(module.isZero())
+		  	throw new Exception("Модуль не может быть 0");
 
 		  Integer degree(module);
 		  --degree;

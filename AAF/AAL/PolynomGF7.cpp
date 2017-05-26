@@ -765,75 +765,23 @@ namespace AAL
 	}
 
 	//(c) Mamontov, TEST(Polynom, Mod)
-	PolynomGF7& PolynomGF7::Mod(PolynomGF7 &a, PolynomGF7 &f)
+	PolynomGF7& PolynomGF7::Mod(PolynomGF7 &a, PolynomGF7 &b)
 	{
-                if(a.isZero() && f.isZero())
+                if(a.isZero() && b.isZero())
 		  return setZero();
-                uint aa,b,m,k,t,len_a;
-                PolynomGF7 q,r,q1,r1;
-                std::string f_str = f.ToString();
-                k = f_str.find_first_not_of('0',1);
-                b = f.getBit(k);
-                m = f_str.length()-1;
-                aa = f.getBit(0);
-                //if(m%7 == 0 || m%2 == 0 || k > m/2)
-                //      throw new Exception("îøèáêà âî âõîäíîì òðåõ÷ëåíå");
-                //else
+                
+		if (a.getNumberBits()<b.getNumberBits())
                 {
-                  t = m - 1 +k;
-                  len_a = a.ToString().length();
-                  int j = 0;
-                  for(int i = t; i < len_a; i++)
-                  {
-                        q.setBit(j,a.getBit(i));
-                        j++;
-                  }
-//                  std::string str = q.ToString();
-                  for(int i = 0; i < t; i++)
-                  {
-                        r.setBit(i,a.getBit(i));
-                  }
-//                  str = r.ToString();
-                  int deg_1,deg_2;
-                  deg_1 = 2*t-2*m+1;
-                  deg_2 = 2*t-2*m+1-k;
-                  PolynomGF7 x1,x2,six("6"),bx,ax;
-                  bx.setBit(0,b);
-                  ax.setBit(0,aa);
-                  x1.setBit(deg_1,1);
-                  x2.setBit(deg_2,1);
-                  r = r+six*bx*q*x1+six*ax*q*x2;
-//                  str = (six*bx*q*x1).ToString();
-//                  str = (ax*q*x2).ToString();
-//                  str = r.ToString();
-                  len_a = r.ToString().length();
-                  if(len_a == m)
-                  {
-                        *this = r;
-                        return *this;
-                  }
-                  else
-                  {     j=0;
-                        for(int i = m; i < len_a; i++)
-                        {
-                                q1.setBit(j,r.getBit(i));
-                                j++;
-                        }
-//                        str = q1.ToString();
-
-                       for(int i = 0; i < m; i++)
-                        {
-                                r1.setBit(i,r.getBit(i));
-                        }
- //                       str = r1.ToString();
-                        PolynomGF7 x3;
-                        x3.setBit(k,1);
-                        r1 = r1+six*bx*x3*q1+six*ax*q1;
-                        *this = r1;
- //                       str = r1.ToString();
-                        return *this;
-                  }
+                    *this = a;
+		    return *this;
                 }
+                
+		if(a == b) return setZero();
+		
+		PolynomGF7 copy_a(a), copy_b(b);
+		PolynomGF7 quotient;
+		quotient.Div(copy_a, copy_b, this);
+		
 		return *this;
 	}
 //------------------------------------------------------------------------------

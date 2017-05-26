@@ -233,22 +233,25 @@ TEST(PolynomGF7, ModMul)
 	PolynomGF7 j("333333");
 	PolynomGF7 k ("364656360");
         PolynomGF7 f("1200000001");
-        //std::string st = i.ModMul(i,j,f).ToString();
-	CHECK(k.ToString() == i.ModMul(i,j,f).ToString());
+        CHECK(k.ToString() == i.ModMul(i,j,f).ToString());
 
 	PolynomGF7 i1("461002325412");
 	PolynomGF7 j1("312563254");
 	PolynomGF7 k1("650643002");
         PolynomGF7 f1("1200000001");
-       // std::string st = i1.ModMul(i1,j1,f1).ToString();
-	CHECK(k1.ToString() == i1.ModMul(i1,j1,f1).ToString());
+        CHECK(k1.ToString() == i1.ModMul(i1,j1,f1).ToString());
 
 	PolynomGF7 i2("00001000000000");
 	PolynomGF7 j2("00010000000000");
 	PolynomGF7 k2 ("0121");
         PolynomGF7 f2("1101");
-      std::string  st = i2.ModMul(i2,j2,f2).ToString();
-	CHECK(k2.ToString() == st);
+        CHECK(k2.ToString() == i2.ModMul(i2,j2,f2).ToString());
+
+	PolynomGF7 i3("135");
+	PolynomGF7 j3("135");
+	PolynomGF7 k3("343");
+        PolynomGF7 f3("1111");
+        CHECK(k3.ToString() == i3.ModMul(i3,j3,f3).ToString());
 
 }
 TEST(PolynomGF7, MulGF7_2n)

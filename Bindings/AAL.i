@@ -68,10 +68,6 @@ using namespace AAL;
 
 %include "stl.i"
 namespace std {
-    %template(_string_list) std::vector<std::string>;
-    %template(_int_list) std::vector<int>;
-    %template(_double_list) std::vector<double>;
-    
     %template(IntVector) vector<int>;
     %template(DecompositionMemberVector) vector<AAL::DecompositionMember>;
     %template(IntegerBinomVector) vector<AAL::IntegerBinom>;

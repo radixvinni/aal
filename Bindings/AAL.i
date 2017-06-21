@@ -65,8 +65,14 @@ using namespace AAL;
 %include "./AAF/AAL/PolynomGF2_mY_7.h"
 %include "./AAF/AAL/PolynomGF3_mY_9.h"
 %include "./AAF/AAL/PolynomGF7.h"
+
+%include "stl.i"
 namespace std {
-  %template(IntVector) vector<int>;
+    %template(_string_list) std::vector<std::string>;
+    %template(_int_list) std::vector<int>;
+    %template(_double_list) std::vector<double>;
+    
+    %template(IntVector) vector<int>;
     %template(DecompositionMemberVector) vector<AAL::DecompositionMember>;
     %template(IntegerBinomVector) vector<AAL::IntegerBinom>;
     %template(IntegerBinomEllipticPointVector) vector<AAL::IntegerBinomEllipticPoint>;

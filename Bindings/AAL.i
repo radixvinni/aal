@@ -66,8 +66,8 @@ using namespace AAL;
 %include "./AAF/AAL/PolynomGF3_mY_9.h"
 %include "./AAF/AAL/PolynomGF7.h"
 
-%include "stl.i"
 namespace std {
+    %template(StrVector) vector<string>;
     %template(IntVector) vector<int>;
     %template(DecompositionMemberVector) vector<AAL::DecompositionMember>;
     %template(IntegerBinomVector) vector<AAL::IntegerBinom>;
@@ -75,6 +75,10 @@ namespace std {
     %template(IntegerPVector) vector<AAL::Integer*>;
     %template(IntegerVector) vector<AAL::Integer>;
 }
+
+%include "cpointer.i"
+%pointer_class(Polynom, PolynomPtr);
+%pointer_class(StrVector, StrVectorPtr);
 
 %extend std::vector<AAL::DecompositionMember> {
   char *__repr__() {

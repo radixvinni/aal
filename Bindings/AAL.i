@@ -77,8 +77,8 @@ namespace std {
 }
 
 %include "cpointer.i"
+using namespace AAL;
 %pointer_class(Polynom, PolynomPtr);
-%pointer_class(StrVector, StrVectorPtr);
 
 %extend std::vector<AAL::DecompositionMember> {
   char *__repr__() {

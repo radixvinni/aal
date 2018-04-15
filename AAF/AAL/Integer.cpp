@@ -17,7 +17,7 @@
 #include "./AAF/AAL/PrimeTester.h"
 
 
-#if defined(__GNUC__) || defined (__APPLE_CC__)
+#if defined(__GNUC__) && !defined(__MINGW32__) || defined (__APPLE_CC__)
     /*
 	 * C++ version 0.4 char* style "itoa":
 	 * Written by Lukas Chmela

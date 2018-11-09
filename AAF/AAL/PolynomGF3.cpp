@@ -893,7 +893,7 @@ namespace AAL
        if((s0==2)&&(b.A1.isZero())&&((b.A0&one).isZero()))  //kub
 		    {
           Mul(a,a);
-          Mul(*this,a);
+          Mul(*this,copy_a);
           return *this;
         }
        for(uint i=0;i<s;i++)

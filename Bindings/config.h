@@ -28,7 +28,8 @@ bool inline FileExists(const char *fname){
   return access(fname, 0) != -1;
 }
 #else
-#define FileExists(fname) (std::ifstream(fname) != NULL)
+#include <unistd.h>
+#define FileExists(fname) (access(fname, 0) == -1)
 #endif
 
 #ifdef USE_MSIEVE

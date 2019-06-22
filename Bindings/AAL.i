@@ -31,6 +31,7 @@
 #include "./AAF/AAL/FactorizationAlgorithms.h"
 #include "./AAF/AAL/NumberVector.h"
 #include "./AAF/AAL/PolynomGF7.h"
+#include "./AAF/AAL/PolynomGF7N.h"
 
 #include <vector>
 #include <string>
@@ -65,6 +66,7 @@ using namespace AAL;
 %include "./AAF/AAL/PolynomGF2_mY_7.h"
 %include "./AAF/AAL/PolynomGF3_mY_9.h"
 %include "./AAF/AAL/PolynomGF7.h"
+%include "./AAF/AAL/PolynomGF7N.h"
 
 namespace std {
     %template(StrVector) vector<string>;

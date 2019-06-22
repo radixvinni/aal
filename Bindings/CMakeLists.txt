@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.1)
+set (CMAKE_CXX_STANDARD 11)
 project(MpeiAAL)
 include(ExternalProject)
 
@@ -38,6 +39,7 @@ set (HEADERS
 		../AAF/AAL/PolynomGF3_mY_9.h
 		../AAF/AAL/PolynomGF3n6.h
 		../AAF/AAL/PolynomGF7.h
+		../AAF/AAL/PolynomGF7N.h
 		../AAF/AAL/PolynomGF7_m_14.h
 		../AAF/AAL/PolynomGF7_m14.h
 		../AAF/AAL/PolynomGF7_m_2.h
@@ -72,6 +74,7 @@ set (SOURCES
 		../AAF/AAL/PolynomGF3_mY_9.cpp
 #		../AAF/AAL/PolynomGF3n6.cpp
 		../AAF/AAL/PolynomGF7.cpp
+		../AAF/AAL/PolynomGF7N.cpp
 		../AAF/AAL/PolynomGF7_m_14.cpp
 		../AAF/AAL/PolynomGF7_m14.cpp
 		../AAF/AAL/PolynomGF7_m_2.cpp
@@ -105,6 +108,7 @@ set (TESTSRC
 #		../AAF/AALT/PolynomGF3n6Tests.cpp
 		../AAF/AALT/PolynomGF3Tests.cpp
 		../AAF/AALT/PolynomGF7Test.cpp
+		../AAF/AALT/PolynomGF7NTests.cpp
 		../AAF/AALT/PolynomTests.cpp
 		../AAF/AALT/TestFoctarizationAlgorithms.cpp
 		../AAF/AALT/TestPolynomGF2_mY_7.cpp

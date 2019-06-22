@@ -877,7 +877,7 @@ void DecompositionManager::NumberGenerator(std::string addres,std::string str_ad
     fout = fopen(("../Decompositions/"+str_addres).c_str(),"wt");
     if(!fin)
     {
-      throw new Exception("Файл с факторизациями не может быть открыт");
+      throw new Exception("Р¤Р°Р№Р» СЃ С„Р°РєС‚РѕСЂРёР·Р°С†РёСЏРјРё РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚РєСЂС‹С‚");
     }
     n_str = 0;
     while(!feof(fin))
@@ -1063,7 +1063,7 @@ return std::string("");
     fin=fopen(("../Decompositions/"+str_addres).c_str(),"rt");
     if(!fin)
     {
-      throw new Exception("Файл не найден");
+      throw new Exception("Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ");
     }
     n_str = 0;
     while(n_str != degree)
@@ -1109,7 +1109,7 @@ return std::string("");
     }
     //}
     if (vector.size() == 0)
-      throw new Exception("База не содержит разложение для данного числа.");
+      throw new Exception("Р‘Р°Р·Р° РЅРµ СЃРѕРґРµСЂР¶РёС‚ СЂР°Р·Р»РѕР¶РµРЅРёРµ РґР»СЏ РґР°РЅРЅРѕРіРѕ С‡РёСЃР»Р°.");
 
     return  vector;
 
@@ -1125,7 +1125,7 @@ DecVector DecompositionManager::getCheckedDecompositionFromFile(uint degree, uin
   {
     DecVector vector;
     return  vector;
-    //throw new Exception("Для данного числа разложение в базе отсутствует.");
+    //throw new Exception("Р”Р»СЏ РґР°РЅРЅРѕРіРѕ С‡РёСЃР»Р° СЂР°Р·Р»РѕР¶РµРЅРёРµ РІ Р±Р°Р·Рµ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚.");
   }
   return getDecompositionFromFile(fileName,degree);
 }
@@ -1447,7 +1447,7 @@ DecVector result;
   {
     DecompositionMember rez(0,0);
     result.push_back(rez);
-    //throw  std::domain_error("Разложение для данного числа в базе отсутствует.");
+    //throw  std::domain_error("Р Р°Р·Р»РѕР¶РµРЅРёРµ РґР»СЏ РґР°РЅРЅРѕРіРѕ С‡РёСЃР»Р° РІ Р±Р°Р·Рµ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚.");
   }
   else
   {
@@ -1594,7 +1594,7 @@ DecVector result;
 }
 //------------------------------------------------------------------------------
 // (c)Chernysheva
-// разложение числа на простые
+// СЂР°Р·Р»РѕР¶РµРЅРёРµ С‡РёСЃР»Р° РЅР° РїСЂРѕСЃС‚С‹Рµ
 DecVector DecompositionManager::getPrimeDecomposition(uint number)
 {
   return getDecompositionFromFile("DecompositionPrime.txt", number);

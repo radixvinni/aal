@@ -12,7 +12,7 @@
 using namespace AAL;
 
 /*
-	Конструкторы класса Matrix
+	РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ РєР»Р°СЃСЃР° Matrix
 */
 TEST(Matrix, EmptyConstructor)
 {
@@ -91,9 +91,9 @@ TEST(Matrix, ValueConstructor)
 }
 
 /*
-  Удобно
+  РЈРґРѕР±РЅРѕ
 */
-// перевод матрицы в вектор строк
+// РїРµСЂРµРІРѕРґ РјР°С‚СЂРёС†С‹ РІ РІРµРєС‚РѕСЂ СЃС‚СЂРѕРє
 TEST(Matrix, ToString)
 {
   std::string a0("11111111111"), a1("00010100101"), a2("01010010101");
@@ -118,7 +118,7 @@ TEST(Matrix, ToString)
 	CHECK(flag);
 }
 
-// перевод матрицы в вектор строк
+// РїРµСЂРµРІРѕРґ РјР°С‚СЂРёС†С‹ РІ РІРµРєС‚РѕСЂ СЃС‚СЂРѕРє
 TEST(Matrix, ToStringLine)
 {
   std::string a0("11111111111"), a1("00010100101"), a2("01010010101");
@@ -132,7 +132,7 @@ TEST(Matrix, ToStringLine)
 	CHECK(s == mtvec);
 }
 
-//перевод матрицы в строку координат
+//РїРµСЂРµРІРѕРґ РјР°С‚СЂРёС†С‹ РІ СЃС‚СЂРѕРєСѓ РєРѕРѕСЂРґРёРЅР°С‚
 TEST(Matrix, ToStringNotNullBits)
 {
   std::string a0("111"), a1("010"), a2("110"), res("{0,0}{0,1}{0,2}{1,1}{2,0}{2,1}");
@@ -146,7 +146,7 @@ TEST(Matrix, ToStringNotNullBits)
 }
 
 /*
-  Унарные операции
+  РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 */
 TEST(Matrix, Init)
 {
@@ -161,7 +161,7 @@ TEST(Matrix, Init)
 }
 
 /*
-	Операции сравнения
+	РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 */
 TEST(Matrix, Equal)
 {
@@ -231,9 +231,9 @@ TEST(Matrix, EqualParams)
 }
 
 /*
-  Работа с матрицами
+  Р Р°Р±РѕС‚Р° СЃ РјР°С‚СЂРёС†Р°РјРё
 */
-// Приведение к треугольному виду
+// РџСЂРёРІРµРґРµРЅРёРµ Рє С‚СЂРµСѓРіРѕР»СЊРЅРѕРјСѓ РІРёРґСѓ
 
 TEST(Matrix, RightTrian)
 {
@@ -261,7 +261,7 @@ TEST(Matrix, LeftTrian)
   CHECK(mt1.getTrianType() == Matrix::LEFT);
 }
 
-// Проверка на невырожденность
+// РџСЂРѕРІРµСЂРєР° РЅР° РЅРµРІС‹СЂРѕР¶РґРµРЅРЅРѕСЃС‚СЊ
 TEST(Matrix, NonSign)
 {
   Polynom beginPolynom("111011");
@@ -281,7 +281,7 @@ TEST(Matrix, NonSign)
   CHECK(!mt2.nonsignMatrix());
 }
 
-// Приведение к диагональному виду
+// РџСЂРёРІРµРґРµРЅРёРµ Рє РґРёР°РіРѕРЅР°Р»СЊРЅРѕРјСѓ РІРёРґСѓ
 TEST(Matrix, RightDiag)
 {
   Polynom beginPolynom("111011");
@@ -302,7 +302,7 @@ TEST(Matrix, LeftDiag)
   CHECK(mt0.nonsignMatrix());
 }
 
-// Умножение матрицы на вектор
+// РЈРјРЅРѕР¶РµРЅРёРµ РјР°С‚СЂРёС†С‹ РЅР° РІРµРєС‚РѕСЂ
 TEST(Matrix, mulMatrixToVec)
 {
   Polynom a0("01000000000"),
@@ -335,7 +335,7 @@ TEST(Matrix, mulMatrixToVec)
    CHECK(res == exp);
 }
 
-// Умножение вектора на матрицу
+// РЈРјРЅРѕР¶РµРЅРёРµ РІРµРєС‚РѕСЂР° РЅР° РјР°С‚СЂРёС†Сѓ
 TEST(Matrix, mulVecToMatrix)
 {
    Polynom a0("00001011001"),
@@ -368,7 +368,7 @@ TEST(Matrix, mulVecToMatrix)
    CHECK(res == exp);
 }
 
-// Обращение матриц
+// РћР±СЂР°С‰РµРЅРёРµ РјР°С‚СЂРёС†
 TEST(Matrix, Reverse)
 {
   Polynom beginPolynom("111011");
@@ -439,7 +439,7 @@ TEST(Matrix, Transpose)
 }
 TEST(Matrix, getBit)
 {
-        // TODO: Заменить 
+        // TODO: Р—Р°РјРµРЅРёС‚СЊ 
         /*std::vector<Polynom *> vec;
         Polynom a("11111");
 

@@ -1,3 +1,3 @@
-*.cpp encoding=cp1251
-*.h encoding=cp1251
-*.hpp encoding=cp1251
+*.cpp encoding=utf8
+*.h encoding=utf8
+*.hpp encoding=utf8

@@ -14,7 +14,7 @@
 namespace AAL
 {
 
-//***********************************  Конструкторы  *******************************************
+//***********************************  РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹  *******************************************
 
 
 //(c) Boldyrev, TEST(PolynomGF3N6, EmptyConstructor)
@@ -32,7 +32,7 @@ namespace AAL
         PolynomN6::PolynomN6(const PolynomGF3& a1, const PolynomGF3& a2, const PolynomGF3& a3, const PolynomGF3& a4,const PolynomGF3& a5,const PolynomGF3& a6,const PolynomGF3& mpolynom ,const PolynomGF3& modulePolynom) :
         _a1(a1), _a2(a2), _a3(a3), _a4(a4), _a5(a5), _a6(a6),_module(mpolynom),_modulePolynom(modulePolynom)
         {
-                //Добавить проверка модуля
+                //Р”РѕР±Р°РІРёС‚СЊ РїСЂРѕРІРµСЂРєР° РјРѕРґСѓР»СЏ
         }
 
         PolynomN6::PolynomN6(const std::string dataString,const PolynomGF3& mpolynom ,const PolynomGF3& modulePolynom):
@@ -46,7 +46,7 @@ namespace AAL
         }
                                                                                                 
 //**********************************************************************************************
-//*************************  Преобразование и считывание из стpок ******************************
+//*************************  РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚pРѕРє ******************************
         std::string PolynomN6::ToString() const
         {
                 std::string str;
@@ -58,7 +58,7 @@ namespace AAL
         void PolynomN6::FromString(std::string s)
         {
          std:: string ss(s),sss;
-         /* Подумать над реализацией в цикле!
+         /* РџРѕРґСѓРјР°С‚СЊ РЅР°Рґ СЂРµР°Р»РёР·Р°С†РёРµР№ РІ С†РёРєР»Рµ!
           while (ss.find_first_of(" ",0))
            {
             sss=ss.substr(0,ss.find_first_of(" ",0));
@@ -68,27 +68,27 @@ namespace AAL
             ss=ss.substr(ss.find_first_of(" ",0)+1,ss.length());
            }   */
            sss=ss.substr(0,ss.find_first_of(" ",0));
-           if (sss.length()==ss.length()) throw std::out_of_range("в строке должно быть 6 элементов, разделенных пробелом");
+           if (sss.length()==ss.length()) throw new Exception("РІ СЃС‚СЂРѕРєРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ 6 СЌР»РµРјРµРЅС‚РѕРІ, СЂР°Р·РґРµР»РµРЅРЅС‹С… РїСЂРѕР±РµР»РѕРј");
            ss=ss.substr(ss.find_first_of(" ",0)+1,ss.length());
            _a1.Parse(sss);
            _a1%=_module;
            sss=ss.substr(0,ss.find_first_of(" ",0));
-           if (sss.length()==ss.length()) throw std::out_of_range("в строке должно быть 6 элементов, разделенных пробелом");
+           if (sss.length()==ss.length()) throw new Exception("РІ СЃС‚СЂРѕРєРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ 6 СЌР»РµРјРµРЅС‚РѕРІ, СЂР°Р·РґРµР»РµРЅРЅС‹С… РїСЂРѕР±РµР»РѕРј");
            ss=ss.substr(ss.find_first_of(" ",0)+1,ss.length());
            _a2.Parse(sss);
            _a2%=_module;
            sss=ss.substr(0,ss.find_first_of(" ",0));
-           if (sss.length()==ss.length()) throw std::out_of_range("в строке должно быть 6 элементов, разделенных пробелом");
+           if (sss.length()==ss.length()) throw new Exception("РІ СЃС‚СЂРѕРєРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ 6 СЌР»РµРјРµРЅС‚РѕРІ, СЂР°Р·РґРµР»РµРЅРЅС‹С… РїСЂРѕР±РµР»РѕРј");
            ss=ss.substr(ss.find_first_of(" ",0)+1,ss.length());
            _a3.Parse(sss);
            _a3%=_module;
            sss=ss.substr(0,ss.find_first_of(" ",0));
-           if (sss.length()==ss.length()) throw std::out_of_range("в строке должно быть 6 элементов, разделенных пробелом");
+           if (sss.length()==ss.length()) throw new Exception("РІ СЃС‚СЂРѕРєРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ 6 СЌР»РµРјРµРЅС‚РѕРІ, СЂР°Р·РґРµР»РµРЅРЅС‹С… РїСЂРѕР±РµР»РѕРј");
            ss=ss.substr(ss.find_first_of(" ",0)+1,ss.length());
            _a4.Parse(sss);
            _a4%=_module;
            sss=ss.substr(0,ss.find_first_of(" ",0));
-           if (sss.length()==ss.length()) throw std::out_of_range("в строке должно быть 6 элементов, разделенных пробелом");
+           if (sss.length()==ss.length()) throw new Exception("РІ СЃС‚СЂРѕРєРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ 6 СЌР»РµРјРµРЅС‚РѕРІ, СЂР°Р·РґРµР»РµРЅРЅС‹С… РїСЂРѕР±РµР»РѕРј");
            ss=ss.substr(ss.find_first_of(" ",0)+1,ss.length());
            _a5.Parse(sss);
            _a5%=_module;
@@ -96,7 +96,7 @@ namespace AAL
            _a6%=_module;
         }
 //**********************************************************************************************
-//***************************************  Методы акцепторы   **********************************
+//***************************************  РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹   **********************************
         bool PolynomN6::isZero() const
         {
                 return (_a1.isZero() && _a2.isZero()&& _a3.isZero()&& _a4.isZero()&& _a5.isZero()&& _a6.isZero());
@@ -198,7 +198,7 @@ namespace AAL
         }
 
         void PolynomN6::setModule(const PolynomGF3& modulePolynom)
-        {        //Проверки на неприводимость
+        {        //РџСЂРѕРІРµСЂРєРё РЅР° РЅРµРїСЂРёРІРѕРґРёРјРѕСЃС‚СЊ
                 _module = modulePolynom;
                 _a1%=_module;
                 _a2%=_module;
@@ -209,15 +209,15 @@ namespace AAL
 
         }
         void PolynomN6::setModulePolynom(const PolynomGF3& modulePolynom)
-        {       //Проверки на неприводимость
+        {       //РџСЂРѕРІРµСЂРєРё РЅР° РЅРµРїСЂРёРІРѕРґРёРјРѕСЃС‚СЊ
                 _modulePolynom = modulePolynom;
-                //Проверки на размер
+                //РџСЂРѕРІРµСЂРєРё РЅР° СЂР°Р·РјРµСЂ
                 if((modulePolynom.getNumberBits()-1)!=6)
-                        throw std::out_of_range("модулярные многочлен порождающий расширение поля должны быть степени 6");
+                        throw new Exception("РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅ РїРѕСЂРѕР¶РґР°СЋС‰РёР№ СЂР°СЃС€РёСЂРµРЅРёРµ РїРѕР»СЏ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЃС‚РµРїРµРЅРё 6");
 
 
         }
-        //определение порядка группы
+        //РѕРїСЂРµРґРµР»РµРЅРёРµ РїРѕСЂСЏРґРєР° РіСЂСѓРїРїС‹
         Integer PolynomN6::getMulGroupOrder() const
         {
 
@@ -232,7 +232,7 @@ namespace AAL
                 CCC=CCC-1;
                 return CCC;
         }
-        //тест на образующий элемент
+        //С‚РµСЃС‚ РЅР° РѕР±СЂР°Р·СѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
         bool PolynomN6::isPrimitivity() const
         {
           uint lenm=_module.getNumberBits()-1;
@@ -257,7 +257,7 @@ namespace AAL
         }
 
 //**********************************************************************************************
-//************************************  Унарные операции   *************************************
+//************************************  РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё   *************************************
         PolynomN6& PolynomN6::operator= (const PolynomN6& polynom)
         {
                 if(this == &polynom)
@@ -275,7 +275,7 @@ namespace AAL
         }
 
 //**********************************************************************************************
-//*****************************    Операции сравнения    ***************************************
+//*****************************    РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ    ***************************************
         bool operator==(const PolynomN6& a, const PolynomN6& b)
         {
                 return (a._a1 == b._a1 && a._a2 == b._a2 && a._a3 == b._a3 && a._a4 == b._a4&& a._a5 == b._a5&& a._a6 == b._a6 && a._modulePolynom == b._modulePolynom &&a._module == b._module);
@@ -286,7 +286,7 @@ namespace AAL
         }
 
 //**********************************************************************************************
-//******************************    Операция сложения    ***************************************
+//******************************    РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ    ***************************************
         PolynomN6 operator+(const PolynomN6 &a, const PolynomN6 &b)
         {
                 PolynomN6 result, copy_a(a), copy_b(b);
@@ -299,7 +299,7 @@ namespace AAL
 	PolynomN6& PolynomN6::Add(PolynomN6 &a, PolynomN6 &b)
         {
                 if(a.getModulePolynom() != b.getModulePolynom() || a.getModule() != b.getModule())
-                        throw std::out_of_range("модулярные многочлены должны быть равны");
+                        throw new Exception("РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅС‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°РІРЅС‹");
 
                 _modulePolynom = a._modulePolynom;
                 _module=a._module;
@@ -313,7 +313,7 @@ namespace AAL
                 return *this;
         }
 //**********************************************************************************************
-//******************************    Операция вычитания   ***************************************
+//******************************    РћРїРµСЂР°С†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ   ***************************************
         PolynomN6 operator-(const PolynomN6 &a, const PolynomN6 &b)
         {
                 PolynomN6 result, copy_a(a), copy_b(b);
@@ -326,7 +326,7 @@ namespace AAL
 	PolynomN6& PolynomN6::Sub(PolynomN6 &a, PolynomN6 &b)
         {
                 if(a.getModulePolynom() != b.getModulePolynom() || a.getModule() != b.getModule())
-                        throw std::out_of_range("модулярные многочлены должны быть равны");
+                        throw new Exception("РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅС‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°РІРЅС‹");
 
                 _modulePolynom = a._modulePolynom;
                 _module=a._module;
@@ -340,7 +340,7 @@ namespace AAL
                 return *this;
         }
 //**********************************************************************************************
-//******************************    Операция взятия противоположного элемента    ***************        
+//******************************    РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°    ***************        
         PolynomN6& PolynomN6::Negate()
         {
                 return Negate(*this);
@@ -360,7 +360,7 @@ namespace AAL
         }
 
 //**********************************************************************************************
-//******************************    Операция умножения   ***************************************
+//******************************    РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ   ***************************************
 
         PolynomN6 operator*(const PolynomN6 &a, const PolynomN6 &b)
         {
@@ -374,7 +374,7 @@ namespace AAL
 	PolynomN6& PolynomN6::Mul(PolynomN6 &a, PolynomN6 &b)
         {
                 if(a.getModulePolynom() != b.getModulePolynom() || a.getModule() != b.getModule())
-                        throw std::out_of_range("модулярные многочлены должны быть равны");
+                        throw new Exception("РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅС‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°РІРЅС‹");
 
                 _modulePolynom = a._modulePolynom;
                 _module = a._module;
@@ -383,7 +383,7 @@ namespace AAL
                 PolynomGF3 c6Coef, c7Coef,c8Coef, c9Coef, c10Coef, temp1, temp2,temp3,temp4,temp5,temp6,temp7,temp8,temp9,temp10;
                 PolynomGF3 module(_module),modulePolynom(_modulePolynom);
 
-                // умножение многочленов и приведение по модулю
+                // СѓРјРЅРѕР¶РµРЅРёРµ РјРЅРѕРіРѕС‡Р»РµРЅРѕРІ Рё РїСЂРёРІРµРґРµРЅРёРµ РїРѕ РјРѕРґСѓР»СЋ
                 _a1.ModMul(copy_a._a1, copy_b._a1, module);
                 temp1.ModMul(copy_a._a1, copy_b._a2, module);
                 temp2.ModMul(copy_a._a2, copy_b._a1, module);
@@ -448,7 +448,7 @@ namespace AAL
                 if(c10Coef.isZero() && c9Coef.isZero() && c8Coef.isZero()&&c7Coef.isZero()&&c6Coef.isZero())
                         return *this;
 
-                // редуцирование
+                // СЂРµРґСѓС†РёСЂРѕРІР°РЅРёРµ
                       //s-i-1
 
                 Polynom one("1");
@@ -525,11 +525,11 @@ namespace AAL
         }
 
 //**********************************************************************************************
-//******************************    Операция возведения в степень    ***************************        
+//******************************    РћРїРµСЂР°С†РёСЏ РІРѕР·РІРµРґРµРЅРёСЏ РІ СЃС‚РµРїРµРЅСЊ    ***************************        
         PolynomN6& PolynomN6::Pow(PolynomN6 &a, Integer &n)
         {
                 if(n.isNegative())
-			throw std::domain_error("Число n - отрицательное результат не определен");
+			throw std::domain_error("Р§РёСЃР»Рѕ n - РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРµ СЂРµР·СѓР»СЊС‚Р°С‚ РЅРµ РѕРїСЂРµРґРµР»РµРЅ");
 
                 _modulePolynom = a._modulePolynom;
                 _module=a._module;
@@ -550,12 +550,12 @@ namespace AAL
                 return *this;
         }
 //**********************************************************************************************
-//******************************    Операция взятия обратного элемента    **********************
+//******************************    РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РѕР±СЂР°С‚РЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°    **********************
         PolynomN6& PolynomN6::Inverse()
         {
                 return Inverse(*this);
         }
-        // алгоритм вычисления обратного элемента по т. ферма
+        // Р°Р»РіРѕСЂРёС‚Рј РІС‹С‡РёСЃР»РµРЅРёСЏ РѕР±СЂР°С‚РЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РїРѕ С‚. С„РµСЂРјР°
         PolynomN6& PolynomN6::Inverse(PolynomN6 &a)
         {
                 PolynomN6 copy_a(a);
@@ -566,7 +566,7 @@ namespace AAL
                 return Pow(copy_a, mulGroupOrderWithoutOne);
         }
 //**********************************************************************************************
-//******************************           Операции генерации             **********************
+//******************************           РћРїРµСЂР°С†РёРё РіРµРЅРµСЂР°С†РёРё             **********************
         PolynomN6& PolynomN6::Generate()
         {
                 _a1.Generate(getModule());
@@ -578,9 +578,9 @@ namespace AAL
                 return *this;
         }
 //**********************************************************************************************
-//******************************           Операции извлечения квадратного корня            **********************
+//******************************           РћРїРµСЂР°С†РёРё РёР·РІР»РµС‡РµРЅРёСЏ РєРІР°РґСЂР°С‚РЅРѕРіРѕ РєРѕСЂРЅСЏ            **********************
        PolynomN6& PolynomN6::Square(PolynomN6 &a)
-       { //не реализовано
+       { //РЅРµ СЂРµР°Р»РёР·РѕРІР°РЅРѕ
          return *this;
        }
 

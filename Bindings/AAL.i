@@ -11,7 +11,7 @@
    try {
       $action
    } catch (AAL::Exception* e) {
-      PyErr_SetString(PyExc_RuntimeError, const_cast<char*>(e->cp1251()));
+      PyErr_SetString(PyExc_RuntimeError, const_cast<char*>(e->what()));
       return NULL;
    } catch(...) { 
       PyErr_SetString(PyExc_RuntimeError, "Unknown Exception");

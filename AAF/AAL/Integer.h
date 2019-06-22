@@ -32,7 +32,7 @@ namespace AAL
 		bool _sign;
 
 
-	//Конструкторы
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	private:
 		Integer(bool sign, uint numberDigits, uint maximumDigits);
 	public:
@@ -41,27 +41,27 @@ namespace AAL
 		Integer(const int number);
 		Integer(const std::string dataString, NumericSystem system=Dec);
 
-	//Преобразование и считывание из сторк
+	//РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚РѕСЂРє
 	public:
 		Integer& Parse(const std::string dataString, NumericSystem system=Dec);
 		std::string ToString(NumericSystem system=Dec) const;
 		std::string strr() { return ToString(Dec); }
 
-	//Методы акцепторы
+	//РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	private:
-		//TODO: Продумать составление таблиц простых чисел меньше 2000!!! :-))
+		//TODO: РџСЂРѕРґСѓРјР°С‚СЊ СЃРѕСЃС‚Р°РІР»РµРЅРёРµ С‚Р°Р±Р»РёС† РїСЂРѕСЃС‚С‹С… С‡РёСЃРµР» РјРµРЅСЊС€Рµ 2000!!! :-))
 		bool DivTest() const;
 		int milerRabinParameter() const;
     bool MillerRabinTest();
-  //Методы тестирования простоты
+  //РњРµС‚РѕРґС‹ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ РїСЂРѕСЃС‚РѕС‚С‹
   public:
       bool TestLukaLemera(Integer degree);
       bool ModifiedTestLuka(std::vector<DecompositionMember> vector, Integer Mersen_Number);
       bool TestPoklingtona(std::vector<DecompositionMember> vector, Integer Mersen_Number);
-  //Получение разложения из базы
+  //РџРѕР»СѓС‡РµРЅРёРµ СЂР°Р·Р»РѕР¶РµРЅРёСЏ РёР· Р±Р°Р·С‹
   public:
      friend std::vector<DecompositionMember> GetDecomposition(Integer number, bool &composite);
- //Функция Эйлера
+ //Р¤СѓРЅРєС†РёСЏ Р­Р№Р»РµСЂР°
   Integer& Euler(std::vector<DecompositionMember> vector);
 
  	public:
@@ -78,7 +78,7 @@ namespace AAL
 		bool isPrime();
 		bool isGenerator(Integer & module, std::vector<DecompositionMember>& mulGroupOrdDecomposition) const;
 
-	//Унарные операции
+	//РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		Integer operator-() const;
 		Integer& Negate();
@@ -91,7 +91,7 @@ namespace AAL
 		Integer& operator--(int i);
 		Integer& operator= (const Integer& integer);
 
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
 		Integer Compare(const Integer& integer) const;
 		friend bool operator==(const Integer& a, const Integer& b);
@@ -101,7 +101,7 @@ namespace AAL
 		friend bool operator>(const Integer& a, const Integer& b);
 		friend bool operator>=(const Integer& a, const Integer& b);
 
-	//Логические операции
+	//Р›РѕРіРёС‡РµСЃРєРёРµ РѕРїРµСЂР°С†РёРё
 	private:
 		const Integer* Max(const Integer &a, const Integer &b, CompareIndicator ind);
 		const Integer* Min(const Integer &a, const Integer &b, CompareIndicator ind);
@@ -119,14 +119,14 @@ namespace AAL
 		friend Integer operator!(const Integer &integer);
 		Integer& Not(Integer &integer);
 
-	//Операции побитового сдвига
+	//РћРїРµСЂР°С†РёРё РїРѕР±РёС‚РѕРІРѕРіРѕ СЃРґРІРёРіР°
 	public:
 		Integer operator<<(int numberBits) const;
 		Integer& operator<<=(int numberBits);
 		Integer operator>>(int numberBits) const;
 		Integer& operator>>=(int numberBits);
 
-	//Операция сложения
+	//РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
 	private:
 		void AddImpl(const Integer *a, const Integer *b);
 	public:
@@ -136,7 +136,7 @@ namespace AAL
 		Integer& ModAdd(Integer &a, Integer &b, Integer &module);
   	Integer& ModAddInFp(Integer &a, Integer &b, Integer &module);
 
-	//Операция вычитания
+	//РћРїРµСЂР°С†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ
 	private:
 		void SubImpl(const Integer *a, const Integer *b);
 	public:
@@ -145,7 +145,7 @@ namespace AAL
 		Integer& Sub(Integer &a, Integer &b);
 		Integer& ModSub(Integer &a, Integer &b, Integer &module);
     Integer& SubInFp(Integer& a, Integer& b, Integer& module);
-	//Операция умножения
+	//РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ
 	private:
 		const Integer *Copy(const Integer &integer, Integer *integerNotEqual = NULL);
 		void DisposalCopy(const Integer &integer, Integer *integerNotEqual = NULL);
@@ -155,7 +155,7 @@ namespace AAL
 		Integer& Mul(const Integer &a, const Integer &b);
 		Integer& ModMul(Integer &a, Integer &b, Integer &module);
     Integer& MulInFp(Integer &a, Integer &b, Integer &module);
-	//Операция деление
+	//РћРїРµСЂР°С†РёСЏ РґРµР»РµРЅРёРµ
 	private:
 		void Div_by_SmallDivider(const Integer *a, const Integer *b, Integer *remainder);
 		void DivImpl(const Integer *a, const Integer *b, Integer *remainder);
@@ -165,26 +165,26 @@ namespace AAL
 		Integer& Div(Integer &a, Integer &b, Integer *remainder = NULL);
 		Integer& ModDiv(Integer &a, Integer &b, Integer &module, Integer *remainder = NULL);
     Integer& DivInFp(Integer &a, Integer &b, Integer &module, Integer *remainder);
-	//Операция приведения по модулю
+	//РћРїРµСЂР°С†РёСЏ РїСЂРёРІРµРґРµРЅРёСЏ РїРѕ РјРѕРґСѓР»СЋ
 	public:
 		friend Integer operator%(const Integer &a, const Integer &b);
 		Integer& operator%=(Integer &integer);
 		Integer& Mod(Integer &a, Integer &b);
 		Integer& ModPositive(Integer &module);
 
-	//Операция возведение в степень
+	//РћРїРµСЂР°С†РёСЏ РІРѕР·РІРµРґРµРЅРёРµ РІ СЃС‚РµРїРµРЅСЊ
 	private:
 		Integer& PowImpl(const Integer &a, const Integer &b, const Integer *module = NULL);
 	public:
 		Integer& Pow(const Integer &a, const Integer &b);
 		Integer& ModPow(const Integer &a, const Integer &b, const Integer &module);
     Integer& PowInFp(Integer &a, Integer &b, Integer &module);
-	//Операция извлечения квадратного корня
+	//РћРїРµСЂР°С†РёСЏ РёР·РІР»РµС‡РµРЅРёСЏ РєРІР°РґСЂР°С‚РЅРѕРіРѕ РєРѕСЂРЅСЏ
 	public:
 		Integer& Sqrt();
 		Integer& Sqrt(Integer &integer);
     Integer& SquareRoot(Integer &integer);
-	//Алгоритмы Евклида
+	//РђР»РіРѕСЂРёС‚РјС‹ Р•РІРєР»РёРґР°
 	private:
 		Integer &simpleExEuclid(Integer &i, Integer &x, Integer &y);
 		Integer *Copy(Integer &i, Integer &iNotEqual_a, Integer &iNotEqual_b);
@@ -194,9 +194,9 @@ namespace AAL
 		Integer& BinaryGCD(Integer &a, Integer &b);
 		Integer& ExEuclid(Integer &a, Integer &b, Integer &x, Integer &y);
     Integer& SCM(Integer &a, Integer &b);
-	//Генерация чисел
+	//Р“РµРЅРµСЂР°С†РёСЏ С‡РёСЃРµР»
 	public:
-		//TODO: сделать свой генератор см. Страуструп
+		//TODO: СЃРґРµР»Р°С‚СЊ СЃРІРѕР№ РіРµРЅРµСЂР°С‚РѕСЂ СЃРј. РЎС‚СЂР°СѓСЃС‚СЂСѓРї
 		Integer& Generate(AAL::uint numberBits);
 		Integer& Generate(const Integer& module);
 		Integer& GenerateOdd(AAL::uint numberBits);
@@ -205,12 +205,12 @@ namespace AAL
 		Integer& GeneratePrime(const Integer& module);
         Integer& GeneratePrime(const Integer& module,std::vector<DecompositionMember> vector);
         Integer& WrappingGenerate(Integer& forwrap, const Integer &module);
-	//Вычисление символов Якоби и Лежандра
+	//Р’С‹С‡РёСЃР»РµРЅРёРµ СЃРёРјРІРѕР»РѕРІ РЇРєРѕР±Рё Рё Р›РµР¶Р°РЅРґСЂР°
 	public:
 		int LegendreSymbol(Integer& module);
 		int JacobySymbol(Integer& n);
 
-	//Операции мультипликативной группы и поля
+	//РћРїРµСЂР°С†РёРё РјСѓР»СЊС‚РёРїР»РёРєР°С‚РёРІРЅРѕР№ РіСЂСѓРїРїС‹ Рё РїРѕР»СЏ
 	public:
 		bool InMulGroup(Integer &groupModule);
     bool InMulGroupInFp(Integer& groupModule);
@@ -218,7 +218,7 @@ namespace AAL
 		Integer& Inverse(Integer &integer, Integer &module);
     Integer& InverseInFp(Integer &integer, Integer &module);
 		Integer& ModSqrt(Integer &module);
-		//TODO: подрефакторить! :-))
+		//TODO: РїРѕРґСЂРµС„Р°РєС‚РѕСЂРёС‚СЊ! :-))
 		Integer& ModSqrt(Integer &integer, Integer &module);
     Integer& elementOrder(Integer &groupModule, Integer &num,std::vector<DecompositionMember> vector,const Integer &ord );
     bool isGenerator(Integer &groupModule, Integer &num,std::vector<DecompositionMember> vector, Integer &ord );

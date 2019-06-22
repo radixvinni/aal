@@ -11,7 +11,7 @@
 using namespace AAL;
 
 /*
-	Конструкторы класса IntegerBinom
+	РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ РєР»Р°СЃСЃР° IntegerBinom
 */
 TEST(IntegerBinom, EmptyConstructor)
 {
@@ -90,7 +90,7 @@ TEST(IntegerBinom, MainConstructor)
 
 
 
-//	Унарные операции класса IntegerBinom
+//	РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё РєР»Р°СЃСЃР° IntegerBinom
 
 
 TEST(IntegerBinom, operatorEqual)
@@ -104,7 +104,7 @@ TEST(IntegerBinom, operatorEqual)
 }
 
 
-//	Операции сложения
+//	РћРїРµСЂР°С†РёРё СЃР»РѕР¶РµРЅРёСЏ
 
 
 TEST(IntegerBinom, Add)

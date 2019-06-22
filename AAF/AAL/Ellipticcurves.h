@@ -23,7 +23,7 @@ namespace AAL
 		Integer *_a;
 		Integer *_b;
 
-	//Конструкторы
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
 		//default: y=x^3+x+b mod(5)
 		EllipticCurve();
@@ -33,7 +33,7 @@ namespace AAL
 		EllipticCurve(const EllipticCurve &eCurve);
 		~EllipticCurve();
 
-	//Методы акцепторы
+	//РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	private:
 		bool isSmooth(Integer &module, Integer &a, Integer &b) const;
 	public:
@@ -48,15 +48,15 @@ namespace AAL
 		EllipticCurve& setCurve(Integer &module, Integer &J);
 		EllipticCurve& setCurve(Integer &module);
 
-	//Унарные операции
+	//РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		EllipticCurve& operator=(const EllipticCurve &eCurve);
 
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
 		friend bool operator==(const EllipticCurve &eCurve1, const EllipticCurve &eCurve2);
 		friend bool operator!=(const EllipticCurve &eCurve1, const EllipticCurve &eCurve2);
-	//Принадлежность точки к кривой
+	//РџСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ С‚РѕС‡РєРё Рє РєСЂРёРІРѕР№
 	public:
 		bool inGroup(Integer &x, Integer &y) const;
 	};
@@ -69,14 +69,14 @@ namespace AAL
 		Integer *_y;
 		bool _infinite;
 
-	//Конструкторы
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
 		EllipticPoint();
 		EllipticPoint(const EllipticCurve &eCurve);
 		EllipticPoint(const EllipticPoint &ePoint);
 		~EllipticPoint();
 
-	//Методы акцепторы
+	//РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	public:
 		EllipticCurve& getCurve();
 		Integer& getX();
@@ -86,30 +86,30 @@ namespace AAL
 		bool isInfinite() const;
 		EllipticPoint& setInfinite(bool infinite);
 
-	//Унарные операции
+	//РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		EllipticPoint& operator=(const EllipticPoint &ePoint);
 
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
 		friend bool operator==(const EllipticPoint &ePoint1, const EllipticPoint &ePoint2);
 		friend bool operator!=(const EllipticPoint &ePoint1, const EllipticPoint &ePoint2);
 
-        //Операция взятия противоположной точки (-P)
+        //РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕР№ С‚РѕС‡РєРё (-P)
                 EllipticPoint& Negate();
 		EllipticPoint& Negate(EllipticPoint& ePoint);
-	//Операция сложение
+	//РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёРµ
 	public:
 		friend EllipticPoint operator+(EllipticPoint &ePoint1, EllipticPoint &ePoint2);
 		EllipticPoint& operator+=(EllipticPoint &ePoint1);
 		EllipticPoint& Add(EllipticPoint &ePoint1, EllipticPoint &ePoint2);
 
-	//Операция удвоения
+	//РћРїРµСЂР°С†РёСЏ СѓРґРІРѕРµРЅРёСЏ
 	public:
 		EllipticPoint& Double();
 		EllipticPoint& Double(EllipticPoint &e);
 
-	//Операция умножения на константу
+	//РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РЅР° РєРѕРЅСЃС‚Р°РЅС‚Сѓ
 	public:
 		friend EllipticPoint operator*(const EllipticPoint &ePoint, const Integer &i);
 		friend EllipticPoint operator*(const Integer &i, const EllipticPoint &ePoint);
@@ -117,7 +117,7 @@ namespace AAL
 		EllipticPoint& Mul(Integer &i, EllipticPoint &ePoint);
 		EllipticPoint& Mul(EllipticPoint &ePoint, Integer &i);
 
-	//Генерация точки
+	//Р“РµРЅРµСЂР°С†РёСЏ С‚РѕС‡РєРё
 		EllipticPoint& Generate();
 	};
 }

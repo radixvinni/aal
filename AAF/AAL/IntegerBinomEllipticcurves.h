@@ -13,22 +13,22 @@
 
 namespace AAL
 {
-        // Класс для представления эллиптической над GF(p^2) кривой вида Y^2 = X^3 + aX + b, где
-        // a, b принадлежат GF(p^2)
+        // РљР»Р°СЃСЃ РґР»СЏ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ СЌР»Р»РёРїС‚РёС‡РµСЃРєРѕР№ РЅР°Рґ GF(p^2) РєСЂРёРІРѕР№ РІРёРґР° Y^2 = X^3 + aX + b, РіРґРµ
+        // a, b РїСЂРёРЅР°РґР»РµР¶Р°С‚ GF(p^2)
         class IntegerBinomEllipticPoint;
         class IntegerBinomEllipticCurve
         {
         private:
                 IntegerBinom * _a;
                 IntegerBinom * _b;
-        // Конструкторы
+        // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
         public:
-                // default: TODO: заполнить
+                // default: TODO: Р·Р°РїРѕР»РЅРёС‚СЊ
                 IntegerBinomEllipticCurve();
                 IntegerBinomEllipticCurve(const IntegerBinom & a, const IntegerBinom & b);
                 IntegerBinomEllipticCurve(const IntegerBinomEllipticCurve & curve);
                 ~IntegerBinomEllipticCurve();
-        //Методы акцепторы
+        //РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	public:
 		const Integer& getModule() const;
                 const IntegerBinomModulePolynom& getModulePolynom() const;
@@ -38,43 +38,43 @@ namespace AAL
 		Integer& setA(Integer &a);
 		Integer& setB(Integer &b);
 		EllipticCurve& setCurve(Integer &module);*/
-        //Унарные операции
+        //РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		IntegerBinomEllipticCurve& operator=(const IntegerBinomEllipticCurve &eCurve);
-        //Операции сравнения
+        //РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
 		friend bool operator==(const IntegerBinomEllipticCurve &eCurve1, const IntegerBinomEllipticCurve &eCurve2);
 		friend bool operator!=(const IntegerBinomEllipticCurve &eCurve1, const IntegerBinomEllipticCurve &eCurve2);
-        //Принадлежность точки к кривой
+        //РџСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ С‚РѕС‡РєРё Рє РєСЂРёРІРѕР№
 	public:
 		bool inGroup(const IntegerBinom &x, const IntegerBinom &y) const;
         private:
                 IntegerBinom getLeftSide(const IntegerBinom &y) const;
                 IntegerBinom getRightSide(const IntegerBinom &x) const;
-        // создание групп точек кривой
+        // СЃРѕР·РґР°РЅРёРµ РіСЂСѓРїРї С‚РѕС‡РµРє РєСЂРёРІРѕР№
         private:
                 uint getMaxModuleForGroupCreation() const;
                 bool isGroupSmallEnoughForGroupCreation() const;
         public:
                 std::vector<IntegerBinomEllipticPoint> CreateGroup() const;
-        // создание групп точек n-кручения кривой
+        // СЃРѕР·РґР°РЅРёРµ РіСЂСѓРїРї С‚РѕС‡РµРє n-РєСЂСѓС‡РµРЅРёСЏ РєСЂРёРІРѕР№
         public:
                 std::vector<IntegerBinomEllipticPoint> CreateSpinningGroup(const Integer &n) const;
         private:
                 std::vector<IntegerBinomEllipticPoint> CreateSpinningGroup(const Integer &n, std::vector<IntegerBinomEllipticPoint> &group) const;
-        // создание группы n*EC(GF(p^2))
+        // СЃРѕР·РґР°РЅРёРµ РіСЂСѓРїРїС‹ n*EC(GF(p^2))
         public:
                 std::vector<IntegerBinomEllipticPoint> CreateMultipliedGroup(const Integer &n) const;
         private:
                 std::vector<IntegerBinomEllipticPoint> CreateMultipliedGroup(const Integer &n, std::vector<IntegerBinomEllipticPoint> &group) const;
                 bool isInMultitude(IntegerBinomEllipticPoint & point, std::vector<IntegerBinomEllipticPoint> &multitude) const;
-        // создание фактор группы EC(GF(p^2)) / n*EC(GF(p^2))
+        // СЃРѕР·РґР°РЅРёРµ С„Р°РєС‚РѕСЂ РіСЂСѓРїРїС‹ EC(GF(p^2)) / n*EC(GF(p^2))
         public:
                 std::vector<std::vector<IntegerBinomEllipticPoint> >  CreateFactorGroup(const Integer &n) const;
         private:
                 std::vector<std::vector<IntegerBinomEllipticPoint> >  CreateFactorGroup(const Integer &n, std::vector<IntegerBinomEllipticPoint> &group) const;
                 std::vector<IntegerBinomEllipticPoint> AddToMultitude(IntegerBinomEllipticPoint & point, std::vector<IntegerBinomEllipticPoint> & multitude) const;
-        // Операция работы со строками
+        // РћРїРµСЂР°С†РёСЏ СЂР°Р±РѕС‚С‹ СЃРѕ СЃС‚СЂРѕРєР°РјРё
         public:
                 static std::string MultitudeToTexString(std::vector<IntegerBinomEllipticPoint> & multitude);
                 static std::string FactorToTexString(std::vector<std::vector<IntegerBinomEllipticPoint> > & factor);
@@ -87,13 +87,13 @@ namespace AAL
 		IntegerBinom *_x;
 		IntegerBinom *_y;
 		bool _infinite;
-        //Конструкторы
+        //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
 		IntegerBinomEllipticPoint();
 		IntegerBinomEllipticPoint(const IntegerBinomEllipticCurve &eCurve);
 		IntegerBinomEllipticPoint(const IntegerBinomEllipticPoint &ePoint);
 		~IntegerBinomEllipticPoint();
-        //Методы акцепторы
+        //РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	public:
 		const IntegerBinomEllipticCurve& getCurve();
 		const IntegerBinom& getX();
@@ -103,42 +103,42 @@ namespace AAL
 		bool isInfinite() const;
 		IntegerBinomEllipticPoint& setInfinite(bool infinite);
                 bool isSelfnegative();
-        //Унарные операции
+        //РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		IntegerBinomEllipticPoint& operator=(const IntegerBinomEllipticPoint &ePoint);
 
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
 		friend bool operator==(const IntegerBinomEllipticPoint &ePoint1, const IntegerBinomEllipticPoint &ePoint2);
 		friend bool operator!=(const IntegerBinomEllipticPoint &ePoint1, const IntegerBinomEllipticPoint &ePoint2);
-        //Операция взятия противоположной точки (-P)
+        //РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕР№ С‚РѕС‡РєРё (-P)
         public:
                 IntegerBinomEllipticPoint& Negate();
 		IntegerBinomEllipticPoint& Negate(IntegerBinomEllipticPoint& ePoint);
-        //Операция сложение
+        //РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёРµ
 	public:
 		friend IntegerBinomEllipticPoint operator+(IntegerBinomEllipticPoint &ePoint1, IntegerBinomEllipticPoint &ePoint2);
 		IntegerBinomEllipticPoint& operator+=(IntegerBinomEllipticPoint &ePoint);
 		IntegerBinomEllipticPoint& Add(IntegerBinomEllipticPoint &ePoint1, IntegerBinomEllipticPoint &ePoint2);
-        //Операция удвоения
+        //РћРїРµСЂР°С†РёСЏ СѓРґРІРѕРµРЅРёСЏ
 	public:
 		IntegerBinomEllipticPoint& Double();
 		IntegerBinomEllipticPoint& Double(IntegerBinomEllipticPoint &e);
-        //Операция умножения на константу
+        //РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РЅР° РєРѕРЅСЃС‚Р°РЅС‚Сѓ
 	public:
 		IntegerBinomEllipticPoint& Mul(IntegerBinomEllipticPoint &ePoint, Integer &i);
-        //Операция нахождения порядка точки
+        //РћРїРµСЂР°С†РёСЏ РЅР°С…РѕР¶РґРµРЅРёСЏ РїРѕСЂСЏРґРєР° С‚РѕС‡РєРё
 	public:
 		Integer Order();
-        //Операция функции искажающего отображения ((x,0),(y,0)) => ((-x,0),(0,y))
+        //РћРїРµСЂР°С†РёСЏ С„СѓРЅРєС†РёРё РёСЃРєР°Р¶Р°СЋС‰РµРіРѕ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ ((x,0),(y,0)) => ((-x,0),(0,y))
 	public:
 		IntegerBinomEllipticPoint& Distortion();
                 IntegerBinomEllipticPoint& Distortion(IntegerBinomEllipticPoint& point);
-        //Операция генерации точки
+        //РћРїРµСЂР°С†РёСЏ РіРµРЅРµСЂР°С†РёРё С‚РѕС‡РєРё
 	public:
 		IntegerBinomEllipticPoint& Generate();
        // IntegerBinomEllipticPoint& WrapingGenerate(Integer& const xforwrap);
-        // Операция работы со строками
+        // РћРїРµСЂР°С†РёСЏ СЂР°Р±РѕС‚С‹ СЃРѕ СЃС‚СЂРѕРєР°РјРё
         public:
                 std::string ToString();
                 std::string ToTexString();

@@ -58,18 +58,18 @@ namespace AAL
 
             PolynomGF7 _module;
             PolynomGF7 _modPolynom;
-	//Конструкторы
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
 		PolynomGF7_mY_26();
 		PolynomGF7_mY_26(const PolynomGF7_mY_26 &polynom);
 		PolynomGF7_mY_26(const std::string a0, const std::string a1, const std::string a2, const std::string a3,  const std::string a4, const std::string a5, const std::string a6,const std::string a7, const std::string a8,const std::string a9, const std::string a10,const std::string a11, const std::string a12,const std::string a13, const std::string a14, const std::string a15, const std::string a16,  const std::string a17, const std::string a18, const std::string a19,const std::string a20, const std::string a21,const std::string a22, const std::string a23,const std::string a24, const std::string a25,const std::string module);
-	//Преобразование и считывание из строк
+	//РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚СЂРѕРє
 	public:
 /*		Polynom& Parse(const std::string dataString, PolynomSystem system=BackBin);
 		std::string ToString(PolynomSystem system=BackBin) const;
         std::string ToString(const std::string dataString);
 */
-	//Методы акцепторы
+	//РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	public:
 		PolynomGF7_mY_26& setOne();
 		PolynomGF7_mY_26& setPolynom(uchar);
@@ -141,27 +141,27 @@ namespace AAL
         const PolynomGF7& getModPolynom() const;
         void setModPolynom(const PolynomGF7& modPolynom);
         void setModule(const PolynomGF7& module);
-	//Унарные операции
+	//РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		PolynomGF7_mY_26& operator= (const PolynomGF7_mY_26& polynom);
 
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
 		friend bool operator==(const PolynomGF7_mY_26& a, const PolynomGF7_mY_26& b);
 		friend bool operator!=(const PolynomGF7_mY_26& a, const PolynomGF7_mY_26& b);
 
-	//Операция сложения
+	//РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
 	public:
 	 	friend PolynomGF7_mY_26 operator+(const PolynomGF7_mY_26 &a, const PolynomGF7_mY_26 &b);
 		PolynomGF7_mY_26& operator+=(PolynomGF7_mY_26 &polynom);
 		PolynomGF7_mY_26& Add(PolynomGF7_mY_26 &a, PolynomGF7_mY_26 &b);
-    //Операция умножения
+    //РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ
 	public:
         PolynomGF7_mY_26& Mul(PolynomGF7_m14 &a, PolynomGF7_m14 &b);
         PolynomGF7_mY_26& FullMul(PolynomGF7_mY_26 &a, PolynomGF7_mY_26 &b);
         PolynomGF7_mY_26& MonomialMul(PolynomGF7_mY_26 &a, PolynomGF7_m14 &b);
         PolynomGF7_mY_26& NormalMonomialMul(PolynomGF7_mY_26 &a, int d);
-    //Деление с остатком
+    //Р”РµР»РµРЅРёРµ СЃ РѕСЃС‚Р°С‚РєРѕРј
         PolynomGF7_mY_26& Div(PolynomGF7_mY_26 &a, PolynomGF7_mY_26 &b, PolynomGF7 &module, PolynomGF7_mY_26 *remainder);
         PolynomGF7_mY_26& GCD(PolynomGF7_mY_26 &a, PolynomGF7_mY_26 &b, PolynomGF7 &module);
 

@@ -24,18 +24,18 @@
 
 namespace AAL
 {
-//****************************  Класс Эллиптических кривых над GF(2^n)   *******
+//****************************  РљР»Р°СЃСЃ Р­Р»Р»РёРїС‚РёС‡РµСЃРєРёС… РєСЂРёРІС‹С… РЅР°Рґ GF(2^n)   *******
         EllipticCurveGF2::~EllipticCurveGF2()
         {
-                // должен быть пустой
+                // РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РїСѓСЃС‚РѕР№
         }
-//*****************************        Методы акцепторы        **********************************
+//*****************************        РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹        **********************************
         Polynom& EllipticCurveGF2::getModule() const
         {
                 return *_module;
         }
 //***********************************************************************************************
-//********************************      Операции сравнения      *********************************
+//********************************      РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ      *********************************
         bool operator==(const EllipticCurveGF2 &eCurve1, const EllipticCurveGF2 &eCurve2)
         {
                  return eCurve1.equals(eCurve2);
@@ -44,8 +44,8 @@ namespace AAL
         {
                 return !eCurve1.equals(eCurve2);
         }
-//****************************  Класс Суперсингулярных Эллиптических кривых над GF(2^n)   *******
-//*********************************      Конструкторы       *************************************
+//****************************  РљР»Р°СЃСЃ РЎСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅС‹С… Р­Р»Р»РёРїС‚РёС‡РµСЃРєРёС… РєСЂРёРІС‹С… РЅР°Рґ GF(2^n)   *******
+//*********************************      РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹       *************************************
         SuperSingularEllipticCurve::SuperSingularEllipticCurve()
         {
                 _module = new Polynom("1101");
@@ -56,9 +56,9 @@ namespace AAL
         SuperSingularEllipticCurve::SuperSingularEllipticCurve(Polynom &module, Polynom &a3, Polynom &a4, Polynom &a6)
         {
                 if(a3.isZero())
-                        throw new Exception("Коэффициент a3 не может быть равен 0");
+                        throw new Exception("РљРѕСЌС„С„РёС†РёРµРЅС‚ a3 РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ СЂР°РІРµРЅ 0");
                 if(!module.isIrreducible())
-            throw  new Exception("Модуль является приводимым многочленом");
+            throw  new Exception("РњРѕРґСѓР»СЊ СЏРІР»СЏРµС‚СЃСЏ РїСЂРёРІРѕРґРёРјС‹Рј РјРЅРѕРіРѕС‡Р»РµРЅРѕРј");
 
         _module = new Polynom(module);
         _a3 = new Polynom(a3);
@@ -77,7 +77,7 @@ namespace AAL
                 delete _module, _a3, _a4, _a6;
         }
 //***********************************************************************************************
-//*****************************        Методы акцепторы        **********************************
+//*****************************        РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹        **********************************
         Polynom& SuperSingularEllipticCurve::getA3() const
         {
             return *_a3;
@@ -93,11 +93,11 @@ namespace AAL
         Polynom& SuperSingularEllipticCurve::setModule(const Polynom &module)
         {
                 if(!module.isIrreducible())
-            throw new Exception("Модуль является приводимым многочленом");
+            throw new Exception("РњРѕРґСѓР»СЊ СЏРІР»СЏРµС‚СЃСЏ РїСЂРёРІРѕРґРёРјС‹Рј РјРЅРѕРіРѕС‡Р»РµРЅРѕРј");
                 Polynom a3;
                 a3.Mod(*_a3, module);
                 if(a3.isZero())
-                        throw new Exception("Коэффициент a3 не может быть равен 0");
+                        throw new Exception("РљРѕСЌС„С„РёС†РёРµРЅС‚ a3 РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ СЂР°РІРµРЅ 0");
         *_module = module;
         _a3->Mod(*_module);
         _a4->Mod(*_module);
@@ -107,7 +107,7 @@ namespace AAL
         Polynom& SuperSingularEllipticCurve::setA3(Polynom &a3)
         {
                 if(a3.isZero())
-                        throw new Exception("Коэффициент a3 не может быть равен 0");
+                        throw new Exception("РљРѕСЌС„С„РёС†РёРµРЅС‚ a3 РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ СЂР°РІРµРЅ 0");
                 *_a3 = a3;
         _a3->Mod(*_module);
         return *_a3;
@@ -135,7 +135,7 @@ namespace AAL
 //***********************************************************************************************
 
 
- //***************************       Вычисление порядка кривой   *********************************
+ //***************************       Р’С‹С‡РёСЃР»РµРЅРёРµ РїРѕСЂСЏРґРєР° РєСЂРёРІРѕР№   *********************************
 
         Integer& SuperSingularEllipticCurve::getOrd(int step)
         {
@@ -204,7 +204,7 @@ namespace AAL
 
               if(powers.size()!=5 && powers.size()!=3 )
                            {
-                                      throw new Exception("Модуль не является полиномом третьей или пятой степени");
+                                      throw new Exception("РњРѕРґСѓР»СЊ РЅРµ СЏРІР»СЏРµС‚СЃСЏ РїРѕР»РёРЅРѕРјРѕРј С‚СЂРµС‚СЊРµР№ РёР»Рё РїСЏС‚РѕР№ СЃС‚РµРїРµРЅРё");
                                       return Integer("0");
 
                             }
@@ -244,8 +244,8 @@ namespace AAL
               if (!FileExists("schoof2.exe"))
                         {
 
-                                //throw std::domain_error("Не найден файл schoof.exe!");
-                                throw new Exception("Не найден файл schoof2.exe");
+                                //throw std::domain_error("РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» schoof.exe!");
+                                throw new Exception("РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» schoof2.exe");
                                 return Integer("0");
                         };
 #endif
@@ -267,8 +267,8 @@ namespace AAL
 
                 if (J.isZero()  || J==1728 )
                         {
-                                //throw std::domain_error("Инвариант равен 0");
-                                MessageBoxA(NULL,"Инвариант кривой равен 0 или 1728","Ошибка!",MB_OK | MB_ICONERROR | MB_APPLMODAL);
+                                //throw std::domain_error("РРЅРІР°СЂРёР°РЅС‚ СЂР°РІРµРЅ 0");
+                                MessageBoxA(NULL,"РРЅРІР°СЂРёР°РЅС‚ РєСЂРёРІРѕР№ СЂР°РІРµРЅ 0 РёР»Рё 1728","РћС€РёР±РєР°!",MB_OK | MB_ICONERROR | MB_APPLMODAL);
                                 return Integer("0");
 
                         }; */
@@ -300,10 +300,10 @@ namespace AAL
                                 &StInfo,
                                 &PrInfo))
                         {
-                                MessageBoxA(NULL,"Невозможно запустить schoof2.exe","Ошибка!",MB_OK | MB_ICONERROR | MB_APPLMODAL);
+                                MessageBoxA(NULL,"РќРµРІРѕР·РјРѕР¶РЅРѕ Р·Р°РїСѓСЃС‚РёС‚СЊ schoof2.exe","РћС€РёР±РєР°!",MB_OK | MB_ICONERROR | MB_APPLMODAL);
                                 return Integer("0") ;
                         }
-  // Ждём, пока процесс не выполнится:
+  // Р–РґС‘Рј, РїРѕРєР° РїСЂРѕС†РµСЃСЃ РЅРµ РІС‹РїРѕР»РЅРёС‚СЃСЏ:
                                 WaitForSingleObject(PrInfo.hProcess,INFINITE);
 #else
                             //ref:shoof2_main
@@ -350,12 +350,12 @@ namespace AAL
                         }
                 catch(...)
                         {
-                                 throw new Exception("Невозможно прочитать curveorder.log ");
+                                 throw new Exception("РќРµРІРѕР·РјРѕР¶РЅРѕ РїСЂРѕС‡РёС‚Р°С‚СЊ curveorder.log ");
                                  return Integer("0");
                         }
                 if (result.size()<9)
                         {
-                                throw new Exception("Операция отменена пользователем");
+                                throw new Exception("РћРїРµСЂР°С†РёСЏ РѕС‚РјРµРЅРµРЅР° РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј");
                                 return Integer("0");
 
                         }
@@ -380,7 +380,7 @@ namespace AAL
 
 
 
-//***************************          Унарные операции         *********************************
+//***************************          РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё         *********************************
         SuperSingularEllipticCurve& SuperSingularEllipticCurve::operator=(const SuperSingularEllipticCurve &eCurve)
         {
                 *_module = *eCurve._module;
@@ -391,7 +391,7 @@ namespace AAL
         }
 
 //***********************************************************************************************
-//********************************      Операции сравнения      *********************************
+//********************************      РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ      *********************************
         bool SuperSingularEllipticCurve::equals(const EllipticCurveGF2 &eCurve) const
         {
                 const SuperSingularEllipticCurve * pECurve = dynamic_cast<const SuperSingularEllipticCurve *>(&eCurve);
@@ -400,7 +400,7 @@ namespace AAL
                 && *this->_a6 == *pECurve->_a6);
         }
 //***********************************************************************************************
-//*************************        Принадлежность точки к кривой      ***************************
+//*************************        РџСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ С‚РѕС‡РєРё Рє РєСЂРёРІРѕР№      ***************************
     bool SuperSingularEllipticCurve::inGroup(Polynom &x, Polynom &y) const
         {
                 Polynom temp1;
@@ -413,7 +413,7 @@ namespace AAL
                 return (temp2 == temp1);
         }
 //***********************************************************************************************
-//*************************        Вычисление правой части уравнения      ***********************
+//*************************        Р’С‹С‡РёСЃР»РµРЅРёРµ РїСЂР°РІРѕР№ С‡Р°СЃС‚Рё СѓСЂР°РІРЅРµРЅРёСЏ      ***********************
         Polynom SuperSingularEllipticCurve::rightSide(Polynom &x) const
         {
                 Polynom temp1;
@@ -426,7 +426,7 @@ namespace AAL
                 return temp1;
         }
 //***********************************************************************************************
-//*************************   Проверка на существование Y для данного X   ***********************
+//*************************   РџСЂРѕРІРµСЂРєР° РЅР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ Y РґР»СЏ РґР°РЅРЅРѕРіРѕ X   ***********************
         bool SuperSingularEllipticCurve::hasY(Polynom &x) const
         {
                 if(x.isZero())
@@ -436,13 +436,13 @@ namespace AAL
                 return right.isZero() || temp.Trace(right, getModule()).isZero();
         }
 //***********************************************************************************************
-//****************************  Класс точки Эллиптических кривых над GF(2^n)   *******
-//********************************      Конструкторы       **************************************
+//****************************  РљР»Р°СЃСЃ С‚РѕС‡РєРё Р­Р»Р»РёРїС‚РёС‡РµСЃРєРёС… РєСЂРёРІС‹С… РЅР°Рґ GF(2^n)   *******
+//********************************      РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹       **************************************
         EllipticPointGF2::~EllipticPointGF2()
         {
-                // должен быть пустой
+                // РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РїСѓСЃС‚РѕР№
         }
-//****************************       Методы акцепторы        ************************************
+//****************************       РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹        ************************************
         EllipticCurveGF2& EllipticPointGF2::getCurve()
         {
                 return *_curve;
@@ -450,12 +450,12 @@ namespace AAL
     Polynom& EllipticPointGF2::getX()
         {
                  if(!isInfinite()) return *_x;
-                 throw new Exception("Точка на бесконечности");
+                 throw new Exception("РўРѕС‡РєР° РЅР° Р±РµСЃРєРѕРЅРµС‡РЅРѕСЃС‚Рё");
         }
     Polynom& EllipticPointGF2::getY()
         {
                 if(!isInfinite()) return *_y;
-                throw new Exception("Точка на бесконечности");
+                throw new Exception("РўРѕС‡РєР° РЅР° Р±РµСЃРєРѕРЅРµС‡РЅРѕСЃС‚Рё");
         }
         EllipticPointGF2& EllipticPointGF2::setXY(Polynom &x, Polynom &y)
         {
@@ -468,7 +468,7 @@ namespace AAL
                 if(!_curve->inGroup(*_x, *_y))
                 {
                 _infinite = infinite;
-            throw new Exception("Точка не лежит на кривой");
+            throw new Exception("РўРѕС‡РєР° РЅРµ Р»РµР¶РёС‚ РЅР° РєСЂРёРІРѕР№");
                 }
                 return *this;
         }
@@ -481,7 +481,7 @@ namespace AAL
                 _infinite = infinite;
         return *this;
         }
-//*********************************       Операции сравнения        *****************************
+//*********************************       РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ        *****************************
     bool operator==(const EllipticPointGF2 &ePoint1, const EllipticPointGF2 &ePoint2)
         {
                 if(ePoint1._curve->isSuperSingular() != ePoint2._curve->isSuperSingular())
@@ -498,43 +498,43 @@ namespace AAL
                 return !(ePoint1 == ePoint2);
         }
 //***********************************************************************************************
-//**************************   Операция взятия противоположной точки   **************************
+//**************************   РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕР№ С‚РѕС‡РєРё   **************************
         EllipticPointGF2& EllipticPointGF2::Negate()
         {
                 return Negate(*this);
         }
 //***********************************************************************************************
-//*****************************        Операция сложение        *********************************
+//*****************************        РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёРµ        *********************************
         EllipticPointGF2& EllipticPointGF2::operator+=(EllipticPointGF2 &ePoint)
         {
                 return Add(*this, ePoint);
         }
 //***********************************************************************************************
-//******************************      Операция удвоения       ***********************************
+//******************************      РћРїРµСЂР°С†РёСЏ СѓРґРІРѕРµРЅРёСЏ       ***********************************
     EllipticPointGF2& EllipticPointGF2::Double()
         {
                 return this->Double(*this);
         }
 //***********************************************************************************************
-//**************************    Операция умножения на константу    ******************************
+//**************************    РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РЅР° РєРѕРЅСЃС‚Р°РЅС‚Сѓ    ******************************
     EllipticPointGF2& EllipticPointGF2::operator*=(Integer &i)
     {
         return Mul(*this, i);
     }
 //***********************************************************************************************
-//*********************************    Генерация точки    ***************************************
+//*********************************    Р“РµРЅРµСЂР°С†РёСЏ С‚РѕС‡РєРё    ***************************************
         EllipticPointGF2& EllipticPointGF2::Generate()
         {
                 return GenerateImpl();
         }
 //***********************************************************************************************
-//**************************    Генерация точки  с упаковкой данных *****************************
+//**************************    Р“РµРЅРµСЂР°С†РёСЏ С‚РѕС‡РєРё  СЃ СѓРїР°РєРѕРІРєРѕР№ РґР°РЅРЅС‹С… *****************************
         EllipticPointGF2& EllipticPointGF2::WrappingGenerate(const Polynom & xforwrap)
         {
                 return GenerateImpl(&xforwrap);
         }
 
-        Polynom EllipticPointGF2::findYOddCase(const Polynom & right) // решение уравнения Y^2 + Y = right, n = 2k+1
+        Polynom EllipticPointGF2::findYOddCase(const Polynom & right) // СЂРµС€РµРЅРёРµ СѓСЂР°РІРЅРµРЅРёСЏ Y^2 + Y = right, n = 2k+1
         {
                 Polynom result(right), temp(right);
                 uint n = _curve->getModule().getNumberBits()-1;
@@ -548,11 +548,11 @@ namespace AAL
                 }
                 return result;
         }
-        Polynom EllipticPointGF2::findYEvenCase(const Polynom & right) // решение уравнения Y^2 + Y = right, n = 2k
+        Polynom EllipticPointGF2::findYEvenCase(const Polynom & right) // СЂРµС€РµРЅРёРµ СѓСЂР°РІРЅРµРЅРёСЏ Y^2 + Y = right, n = 2k
         {
                 Matrix T(createGenerationMatrix());
                 Polynom result(T.SolveLinearEquationSystem(T, right));
-                // Сдвиг влево на 1 бит, т.к. y0 = 1 и 0
+                // РЎРґРІРёРі РІР»РµРІРѕ РЅР° 1 Р±РёС‚, С‚.Рє. y0 = 1 Рё 0
                 result <<= 1;
                 return result;
         }
@@ -562,7 +562,7 @@ namespace AAL
                 Polynom x("01"), x_square("001"), res;
                 AAL::Integer two("2");
 
-                // сотавление матрицы x^i + (x^i)^2 (mod m(x)), i = 1,..., deg(m(x)) - 1; deg(m(x)) = n
+                // СЃРѕС‚Р°РІР»РµРЅРёРµ РјР°С‚СЂРёС†С‹ x^i + (x^i)^2 (mod m(x)), i = 1,..., deg(m(x)) - 1; deg(m(x)) = n
                 uint n = getCurve().getModule().getNumberBits() - 1;
                 for(uint i = 1; i < n; i++)
                 {
@@ -858,8 +858,8 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
 }
 
 //***********************************************************************************************
-//*******************  Класс точка суперсингулярной эллиптичиской кривой над GF(2^n)   **********
-//********************************      Конструкторы       **************************************
+//*******************  РљР»Р°СЃСЃ С‚РѕС‡РєР° СЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅРѕР№ СЌР»Р»РёРїС‚РёС‡РёСЃРєРѕР№ РєСЂРёРІРѕР№ РЅР°Рґ GF(2^n)   **********
+//********************************      РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹       **************************************
         SuperSingularEllipticPoint::SuperSingularEllipticPoint()
         {
                 _curve = new SuperSingularEllipticCurve();
@@ -886,11 +886,11 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 delete _curve, _x, _y;
         }
 //***********************************************************************************************
-//****************************       Методы акцепторы        ************************************
+//****************************       РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹        ************************************
         SuperSingularEllipticCurve& SuperSingularEllipticPoint::setCurve(EllipticCurveGF2 &eCurve)
         {
                 if(!eCurve.isSuperSingular())
-                        throw new Exception("Кривая не суперсингулярна");
+                        throw new Exception("РљСЂРёРІР°СЏ РЅРµ СЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅР°");
                 //dynamic_cast<SuperSingularEllipticCurve &>(*_curve) = eCurve;
                 SuperSingularEllipticCurve & _curveref = dynamic_cast<SuperSingularEllipticCurve &>(*_curve);
                 _curveref = dynamic_cast<SuperSingularEllipticCurve &>(eCurve);
@@ -908,7 +908,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
 
 
 //***********************************************************************************************
-//****************************         Унарные операции          ********************************
+//****************************         РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё          ********************************
     SuperSingularEllipticPoint& SuperSingularEllipticPoint::operator=(const SuperSingularEllipticPoint &ePoint)
         {
                 dynamic_cast<SuperSingularEllipticCurve &>(*_curve) = dynamic_cast<SuperSingularEllipticCurve &>(*ePoint._curve);
@@ -918,7 +918,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         return *this;
         }
 //***********************************************************************************************
-//**************************   Операция взятия противоположной точки   **************************
+//**************************   РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕР№ С‚РѕС‡РєРё   **************************
         EllipticPointGF2& SuperSingularEllipticPoint::Negate()
         {
                 return EllipticPointGF2::Negate();
@@ -926,7 +926,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         EllipticPointGF2& SuperSingularEllipticPoint::Negate(EllipticPointGF2& ePoint)
         {
                 if(!ePoint._curve->isSuperSingular())
-                        throw new Exception("Не все точки лежат на суперсингулярных кривых");// TODO: поменять
+                        throw new Exception("РќРµ РІСЃРµ С‚РѕС‡РєРё Р»РµР¶Р°С‚ РЅР° СЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅС‹С… РєСЂРёРІС‹С…");// TODO: РїРѕРјРµРЅСЏС‚СЊ
                 if(ePoint.isInfinite())
                         return setInfinite(true);
                 this->setInfinite(false);
@@ -938,7 +938,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 return *this;
         }
 //***********************************************************************************************
-//*****************************        Операция сложение        *********************************
+//*****************************        РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёРµ        *********************************
         /*SuperSingularEllipticPoint operator+(SuperSingularEllipticPoint &ePoint1, SuperSingularEllipticPoint &ePoint2)
         {
                 SuperSingularEllipticPoint res;
@@ -947,9 +947,9 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
     EllipticPointGF2& SuperSingularEllipticPoint::Add(EllipticPointGF2 &ePoint1, EllipticPointGF2 &ePoint2)
         {
                 if(!(ePoint1._curve->isSuperSingular() && ePoint2._curve->isSuperSingular()))
-                        throw  new Exception("Не все точки лежат на суперсингулярных кривых");// TODO: поменять
+                        throw  new Exception("РќРµ РІСЃРµ С‚РѕС‡РєРё Р»РµР¶Р°С‚ РЅР° СЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅС‹С… РєСЂРёРІС‹С…");// TODO: РїРѕРјРµРЅСЏС‚СЊ
                 if(*ePoint1._curve != *ePoint2._curve)
-            throw new Exception("Точки лежат на разных кривых");
+            throw new Exception("РўРѕС‡РєРё Р»РµР¶Р°С‚ РЅР° СЂР°Р·РЅС‹С… РєСЂРёРІС‹С…");
 
         if(ePoint1.isInfinite() && ePoint2.isInfinite())
             return setInfinite(true);
@@ -1013,7 +1013,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         return *this;
         }
 //***********************************************************************************************
-//******************************      Операция удвоения       ***********************************
+//******************************      РћРїРµСЂР°С†РёСЏ СѓРґРІРѕРµРЅРёСЏ       ***********************************
         EllipticPointGF2& SuperSingularEllipticPoint::Double()
         {
                 return EllipticPointGF2::Double();
@@ -1021,7 +1021,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
     EllipticPointGF2& SuperSingularEllipticPoint::Double(EllipticPointGF2 &ePoint)
         {
                 if(!ePoint._curve->isSuperSingular())
-                        throw  new Exception("Точка лежит на суперсингулярной кривой");// TODO: поменять
+                        throw  new Exception("РўРѕС‡РєР° Р»РµР¶РёС‚ РЅР° СЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅРѕР№ РєСЂРёРІРѕР№");// TODO: РїРѕРјРµРЅСЏС‚СЊ
 
         if(ePoint.isInfinite())
             return setInfinite(true);
@@ -1052,7 +1052,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         }
 
 //***********************************************************************************************
-//**************************    Операция умножения на константу    ******************************
+//**************************    РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РЅР° РєРѕРЅСЃС‚Р°РЅС‚Сѓ    ******************************
     /*SuperSingularEllipticPoint operator*(const SuperSingularEllipticPoint &ePoint, const Integer &i)
     {
         SuperSingularEllipticPoint res, copy_ePoint(ePoint);
@@ -1078,7 +1078,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         EllipticPointGF2& SuperSingularEllipticPoint::Mul(EllipticPointGF2 &ePoint, const Integer &integer)
         {
                 if(!ePoint._curve->isSuperSingular())
-                        throw new Exception("Точка лежит на суперсингулярной кривой");// TODO: поменять
+                        throw new Exception("РўРѕС‡РєР° Р»РµР¶РёС‚ РЅР° СЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅРѕР№ РєСЂРёРІРѕР№");// TODO: РїРѕРјРµРЅСЏС‚СЊ
 
         if(ePoint.isInfinite() || integer.isZero())
                 {
@@ -1104,15 +1104,15 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         return *this;
         }
 //***********************************************************************************************
-//**************************    Генерация точки                    ******************************
+//**************************    Р“РµРЅРµСЂР°С†РёСЏ С‚РѕС‡РєРё                    ******************************
         SuperSingularEllipticPoint& SuperSingularEllipticPoint::GenerateImpl(const Polynom * xforwrap)
         {
         if(!dynamic_cast<SuperSingularEllipticCurve *>(_curve)->getA3().isOne())
-                        throw new Exception("Коэффициент a3 не равен 1");
+                        throw new Exception("РљРѕСЌС„С„РёС†РёРµРЅС‚ a3 РЅРµ СЂР°РІРµРЅ 1");
 
                 if(xforwrap != NULL)
                         if(getCurve().getModule().getNumberBits() - xforwrap->getNumberBits() < 4)
-                                throw new Exception("В размещаемой информации должно быть на 4 бита меньше чем в модуле");
+                                throw new Exception("Р’ СЂР°Р·РјРµС‰Р°РµРјРѕР№ РёРЅС„РѕСЂРјР°С†РёРё РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РЅР° 4 Р±РёС‚Р° РјРµРЅСЊС€Рµ С‡РµРј РІ РјРѕРґСѓР»Рµ");
 
                 uint n = _curve->getModule().getNumberBits()-1;
 
@@ -1141,8 +1141,8 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
 //-----------------------------------------------------------------------------------
 
 //***********************************************************************************************
-//****************************  Класс НЕСуперсингулярных Эллиптических кривых над GF(2^n)   *******
-//*********************************      Конструкторы       *************************************
+//****************************  РљР»Р°СЃСЃ РќР•РЎСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅС‹С… Р­Р»Р»РёРїС‚РёС‡РµСЃРєРёС… РєСЂРёРІС‹С… РЅР°Рґ GF(2^n)   *******
+//*********************************      РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹       *************************************
         NonSuperSingularEllipticCurve::NonSuperSingularEllipticCurve()
         {
                 _module = new Polynom("1101");
@@ -1152,7 +1152,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         NonSuperSingularEllipticCurve::NonSuperSingularEllipticCurve(Polynom &module, Polynom &a2, Polynom &a6)
         {
                 if(!module.isIrreducible())
-            throw  new Exception("Модуль является приводимым многочленом");
+            throw  new Exception("РњРѕРґСѓР»СЊ СЏРІР»СЏРµС‚СЃСЏ РїСЂРёРІРѕРґРёРјС‹Рј РјРЅРѕРіРѕС‡Р»РµРЅРѕРј");
 
         _module = new Polynom(module);
             _a2 = new Polynom(a2);
@@ -1169,7 +1169,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 delete _module, _a2, _a6;
         }
 //***********************************************************************************************
-//*****************************        Методы акцепторы        **********************************
+//*****************************        РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹        **********************************
         Polynom& NonSuperSingularEllipticCurve::getA2() const
         {
             return *_a2;
@@ -1181,7 +1181,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         Polynom& NonSuperSingularEllipticCurve::setModule(const Polynom &module)
         {
                 if(!module.isIrreducible())
-            throw new Exception("Модуль является приводимым многочленом");
+            throw new Exception("РњРѕРґСѓР»СЊ СЏРІР»СЏРµС‚СЃСЏ РїСЂРёРІРѕРґРёРјС‹Рј РјРЅРѕРіРѕС‡Р»РµРЅРѕРј");
         *_module = module;
         _a2->Mod(*_module);
                 _a6->Mod(*_module);
@@ -1208,7 +1208,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 return !isSuperSingular();
         }
 //***********************************************************************************************
-//***************************          Унарные операции         *********************************
+//***************************          РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё         *********************************
         NonSuperSingularEllipticCurve& NonSuperSingularEllipticCurve::operator=(const NonSuperSingularEllipticCurve &eCurve)
         {
                 *_module = *eCurve._module;
@@ -1217,7 +1217,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         return *this;
         }
 //***********************************************************************************************
-//********************************      Операции сравнения      *********************************
+//********************************      РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ      *********************************
         bool NonSuperSingularEllipticCurve::equals(const EllipticCurveGF2 &eCurve) const
         {
                 const NonSuperSingularEllipticCurve * pECurve = dynamic_cast<const NonSuperSingularEllipticCurve *>(&eCurve);
@@ -1225,7 +1225,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 (*this->_module == *pECurve->_module && *this->_a2 == *pECurve->_a2 && *this->_a6 == *pECurve->_a6);
         }
 //***********************************************************************************************
-//*************************        Принадлежность точки к кривой      ***************************
+//*************************        РџСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ С‚РѕС‡РєРё Рє РєСЂРёРІРѕР№      ***************************
     bool NonSuperSingularEllipticCurve::inGroup(Polynom &x, Polynom &y) const
         {
                 Polynom temp1;
@@ -1238,7 +1238,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 return (temp2 == temp1);
         }
 //***********************************************************************************************
-//*************************        Вычисление правой части уравнения      ***********************
+//*************************        Р’С‹С‡РёСЃР»РµРЅРёРµ РїСЂР°РІРѕР№ С‡Р°СЃС‚Рё СѓСЂР°РІРЅРµРЅРёСЏ      ***********************
         Polynom NonSuperSingularEllipticCurve::rightSide(Polynom &x) const
         {
                 Polynom temp1;
@@ -1252,7 +1252,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 return temp1;
         }
 //***********************************************************************************************
-//*************************   Проверка на существование Y для данного X   ***********************
+//*************************   РџСЂРѕРІРµСЂРєР° РЅР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ Y РґР»СЏ РґР°РЅРЅРѕРіРѕ X   ***********************
         bool NonSuperSingularEllipticCurve::hasY(Polynom &x) const
         {
                 if(x.isZero())
@@ -1273,8 +1273,8 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 return ixSquare;
         }
 //***********************************************************************************************
-//*******************  Класс точка НЕсуперсингулярной эллиптичиской кривой над GF(2^n)   **********
-//********************************      Конструкторы       **************************************
+//*******************  РљР»Р°СЃСЃ С‚РѕС‡РєР° РќР•СЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅРѕР№ СЌР»Р»РёРїС‚РёС‡РёСЃРєРѕР№ РєСЂРёРІРѕР№ РЅР°Рґ GF(2^n)   **********
+//********************************      РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹       **************************************
         NonSuperSingularEllipticPoint::NonSuperSingularEllipticPoint()
         {
                 _curve = new NonSuperSingularEllipticCurve();
@@ -1301,11 +1301,11 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 delete _curve, _x, _y;
         }
 //***********************************************************************************************
-//****************************       Методы акцепторы        ************************************
+//****************************       РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹        ************************************
         NonSuperSingularEllipticCurve& NonSuperSingularEllipticPoint::setCurve(EllipticCurveGF2 &eCurve)
         {
                 if(!eCurve.isNonSuperSingular())
-                        throw new Exception("Кривая не несуперсингулярна");
+                        throw new Exception("РљСЂРёРІР°СЏ РЅРµ РЅРµСЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅР°");
 
                 NonSuperSingularEllipticCurve & _curveref = dynamic_cast<NonSuperSingularEllipticCurve &>(*_curve);
                 _curveref = dynamic_cast<NonSuperSingularEllipticCurve &>(eCurve);
@@ -1319,7 +1319,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 return _curveref;
         }
 //***********************************************************************************************
-//****************************         Унарные операции          ********************************
+//****************************         РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё          ********************************
     NonSuperSingularEllipticPoint& NonSuperSingularEllipticPoint::operator=(const NonSuperSingularEllipticPoint &ePoint)
         {
                 dynamic_cast<NonSuperSingularEllipticCurve &>(*_curve) = dynamic_cast<NonSuperSingularEllipticCurve &>(*ePoint._curve);
@@ -1329,7 +1329,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         return *this;
         }
 //***********************************************************************************************
-//**************************   Операция взятия противоположной точки   **************************
+//**************************   РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕР№ С‚РѕС‡РєРё   **************************
         EllipticPointGF2& NonSuperSingularEllipticPoint::Negate()
         {
                 return EllipticPointGF2::Negate();
@@ -1337,7 +1337,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         EllipticPointGF2& NonSuperSingularEllipticPoint::Negate(EllipticPointGF2& ePoint)
         {
                 if(!ePoint._curve->isNonSuperSingular())
-                        throw new Exception("Не все точки лежат на суперсингулярных кривых");// TODO: поменять
+                        throw new Exception("РќРµ РІСЃРµ С‚РѕС‡РєРё Р»РµР¶Р°С‚ РЅР° СЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅС‹С… РєСЂРёРІС‹С…");// TODO: РїРѕРјРµРЅСЏС‚СЊ
                 if(ePoint.isInfinite())
                         return setInfinite(true);
                 this->setInfinite(false);
@@ -1348,13 +1348,13 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
                 return *this;
         }
 //***********************************************************************************************
-//*****************************        Операция сложение        *********************************
+//*****************************        РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёРµ        *********************************
     EllipticPointGF2& NonSuperSingularEllipticPoint::Add(EllipticPointGF2 &ePoint1, EllipticPointGF2 &ePoint2)
         {
                 if(!(ePoint1._curve->isNonSuperSingular() && ePoint2._curve->isNonSuperSingular()))
-                        throw  new Exception("Не все точки лежат на несуперсингулярных кривых");// TODO: поменять
+                        throw  new Exception("РќРµ РІСЃРµ С‚РѕС‡РєРё Р»РµР¶Р°С‚ РЅР° РЅРµСЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅС‹С… РєСЂРёРІС‹С…");// TODO: РїРѕРјРµРЅСЏС‚СЊ
                 if(*ePoint1._curve != *ePoint2._curve)
-            throw new Exception("Точки лежат на разных кривых");
+            throw new Exception("РўРѕС‡РєРё Р»РµР¶Р°С‚ РЅР° СЂР°Р·РЅС‹С… РєСЂРёРІС‹С…");
 
         if(ePoint1.isInfinite() && ePoint2.isInfinite())
             return setInfinite(true);
@@ -1420,7 +1420,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         return *this;
         }
 //***********************************************************************************************
-//******************************      Операция удвоения       ***********************************
+//******************************      РћРїРµСЂР°С†РёСЏ СѓРґРІРѕРµРЅРёСЏ       ***********************************
         EllipticPointGF2& NonSuperSingularEllipticPoint::Double()
         {
                 return EllipticPointGF2::Double();
@@ -1428,7 +1428,7 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
     EllipticPointGF2& NonSuperSingularEllipticPoint::Double(EllipticPointGF2 &ePoint)
         {
                 if(!ePoint._curve->isNonSuperSingular())
-                        throw new  Exception("Точка лежит на несуперсингулярной кривой");// TODO: поменять
+                        throw new  Exception("РўРѕС‡РєР° Р»РµР¶РёС‚ РЅР° РЅРµСЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅРѕР№ РєСЂРёРІРѕР№");// TODO: РїРѕРјРµРЅСЏС‚СЊ
 
         if(ePoint.isInfinite())
             return setInfinite(true);
@@ -1461,11 +1461,11 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         }
 
 //***********************************************************************************************
-//**************************    Операция умножения на константу    ******************************
+//**************************    РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РЅР° РєРѕРЅСЃС‚Р°РЅС‚Сѓ    ******************************
         EllipticPointGF2& NonSuperSingularEllipticPoint::Mul(EllipticPointGF2 &ePoint, const Integer &integer)
         {
                 if(!ePoint._curve->isNonSuperSingular())
-                        throw new Exception("Точка лежит на несуперсингулярной кривой");// TODO: поменять
+                        throw new Exception("РўРѕС‡РєР° Р»РµР¶РёС‚ РЅР° РЅРµСЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅРѕР№ РєСЂРёРІРѕР№");// TODO: РїРѕРјРµРЅСЏС‚СЊ
 
         if(ePoint.isInfinite() || integer.isZero())
                 {
@@ -1491,12 +1491,12 @@ PolynomGF2_m_4& EllipticPointGF2::DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2
         return *this;
         }
 //***********************************************************************************************
-//**************************    Генерация точки                    ******************************
+//**************************    Р“РµРЅРµСЂР°С†РёСЏ С‚РѕС‡РєРё                    ******************************
         NonSuperSingularEllipticPoint& NonSuperSingularEllipticPoint::GenerateImpl(const Polynom * xforwrap)
         {
                 if(xforwrap != NULL)
                         if(getCurve().getModule().getNumberBits() - xforwrap->getNumberBits() < 4)
-                                throw new Exception("В размещаемой информации должно быть на 4 бита меньше чем в модуле");
+                                throw new Exception("Р’ СЂР°Р·РјРµС‰Р°РµРјРѕР№ РёРЅС„РѕСЂРјР°С†РёРё РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РЅР° 4 Р±РёС‚Р° РјРµРЅСЊС€Рµ С‡РµРј РІ РјРѕРґСѓР»Рµ");
 
         uint n = _curve->getModule().getNumberBits()-1;
 

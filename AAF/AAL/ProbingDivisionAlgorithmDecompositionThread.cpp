@@ -33,7 +33,7 @@ void __fastcall ProbingDivisionAlgorithmDecompositionThread::Execute() {
 if (access("msieve.exe", 0) == -1)
 {
  factorizationDone = true;
- MessageBoxA(NULL,"Не найден файл msieve.exe!","Ошибка!",MB_OK ||MB_ICONERROR || MB_APPLMODAL);
+ MessageBoxA(NULL,"РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» msieve.exe!","РћС€РёР±РєР°!",MB_OK ||MB_ICONERROR || MB_APPLMODAL);
  return;
  }
 

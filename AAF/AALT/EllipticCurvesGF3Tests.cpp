@@ -19,7 +19,7 @@
 using namespace AAL;
 
 /*
-	Конструкторы класса PolynomGF3
+	РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ РєР»Р°СЃСЃР° PolynomGF3
 */
 TEST(EllipticCurveGF3, EmptyConstructor)
 {
@@ -42,7 +42,7 @@ TEST(EllipticCurveGF3, inGroup)
 }
 
 /*
-        Операция сложения
+        РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
 */
 /*TEST(EllipticPointGF3, Add)
 {
@@ -87,7 +87,7 @@ TEST(EllipticCurveGF3, inGroup)
 
 }
 /*
-        Операция удвоения
+        РћРїРµСЂР°С†РёСЏ СѓРґРІРѕРµРЅРёСЏ
 */
 /*TEST(EllipticPointGF3, Double)
 {
@@ -183,7 +183,7 @@ PolynomGF3 module1("220001");
 }
 
 /*
-	Операция умножения на константу
+	РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РЅР° РєРѕРЅСЃС‚Р°РЅС‚Сѓ
 */
 /*TEST(EllipticPointGF3, Mul)
 {
@@ -262,7 +262,7 @@ PolynomGF3 module1("220001");
 }
 
 /*
-	Операция размещения данных в точке
+	РћРїРµСЂР°С†РёСЏ СЂР°Р·РјРµС‰РµРЅРёСЏ РґР°РЅРЅС‹С… РІ С‚РѕС‡РєРµ
 */
 /*TEST(EllipticPointGF3, Generate)
 {

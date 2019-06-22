@@ -23,7 +23,7 @@ namespace AAL
    {
     Integer Three("3");
     if (degree < Three)
-      throw new Exception("Степень меньше 3");
+      throw new Exception("РЎС‚РµРїРµРЅСЊ РјРµРЅСЊС€Рµ 3");
 
     Integer s = degree;
     Integer sqrt = degree.Sqrt();
@@ -50,7 +50,7 @@ namespace AAL
    bool PrimeTester::ModifiedTestLuka(std::vector<DecompositionMember> vector)
    {
      if (!Mersen_Number.isOdd())
-      throw new Exception("Четное число");
+      throw new Exception("Р§РµС‚РЅРѕРµ С‡РёСЃР»Рѕ");
     std::vector<DecompositionMember>::iterator it;
     Integer one("1");
     Integer rez;
@@ -107,7 +107,7 @@ bool PrimeTester::TestPoklingtona(std::vector<DecompositionMember> vector)
           }
           else
             if(it == vector.end()-1)
-              throw new Exception("Работа алгоритма невозможна,нет простых множителей, больших sqrt(n-1)");
+              throw new Exception("Р Р°Р±РѕС‚Р° Р°Р»РіРѕСЂРёС‚РјР° РЅРµРІРѕР·РјРѕР¶РЅР°,РЅРµС‚ РїСЂРѕСЃС‚С‹С… РјРЅРѕР¶РёС‚РµР»РµР№, Р±РѕР»СЊС€РёС… sqrt(n-1)");
         }
  return false;
 }

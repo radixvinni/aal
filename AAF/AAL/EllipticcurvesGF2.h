@@ -16,54 +16,54 @@
 namespace AAL
 {
         class Matrix;
-        // абстрактный базовый класс эллиптических кривых над полем GF(2^n)
+        // Р°Р±СЃС‚СЂР°РєС‚РЅС‹Р№ Р±Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ СЌР»Р»РёРїС‚РёС‡РµСЃРєРёС… РєСЂРёРІС‹С… РЅР°Рґ РїРѕР»РµРј GF(2^n)
         class    EllipticCurveGF2
         {
         protected:
         	Polynom *_module;
-        //виртуальный деструктор
+        //РІРёСЂС‚СѓР°Р»СЊРЅС‹Р№ РґРµСЃС‚СЂСѓРєС‚РѕСЂ
         public:
                 virtual ~EllipticCurveGF2() = 0;
-        //Методы акцепторы
+        //РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	public:
 		Polynom& getModule() const;
                 virtual Polynom& setModule(const Polynom &module) = 0;
                 virtual bool isSuperSingular() const = 0;
                 virtual bool isNonSuperSingular() const = 0;
-        //Операции сравнения
+        //РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
         public:
                 virtual bool equals(const EllipticCurveGF2 &eCurve) const = 0;
                 friend bool operator==(const EllipticCurveGF2 &eCurve1, const EllipticCurveGF2 &eCurve2);
 		friend bool operator!=(const EllipticCurveGF2 &eCurve1, const EllipticCurveGF2 &eCurve2);
-        //Принадлежность точки к кривой
+        //РџСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ С‚РѕС‡РєРё Рє РєСЂРёРІРѕР№
         public:
                 virtual bool inGroup(Polynom &x, Polynom &y) const = 0;
-        //Вычисление правой части уравнения
+        //Р’С‹С‡РёСЃР»РµРЅРёРµ РїСЂР°РІРѕР№ С‡Р°СЃС‚Рё СѓСЂР°РІРЅРµРЅРёСЏ
         public:
                 virtual Polynom rightSide(Polynom &x) const = 0;
-        // Проверка на существование Y для данного X
+        // РџСЂРѕРІРµСЂРєР° РЅР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ Y РґР»СЏ РґР°РЅРЅРѕРіРѕ X
         public:
                 virtual bool hasY(Polynom &x) const = 0;
-        //Унарные операции
+        //РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
         private:
-                EllipticCurveGF2& operator=(const EllipticCurveGF2 &eCurve);// запертил автогенерацию
+                EllipticCurveGF2& operator=(const EllipticCurveGF2 &eCurve);// Р·Р°РїРµСЂС‚РёР» Р°РІС‚РѕРіРµРЅРµСЂР°С†РёСЋ
         };
-        // класс "суперсингулярных" эллиптических кривых над полем GF(2^n)
-        // вид: Y^2 + a3*Y = X^3 + a4*X + a6
+        // РєР»Р°СЃСЃ "СЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅС‹С…" СЌР»Р»РёРїС‚РёС‡РµСЃРєРёС… РєСЂРёРІС‹С… РЅР°Рґ РїРѕР»РµРј GF(2^n)
+        // РІРёРґ: Y^2 + a3*Y = X^3 + a4*X + a6
         class SuperSingularEllipticCurve : public EllipticCurveGF2
 	{
         private:
                 Polynom *_a3;
                 Polynom *_a4;
                 Polynom *_a6;
-	//Конструкторы
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
 		//default: Y^2 + Y = X^3 + X + 1 (mod m(x) = 1+x+x^3)
 		SuperSingularEllipticCurve();
 		SuperSingularEllipticCurve(Polynom &module, Polynom &a3, Polynom &a4, Polynom &a6);
 		SuperSingularEllipticCurve(const SuperSingularEllipticCurve &eCurve);
 		~SuperSingularEllipticCurve();
-	//Методы акцепторы
+	//РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	public:
                 Polynom& setModule(const Polynom &module);
 		Polynom& getA3() const;
@@ -75,24 +75,24 @@ namespace AAL
                 bool isSuperSingular() const;
                 bool isNonSuperSingular() const;
                 Integer& getOrd(int step);
-	//Унарные операции
+	//РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		SuperSingularEllipticCurve& operator=(const SuperSingularEllipticCurve &eCurve);
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
                 bool equals(const EllipticCurveGF2 &eCurve) const;
-	//Принадлежность точки к кривой
+	//РџСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ С‚РѕС‡РєРё Рє РєСЂРёРІРѕР№
 	public:
 		bool inGroup(Polynom &x, Polynom &y) const;
-        //Вычисление правой части уравнения X^3 + a4*X + a6
+        //Р’С‹С‡РёСЃР»РµРЅРёРµ РїСЂР°РІРѕР№ С‡Р°СЃС‚Рё СѓСЂР°РІРЅРµРЅРёСЏ X^3 + a4*X + a6
         public:
                 Polynom rightSide(Polynom &x) const;
-        // Проверка на существование Y для данного X
+        // РџСЂРѕРІРµСЂРєР° РЅР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ Y РґР»СЏ РґР°РЅРЅРѕРіРѕ X
         public:
                 bool hasY(Polynom &x) const;
         };
 
-        // абстрактный базовый класс точки эллиптических кривых над полем GF(2^n)
+        // Р°Р±СЃС‚СЂР°РєС‚РЅС‹Р№ Р±Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ С‚РѕС‡РєРё СЌР»Р»РёРїС‚РёС‡РµСЃРєРёС… РєСЂРёРІС‹С… РЅР°Рґ РїРѕР»РµРј GF(2^n)
         class EllipticPointGF2
         {
         protected:
@@ -100,10 +100,10 @@ namespace AAL
                 bool _infinite;
                 Polynom *_x;
 		Polynom *_y;
-        // виртуальный деструктор
+        // РІРёСЂС‚СѓР°Р»СЊРЅС‹Р№ РґРµСЃС‚СЂСѓРєС‚РѕСЂ
         public:
                 virtual ~EllipticPointGF2() = 0;
-        //Методы акцепторы
+        //РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
         public:
 		EllipticCurveGF2& getCurve();
                 virtual EllipticCurveGF2& setCurve(EllipticCurveGF2& curve) = 0;
@@ -116,45 +116,45 @@ namespace AAL
         public:
                 friend bool operator==(const EllipticPointGF2 &ePoint1, const EllipticPointGF2 &ePoint2);
 		friend bool operator!=(const EllipticPointGF2 &ePoint1, const EllipticPointGF2 &ePoint2);
-        //Операция взятия противоположной точки (-P)
+        //РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕР№ С‚РѕС‡РєРё (-P)
         public:
                 virtual EllipticPointGF2& Negate();
                 virtual EllipticPointGF2& Negate(EllipticPointGF2 &ePoint) = 0;
-        //Операция сложение
+        //РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёРµ
         public:
                 //friend EllipticPointGF2 operator+(EllipticPointGF2 &ePoint1, EllipticPointGF2 &ePoint2);
 		EllipticPointGF2& operator+=(EllipticPointGF2 &ePoint);
                 virtual EllipticPointGF2& Add(EllipticPointGF2 &ePoint1, EllipticPointGF2 &ePoint2) = 0;
 
-        //Операция удвоения
+        //РћРїРµСЂР°С†РёСЏ СѓРґРІРѕРµРЅРёСЏ
 	public:
 		virtual EllipticPointGF2& Double();
 		virtual EllipticPointGF2& Double(EllipticPointGF2 &ePoint) = 0;
 
-	//Операция умножения на константу
+	//РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РЅР° РєРѕРЅСЃС‚Р°РЅС‚Сѓ
 	public:
 		//friend EllipticPoint operator*(const EllipticPoint &ePoint, const Integer &i);
 		//friend EllipticPoint operator*(const Integer &i, const EllipticPoint &ePoint);
 		EllipticPointGF2& operator*=(Integer &i);
 		//EllipticPoint& Mul(Integer &i, EllipticPoint &ePoint);
 		virtual EllipticPointGF2& Mul(EllipticPointGF2 &ePoint, const Integer &i) = 0;
-        // Генерация точки
+        // Р“РµРЅРµСЂР°С†РёСЏ С‚РѕС‡РєРё
         public:
                 EllipticPointGF2& Generate();
-        // Генерация точки с упаковкой данных
+        // Р“РµРЅРµСЂР°С†РёСЏ С‚РѕС‡РєРё СЃ СѓРїР°РєРѕРІРєРѕР№ РґР°РЅРЅС‹С…
         public:
                 EllipticPointGF2& WrappingGenerate(const Polynom & xforwrap);
         protected:
                 virtual EllipticPointGF2& GenerateImpl(const Polynom * xforwrap = NULL) = 0;
         protected:
-                Polynom findYOddCase(const Polynom & right); // решение уравнения Y^2 + Y = right, n = 2k+1
-                Polynom findYEvenCase(const Polynom & right); // решение уравнения Y^2 + Y = right, n = 2k
-                Matrix createGenerationMatrix(); // создание матрицы СЛАУ для n = 2k
+                Polynom findYOddCase(const Polynom & right); // СЂРµС€РµРЅРёРµ СѓСЂР°РІРЅРµРЅРёСЏ Y^2 + Y = right, n = 2k+1
+                Polynom findYEvenCase(const Polynom & right); // СЂРµС€РµРЅРёРµ СѓСЂР°РІРЅРµРЅРёСЏ Y^2 + Y = right, n = 2k
+                Matrix createGenerationMatrix(); // СЃРѕР·РґР°РЅРёРµ РјР°С‚СЂРёС†С‹ РЎР›РђРЈ РґР»СЏ n = 2k
         public:
                 friend class SuperSingularEllipticPoint;
                 friend class NonSuperSingularEllipticPoint;
         private:
-                EllipticPointGF2& operator=(const EllipticPointGF2 &ePoint);// запертил автогенерацию
+                EllipticPointGF2& operator=(const EllipticPointGF2 &ePoint);// Р·Р°РїРµСЂС‚РёР» Р°РІС‚РѕРіРµРЅРµСЂР°С†РёСЋ
         public:
                 AAL::PolynomGF2_m_4& DLK(EllipticPointGF2 &ePoint1,EllipticPointGF2 &ePoint2,AAL::PolynomGF2_m_4 &t,int n,AAL::PolynomGF2_m_4 &b,Polynom &mod);
         public:
@@ -163,56 +163,56 @@ namespace AAL
 
         };
 //***********************************************************************************************
-        // класс точки "суперсингулярных" эллиптических кривых над полем GF(2^n)
+        // РєР»Р°СЃСЃ С‚РѕС‡РєРё "СЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅС‹С…" СЌР»Р»РёРїС‚РёС‡РµСЃРєРёС… РєСЂРёРІС‹С… РЅР°Рґ РїРѕР»РµРј GF(2^n)
         class SuperSingularEllipticPoint : public EllipticPointGF2
 	{
-	//Конструкторы
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
 		SuperSingularEllipticPoint();
 		SuperSingularEllipticPoint(const SuperSingularEllipticCurve &eCurve);
 		SuperSingularEllipticPoint(const SuperSingularEllipticPoint &ePoint);
 		~SuperSingularEllipticPoint();
-        //Методы акцепторы
+        //РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
         public:
 		SuperSingularEllipticCurve& setCurve(EllipticCurveGF2 &eCurve);
 
-	//Унарные операции
+	//РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		SuperSingularEllipticPoint& operator=(const SuperSingularEllipticPoint &ePoint);
-        //Операция взятия противоположной точки (-P)
+        //РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕР№ С‚РѕС‡РєРё (-P)
         public:
-                EllipticPointGF2& Negate(); // нужно переопределить, иначе будет перекрыта
+                EllipticPointGF2& Negate(); // РЅСѓР¶РЅРѕ РїРµСЂРµРѕРїСЂРµРґРµР»РёС‚СЊ, РёРЅР°С‡Рµ Р±СѓРґРµС‚ РїРµСЂРµРєСЂС‹С‚Р°
                 EllipticPointGF2& Negate(EllipticPointGF2 &ePoint);
-        //Операция сложение
+        //РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёРµ
         public:
                 EllipticPointGF2& Add(EllipticPointGF2 &ePoint1, EllipticPointGF2 &ePoint2);
-        //Операция удвоения
+        //РћРїРµСЂР°С†РёСЏ СѓРґРІРѕРµРЅРёСЏ
 	public:
-                EllipticPointGF2& Double();// нужно переопределить, иначе будет перекрыта
+                EllipticPointGF2& Double();// РЅСѓР¶РЅРѕ РїРµСЂРµРѕРїСЂРµРґРµР»РёС‚СЊ, РёРЅР°С‡Рµ Р±СѓРґРµС‚ РїРµСЂРµРєСЂС‹С‚Р°
                 EllipticPointGF2& Double(EllipticPointGF2 &e);
-        //Операция умножения на константу
+        //РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РЅР° РєРѕРЅСЃС‚Р°РЅС‚Сѓ
 	public:
 		EllipticPointGF2& Mul(EllipticPointGF2 &ePoint, const Integer &i);
         protected:
-                SuperSingularEllipticPoint& GenerateImpl(const Polynom * xforwrap = NULL); // странно, требует ещё раз объявиьт значения по умолчанию
+                SuperSingularEllipticPoint& GenerateImpl(const Polynom * xforwrap = NULL); // СЃС‚СЂР°РЅРЅРѕ, С‚СЂРµР±СѓРµС‚ РµС‰С‘ СЂР°Р· РѕР±СЉСЏРІРёСЊС‚ Р·РЅР°С‡РµРЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
         };
 
 //*******************************************************************************************************************************************************************************
-        // класс "несуперсингулярных" эллиптических кривых над полем GF(2^n)
-        // вид: Y^2 + X*Y = X^3 + a2*X^2 + a6
+        // РєР»Р°СЃСЃ "РЅРµСЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅС‹С…" СЌР»Р»РёРїС‚РёС‡РµСЃРєРёС… РєСЂРёРІС‹С… РЅР°Рґ РїРѕР»РµРј GF(2^n)
+        // РІРёРґ: Y^2 + X*Y = X^3 + a2*X^2 + a6
         class NonSuperSingularEllipticCurve : public EllipticCurveGF2
 	{
         private:
                 Polynom *_a2;
                 Polynom *_a6;
-	//Конструкторы
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
 		//default: Y^2 + X*Y = X^3 + X^2 + 1 (mod m(x) = 1+x+x^3)
 		NonSuperSingularEllipticCurve();
 		NonSuperSingularEllipticCurve(Polynom &module, Polynom &a2, Polynom &a6);
 		NonSuperSingularEllipticCurve(const NonSuperSingularEllipticCurve &eCurve);
 		~NonSuperSingularEllipticCurve();
-	//Методы акцепторы
+	//РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	public:
                 Polynom& setModule(const Polynom &module);
 		Polynom& getA2() const;
@@ -222,19 +222,19 @@ namespace AAL
         bool isSuperSingular() const;
         bool isNonSuperSingular() const;
         Integer getOrder() const;
-	//Унарные операции
+	//РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		NonSuperSingularEllipticCurve& operator=(const NonSuperSingularEllipticCurve &eCurve);
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
                 bool equals(const EllipticCurveGF2 &eCurve) const;
-	//Принадлежность точки к кривой
+	//РџСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ С‚РѕС‡РєРё Рє РєСЂРёРІРѕР№
 	public:
 		bool inGroup(Polynom &x, Polynom &y) const;
-        //Вычисление правой части уравнения X^3 + a2*X^2 + a6
+        //Р’С‹С‡РёСЃР»РµРЅРёРµ РїСЂР°РІРѕР№ С‡Р°СЃС‚Рё СѓСЂР°РІРЅРµРЅРёСЏ X^3 + a2*X^2 + a6
         public:
                 Polynom rightSide(Polynom &x) const;
-        // Проверка на существование Y для данного X
+        // РџСЂРѕРІРµСЂРєР° РЅР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ Y РґР»СЏ РґР°РЅРЅРѕРіРѕ X
         public:
                 bool hasY(Polynom &x) const;
         private:
@@ -242,37 +242,37 @@ namespace AAL
         public:
                 friend class NonSuperSingularEllipticPoint;
         };
-        // класс точки "несуперсингулярных" эллиптических кривых над полем GF(2^n)
+        // РєР»Р°СЃСЃ С‚РѕС‡РєРё "РЅРµСЃСѓРїРµСЂСЃРёРЅРіСѓР»СЏСЂРЅС‹С…" СЌР»Р»РёРїС‚РёС‡РµСЃРєРёС… РєСЂРёРІС‹С… РЅР°Рґ РїРѕР»РµРј GF(2^n)
         class NonSuperSingularEllipticPoint : public EllipticPointGF2
 	{
-        	//Конструкторы
+        	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
 		NonSuperSingularEllipticPoint();
 		NonSuperSingularEllipticPoint(const NonSuperSingularEllipticCurve &eCurve);
 		NonSuperSingularEllipticPoint(const NonSuperSingularEllipticPoint &ePoint);
 		~NonSuperSingularEllipticPoint();
-        //Методы акцепторы
+        //РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
         public:
 		NonSuperSingularEllipticCurve& setCurve(EllipticCurveGF2 &eCurve);
-	//Унарные операции
+	//РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		NonSuperSingularEllipticPoint& operator=(const NonSuperSingularEllipticPoint &ePoint);
-        //Операция взятия противоположной точки (-P)
+        //РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕР№ С‚РѕС‡РєРё (-P)
         public:
-                EllipticPointGF2& Negate(); // нужно переопределить, иначе будет перкрыта
+                EllipticPointGF2& Negate(); // РЅСѓР¶РЅРѕ РїРµСЂРµРѕРїСЂРµРґРµР»РёС‚СЊ, РёРЅР°С‡Рµ Р±СѓРґРµС‚ РїРµСЂРєСЂС‹С‚Р°
                 EllipticPointGF2& Negate(EllipticPointGF2 &ePoint);
-        //Операция сложение
+        //РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёРµ
         public:
                 EllipticPointGF2& Add(EllipticPointGF2 &ePoint1, EllipticPointGF2 &ePoint2);
-        //Операция удвоения
+        //РћРїРµСЂР°С†РёСЏ СѓРґРІРѕРµРЅРёСЏ
 	public:
-                EllipticPointGF2& Double();// нужно переопределить, иначе будет перкрыта
+                EllipticPointGF2& Double();// РЅСѓР¶РЅРѕ РїРµСЂРµРѕРїСЂРµРґРµР»РёС‚СЊ, РёРЅР°С‡Рµ Р±СѓРґРµС‚ РїРµСЂРєСЂС‹С‚Р°
                 EllipticPointGF2& Double(EllipticPointGF2 &e);
-        //Операция умножения на константу
+        //РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РЅР° РєРѕРЅСЃС‚Р°РЅС‚Сѓ
 	public:
 		EllipticPointGF2& Mul(EllipticPointGF2 &ePoint, const Integer &i);
         protected:
-                NonSuperSingularEllipticPoint& GenerateImpl(const Polynom * xforwrap = NULL); // странно, требует ещё раз объявиьт значения по умолчанию
+                NonSuperSingularEllipticPoint& GenerateImpl(const Polynom * xforwrap = NULL); // СЃС‚СЂР°РЅРЅРѕ, С‚СЂРµР±СѓРµС‚ РµС‰С‘ СЂР°Р· РѕР±СЉСЏРІРёСЊС‚ Р·РЅР°С‡РµРЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
         };
 }
 

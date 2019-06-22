@@ -17,20 +17,20 @@ namespace AAL
     friend class Converter;
     friend class PolynomGF3;
     friend class Matrix;
-	//Êîíñòðóêòîðû
+	//Конструкторы
 	public:
 		Polynom();
 		Polynom(const Polynom &polynom);
 		Polynom(const std::string dataString, PolynomSystem system=BackBin);
 		Polynom(const std::string dataString, bool in_degres, bool cancel = false);
 
-	//Ïðåîáðàçîâàíèå è ñ÷èòûâàíèå èç ñòðîê
+	//Преобразование и считывание из строк
 	public:
 		Polynom& Parse(const std::string dataString, PolynomSystem system=BackBin, bool cancel = false);
 		std::string ToString(const std::string dataString) const;
 		std::string ToString(PolynomSystem system=BackBin) const;
         std::string i_to_str(uint x) const;
-	//Ìåòîäû àêöåïòîðû
+	//Методы акцепторы
 	public:
 		Polynom& setOne();
 		Polynom& setPolynom(uchar);
@@ -43,13 +43,13 @@ namespace AAL
     bool isPrimitivity() const;
    // Polynom& setUnit(uint degree);
 
-	//Óíàðíûå îïåðàöèè
+	//Унарные операции
 	public:
 		Polynom operator~() const;
 		Polynom& OnesComplement();
 		Polynom& operator= (const Polynom& polynom);
 
-	//Îïåðàöèè ñðàâíåíèÿ
+	//Операции сравнения
 	public:
 		Polynom Compare(const Polynom& polynom) const;
 		friend bool operator==(const Polynom& a, const Polynom& b);
@@ -59,7 +59,7 @@ namespace AAL
 		friend bool operator>(const Polynom& a, const Polynom& b);
 		friend bool operator>=(const Polynom& a, const Polynom& b);
 
-	//Ëîãè÷åñêèå îïåðàöèè
+	//Логические операции
 	private:
 		Polynom* Max(Polynom &a, Polynom &b, CompareIndicator ind);
 		Polynom* Min(Polynom &a, Polynom &b, CompareIndicator ind);
@@ -77,21 +77,21 @@ namespace AAL
 		friend Polynom operator!(const Polynom &polynom);
 		Polynom& Not(Polynom &polynom);
 
-	//Îïåðàöèè ïîáèòîâîãî ñäâèãà
+	//Операции побитового сдвига
 	public:
 		Polynom operator<<(int numberBits) const;
 		Polynom& operator<<=(int numberBits);
 		Polynom operator>>(int numberBits) const;
 		Polynom& operator>>=(int numberBits);
 
-	//Îïåðàöèÿ ñëîæåíèÿ
+	//Операция сложения
 	public:
 		friend Polynom operator+(const Polynom &a, const Polynom &b);
 		Polynom& operator+=(Polynom &polynom);
 		Polynom& Add(Polynom &a, Polynom &b);
 		Polynom& ModAdd(Polynom &a, Polynom &b, Polynom &module);
     Polynom& AddInGF2_n(Polynom &a, Polynom &b, Polynom &module);
-	//Îïåðàöèÿ âû÷èòàíèÿ
+	//Операция вычитания
 	public:
 		friend Polynom operator-(const Polynom &a, const Polynom &b);
 		Polynom& operator-=(Polynom &polynom);
@@ -99,8 +99,8 @@ namespace AAL
 		Polynom& ModSub(Polynom &a, Polynom &b, Polynom &module);
     Polynom& SubInGF2_n(Polynom &a, Polynom &b, Polynom &module);
 
-	//Îïåðàöèÿ óìíîæåíèÿ
-	//TODO: ðåôàêòîðèíã óìíîæåíèÿ ýëåìåíòàðíûõ ìíîãîë÷ëåíîâ(ñîçäàíèå òàáëèö óìíîæåíèÿ).
+	//Операция умножения
+	//TODO: рефакторинг умножения элементарных многолчленов(создание таблиц умножения).
 	private:
 		Polynom *Copy(Polynom &polynom, Polynom *polynomNotEqual = NULL);
 		void DisposalCopy(Polynom &polynom, Polynom *polynomNotEqual = NULL);
@@ -114,16 +114,16 @@ namespace AAL
 		Polynom& ModMul(Polynom a, Polynom b, Polynom &module);
         Polynom& MulGF2_n(Polynom &a, Polynom &b, Polynom &module);
 
-	//Îïåðàöèÿ äåëåíèå
-	//TODO: ïðîâåñòè ðåôàêòîðèíã Div - ìîæíî ëè óáðàòü ïåðâóþ ïðîâåðêó.
+	//Операция деление
+	//TODO: провести рефакторинг Div - можно ли убрать первую проверку.
 	public:
 		friend Polynom operator/(const Polynom &a, const Polynom &b);
 		Polynom& operator/=(Polynom &polynom);
 		Polynom& Div(Polynom &a, const Polynom &b, Polynom *remainder = NULL);
 		Polynom& ModDiv(Polynom &a, Polynom &b, Polynom &module, Polynom *remainder = NULL);
     Polynom& DivInGF2_n(Polynom &a, Polynom &b, Polynom &module, Polynom *remainder);
-	//Îïåðàöèÿ ïðèâåäåíèÿ ïî ìîäóëþ
-	//TODO: ïðîâåñòè ðåôàêòîðèíã Mod - íå ñ÷èòàòü ÷àñòíîå.
+	//Операция приведения по модулю
+	//TODO: провести рефакторинг Mod - не считать частное.
 	public:
 		friend Polynom operator%(const Polynom &a, const Polynom &b);
 		Polynom& operator%=(Polynom &polynom);
@@ -131,8 +131,8 @@ namespace AAL
 		Polynom& Mod(Polynom &module);
         Polynom& FastMod(Polynom &a, Polynom &b);
 
-	//Îïåðàöèÿ âîçâåäåíèå â ñòåïåíü
-	//TODO: ïðîâåñòè ðåôàêòîðèíã(ñîçäàíèå òàáëèö).
+	//Операция возведение в степень
+	//TODO: провести рефакторинг(создание таблиц).
 	private:
 		ushort SquareElemPolynom(uchar u);
 		Polynom& Square(Polynom &a, Integer &n, Polynom *module = NULL);
@@ -142,9 +142,9 @@ namespace AAL
 		Polynom& ModPow(Polynom &a, Integer &n, Polynom &module);
    	Polynom& PowGF2_n(Polynom &a, Integer &n, Polynom &module);
 
-	//Àëãîðèòìû Åâêëèäà
-	//TODO: ðåàëèçîâàòü îáû÷íûé àëãîðèòì Åâêëèäà
-        //TODO: Äîáàâèòü ìåòîäû äëÿ óìíîãî êîïèðîâàíèÿ îáúåêòîâ
+	//Алгоритмы Евклида
+	//TODO: реализовать обычный алгоритм Евклида
+        //TODO: Добавить методы для умного копирования объектов
         private:
        		Polynom &simpleExEuclid(Polynom &i, Polynom &x, Polynom &y);
 	public:
@@ -152,8 +152,8 @@ namespace AAL
 		Polynom& BinaryGCD(const Polynom &a, Polynom &b);
 		Polynom& ExEuclid(Polynom &a, Polynom &b, Polynom &x, Polynom &y);
 
-	//Ãåíåðàöèÿ ïîëèíîìîâ
-	//TODO: Äîðàáîòàòü äîáàâèâ íîâûå ìåòîäû
+	//Генерация полиномов
+	//TODO: Доработать добавив новые методы
 	public:
 		Polynom& Generate(uint numberBits);
 		Polynom& Generate(const Polynom& module);
@@ -164,46 +164,46 @@ namespace AAL
 		Polynom& GenerateNormal(uint numberBits);
 		Polynom& GenerateNormal(const Polynom& module);
     Polynom& GenerateNormal(uint nMinNumberBits, uint nMaxNumberBits, uint nDegree);
-  // Òåîðåìà Øòèëüáåðãà-Ñóîíà
+  // Теорема Штильберга-Суона
     bool SchtilbergSuonTheorem(const uint k, const uint n) const;
 
     std::string ToStringByPowers() const;
- //Àðèôìåòèêà â îïòèìàëüíûõ íîðìàëüíûõ áàçèñàõ
+ //Арифметика в оптимальных нормальных базисах
   public:
-    // Òåñòû ñòåïåíåé ïîëÿ íà îáðàçîâàíèå ÎÍÁ
-    // ÎÍÁ 1
+    // Тесты степеней поля на образование ОНБ
+    // ОНБ 1
     bool ONB1Test(const uint n) const;
-    // ÎÍÁ 2
+    // ОНБ 2
     bool ONB2Test(const uint n) const;
-    // ÎÍÁ 3
+    // ОНБ 3
     bool ONB3Test(const uint n) const;
-    // Ãåíåðàöèè îïòèìàëüíîãî íîðìàëüíîãî áàçèñà, çàäàííîé ñòåïåíè ðàñøèðåíèÿ ïîëÿ
-    // âõîä: n - ñòåïåíü ðàñøèðåíèÿ ïîëÿ
-    // âûõîä: b - ïîëèíîì, A - òàáëèöà óìíîæåíèÿ èëè false - ÎÍÁ 1ãî òèïà íå ñóùåñòâóåò
+    // Генерации оптимального нормального базиса, заданной степени расширения поля
+    // вход: n - степень расширения поля
+    // выход: b - полином, A - таблица умножения или false - ОНБ 1го типа не существует
     bool GenerateONB1(const uint n, Polynom& b, Matrix& A);
-    // âõîä: n - ñòåïåíü ðàñøèðåíèÿ ïîëÿ
-    // âûõîä: b - ïîëèíîì, A - òàáëèöà óìíîæåíèÿ èëè false - ÎÍÁ 2ãî òèïà íå ñóùåñòâóåò
+    // вход: n - степень расширения поля
+    // выход: b - полином, A - таблица умножения или false - ОНБ 2го типа не существует
     bool GenerateONB2(const uint n, Polynom& b, Matrix& A);
-    // âõîä: n - ñòåïåíü ðàñøèðåíèÿ ïîëÿ
-    // âûõîä: b - ïîëèíîì, A - òàáëèöà óìíîæåíèÿ èëè false - ÎÍÁ 3ãî òèïà íå ñóùåñòâóåò
+    // вход: n - степень расширения поля
+    // выход: b - полином, A - таблица умножения или false - ОНБ 3го типа не существует
     bool GenerateONB3(const uint n, Polynom& b, Matrix& A);
-    // âõîä: n - ñòåïåíü ðàñøèðåíèÿ ïîëÿ
-    // âûõîä: b - ïîëèíîì èëè false - ÎÍÁ 1ãî òèïà íå ñóùåñòâóåò
+    // вход: n - степень расширения поля
+    // выход: b - полином или false - ОНБ 1го типа не существует
     bool GenerateONB1Polynom(const uint n, Polynom& b);
-    // âõîä: n - ñòåïåíü ðàñøèðåíèÿ ïîëÿ
-    // âûõîä: b - ïîëèíîì èëè false - ÎÍÁ 2ãî òèïà íå ñóùåñòâóåò
+    // вход: n - степень расширения поля
+    // выход: b - полином или false - ОНБ 2го типа не существует
     bool GenerateONB2Polynom(const uint n, Polynom& b);
-    // âõîä: n - ñòåïåíü ðàñøèðåíèÿ ïîëÿ
-    // âûõîä: b - ïîëèíîì èëè false - ÎÍÁ 3ãî òèïà íå ñóùåñòâóåò
+    // вход: n - степень расширения поля
+    // выход: b - полином или false - ОНБ 3го типа не существует
     bool GenerateONB3Polynom(const uint n, Polynom& b);
 
-  //Àðèôìåòèêà â ãàóññîâûõ íîðìàëüíûõ áàçèñàõ
+  //Арифметика в гауссовых нормальных базисах
   public:
-    // Òåñòû ñòåïåíåé ïîëÿ íà îáðàçîâàíèå ÃÍÁ
+    // Тесты степеней поля на образование ГНБ
     bool GNBTest(const uint n, const int type) const;
 
 
-	//Îïåðàöèè ìóëüòèïëèêàòèâíîé ãðóïïû è ïîëÿ
+	//Операции мультипликативной группы и поля
 	public:
 		bool InMulGroup(Polynom &groupModule);
 		Polynom& Inverse(Polynom &module);

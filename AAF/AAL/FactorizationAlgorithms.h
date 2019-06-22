@@ -15,14 +15,14 @@
 #include "DecompositionManager.h"
 
 
-// Достоверные тесты простоты
+// Р”РѕСЃС‚РѕРІРµСЂРЅС‹Рµ С‚РµСЃС‚С‹ РїСЂРѕСЃС‚РѕС‚С‹
 namespace AAL
 {
     class FactorizationAlgorithms
   { private: Integer number;
     public:
       FactorizationAlgorithms(Integer number);
-    public:           //Тест простоты чисел мерсена
+    public:           //РўРµСЃС‚ РїСЂРѕСЃС‚РѕС‚С‹ С‡РёСЃРµР» РјРµСЂСЃРµРЅР°
 
       DecVector MsieveDecomposition();
       DecVector ProbingDivisionAlgorithmDecomposition();

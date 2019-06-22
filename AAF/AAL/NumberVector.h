@@ -22,28 +22,28 @@ namespace AAL
 		std::vector<Integer *> _integers;
 		friend class Converter;
 
-	//Конструкторы
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
 		NumberVector();
 		NumberVector(const NumberVector &numberVector);
 		NumberVector(const std::string dataString, NumericSystem system=Dec);
 	
-	//Преобразование и считывание из сторк
+	//РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚РѕСЂРє
 	public:
 		NumberVector& Parse(const std::string dataString, NumericSystem system=Dec);
 		std::string ToString(NumericSystem system=Dec) const;
 	
-	//Унарные операции
+	//РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		NumberVector& operator= (const NumberVector& numberVector);
 
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
 		NumberVector Compare(const NumberVector& numberVector) const;
 		friend bool operator==(const NumberVector& a, const NumberVector& b);
 		friend bool operator!=(const NumberVector& a, const NumberVector& b);
 
-	//Методы акцепторы
+	//РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	public:
 		NumberVector& setZero();
 		bool isZero() const;
@@ -53,7 +53,7 @@ namespace AAL
 		Integer getNumber(std::vector<Integer *>::size_type position) const;
 		void setNumber(std::vector<Integer *>::size_type position, Integer &integer);
 
-	//Логические операции
+	//Р›РѕРіРёС‡РµСЃРєРёРµ РѕРїРµСЂР°С†РёРё
 	public:
 		/*
 		friend NumberVector operator^(const NumberVector &a, const NumberVector &b);
@@ -69,14 +69,14 @@ namespace AAL
 		NumberVector& Not(NumberVector &numberVector);
 		*/
 
-	//Операция сложения
+	//РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
 	public:
 		friend NumberVector operator+(const NumberVector &a, const NumberVector &b);
 		NumberVector& operator+=(NumberVector &numberVector);
 		NumberVector& Add(NumberVector &a, NumberVector &b);
 		NumberVector& ModAdd(NumberVector &a, NumberVector &b, Integer &module);
 	
-	//Операция вычитания
+	//РћРїРµСЂР°С†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ
 	public:
 		friend NumberVector operator-(const NumberVector &a, const NumberVector &b);
 		NumberVector& operator-=(NumberVector &numberVector);

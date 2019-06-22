@@ -13,7 +13,7 @@
 #include <string>
 namespace AAL
 {
-//*************************     Преобразования в класс Integer    ******************************
+//*************************     РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РІ РєР»Р°СЃСЃ Integer    ******************************
 	Integer Converter::ToInteger(const std::string &dataString, NumericSystem system)
 	{
 		return Integer(dataString, system);
@@ -52,7 +52,7 @@ namespace AAL
   }
 //**********************************************************************************************
 
-//*************************     Преобразования в класс Polynom    ******************************
+//*************************     РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РІ РєР»Р°СЃСЃ Polynom    ******************************
 	Polynom Converter::ToPolynom(const std::string &dataString, PolynomSystem system)
 	{
 		std::string invertData(dataString.rbegin(), dataString.rend());
@@ -73,7 +73,7 @@ namespace AAL
 		return result;
 	}
 //**********************************************************************************************
-//***********************Преобразование в класс PolynomGF3*************************************
+//***********************РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РІ РєР»Р°СЃСЃ PolynomGF3*************************************
  PolynomGF3 Converter::ToPolynomGF3(const Integer &integer)
 {
   Integer sustem("3");
@@ -92,7 +92,7 @@ namespace AAL
   return 	 PolynomGF3(overtern);
 }
 //**********************************************************************************************
-//*************************         Преобразование в строку       ******************************
+//*************************         РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РІ СЃС‚СЂРѕРєСѓ       ******************************
 	std::string Converter::ToString(const Integer &integer, NumericSystem system)
 	{
 		return integer.ToString(system);

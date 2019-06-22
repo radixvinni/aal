@@ -15,37 +15,37 @@
 
 namespace AAL
 {
-        // класс, предназначенный для представления многочлена
-        // в виде a0 + a1X + X^2, где a0, a1 принадлежат GF(p)
+        // РєР»Р°СЃСЃ, РїСЂРµРґРЅР°Р·РЅР°С‡РµРЅРЅС‹Р№ РґР»СЏ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ РјРЅРѕРіРѕС‡Р»РµРЅР°
+        // РІ РІРёРґРµ a0 + a1X + X^2, РіРґРµ a0, a1 РїСЂРёРЅР°РґР»РµР¶Р°С‚ GF(p)
         class IntegerBinomModulePolynom
         {
         private:
                 Integer _a0;
                 Integer _a1;
                 Integer _module;
-        //Конструкторы
+        //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
         public:
-                // многочлен 1 + X^2, p = 7
+                // РјРЅРѕРіРѕС‡Р»РµРЅ 1 + X^2, p = 7
                 IntegerBinomModulePolynom();
-                // TODO: сделать проверку на неприводимость
+                // TODO: СЃРґРµР»Р°С‚СЊ РїСЂРѕРІРµСЂРєСѓ РЅР° РЅРµРїСЂРёРІРѕРґРёРјРѕСЃС‚СЊ
                 IntegerBinomModulePolynom(const IntegerBinomModulePolynom & polynom);
                 IntegerBinomModulePolynom(const Integer& a0, const Integer& a1, const Integer& module);
                 ~IntegerBinomModulePolynom();
-        //Преобразование и считывание из строк
+        //РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚СЂРѕРє
 	public:
 		std::string ToString() const;
 
-        //Методы акцепторы
+        //РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
         public:
                 const Integer& getA0() const;
                 const Integer& getA1() const;
                 void setA0A1(const Integer& a0, const Integer& a1);
                 const Integer& getModule() const;
                 void setModule(const Integer& module);
-        //Унарные операции
+        //РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		IntegerBinomModulePolynom& operator= (const IntegerBinomModulePolynom& polynom);
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
                 friend bool operator==(const IntegerBinomModulePolynom& a, const IntegerBinomModulePolynom& b);
 		friend bool operator!=(const IntegerBinomModulePolynom& a, const IntegerBinomModulePolynom& b);
@@ -53,8 +53,8 @@ namespace AAL
                 bool isIrreducible() const;
         };
 
-        // класс, предназначенный для представления элементов GF(p^2)
-        // в виде a + bX
+        // РєР»Р°СЃСЃ, РїСЂРµРґРЅР°Р·РЅР°С‡РµРЅРЅС‹Р№ РґР»СЏ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ GF(p^2)
+        // РІ РІРёРґРµ a + bX
 
         class IntegerBinom
         {
@@ -62,17 +62,17 @@ namespace AAL
                 Integer _a;
                 Integer _b;
                 IntegerBinomModulePolynom _modulePolynom;
-        //Конструкторы
+        //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
         public:
-                // (0,0) по модулю 1 + X^2, p = 7
+                // (0,0) РїРѕ РјРѕРґСѓР»СЋ 1 + X^2, p = 7
                 IntegerBinom();
                 IntegerBinom(const IntegerBinom & binom);
                 IntegerBinom(const Integer& a, const Integer& b, const IntegerBinomModulePolynom& modulePolynom);
                 ~IntegerBinom();
-        //Преобразование и считывание из строк
+        //РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚СЂРѕРє
 	public:
 		std::string ToString() const;
-        //Методы акцепторы
+        //РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
         public:
                 bool isGenerative(std::vector<DecompositionMember>& mulGroupOrdDecomposition) const;
                 bool isZero() const;
@@ -87,56 +87,56 @@ namespace AAL
                 void setModulePolynom(const IntegerBinomModulePolynom& modulePolynom);
                 const Integer& getModule() const;
                 Integer getMulGroupOrder() const;
-        //Унарные операции
+        //РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		IntegerBinom& operator= (const IntegerBinom& binom);
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
                 friend bool operator==(const IntegerBinom& a, const IntegerBinom& b);
 		friend bool operator!=(const IntegerBinom& a, const IntegerBinom& b);
-        //Операция сложения
+        //РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
 	public:
 		friend IntegerBinom operator+(const IntegerBinom &a, const IntegerBinom &b);
 		IntegerBinom& operator+=(IntegerBinom & binom);
 		IntegerBinom& Add(IntegerBinom &a, IntegerBinom &b);
-        //Операция вычитания
+        //РћРїРµСЂР°С†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ
 	public:
 		friend IntegerBinom operator-(const IntegerBinom &a, const IntegerBinom &b);
 		IntegerBinom& operator-=(IntegerBinom & binom);
 		IntegerBinom& Sub(IntegerBinom &a, IntegerBinom &b);
-        //Операция взятия противоположного элемента
+        //РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 	public:
 		IntegerBinom& Negate();
 		IntegerBinom& Negate(IntegerBinom &binom);
-        //Операция умножения
+        //РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ
 	public:
 		friend IntegerBinom operator*(const IntegerBinom &a, const IntegerBinom &b);
 		IntegerBinom& operator*=(IntegerBinom & binom);
 		IntegerBinom& Mul(IntegerBinom &a, IntegerBinom &b);
-        //Операция возведения в степень
+        //РћРїРµСЂР°С†РёСЏ РІРѕР·РІРµРґРµРЅРёСЏ РІ СЃС‚РµРїРµРЅСЊ
 	public:
 		IntegerBinom& Pow(IntegerBinom &a, Integer &n);
-        //Операция взятия обратного элемента
+        //РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РѕР±СЂР°С‚РЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 	public:
                 IntegerBinom& Inverse();
 		IntegerBinom& Inverse(IntegerBinom &a);
-        // Операции генерации
+        // РћРїРµСЂР°С†РёРё РіРµРЅРµСЂР°С†РёРё
         public:
 		IntegerBinom& Generate();
                 IntegerBinom& GenerateGenerative(std::vector<DecompositionMember>& mulGroupOrdDecomposition);
-        // Операция генерации группы корней из единицы
+        // РћРїРµСЂР°С†РёСЏ РіРµРЅРµСЂР°С†РёРё РіСЂСѓРїРїС‹ РєРѕСЂРЅРµР№ РёР· РµРґРёРЅРёС†С‹
         public:
                 std::vector<IntegerBinom> GenerateOneRootGroup(const Integer & rootDegree, std::vector<DecompositionMember>& mulGroupOrdDecomposition);
-        // Операция генерации подгруппы
+        // РћРїРµСЂР°С†РёСЏ РіРµРЅРµСЂР°С†РёРё РїРѕРґРіСЂСѓРїРїС‹
         public:
                 std::vector<IntegerBinom> GenerateSubGroup(const Integer & subGroupOrder, std::vector<DecompositionMember>& mulGroupOrdDecomposition);
-        // Операция умнжения множества
+        // РћРїРµСЂР°С†РёСЏ СѓРјРЅР¶РµРЅРёСЏ РјРЅРѕР¶РµСЃС‚РІР°
         public:
                 std::vector<IntegerBinom> MulMultitude(std::vector<IntegerBinom> & multitude, const IntegerBinom & binom);
         private:
                 uint getMaxFactorizableGroupOrder() const;
                 bool isParentGroupSmallEnoughForFactorization() const;
-        // Операции работы со строками
+        // РћРїРµСЂР°С†РёРё СЂР°Р±РѕС‚С‹ СЃРѕ СЃС‚СЂРѕРєР°РјРё
         public:
                 static std::string MultitudeToString(std::vector<IntegerBinom> & multitude);
                 static std::string FactorToString(std::vector<IntegerBinom> & factor, std::vector<std::vector<IntegerBinom> > & subGroups);

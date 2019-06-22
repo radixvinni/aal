@@ -14,7 +14,7 @@
 
 namespace AAL
 {
-//***********************************  Конструкторы  *******************************************
+//***********************************  РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹  *******************************************
 	PolynomGF3::PolynomGF3()// : BasicType<uchar>()
 	{}
   PolynomGF3::PolynomGF3(const PolynomGF3 &polynom) //: BasicType<uchar>(polynom)
@@ -32,7 +32,7 @@ namespace AAL
   }
 //**********************************************************************************************
 
-//*************************  Преобразование и считывание из сторк ******************************
+//*************************  РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚РѕСЂРє ******************************
 	///(c) Mamontov
 	PolynomGF3& PolynomGF3::Parse(const std::string dataString)
 	{
@@ -63,7 +63,7 @@ namespace AAL
                                polynomA0.append(zero);
 			  }
                           else
-                               throw new Exception("Число задано в непредусмотренном формате");
+                               throw new Exception("Р§РёСЃР»Рѕ Р·Р°РґР°РЅРѕ РІ РЅРµРїСЂРµРґСѓСЃРјРѕС‚СЂРµРЅРЅРѕРј С„РѕСЂРјР°С‚Рµ");
 
 		     }
 		}
@@ -138,7 +138,7 @@ namespace AAL
 	}
 
 //**********************************************************************************************
-//***************************************  Методы акцепторы   **********************************
+//***************************************  РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹   **********************************
        bool PolynomGF3::isZero() const
        {
             if( A0.isZero()&& A1.isZero())
@@ -192,7 +192,7 @@ namespace AAL
 
 
   //(c) Chernysheva, TEST(PolynomGF3, isIrreducible)
-	//неприводимость многочлена
+	//РЅРµРїСЂРёРІРѕРґРёРјРѕСЃС‚СЊ РјРЅРѕРіРѕС‡Р»РµРЅР°
 	bool PolynomGF3::isIrreducible() const
 	{
     uint n = this->getNumberBits() - 1;
@@ -229,7 +229,7 @@ namespace AAL
 	}
 
   //(c) Chernysheva, TEST(PolynomGF3, isPrimitivity)
-	//примитивность многочлена, есть разложение только для нечетных
+	//РїСЂРёРјРёС‚РёРІРЅРѕСЃС‚СЊ РјРЅРѕРіРѕС‡Р»РµРЅР°, РµСЃС‚СЊ СЂР°Р·Р»РѕР¶РµРЅРёРµ С‚РѕР»СЊРєРѕ РґР»СЏ РЅРµС‡РµС‚РЅС‹С…
   bool PolynomGF3::isPrimitivity() const
   {
     PolynomGF3 plCur(*this);
@@ -256,7 +256,7 @@ namespace AAL
       return false;
   }
 
-//************************************  Унарные операции   *************************************
+//************************************  РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё   *************************************
 	//(c) Mamontov, TEST(Polynom, operatorEqual)
 	PolynomGF3& PolynomGF3::operator= (const PolynomGF3& polynom)
 	{
@@ -266,7 +266,7 @@ namespace AAL
 	}
 //**********************************************************************************************
 
-//***************************************  Методы акцепторы   **********************************
+//***************************************  РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹   **********************************
 	//simple method
 	PolynomGF3& PolynomGF3::setOne()
 	{
@@ -292,7 +292,7 @@ namespace AAL
 
 //**********************************************************************************************
 
-//*****************************    Операции сравнения    ***************************************
+//*****************************    РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ    ***************************************
 	//(c) Mamontov, TEST(Polynom, Equal)
 	bool operator==(const PolynomGF3& a, const PolynomGF3& b)
 	{
@@ -339,7 +339,7 @@ namespace AAL
 	}
 //**********************************************************************************************
 
-//***************************    Операции побитового сдвига    *********************************
+//***************************    РћРїРµСЂР°С†РёРё РїРѕР±РёС‚РѕРІРѕРіРѕ СЃРґРІРёРіР°    *********************************
 	//simple method
 	PolynomGF3 PolynomGF3::operator<<(int numberBits) const
 	{
@@ -372,7 +372,7 @@ namespace AAL
 //**********************************************************************************************
 
 
-//******************************    Операция сложения    ***************************************
+//******************************    РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ    ***************************************
 	//simple method
 	PolynomGF3 operator+(const PolynomGF3 &a, const PolynomGF3 &b)
 	{
@@ -412,12 +412,12 @@ namespace AAL
       return Add(copy_a, copy_b) %= module;
     }
     else
-      throw new Exception("f(x) должен быть неприводимым.");
+      throw new Exception("f(x) РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРјС‹Рј.");
   }
 
 //**********************************************************************************************
 
-//******************************    Операция вычитания    **************************************
+//******************************    РћРїРµСЂР°С†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ    **************************************
 	//simple method
 	PolynomGF3 operator-(const PolynomGF3 &a, const PolynomGF3 &b)
 	{
@@ -451,7 +451,7 @@ namespace AAL
 
 //**********************************************************************************************
 
-//******************************    Операция умножения    **************************************
+//******************************    РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ    **************************************
 
         //simple method
 	PolynomGF3 operator*(const PolynomGF3 &a, const PolynomGF3 &b)
@@ -466,7 +466,7 @@ namespace AAL
 		return Mul(*this, polynom);
 	}
 
-        // Функция реализующая умножение многочленов над полем GF(2)
+        // Р¤СѓРЅРєС†РёСЏ СЂРµР°Р»РёР·СѓСЋС‰Р°СЏ СѓРјРЅРѕР¶РµРЅРёРµ РјРЅРѕРіРѕС‡Р»РµРЅРѕРІ РЅР°Рґ РїРѕР»РµРј GF(2)
 	PolynomGF3& PolynomGF3::Mul(PolynomGF3 &a, PolynomGF3 &b)
 	{
                 if(a.isZero() || b.isZero())
@@ -532,14 +532,14 @@ namespace AAL
 		  return Mul(copy_a, copy_b) %= module;
     }
     else
-    throw new Exception("f(x) должен быть неприводимым.");
+    throw new Exception("f(x) РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРјС‹Рј.");
 	}
 
 
 //**********************************************************************************************
 
 
-//******************************    Операция деления    ****************************************
+//******************************    РћРїРµСЂР°С†РёСЏ РґРµР»РµРЅРёСЏ    ****************************************
 	//simple method
 	PolynomGF3 operator/(const PolynomGF3 &a, const PolynomGF3 &b)
 	{
@@ -557,9 +557,9 @@ namespace AAL
 	PolynomGF3& PolynomGF3::Div(PolynomGF3 &a, PolynomGF3 &b, PolynomGF3 *remainder)
 	{
                	if(this == remainder)
-			throw new Exception("Частное и остаток не могут быть одним числом");
+			throw new Exception("Р§Р°СЃС‚РЅРѕРµ Рё РѕСЃС‚Р°С‚РѕРє РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РѕРґРЅРёРј С‡РёСЃР»РѕРј");
 		if(b.isZero())
-			throw new Exception("Деление на ноль");
+			throw new Exception("Р”РµР»РµРЅРёРµ РЅР° РЅРѕР»СЊ");
 
                 if(a.isZero() || a.getNumberBits()<b.getNumberBits())
 		{
@@ -628,7 +628,7 @@ namespace AAL
   PolynomGF3& PolynomGF3::GCD(const PolynomGF3 &a, PolynomGF3 &b)
 	{
     if (a.isZero() && b.isZero())
-      throw new Exception("Оба полинома нулевые");
+      throw new Exception("РћР±Р° РїРѕР»РёРЅРѕРјР° РЅСѓР»РµРІС‹Рµ");
     else
     {
       if (!a.isZero() && !b.isZero())
@@ -661,7 +661,7 @@ namespace AAL
 
 //**********************************************************************************************
 
-//***************************    Операция приведения по модулю    ******************************
+//***************************    РћРїРµСЂР°С†РёСЏ РїСЂРёРІРµРґРµРЅРёСЏ РїРѕ РјРѕРґСѓР»СЋ    ******************************
 	//simple method
 	PolynomGF3 operator%(const PolynomGF3 &a, const PolynomGF3 &b)
 	{
@@ -855,7 +855,7 @@ namespace AAL
 		    return *this;
       }
       else
-       throw new Exception("f(x) должен быть неприводимым.");
+       throw new Exception("f(x) РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРјС‹Рј.");
     }
 
 //------------------------------------------------------------------------------
@@ -951,11 +951,11 @@ PolynomGF3& PolynomGF3::Generate(const PolynomGF3& module)
      }
 
 //(c) Chernysheva, TEST(PolynomGF3, GenerateIrreducible)
-// генерация неприводимого трехчлена
+// РіРµРЅРµСЂР°С†РёСЏ РЅРµРїСЂРёРІРѕРґРёРјРѕРіРѕ С‚СЂРµС…С‡Р»РµРЅР°
 PolynomGF3& PolynomGF3::GenerateIrreducible(const uint nDegree)
 {
   if (nDegree < 2)
-    throw new std::domain_error("cтепень полинома меньше 2");
+    throw new std::domain_error("cС‚РµРїРµРЅСЊ РїРѕР»РёРЅРѕРјР° РјРµРЅСЊС€Рµ 2");
 
   bool isGen = false;
   //2_+_X^t_+_X^n
@@ -1020,7 +1020,7 @@ PolynomGF3& PolynomGF3::GenerateIrreducible(const uint nDegree)
   }
 
   if (!isGen)
-    throw new Exception("Не удалось сгенерировать трехчлен с данными параметрами");
+    throw new Exception("РќРµ СѓРґР°Р»РѕСЃСЊ СЃРіРµРЅРµСЂРёСЂРѕРІР°С‚СЊ С‚СЂРµС…С‡Р»РµРЅ СЃ РґР°РЅРЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё");
   else
     return *this;
 }
@@ -1131,14 +1131,14 @@ PolynomGF3& PolynomGF3::InverseMod(PolynomGF3 &a,PolynomGF3 &module)
     return *this;
   }
   else
-  throw new Exception("f(x) должен быть неприводимым.");
+  throw new Exception("f(x) РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРјС‹Рј.");
 }
 //------------------------------------------------------------------------------
 PolynomGF3& PolynomGF3::Square1(PolynomGF3 &a,PolynomGF3 &module)
 {PolynomGF3 aa(a),m(module);
   uint len=m.getNumberBits()-1;
             if(len % 2 != 1)
-                       throw new Exception("n чётное");
+                       throw new Exception("n С‡С‘С‚РЅРѕРµ");
   uint k=len/2;
   AAL:: Integer pp("3"),p1(2*k),pp1("3"),p2("2"),one("1"),six("6");
   pp.Pow(pp,p1);
@@ -1182,7 +1182,7 @@ PolynomGF3& PolynomGF3::Square1(PolynomGF3 &a,PolynomGF3 &module)
 
    {
         if(module.isIrreducible() == false)
-                        throw new Exception("f(x) - должен быть неприводим");
+                        throw new Exception("f(x) - РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРј");
 
         bool rez;
         Integer s;
@@ -1294,7 +1294,7 @@ PolynomGF3& PolynomGF3::Square1(PolynomGF3 &a,PolynomGF3 &module)
 //-------------------------------------------------------------------------------
   //(c) Chernysheva
   //------->>>>>>>>>-----------------
-  // перевод числа в строку
+  // РїРµСЂРµРІРѕРґ С‡РёСЃР»Р° РІ СЃС‚СЂРѕРєСѓ
   std::string PolynomGF3::i_to_str(uint x) const
   {
     std::string str = "";
@@ -1304,7 +1304,7 @@ PolynomGF3& PolynomGF3::Square1(PolynomGF3 &a,PolynomGF3 &module)
     return str;
   }
 
-    // получить список степеней
+    // РїРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє СЃС‚РµРїРµРЅРµР№
   //(c) Chernysheva
   std::list<std::pair<uint,uint> > PolynomGF3::getPowersOfPolynom() const
   {
@@ -1320,9 +1320,9 @@ PolynomGF3& PolynomGF3::Square1(PolynomGF3 &a,PolynomGF3 &module)
     return powers;
   }
 
-  // строка степеней
+  // СЃС‚СЂРѕРєР° СЃС‚РµРїРµРЅРµР№
   //(c) Chernysheva
-  // в строку парами <коэффициент, степень>
+  // РІ СЃС‚СЂРѕРєСѓ РїР°СЂР°РјРё <РєРѕСЌС„С„РёС†РёРµРЅС‚, СЃС‚РµРїРµРЅСЊ>
   std::string PolynomGF3::ToStringByPowers() const
   {
     std::list<std::pair<uint,uint> > powers(getPowersOfPolynom());
@@ -1341,8 +1341,8 @@ PolynomGF3& PolynomGF3::Square1(PolynomGF3 &a,PolynomGF3 &module)
   }
 
 
-   // Тесты степеней поля на образование ОНБ и ГНБ
-  // ОНБ 1
+   // РўРµСЃС‚С‹ СЃС‚РµРїРµРЅРµР№ РїРѕР»СЏ РЅР° РѕР±СЂР°Р·РѕРІР°РЅРёРµ РћРќР‘ Рё Р“РќР‘
+  // РћРќР‘ 1
   // (c) Chernysheva, TEST(PolynomGF3, ONB1)
   bool PolynomGF3::ONB1Test(const uint n) const
   {
@@ -1365,7 +1365,7 @@ PolynomGF3& PolynomGF3::Square1(PolynomGF3 &a,PolynomGF3 &module)
       return false;
   }
 
-  // ОНБ 2
+  // РћРќР‘ 2
   // (c) Chernysheva, TEST(PolynomGF3, ONB2)
   bool PolynomGF3::ONB2Test(const uint n) const
   {
@@ -1387,11 +1387,11 @@ PolynomGF3& PolynomGF3::Square1(PolynomGF3 &a,PolynomGF3 &module)
     else
       return false;
   }
-  // ОНБ 3
+  // РћРќР‘ 3
   // (c) Chernysheva, TEST(PolynomGF3, ONB3)
   bool PolynomGF3::ONB3Test(const uint n) const
   {
-    // n - нечетно
+    // n - РЅРµС‡РµС‚РЅРѕ
     if (n%2)
     {
       Integer p(2*n + 1), condition;
@@ -1417,16 +1417,16 @@ PolynomGF3& PolynomGF3::Square1(PolynomGF3 &a,PolynomGF3 &module)
       return false;
   }
 
-  // ГНБ
+  // Р“РќР‘
   bool PolynomGF3::GNBTest(const uint n, const int type) const
   {
     if (type < 3 || type > 6)
-      throw new Exception("Тип ГНБ должен быть от 3 до 6");
+      throw new Exception("РўРёРї Р“РќР‘ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РѕС‚ 3 РґРѕ 6");
 
     Integer p(type*n + 1);
     if (p.isPrime())
     {
-      // проверку неделимости 3 на p опускаем, т.к. это очевидно
+      // РїСЂРѕРІРµСЂРєСѓ РЅРµРґРµР»РёРјРѕСЃС‚Рё 3 РЅР° p РѕРїСѓСЃРєР°РµРј, С‚.Рє. СЌС‚Рѕ РѕС‡РµРІРёРґРЅРѕ
       std::vector<DecompositionMember> vector(DecompositionManager::Instance().getPrimeDecomposition(n));
       Integer number, mod, pow;
       for (std::vector<DecompositionMember>::iterator i = vector.begin(); i != vector.end(); ++i)
@@ -1446,7 +1446,7 @@ PolynomGF3& PolynomGF3::Square1(PolynomGF3 &a,PolynomGF3 &module)
 Integer& PolynomGF3::elementOrder(PolynomGF3 &groupModule, PolynomGF3 &polynom,std::vector<DecompositionMember> vector, const Integer &ord )
 {
  // if(!polynom. InMulGroup(groupModule))
- //   throw std::out_of_range("полином не принадлежит мультипликативной группе");
+ //   throw new Exception("РїРѕР»РёРЅРѕРј РЅРµ РїСЂРёРЅР°РґР»РµР¶РёС‚ РјСѓР»СЊС‚РёРїР»РёРєР°С‚РёРІРЅРѕР№ РіСЂСѓРїРїРµ");
   if(vector.size() >= 1)
   {
     std::vector<DecompositionMember>::iterator it;
@@ -1472,12 +1472,12 @@ Integer& PolynomGF3::elementOrder(PolynomGF3 &groupModule, PolynomGF3 &polynom,s
     return *rez;
   }
   else
-     throw new Exception("Введите разложение порядка группы.");
+     throw new Exception("Р’РІРµРґРёС‚Рµ СЂР°Р·Р»РѕР¶РµРЅРёРµ РїРѕСЂСЏРґРєР° РіСЂСѓРїРїС‹.");
 }
 bool PolynomGF3::isGenerator(PolynomGF3 &groupModule, PolynomGF3 &polynom,std::vector<DecompositionMember> vector,const Integer &ord)
 {
 //  if(!polynom.InMulGroup(groupModule))
-//    throw std::out_of_range("полином не принадлежит мультипликативной группе");
+//    throw new Exception("РїРѕР»РёРЅРѕРј РЅРµ РїСЂРёРЅР°РґР»РµР¶РёС‚ РјСѓР»СЊС‚РёРїР»РёРєР°С‚РёРІРЅРѕР№ РіСЂСѓРїРїРµ");
 	if (vector.size()==1) return true;
     if(vector.size() > 1)
     {   AAL::Integer m(ord-1);
@@ -1487,7 +1487,7 @@ bool PolynomGF3::isGenerator(PolynomGF3 &groupModule, PolynomGF3 &polynom,std::v
         return true;
     }
   else
-   throw new Exception("Введите разложение порядка группы.");
+   throw new Exception("Р’РІРµРґРёС‚Рµ СЂР°Р·Р»РѕР¶РµРЅРёРµ РїРѕСЂСЏРґРєР° РіСЂСѓРїРїС‹.");
 return false;
 }
 

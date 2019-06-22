@@ -21,8 +21,8 @@
 
 namespace AAL
 {
-//****************************  Класс Эллиптических кривых  *************************************
-//*********************************      Конструкторы       *************************************
+//****************************  РљР»Р°СЃСЃ Р­Р»Р»РёРїС‚РёС‡РµСЃРєРёС… РєСЂРёРІС‹С…  *************************************
+//*********************************      РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹       *************************************
     EllipticCurve::EllipticCurve()
     {
         _module = new Integer(5);
@@ -41,11 +41,11 @@ namespace AAL
     EllipticCurve::EllipticCurve(Integer &module, Integer &a, Integer &b)
     {
         if(!module.isPrime())
-            throw new Exception("Модуль составное число");
+            throw new Exception("РњРѕРґСѓР»СЊ СЃРѕСЃС‚Р°РІРЅРѕРµ С‡РёСЃР»Рѕ");
         if(module.isNegative())
-            throw new Exception("Модуль отрицательное число");
+            throw new Exception("РњРѕРґСѓР»СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРµ С‡РёСЃР»Рѕ");
         if(!isSmooth(module, a, b))
-            throw new Exception("Инвариант равен 0");
+            throw new Exception("РРЅРІР°СЂРёР°РЅС‚ СЂР°РІРµРЅ 0");
 
         _module = new Integer(module);
         _a = new Integer(a);
@@ -65,7 +65,7 @@ namespace AAL
     }
 //***********************************************************************************************
 
-//*****************************        Методы акцепторы        **********************************
+//*****************************        РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹        **********************************
     //private method
     bool EllipticCurve::isSmooth(Integer &module, Integer &a, Integer &b) const
     {
@@ -117,14 +117,14 @@ namespace AAL
     Integer& EllipticCurve::setModule(Integer &module)
     {
         if(!module.isPrime())
-            throw new Exception("Модуль составное число");
+            throw new Exception("РњРѕРґСѓР»СЊ СЃРѕСЃС‚Р°РІРЅРѕРµ С‡РёСЃР»Рѕ");
         if(module.isNegative())
-            throw new Exception("Модуль отрицательное число");
+            throw new Exception("РњРѕРґСѓР»СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРµ С‡РёСЃР»Рѕ");
         *_module = module;
         _a->ModPositive(*_module);
         _b->ModPositive(*_module);
         //if(!isSmooth(*_module, *_a, *_b))
-            //throw std::domain_error("Инвариант равен 0");
+            //throw std::domain_error("РРЅРІР°СЂРёР°РЅС‚ СЂР°РІРµРЅ 0");
         return *_module;
     }
 
@@ -133,7 +133,7 @@ namespace AAL
         *_a = a;
         _a->ModPositive(*_module);
         //if(isSmooth(*_module, *_a, *_b))
-            //throw std::domain_error("Инвариант равен 0");
+            //throw std::domain_error("РРЅРІР°СЂРёР°РЅС‚ СЂР°РІРµРЅ 0");
         return *_a;
     }
 
@@ -142,25 +142,25 @@ namespace AAL
         *_b = b;
         _b->ModPositive(*_module);
         //if(isSmooth(*_module, *_a, *_b))
-            //throw std::domain_error("Инвариант равен 0");
+            //throw std::domain_error("РРЅРІР°СЂРёР°РЅС‚ СЂР°РІРµРЅ 0");
         return *_b;
     }
 
     EllipticCurve& EllipticCurve::setCurve(Integer &module, Integer &J)
     {
         if(!module.isPrime())
-            throw new Exception("Модуль не простое число");
+            throw new Exception("РњРѕРґСѓР»СЊ РЅРµ РїСЂРѕСЃС‚РѕРµ С‡РёСЃР»Рѕ");
         if(module.isNegative())
-            throw new Exception("Модуль отрицательное число");
+            throw new Exception("РњРѕРґСѓР»СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРµ С‡РёСЃР»Рѕ");
         if(J.isZero())
-            throw new Exception("Инвариант равен 0");
+            throw new Exception("РРЅРІР°СЂРёР°РЅС‚ СЂР°РІРµРЅ 0");
 
         Integer k(1728);
         k -= J;
         k.ModPositive(module);
 
         if(k.isZero())
-            throw new Exception("Инвариант равен 1728");
+            throw new Exception("РРЅРІР°СЂРёР°РЅС‚ СЂР°РІРµРЅ 1728");
 
         k.Inverse(module);
         k.ModMul(k, J, module);
@@ -177,9 +177,9 @@ namespace AAL
     EllipticCurve& EllipticCurve::setCurve(Integer &module)
     {
         if(!module.isPrime())
-            throw new Exception("Модуль составное число");
+            throw new Exception("РњРѕРґСѓР»СЊ СЃРѕСЃС‚Р°РІРЅРѕРµ С‡РёСЃР»Рѕ");
         if(module.isNegative())
-            throw new Exception("Модуль отрицательное число");
+            throw new Exception("РњРѕРґСѓР»СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРµ С‡РёСЃР»Рѕ");
 
         Integer J, temp(1728);
         temp.ModPositive(module);
@@ -192,7 +192,7 @@ namespace AAL
     }
 //***********************************************************************************************
 
-//***************************          Унарные операции         *********************************
+//***************************          РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё         *********************************
     EllipticCurve& EllipticCurve::operator=(const EllipticCurve &eCurve)
     {
         *_module = *eCurve._module;
@@ -202,7 +202,7 @@ namespace AAL
     }
 //***********************************************************************************************
 
-//********************************      Операции сравнения      *********************************
+//********************************      РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ      *********************************
     bool operator==(const EllipticCurve &eCurve1, const EllipticCurve &eCurve2)
     {
         return(*eCurve1._module == *eCurve2._module && *eCurve1._a == *eCurve2._a && *eCurve1._b == *eCurve2._b);
@@ -214,7 +214,7 @@ namespace AAL
     }
 //***********************************************************************************************
 
-//*************************        Принадлежность точки к кривой      ***************************
+//*************************        РџСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ С‚РѕС‡РєРё Рє РєСЂРёРІРѕР№      ***************************
     bool EllipticCurve::inGroup(Integer &x, Integer &y) const
     {
         Integer temp1;
@@ -236,7 +236,7 @@ namespace AAL
     }
 
 //***********************************************************************************************
-           //*****************************       Генерация точки         ***********************************
+           //*****************************       Р“РµРЅРµСЂР°С†РёСЏ С‚РѕС‡РєРё         ***********************************
     EllipticPoint& EllipticPoint::Generate()
     {
         Integer x,y,temp;
@@ -261,7 +261,7 @@ namespace AAL
     }
 //***********************************************************************************************
 
-//*****************************       Вычисление порядка кривой     ***********************************
+//*****************************       Р’С‹С‡РёСЃР»РµРЅРёРµ РїРѕСЂСЏРґРєР° РєСЂРёРІРѕР№     ***********************************
       Integer EllipticCurve::getOrder()
           {
                                 Integer A(getA());
@@ -274,29 +274,29 @@ namespace AAL
                 if (!FileExists("schoof.exe"))
                         {
 
-                                //throw std::domain_error("Не найден файл schoof.exe!");
-                                throw new Exception("Не найден файл schoof.exe");
+                                //throw std::domain_error("РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» schoof.exe!");
+                                throw new Exception("РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» schoof.exe");
                                 return Integer("0");
                         };
 
                if (!FileExists("sea.exe"))
                         {
-                                 //throw std::domain_error("Не найден файл sea.exe!");
-                                 throw new Exception("Не найден файл sea.exe");
+                                 //throw std::domain_error("РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» sea.exe!");
+                                 throw new Exception("РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» sea.exe");
                                   return Integer("0");
                         };
 
                if (!FileExists("modpol.exe"))
                         {
-                                  //throw std::domain_error("Не найден файл modpol.exe!");
-                                 throw new Exception("Не найден файл modpol.exe");
+                                  //throw std::domain_error("РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» modpol.exe!");
+                                 throw new Exception("РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» modpol.exe");
                                  return Integer("0");
                         };
 
                if (!FileExists("mueller.exe"))
                         {
-                                //throw std::domain_error("Не найден файл mueller.exe");
-                                throw new Exception("Не найден файл mueller.exe");
+                                //throw std::domain_error("РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» mueller.exe");
+                                throw new Exception("РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» mueller.exe");
                                 return Integer("0");
                         };
 #endif
@@ -317,8 +317,8 @@ namespace AAL
 
                 if (J.isZero()  || J==1728 )
                         {
-                                //throw std::domain_error("Инвариант равен 0");
-                                throw new Exception("Инвариант кривой равен 0 или 1728");
+                                //throw std::domain_error("РРЅРІР°СЂРёР°РЅС‚ СЂР°РІРµРЅ 0");
+                                throw new Exception("РРЅРІР°СЂРёР°РЅС‚ РєСЂРёРІРѕР№ СЂР°РІРµРЅ 0 РёР»Рё 1728");
                                 return Integer("0");
 
                         };
@@ -400,10 +400,10 @@ namespace AAL
                                 &StInfo,
                                 &PrInfo))
                         {
-                                throw new Exception("Невозможно запустить schoof.exe или sea.exe");
+                                throw new Exception("РќРµРІРѕР·РјРѕР¶РЅРѕ Р·Р°РїСѓСЃС‚РёС‚СЊ schoof.exe РёР»Рё sea.exe");
                                 return Integer("0") ;
                         }
-                        // Ждём, пока процесс не выполнится:
+                        // Р–РґС‘Рј, РїРѕРєР° РїСЂРѕС†РµСЃСЃ РЅРµ РІС‹РїРѕР»РЅРёС‚СЃСЏ:
                                 WaitForSingleObject(PrInfo.hProcess,INFINITE);
 #endif
                                 std::vector<std::string> result;
@@ -417,12 +417,12 @@ namespace AAL
                         }
                 catch(...)
                         {
-                                 throw new Exception("Невозможно прочитать curveorder.log ");
+                                 throw new Exception("РќРµРІРѕР·РјРѕР¶РЅРѕ РїСЂРѕС‡РёС‚Р°С‚СЊ curveorder.log ");
                                  return Integer("0");
                         }
                 if (result.size()<7)
                         {
-                                throw new Exception("Операция отменена пользователем");
+                                throw new Exception("РћРїРµСЂР°С†РёСЏ РѕС‚РјРµРЅРµРЅР° РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј");
                                 return Integer("0");
 
                         }
@@ -438,8 +438,8 @@ namespace AAL
 
 //***********************************************************************************************
 
-//**********************************  Класс точка эллиптичиской кривой  *************************
-//********************************      Конструкторы       **************************************
+//**********************************  РљР»Р°СЃСЃ С‚РѕС‡РєР° СЌР»Р»РёРїС‚РёС‡РёСЃРєРѕР№ РєСЂРёРІРѕР№  *************************
+//********************************      РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹       **************************************
     EllipticPoint::EllipticPoint()
     {
         _curve = new EllipticCurve();
@@ -471,7 +471,7 @@ namespace AAL
 
 //***********************************************************************************************
 
-//****************************       Методы акцепторы        ************************************
+//****************************       РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹        ************************************
     EllipticCurve& EllipticPoint::getCurve()
     {
         return *_curve;
@@ -480,13 +480,13 @@ namespace AAL
     Integer& EllipticPoint::getX()
     {
         if(!isInfinite()) return *_x;
-        throw new Exception("Точка на бесконечности");
+        throw new Exception("РўРѕС‡РєР° РЅР° Р±РµСЃРєРѕРЅРµС‡РЅРѕСЃС‚Рё");
     }
 
     Integer& EllipticPoint::getY()
     {
         if(!isInfinite()) return *_y;
-        throw new Exception("Точка на бесконечности");
+        throw new Exception("РўРѕС‡РєР° РЅР° Р±РµСЃРєРѕРЅРµС‡РЅРѕСЃС‚Рё");
     }
 
     EllipticCurve& EllipticPoint::setCurve(EllipticCurve &eCurve)
@@ -513,7 +513,7 @@ namespace AAL
         if(!_curve->inGroup(*_x, *_y))
         {
             _infinite = infinite;
-            throw new Exception("точка не лежит на кривой");
+            throw new Exception("С‚РѕС‡РєР° РЅРµ Р»РµР¶РёС‚ РЅР° РєСЂРёРІРѕР№");
         }
         return *this;
     }
@@ -530,7 +530,7 @@ namespace AAL
     }
 //***********************************************************************************************
 
-//****************************         Унарные операции          ********************************
+//****************************         РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё          ********************************
     EllipticPoint& EllipticPoint::operator=(const EllipticPoint &ePoint)
     {
         *_curve = *ePoint._curve;
@@ -542,7 +542,7 @@ namespace AAL
 
 //***********************************************************************************************
 
-//*********************************       Операции сравнения        *****************************
+//*********************************       РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ        *****************************
     bool operator==(const EllipticPoint &ePoint1, const EllipticPoint &ePoint2)
     {
         if(ePoint1.isInfinite() && ePoint2.isInfinite())
@@ -559,7 +559,7 @@ namespace AAL
     }
 //***********************************************************************************************
 
-//**************************   Операция взятия противоположной точки   **************************
+//**************************   РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕР№ С‚РѕС‡РєРё   **************************
         EllipticPoint& EllipticPoint::Negate()
         {
                 return Negate(*this);
@@ -577,7 +577,7 @@ namespace AAL
         }
 //***********************************************************************************************
 
-//*****************************        Операция сложение        *********************************
+//*****************************        РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёРµ        *********************************
     EllipticPoint operator+(EllipticPoint &ePoint1, EllipticPoint &ePoint2)
     {
         EllipticPoint res;
@@ -592,7 +592,7 @@ namespace AAL
     EllipticPoint& EllipticPoint::Add(EllipticPoint &ePoint1, EllipticPoint &ePoint2)
     {
         if(*ePoint1._curve != *ePoint2._curve)
-            throw new Exception("точки лежат на разных кривых");
+            throw new Exception("С‚РѕС‡РєРё Р»РµР¶Р°С‚ РЅР° СЂР°Р·РЅС‹С… РєСЂРёРІС‹С…");
 
         *this->_curve = *ePoint1._curve;
 
@@ -657,7 +657,7 @@ namespace AAL
     }
 //***********************************************************************************************
 
-//******************************      Операция удвоения       ***********************************
+//******************************      РћРїРµСЂР°С†РёСЏ СѓРґРІРѕРµРЅРёСЏ       ***********************************
     EllipticPoint& EllipticPoint::Double()
     {
         return this->Double(*this);
@@ -703,7 +703,7 @@ namespace AAL
     }
 //***********************************************************************************************
 
-//**************************    Операция умножения на константу    ******************************
+//**************************    РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РЅР° РєРѕРЅСЃС‚Р°РЅС‚Сѓ    ******************************
     EllipticPoint operator*(const EllipticPoint &ePoint, const Integer &i)
     {
         EllipticPoint res, copy_ePoint(ePoint);

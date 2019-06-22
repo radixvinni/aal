@@ -15,7 +15,7 @@
 using namespace AAL;
 
 /*
-	Конструкторы класса PolynomGF3n6
+	РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ РєР»Р°СЃСЃР° PolynomGF3n6
 */
 TEST(PolynomGF3n6, EmptyConstructor)
 {
@@ -32,7 +32,7 @@ TEST(PolynomGF3n6, StringConstructor)
 }
 
 /*
-Унарные операции
+РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 */
 
 TEST(PolynomGF3n6, operatorEqual)
@@ -57,7 +57,7 @@ TEST(PolynomGF3n6, operatorEqual)
 }
 
 /*
-        Методы акцепторы
+        РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 */
 TEST(PolynomGF3n6, SetData)
 {
@@ -84,7 +84,7 @@ TEST(PolynomGF3n6, isPrimitivity)
 }
 
 /*
-        Операции сравнения
+        РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 */
 TEST(PolynomGF3n6, Smaller)
 {
@@ -96,7 +96,7 @@ TEST(PolynomGF3n6, Smaller)
 
 
 /*
-        Операция сложения
+        РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
 */
 TEST(PolynomGF3n6, Add)
 {
@@ -118,7 +118,7 @@ TEST(PolynomGF3n6, Add)
 
 
 /*
-	Операция умножения
+	РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ
 */
 TEST(PolynomGF3n6, Mul)
 {

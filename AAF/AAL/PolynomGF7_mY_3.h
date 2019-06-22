@@ -35,18 +35,18 @@ namespace AAL
 
             PolynomGF7 _module;
             PolynomGF7 _modPolynom;
-	//Конструкторы
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
 		PolynomGF7_mY_3();
 		PolynomGF7_mY_3(const PolynomGF7_mY_3 &polynom);
 		PolynomGF7_mY_3(const std::string a0, const std::string a1, const std::string a2,const std::string module);
-	//Преобразование и считывание из строк
+	//РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚СЂРѕРє
 	public:
 /*		Polynom& Parse(const std::string dataString, PolynomSystem system=BackBin);
 		std::string ToString(PolynomSystem system=BackBin) const;
         std::string ToString(const std::string dataString);
 */
-	//Методы акцепторы
+	//РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	public:
 		PolynomGF7_mY_3& setOne();
 		PolynomGF7_mY_3& setPolynom(uchar);
@@ -72,27 +72,27 @@ namespace AAL
         const PolynomGF7& getModPolynom() const;
         void setModPolynom(const PolynomGF7& modPolynom);
         void setModule(const PolynomGF7& module);
-	//Унарные операции
+	//РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		PolynomGF7_mY_3& operator= (const PolynomGF7_mY_3& polynom);
 
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
 		friend bool operator==(const PolynomGF7_mY_3& a, const PolynomGF7_mY_3& b);
 		friend bool operator!=(const PolynomGF7_mY_3& a, const PolynomGF7_mY_3& b);
 
-	//Операция сложения
+	//РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
 	public:
 	 	friend PolynomGF7_mY_3 operator+(const PolynomGF7_mY_3 &a, const PolynomGF7_mY_3 &b);
 		PolynomGF7_mY_3& operator+=(PolynomGF7_mY_3 &polynom);
 		PolynomGF7_mY_3& Add(PolynomGF7_mY_3 &a, PolynomGF7_mY_3 &b);
-    //Операция умножения
+    //РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ
 	public:
         PolynomGF7_mY_3& Mul(PolynomGF7 &a, PolynomGF7 &b);
         PolynomGF7_mY_3& FullMul(PolynomGF7_mY_3 &a, PolynomGF7_mY_3 &b);
         PolynomGF7_mY_3& MonomialMul(PolynomGF7_mY_3 &a, PolynomGF7 &b);
         PolynomGF7_mY_3& NormalMonomialMul(PolynomGF7_mY_3 &a, int d);
-    //Деление с остатком
+    //Р”РµР»РµРЅРёРµ СЃ РѕСЃС‚Р°С‚РєРѕРј
         PolynomGF7_mY_3& Div(PolynomGF7_mY_3 &a, PolynomGF7_mY_3 &b, PolynomGF7 &module, PolynomGF7_mY_3 *remainder);
         PolynomGF7_mY_3& GCD(PolynomGF7_mY_3 &a, PolynomGF7_mY_3 &b, PolynomGF7 &module);
 

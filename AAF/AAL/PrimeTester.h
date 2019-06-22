@@ -14,7 +14,7 @@
 #include "Algorithms.h"
 #include "./AAF/AAL/DecompositionManager.h"
 
-// Достоверные тесты простоты
+// Р”РѕСЃС‚РѕРІРµСЂРЅС‹Рµ С‚РµСЃС‚С‹ РїСЂРѕСЃС‚РѕС‚С‹
 namespace AAL
 {
     class PrimeTester
@@ -22,7 +22,7 @@ namespace AAL
    private: Integer Mersen_Number;
     public:
       PrimeTester(Integer number);
-    public:           //Тест простоты чисел мерсена
+    public:           //РўРµСЃС‚ РїСЂРѕСЃС‚РѕС‚С‹ С‡РёСЃРµР» РјРµСЂСЃРµРЅР°
 
       bool TestLukaLemera(Integer degree);
       bool ModifiedTestLuka(std::vector<DecompositionMember> vector);

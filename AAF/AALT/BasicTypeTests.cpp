@@ -13,7 +13,7 @@
 using namespace AAL;
 
 /*
-	Конструкторы класса BasicType
+	РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ РєР»Р°СЃСЃР° BasicType
 */
 TEST(BasicType, EmptyConstructor)
 {
@@ -41,7 +41,7 @@ TEST(BasicType, NumberConstructor)
 }
 
 /*
-	Методы для работы с памятью класса Integer
+	РњРµС‚РѕРґС‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РїР°РјСЏС‚СЊСЋ РєР»Р°СЃСЃР° Integer
 */
 TEST(BasicType, Relocation)
 {
@@ -72,7 +72,7 @@ TEST(BasicType, PressMemory)
 }
 
 /*
-	Методы акцепторы
+	РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 */
 TEST(BasicType, getNumberBits)
 {

@@ -20,13 +20,13 @@ namespace AAL
         _a0(a0), _a1(a1), _module(module)
         {
                 if(a0.isNegative() || a0 >= module || a1.isNegative() || a1 >= module)
-                        throw new Exception("Коэффицениы должны принадлежать GF(module)");
+                        throw new Exception("РљРѕСЌС„С„РёС†РµРЅРёС‹ РґРѕР»Р¶РЅС‹ РїСЂРёРЅР°РґР»РµР¶Р°С‚СЊ GF(module)");
                 if(module.isNegative())
-                        throw new Exception("Характеристика поля p  должена быть пололжительным числом");
+                        throw new Exception("РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєР° РїРѕР»СЏ p  РґРѕР»Р¶РµРЅР° Р±С‹С‚СЊ РїРѕР»РѕР»Р¶РёС‚РµР»СЊРЅС‹Рј С‡РёСЃР»РѕРј");
                 if(!(const_cast<Integer &>(module)).isPrime())
-                        throw new Exception("Характеристика поля p  должена быть простым числом");
+                        throw new Exception("РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєР° РїРѕР»СЏ p  РґРѕР»Р¶РµРЅР° Р±С‹С‚СЊ РїСЂРѕСЃС‚С‹Рј С‡РёСЃР»РѕРј");
                 if(!isIrreducible())
-                        throw new Exception("Многочлен должен быть неприводимым");
+                        throw new Exception("РњРЅРѕРіРѕС‡Р»РµРЅ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРјС‹Рј");
 
         }
 
@@ -57,21 +57,21 @@ namespace AAL
         void IntegerBinomModulePolynom::setModule(const Integer& module)
         {
                 if(module.isNegative())
-                        throw new Exception("Характеристика поля p  должена быть пололжительным числом");
+                        throw new Exception("РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєР° РїРѕР»СЏ p  РґРѕР»Р¶РµРЅР° Р±С‹С‚СЊ РїРѕР»РѕР»Р¶РёС‚РµР»СЊРЅС‹Рј С‡РёСЃР»РѕРј");
                 if(!(const_cast<Integer &>(module)).isPrime())
-                        throw new Exception("Характеристика поля p  должена быть простым числом");
+                        throw new Exception("РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєР° РїРѕР»СЏ p  РґРѕР»Р¶РµРЅР° Р±С‹С‚СЊ РїСЂРѕСЃС‚С‹Рј С‡РёСЃР»РѕРј");
                 _module = module;
                 _a0.ModPositive(_module);
                 _a1.ModPositive(_module);
                 
                 if(!isIrreducible())
-                        throw new Exception("Многочлен должен быть неприводим");
+                        throw new Exception("РњРЅРѕРіРѕС‡Р»РµРЅ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРј");
         }
 
         void IntegerBinomModulePolynom::setA0A1(const Integer& a0, const Integer& a1)
         {
                 if(a0.isNegative() || a0 >= _module || a1.isNegative() || a1 >= _module)
-                        throw new Exception("Коэффицениы должны принадлежать GF(module)");
+                        throw new Exception("РљРѕСЌС„С„РёС†РµРЅРёС‹ РґРѕР»Р¶РЅС‹ РїСЂРёРЅР°РґР»РµР¶Р°С‚СЊ GF(module)");
 
                 _a0 = a0;
                 _a1 = a1;
@@ -123,11 +123,11 @@ namespace AAL
                 }
 
                         
-                // TODO: полностью реализовать
+                // TODO: РїРѕР»РЅРѕСЃС‚СЊСЋ СЂРµР°Р»РёР·РѕРІР°С‚СЊ
                 return true; 
         }
 //**********************************************************************************************
-//***********************************  Конструкторы  *******************************************
+//***********************************  РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹  *******************************************
 
 
 //(c) Morozov, TEST(IntegerBinom, EmptyConstructor)
@@ -146,14 +146,14 @@ namespace AAL
         _a(a), _b(b), _modulePolynom(modulePolynom)
         {
                 if(a.isNegative() || a >= getModule() || b.isNegative() || b >= getModule())
-                        throw new Exception("Коэффициенты должны принадлежать GF(p)");
+                        throw new Exception("РљРѕСЌС„С„РёС†РёРµРЅС‚С‹ РґРѕР»Р¶РЅС‹ РїСЂРёРЅР°РґР»РµР¶Р°С‚СЊ GF(p)");
         }
         IntegerBinom::~IntegerBinom()
         {
         }
                                                                                                 
 //**********************************************************************************************
-//*************************  Преобразование и считывание из сторк ******************************        
+//*************************  РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚РѕСЂРє ******************************        
         std::string IntegerBinom::ToString() const
         {
                 std::string str;
@@ -164,7 +164,7 @@ namespace AAL
                 return str; 
         }        
 //**********************************************************************************************
-//***************************************  Методы акцепторы   **********************************
+//***************************************  РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹   **********************************
         bool IntegerBinom::isZero() const
         {
                 return _a.isZero() && _b.isZero();
@@ -202,14 +202,14 @@ namespace AAL
         void IntegerBinom::setA(const Integer & a)
         {
                 if(a.isNegative() || a >= getModule())
-                        throw new Exception("Коэффициент должн принадлежать GF(p)");
+                        throw new Exception("РљРѕСЌС„С„РёС†РёРµРЅС‚ РґРѕР»Р¶РЅ РїСЂРёРЅР°РґР»РµР¶Р°С‚СЊ GF(p)");
 
                 _a = a;
         }
         void IntegerBinom::setB(const Integer & b)
         {
                 if(b.isNegative() || b >= getModule())
-                        throw new Exception("Коэффициент должн принадлежать GF(p)");
+                        throw new Exception("РљРѕСЌС„С„РёС†РёРµРЅС‚ РґРѕР»Р¶РЅ РїСЂРёРЅР°РґР»РµР¶Р°С‚СЊ GF(p)");
 
                 _b = b;
         }
@@ -229,7 +229,7 @@ namespace AAL
                 Integer mulGroupOrd(getMulGroupOrder());
 
                 if(!DecompositionMember::isRightDecomposition(mulGroupOrd, mulGroupOrdDecomposition))
-                        throw new Exception("Введите разложние");
+                        throw new Exception("Р’РІРµРґРёС‚Рµ СЂР°Р·Р»РѕР¶РЅРёРµ");
 
                 std::vector<DecompositionMember>::iterator it = mulGroupOrdDecomposition.begin();
                 while(it != mulGroupOrdDecomposition.end())
@@ -254,7 +254,7 @@ namespace AAL
                 return order;
         }
 //**********************************************************************************************
-//************************************  Унарные операции   *************************************
+//************************************  РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё   *************************************
         IntegerBinom& IntegerBinom::operator= (const IntegerBinom& binom)
         {
                 if(this == &binom)
@@ -267,7 +267,7 @@ namespace AAL
         }
 
 //**********************************************************************************************
-//*****************************    Операции сравнения    ***************************************
+//*****************************    РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ    ***************************************
         bool operator==(const IntegerBinom& a, const IntegerBinom& b)
         {
                 if(&a == &b)
@@ -281,7 +281,7 @@ namespace AAL
         }
 
 //**********************************************************************************************
-//******************************    Операция сложения    ***************************************
+//******************************    РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ    ***************************************
         IntegerBinom operator+(const IntegerBinom &a, const IntegerBinom &b)
         {
                 IntegerBinom result, copy_a(a), copy_b(b);
@@ -294,7 +294,7 @@ namespace AAL
 	IntegerBinom& IntegerBinom::Add(IntegerBinom &a, IntegerBinom &b)
         {
                 if(a.getModulePolynom() != b.getModulePolynom())
-                        throw new Exception("Поля и модулярные многочлены должны быть равны");
+                        throw new Exception("РџРѕР»СЏ Рё РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅС‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°РІРЅС‹");
 
                 _modulePolynom = a._modulePolynom;
 
@@ -306,7 +306,7 @@ namespace AAL
                 return *this;
         }
 //**********************************************************************************************
-//******************************    Операция вычитания   ***************************************
+//******************************    РћРїРµСЂР°С†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ   ***************************************
         IntegerBinom operator-(const IntegerBinom &a, const IntegerBinom &b)
         {
                 IntegerBinom result, copy_a(a), copy_b(b);
@@ -319,7 +319,7 @@ namespace AAL
 	IntegerBinom& IntegerBinom::Sub(IntegerBinom &a, IntegerBinom &b)
         {
                 if(a.getModulePolynom() != b.getModulePolynom())
-                        throw new Exception("Поля и модулярные многочлены должны быть равны");
+                        throw new Exception("РџРѕР»СЏ Рё РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅС‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°РІРЅС‹");
 
                 _modulePolynom = a._modulePolynom;
 
@@ -333,7 +333,7 @@ namespace AAL
                 return *this;
         }
 //**********************************************************************************************
-//******************************    Операция взятия противоположного элемента    ***************        
+//******************************    РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°    ***************        
         IntegerBinom& IntegerBinom::Negate()
         {
                 return Negate(*this);
@@ -353,7 +353,7 @@ namespace AAL
         }
 
 //**********************************************************************************************
-//******************************    Операция умножения   ***************************************
+//******************************    РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ   ***************************************
 
         IntegerBinom operator*(const IntegerBinom &a, const IntegerBinom &b)
         {
@@ -367,7 +367,7 @@ namespace AAL
 	IntegerBinom& IntegerBinom::Mul(IntegerBinom &a, IntegerBinom &b)
         {
                 if(a.getModulePolynom() != b.getModulePolynom())
-                        throw new Exception("поля и модулярные многочлены должны быть равны");
+                        throw new Exception("РїРѕР»СЏ Рё РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅС‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°РІРЅС‹");
 
                 _modulePolynom = a._modulePolynom;
 
@@ -375,7 +375,7 @@ namespace AAL
                 Integer squareCoef, temp1, temp2;
                 Integer module(getModule());
 
-                // умножение многочленов и приведение по модулю p
+                // СѓРјРЅРѕР¶РµРЅРёРµ РјРЅРѕРіРѕС‡Р»РµРЅРѕРІ Рё РїСЂРёРІРµРґРµРЅРёРµ РїРѕ РјРѕРґСѓР»СЋ p
                 _a.ModMul(copy_a._a, copy_b._a, module);
                 temp1.ModMul(copy_a._a, copy_b._b, module);
                 temp2.ModMul(copy_a._b, copy_b._a, module);
@@ -385,7 +385,7 @@ namespace AAL
                 if(squareCoef.isZero())
                         return *this;
 
-                // редуцирование
+                // СЂРµРґСѓС†РёСЂРѕРІР°РЅРёРµ
                 Integer multiplier(module - squareCoef);
                 temp1.ModMul(multiplier, const_cast<Integer &>(_modulePolynom.getA0()), module);
                 temp2.ModMul(multiplier, const_cast<Integer &>(_modulePolynom.getA1()), module);
@@ -396,11 +396,11 @@ namespace AAL
         }
 
 //**********************************************************************************************
-//******************************    Операция возведения в степень    ***************************        
+//******************************    РћРїРµСЂР°С†РёСЏ РІРѕР·РІРµРґРµРЅРёСЏ РІ СЃС‚РµРїРµРЅСЊ    ***************************        
         IntegerBinom& IntegerBinom::Pow(IntegerBinom &a, Integer &n)
         {
                 if(n.isNegative())
-			throw new Exception("Число n - отрицательное, результат не определен");
+			throw new Exception("Р§РёСЃР»Рѕ n - РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРµ, СЂРµР·СѓР»СЊС‚Р°С‚ РЅРµ РѕРїСЂРµРґРµР»РµРЅ");
 
                 _modulePolynom = a._modulePolynom;
                 
@@ -420,12 +420,12 @@ namespace AAL
                 return *this;
         }
 //**********************************************************************************************
-//******************************    Операция взятия обратного элемента    **********************
+//******************************    РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РѕР±СЂР°С‚РЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°    **********************
         IntegerBinom& IntegerBinom::Inverse()
         {
                 return Inverse(*this);
         }
-        // алгоритм вычисления обратного элемента по т. ферма
+        // Р°Р»РіРѕСЂРёС‚Рј РІС‹С‡РёСЃР»РµРЅРёСЏ РѕР±СЂР°С‚РЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РїРѕ С‚. С„РµСЂРјР°
         IntegerBinom& IntegerBinom::Inverse(IntegerBinom &a)
         {
                 IntegerBinom copy_a(a);
@@ -436,7 +436,7 @@ namespace AAL
                 return Pow(copy_a, mulGroupOrderWithoutOne);
         }
 //**********************************************************************************************
-//******************************           Операции генерации             **********************
+//******************************           РћРїРµСЂР°С†РёРё РіРµРЅРµСЂР°С†РёРё             **********************
         IntegerBinom& IntegerBinom::Generate()
         {
                 _a.Generate(getModule());
@@ -455,7 +455,7 @@ namespace AAL
                 return *this;
         }
 //**********************************************************************************************
-//***************************    Операции генерации группы корней из единицы   *****************
+//***************************    РћРїРµСЂР°С†РёРё РіРµРЅРµСЂР°С†РёРё РіСЂСѓРїРїС‹ РєРѕСЂРЅРµР№ РёР· РµРґРёРЅРёС†С‹   *****************
         uint IntegerBinom::getMaxFactorizableGroupOrder() const
         {
                 return 400;
@@ -469,11 +469,11 @@ namespace AAL
         std::vector<IntegerBinom> IntegerBinom::GenerateOneRootGroup(const Integer & rootDegree, std::vector<DecompositionMember>& mulGroupOrdDecomposition)
         {
                 if(!isParentGroupSmallEnoughForFactorization())
-                        throw new Exception("Порядок группы должен быть меньше " + Integer(getMaxFactorizableGroupOrder()).ToString());
+                        throw new Exception("РџРѕСЂСЏРґРѕРє РіСЂСѓРїРїС‹ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ " + Integer(getMaxFactorizableGroupOrder()).ToString());
                 if(rootDegree.isZero())
-                        throw new Exception("Показатель степени корня не должен быть равен 0");
+                        throw new Exception("РџРѕРєР°Р·Р°С‚РµР»СЊ СЃС‚РµРїРµРЅРё РєРѕСЂРЅСЏ РЅРµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂР°РІРµРЅ 0");
                 if((rootDegree >= getMulGroupOrder()) || (getMulGroupOrder() % rootDegree) != 0)
-                        throw new Exception("Показатель степени корня должен делить порядок группы");
+                        throw new Exception("РџРѕРєР°Р·Р°С‚РµР»СЊ СЃС‚РµРїРµРЅРё РєРѕСЂРЅСЏ РґРѕР»Р¶РµРЅ РґРµР»РёС‚СЊ РїРѕСЂСЏРґРѕРє РіСЂСѓРїРїС‹");
 
                 IntegerBinom generative(*this);
                 generative.GenerateGenerative(mulGroupOrdDecomposition);
@@ -500,15 +500,15 @@ namespace AAL
                 return group;
         }
 //**********************************************************************************************
-//***************************          Операции генерации подгруппы            *****************
+//***************************          РћРїРµСЂР°С†РёРё РіРµРЅРµСЂР°С†РёРё РїРѕРґРіСЂСѓРїРїС‹            *****************
         std::vector<IntegerBinom> IntegerBinom::GenerateSubGroup(const Integer & subGroupOrder, std::vector<DecompositionMember>& mulGroupOrdDecomposition)
         {
                 if(!isParentGroupSmallEnoughForFactorization())
-                        throw new Exception("Порядок группы должен быть меньше " + Integer(getMaxFactorizableGroupOrder()).ToString());
+                        throw new Exception("РџРѕСЂСЏРґРѕРє РіСЂСѓРїРїС‹ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ " + Integer(getMaxFactorizableGroupOrder()).ToString());
                 if(subGroupOrder.isZero())
-                        throw new Exception("Порядок подгруппы не должен быть равен 0");
+                        throw new Exception("РџРѕСЂСЏРґРѕРє РїРѕРґРіСЂСѓРїРїС‹ РЅРµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂР°РІРµРЅ 0");
                 if((subGroupOrder >= getMulGroupOrder()) && (getMulGroupOrder() % subGroupOrder) != 0)
-                        throw new Exception("Порядок подгруппы должен делить порядок группы");
+                        throw new Exception("РџРѕСЂСЏРґРѕРє РїРѕРґРіСЂСѓРїРїС‹ РґРѕР»Р¶РµРЅ РґРµР»РёС‚СЊ РїРѕСЂСЏРґРѕРє РіСЂСѓРїРїС‹");
 
                 IntegerBinom generative(*this);
                 generative.GenerateGenerative(mulGroupOrdDecomposition);
@@ -530,7 +530,7 @@ namespace AAL
                 return group;
         }
 //**********************************************************************************************
-//***************************          Операции умнжения множества             *****************
+//***************************          РћРїРµСЂР°С†РёРё СѓРјРЅР¶РµРЅРёСЏ РјРЅРѕР¶РµСЃС‚РІР°             *****************
         std::vector<IntegerBinom> IntegerBinom::MulMultitude(std::vector<IntegerBinom> & multitude, const IntegerBinom & binom)
         {
                 std::vector<IntegerBinom> newMultitude;
@@ -545,7 +545,7 @@ namespace AAL
                 return newMultitude;
         }
 //**********************************************************************************************
-//***************************              Операции работы со строками         *****************
+//***************************              РћРїРµСЂР°С†РёРё СЂР°Р±РѕС‚С‹ СЃРѕ СЃС‚СЂРѕРєР°РјРё         *****************
         std::string IntegerBinom::MultitudeToString(std::vector<IntegerBinom> & multitude)
         {
                 return Converter::MultitudeToString(multitude);

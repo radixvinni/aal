@@ -20,7 +20,7 @@
 using namespace AAL;
 
 /*
-	������������ ������ PolynomGF2_mY_7
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ PolynomGF2_mY_7
 */
 
 TEST(PolynomGF7_mY_3, EmptyConstructor)
@@ -105,23 +105,37 @@ TEST(PolynomGF7_mY_3, MonomialMul)
 }
 TEST(PolynomGF7_mY_3, NormalMonomialMul)
 {
-        PolynomGF7_mY_3 a("100","300","000","1101"),c;
-        PolynomGF7_mY_3 d("000","100","300","1101");
-        CHECK(c.NormalMonomialMul(a,1) == d);
-        PolynomGF7_mY_3 a1("100","300","000","1101"),c1;
-        PolynomGF7_mY_3 d1("000","000","100","1101");
-        CHECK(c1.NormalMonomialMul(a1,2) == d1);
+        try
+	{
+                PolynomGF7_mY_3 a("100","300","000","1101"),c;
+                PolynomGF7_mY_3 d("000","100","300","1101");
+                CHECK(c.NormalMonomialMul(a,1) == d);
+                PolynomGF7_mY_3 a1("100","300","000","1101"),c1;
+                PolynomGF7_mY_3 d1("000","000","100","1101");
+                CHECK(c1.NormalMonomialMul(a1,2) == d1);
+        }
+	catch(Exception *E)
+	{
+		CHECK(false);
+	}
 }
 TEST(PolynomGF7_mY_3, Div)
 {
-        PolynomGF7 f("1101");
-        PolynomGF7_mY_3 t,a("100","300","000","1101"),c,r;
-        PolynomGF7_mY_3 b("600","000","000","1101");
-        PolynomGF7_mY_3 q("200","100","000","1101");
-        PolynomGF7_mY_3 remainder("000","000","000","1101");
-        //;
-//       CHECK(c.Div(a,b,f,&r) == q);
-//        CHECK(remainder == r);
+        try
+	{
+                PolynomGF7 f("1101");
+                PolynomGF7_mY_3 t,a("100","300","000","1101"),c,r;
+                PolynomGF7_mY_3 b("600","000","000","1101");
+                PolynomGF7_mY_3 q("200","100","000","1101");
+                PolynomGF7_mY_3 remainder("000","000","000","1101");
+                //;
+        //       CHECK(c.Div(a,b,f,&r) == q);
+        //        CHECK(remainder == r);
+        }
+	catch(Exception *E)
+	{
+		CHECK(false);
+	}
 }
 TEST(PolynomGF7_mY_3, GCD)
 {

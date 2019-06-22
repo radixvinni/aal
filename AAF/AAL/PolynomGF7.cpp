@@ -27,7 +27,7 @@ namespace AAL
     m->push_back(n);
     return i;
   }
-//***********************************  Êîíñòðóêòîðû  *******************************************
+//***********************************  Конструкторы  *******************************************
 	PolynomGF7::PolynomGF7()// : BasicType<uchar>()
 	{}
   PolynomGF7::PolynomGF7(const PolynomGF7 &polynom) //: BasicType<uchar>(polynom)
@@ -47,7 +47,7 @@ namespace AAL
 //**********************************************************************************************
 
 
-//*************************  Ïðåîáðàçîâàíèå è ñ÷èòûâàíèå èç ñòîðê ******************************
+//*************************  Преобразование и считывание из сторк ******************************
 	///(c) Mamontov
 	PolynomGF7& PolynomGF7::Parse(const std::string dataString)
 	{
@@ -106,7 +106,7 @@ namespace AAL
                                polynomA2.append(one);
 			  }
                           else
-                               throw new Exception("×èñëî çàäàíî â íåïðåäóñìîòðåííîì ôîðìàòå");
+                               throw new Exception("Число задано в непредусмотренном формате");
 
 		     }
 		}
@@ -218,7 +218,7 @@ namespace AAL
 }
 
 //**********************************************************************************************
-//***************************************  Ìåòîäû àêöåïòîðû   **********************************
+//***************************************  Методы акцепторы   **********************************
        bool PolynomGF7::isZero(PolynomGF7 &module) const
        {
             std::string s = A0.ToString();
@@ -330,7 +330,7 @@ namespace AAL
 
 
 
-//************************************  Óíàðíûå îïåðàöèè   *************************************
+//************************************  Унарные операции   *************************************
 	//(c) Mamontov, TEST(Polynom, operatorEqual)
 	PolynomGF7& PolynomGF7::operator= (const PolynomGF7& polynom)
 	{
@@ -341,7 +341,7 @@ namespace AAL
 	}
 //**********************************************************************************************
 
-//***************************************  Ìåòîäû àêöåïòîðû   **********************************
+//***************************************  Методы акцепторы   **********************************
 	//simple method
 	PolynomGF7& PolynomGF7::setOne()
 	{
@@ -387,15 +387,13 @@ namespace AAL
 
 //**********************************************************************************************
 
-//*****************************    Îïåðàöèè ñðàâíåíèÿ    ***************************************
+//*****************************    Операции сравнения    ***************************************
 	//(c) Mamontov, TEST(Polynom, Equal)
 	bool operator==(const PolynomGF7& a, const PolynomGF7& b)
 	{
                std::string A = a.ToString();
                std::string B = b.ToString();
-		if((a.A0==b.A0) && (a.A1==b.A1) && (a.A2==b.A2))// && a.CmpImpl(b) == Equal )
-			return true;
-		return false;
+		return A == B;
 	}
 
       	//simple method
@@ -436,7 +434,7 @@ namespace AAL
 	}
 //**********************************************************************************************
 */
-//***************************    Îïåðàöèè ïîáèòîâîãî ñäâèãà    *********************************
+//***************************    Операции побитового сдвига    *********************************
 	//simple method
 	PolynomGF7 PolynomGF7::operator<<(int numberBits) const
 	{
@@ -492,7 +490,7 @@ namespace AAL
 		return Add(copy_a, copy_b);
 	}
 
-//******************************    Îïåðàöèÿ ñëîæåíèÿ    ***************************************
+//******************************    Операция сложения    ***************************************
 	//simple method
 	PolynomGF7 operator+(const PolynomGF7 &a, const PolynomGF7 &b)
 	{
@@ -555,7 +553,7 @@ namespace AAL
 
     }
 
-//******************************    Îïåðàöèÿ óìíîæåíèÿ    **************************************
+//******************************    Операция умножения    **************************************
 
         //simple method
 	PolynomGF7 operator*(const PolynomGF7 &a, const PolynomGF7 &b)
@@ -570,7 +568,7 @@ namespace AAL
 		return Mul(*this, polynom);
 	}
 
-        // Ôóíêöèÿ ðåàëèçóþùàÿ óìíîæåíèå ìíîãî÷ëåíîâ íàä ïîëåì GF(2)
+        // Функция реализующая умножение многочленов над полем GF(2)
 	PolynomGF7& PolynomGF7::Mul(PolynomGF7 a, PolynomGF7 b)
 	{
                 if(a.isZero() || b.isZero())
@@ -700,9 +698,9 @@ namespace AAL
 	PolynomGF7& PolynomGF7::Div(const PolynomGF7 &a, const PolynomGF7 &b, PolynomGF7 *remainder)
 	{
                	if(this == remainder)
-			throw new Exception("×àñòíîå è îñòàòîê íå ìîãóò áûòü îäíèì ÷èñëîì");
+			throw new Exception("Частное и остаток не могут быть одним числом");
 		if(b.isZero())
-			throw new Exception("Äåëåíèå íà íîëü");
+			throw new Exception("Деление на ноль");
 
                 if(a.isZero() || a.getNumberBits()<b.getNumberBits())
 		{
@@ -750,7 +748,7 @@ namespace AAL
 		return *this;
 	}
 
-//***************************    Îïåðàöèÿ ïðèâåäåíèÿ ïî ìîäóëþ    ******************************
+//***************************    Операция приведения по модулю    ******************************
 	//simple method
 	PolynomGF7 operator%(const PolynomGF7 &a, const PolynomGF7 &b)
 	{
@@ -1080,9 +1078,9 @@ PolynomGF7& PolynomGF7::Generate(const PolynomGF7& module)
         return *this;
     }
     if(n.isNegative())
-        throw std::domain_error("×èñëî n - îòðèöàòåëüíîå ðåçóëüòàò íå îïðåäåëåí");
+        throw std::domain_error("Число n - отрицательное результат не определен");
 //    if(a.getModule().isIrreducible() == false)
-//                        throw new Exception("f(x) - äîëæåí áûòü íåïðèâîäèì");
+//                        throw new Exception("f(x) - должен быть неприводим");
     //int len = atoi(n.ToString().c_str());
    std::vector<Integer> m;
     int num_bit;
@@ -1158,7 +1156,7 @@ PolynomGF7& PolynomGF7::Generate(const PolynomGF7& module)
     m.clear();
     return *this;
   }
-  //èíâåðòèðîâàíèå
+  //инвертирование
   //------------------------------------------------------------------------------
 
 	//simple method
@@ -1172,7 +1170,7 @@ PolynomGF7& PolynomGF7::Generate(const PolynomGF7& module)
 	PolynomGF7& PolynomGF7::Inverse(PolynomGF7 &polynom, PolynomGF7 &module)
 	{
 //        if(polynom.getModule().isIrreducible() == false || module.isIrreducible() == false)
-//                        throw new Exception("f(x) - äîëæåí áûòü íåïðèâîäèì");
+//                        throw new Exception("f(x) - должен быть неприводим");
        PolynomGF7_mY_3 d2("000","000","000",module.ToString()),d1("100","000","000",module.ToString()),w1;
         PolynomGF7_mY_3 u("100","000","100",module.ToString()),w,r,c,_c;
         PolynomGF7_mY_3 two("600","000","000",module.ToString());

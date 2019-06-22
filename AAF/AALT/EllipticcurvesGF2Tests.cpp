@@ -98,7 +98,7 @@ TEST(EllipticPointGF2, Add)
 
         NonSuperSingularEllipticCurve nsscurve;
         nsscurve.setModule(Polynom("111"));
-        Polynom x3("0"), y3("1"), x4("1"), y4("01"); // самообратная точка
+        Polynom x3("0"), y3("1"), x4("1"), y4("01"); // СЃР°РјРѕРѕР±СЂР°С‚РЅР°СЏ С‚РѕС‡РєР°
         NonSuperSingularEllipticPoint nsspoint1(nsscurve), nsspoint2(nsscurve), nsspoint3(nsscurve), result3, result4;
         nsspoint1.setXY(x3, y3);
         nsspoint2.setXY(x3, y3);
@@ -137,7 +137,7 @@ TEST(EllipticPointGF2, Double)
 
         NonSuperSingularEllipticCurve nsscurve;
         nsscurve.setModule(Polynom("111"));
-        Polynom x3("0"), y3("1"), x4("1"), y4("01"); // самообратная точка
+        Polynom x3("0"), y3("1"), x4("1"), y4("01"); // СЃР°РјРѕРѕР±СЂР°С‚РЅР°СЏ С‚РѕС‡РєР°
         NonSuperSingularEllipticPoint nsspoint1(nsscurve), nsspoint2(nsscurve), result3, result4;
         nsspoint1.setXY(x3, y3);
         nsspoint2.setXY(x4, y4);

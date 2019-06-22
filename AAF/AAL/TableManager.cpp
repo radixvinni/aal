@@ -12,11 +12,11 @@
 //#include <direct.h>
 namespace AAL
 {
-//****************************   Класс для хранения таблиц   *******
+//****************************   РљР»Р°СЃСЃ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ С‚Р°Р±Р»РёС†   *******
 TableManager::TableManager() {
        std::ifstream in("../Tables/gf2_multiplication_table.dat", std::ios::in | std::ios::binary);
        if(!in.is_open())
-                throw new Exception("Не может быть открыт файл с таблицей умножения для GF(2)");
+                throw new Exception("РќРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚РєСЂС‹С‚ С„Р°Р№Р» СЃ С‚Р°Р±Р»РёС†РµР№ СѓРјРЅРѕР¶РµРЅРёСЏ РґР»СЏ GF(2)");
 
         for(uchar i = 0; i <= 255; i++)
         {

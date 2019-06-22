@@ -32,13 +32,13 @@ namespace AAL
                 PolynomGF7 _modPolynom;
 
 
-	//Конструкторы
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
 		PolynomGF7_m_2();
 		PolynomGF7_m_2(const PolynomGF7_m_2 &polynom);
 		PolynomGF7_m_2(const std::string a0, const std::string a1, const std::string module);
 
-	//Преобразование и считывание из сторк
+	//РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚РѕСЂРє
 	public:
        		PolynomGF7_m_2& Parse(const std::string dataString);
 	 //	std::string ToString() const;
@@ -47,11 +47,11 @@ namespace AAL
                 bool isZero(PolynomGF7 &module) const;
 
                 bool isOne() const;
-  //Унарные операции
+  //РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		PolynomGF7_m_2& operator= (const PolynomGF7_m_2& polynom);
 
-        //Методы акцепторы
+        //РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	public:
     PolynomGF7_m_2& setTwo();
     PolynomGF7_m_2& setOne();
@@ -60,7 +60,7 @@ namespace AAL
 
     uint getBit(uint index) const;
     void setBit(uint index, uint bit);
-        //Операции сравнения
+        //РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
     PolynomGF7_m_2& Generate(PolynomGF7& module);
     friend bool operator==(const PolynomGF7_m_2& a, const PolynomGF7_m_2& b);
@@ -108,33 +108,33 @@ namespace AAL
         const PolynomGF7& getByIndex(int index) const;
         int deg() const;
 
-       //Операции побитового сдвига
-       //Операция сложения
+       //РћРїРµСЂР°С†РёРё РїРѕР±РёС‚РѕРІРѕРіРѕ СЃРґРІРёРіР°
+       //РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
 	public:
 		friend PolynomGF7_m_2 operator+(const PolynomGF7_m_2 &a, const PolynomGF7_m_2 &b);
 		PolynomGF7_m_2& operator+=(PolynomGF7_m_2 &polynom);
 		PolynomGF7_m_2& Add(PolynomGF7_m_2 &a, PolynomGF7_m_2 &b);
-        //Операция умножения
+        //РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ
 	public:
 		friend PolynomGF7_m_2 operator*(const PolynomGF7_m_2 &a, const PolynomGF7_m_2 &b);
 		PolynomGF7_m_2& operator*=(PolynomGF7_m_2 &polynom);
 		PolynomGF7_m_2& Mul(PolynomGF7_m_2 a, PolynomGF7_m_2 b);
 
 //--------------------------------------------------------------------------------
-    //Операция возведение в степень
+    //РћРїРµСЂР°С†РёСЏ РІРѕР·РІРµРґРµРЅРёРµ РІ СЃС‚РµРїРµРЅСЊ
 	public:
 		PolynomGF7_m_2& Seven(PolynomGF7_m_2 &a);
 		PolynomGF7_m_2& Pow(PolynomGF7_m_2 &a, const Integer &n);
-    //символ Лежандра
+    //СЃРёРјРІРѕР» Р›РµР¶Р°РЅРґСЂР°
         PolynomGF7_m_2& LegendreSymbol(PolynomGF7_m_2 &a, PolynomGF7 &module);
-    //извлечение квадратного корня
+    //РёР·РІР»РµС‡РµРЅРёРµ РєРІР°РґСЂР°С‚РЅРѕРіРѕ РєРѕСЂРЅСЏ
     public:
          PolynomGF7_m_2& Sqrt(PolynomGF7_m_2 &a, PolynomGF7 &module,Integer &s,Integer &T);
-    //инвертирование
+    //РёРЅРІРµСЂС‚РёСЂРѕРІР°РЅРёРµ
         PolynomGF7_m_2& Inverse(PolynomGF7 &module);
         PolynomGF7_m_2& Inverse(PolynomGF7_m_2 &polynom, PolynomGF7 &module);
 
-    //Тест образующего элемента
+    //РўРµСЃС‚ РѕР±СЂР°Р·СѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
     Integer& elementOrder(PolynomGF7 &groupModule, PolynomGF7_m_2 &polynom,std::vector<DecompositionMember> vector, const Integer &ord );
     bool isGenerator(PolynomGF7 &groupModule, PolynomGF7_m_2 &polynom,std::vector<DecompositionMember> vector, Integer &ord);
 	int sevendiv(std::vector<Integer>* m, Integer n);

@@ -14,7 +14,7 @@
 using namespace AAL;
 
 /*
-	Конструкторы класса PolynomGF3
+	РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ РєР»Р°СЃСЃР° PolynomGF3
 */
 TEST(PolynomGF3, EmptyConstructor)
 {
@@ -23,7 +23,7 @@ TEST(PolynomGF3, EmptyConstructor)
 }
 
 /*
-        Унарные операции
+        РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 */
 
 TEST(PolynomGF3, operatorEqual)
@@ -46,7 +46,7 @@ TEST(PolynomGF3, operatorEqual)
 }
 
 /*
-        Методы акцепторы
+        РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 */
 TEST(PolynomGF3, SetData)
 {
@@ -133,7 +133,7 @@ TEST(PolynomGF3, GenerateIrreducible)
 }
 */
 /*
-        Операции сравнения
+        РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 */
 TEST(PolynomGF3, Smaller)
 {
@@ -143,7 +143,7 @@ TEST(PolynomGF3, Smaller)
 
 
 /*
-	Операции побитового сдвига
+	РћРїРµСЂР°С†РёРё РїРѕР±РёС‚РѕРІРѕРіРѕ СЃРґРІРёРіР°
 */
 TEST(PolynomGF3, SHL)
 {
@@ -166,7 +166,7 @@ TEST(PolynomGF3, SHR)
 }
 
 /*
-        Операция сложения
+        РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
 */
 TEST(PolynomGF3, Add)
 {
@@ -187,7 +187,7 @@ TEST(PolynomGF3, Add)
 
 
 /*
-	Операция умножения
+	РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ
 */
 TEST(PolynomGF3, Mul)
 {
@@ -199,7 +199,7 @@ TEST(PolynomGF3, Mul)
 }
 
 /*
-	Операция деление
+	РћРїРµСЂР°С†РёСЏ РґРµР»РµРЅРёРµ
 */
 
 TEST(PolynomGF3, Div)
@@ -221,7 +221,7 @@ TEST(PolynomGF3, Div)
 }
 
 /*
-	Операция приведения по модулю
+	РћРїРµСЂР°С†РёСЏ РїСЂРёРІРµРґРµРЅРёСЏ РїРѕ РјРѕРґСѓР»СЋ
 */
 
 TEST(PolynomGF3, Mod)
@@ -272,7 +272,7 @@ TEST(PolynomGF3, ModPow)
         CHECK(i1 == k.ModPow(i1,iB,m));
 }
 
-/* Тесты Чернышевой */
+/* РўРµСЃС‚С‹ Р§РµСЂРЅС‹С€РµРІРѕР№ */
 /*
 TEST(PolynomGF3, getPowersOfPolynom)
 {

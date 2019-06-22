@@ -32,7 +32,7 @@ namespace AAL
             Polynom _a3;
             Polynom _module;
             Polynom _modPolynom;
-	//Конструкторы
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
         PolynomGF2_m_4() :
         _a0(), _a1(), _a2(), _a3(), _module(), _modPolynom("11001")
@@ -41,13 +41,13 @@ namespace AAL
 		//PolynomGF2_m_4();
 		PolynomGF2_m_4(const PolynomGF2_m_4 &polynom);
 		PolynomGF2_m_4(const std::string a0, const std::string a1, const std::string a2, const std::string a3, const std::string module);
-	//Преобразование и считывание из строк
+	//РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚СЂРѕРє
 	public:
 /*		Polynom& Parse(const std::string dataString, PolynomSystem system=BackBin);
 		std::string ToString(PolynomSystem system=BackBin) const;
         std::string ToString(const std::string dataString);
 */
-	//Методы акцепторы
+	//РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	public:
 		PolynomGF2_m_4& setOne();
 		PolynomGF2_m_4& setZero();
@@ -69,37 +69,37 @@ namespace AAL
         const Polynom& getByIndex(int index) const;
         void setByIndex(const Polynom & a, int index);
 
-	//Унарные операции
+	//РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		PolynomGF2_m_4& operator= (const PolynomGF2_m_4& polynom);
 
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
 		friend bool operator==(const PolynomGF2_m_4& a, const PolynomGF2_m_4& b);
 		friend bool operator!=(const PolynomGF2_m_4& a, const PolynomGF2_m_4& b);
 
-	//Операция сложения
+	//РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
 	public:
 		friend PolynomGF2_m_4 operator+(const PolynomGF2_m_4 &a, const PolynomGF2_m_4 &b);
 		PolynomGF2_m_4& operator+=(PolynomGF2_m_4 &polynom);
 		PolynomGF2_m_4& Add(PolynomGF2_m_4 &a, PolynomGF2_m_4 &b);
-    //Операция умножения
+    //РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ
 	public:
 		friend PolynomGF2_m_4 operator*(const PolynomGF2_m_4 &a, const PolynomGF2_m_4 &b);
 		PolynomGF2_m_4& operator*=(PolynomGF2_m_4 &polynom);
 		PolynomGF2_m_4& Mul(PolynomGF2_m_4 &a, PolynomGF2_m_4 &b);
-    //Операция возведение в степень
+    //РћРїРµСЂР°С†РёСЏ РІРѕР·РІРµРґРµРЅРёРµ РІ СЃС‚РµРїРµРЅСЊ
 	public:
 		PolynomGF2_m_4& Square(PolynomGF2_m_4 &a);
 		PolynomGF2_m_4& Pow(PolynomGF2_m_4 &a, Integer n);
-    //извлечение квадратного корня
+    //РёР·РІР»РµС‡РµРЅРёРµ РєРІР°РґСЂР°С‚РЅРѕРіРѕ РєРѕСЂРЅСЏ
     public:
          PolynomGF2_m_4& Sqrt(PolynomGF2_m_4 &a, Polynom &module);
     public:
         PolynomGF2_m_4& Inverse(Polynom &module);
 		PolynomGF2_m_4& Inverse(PolynomGF2_m_4 &polynom, Polynom &module);
         int deg() const;
-    //Тест образующего элемента
+    //РўРµСЃС‚ РѕР±СЂР°Р·СѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
     Integer& elementOrder(Polynom &groupModule, PolynomGF2_m_4 &polynom,std::vector<DecompositionMember> vector, const Integer &ord );
     bool isGenerator(Polynom &groupModule, PolynomGF2_m_4 &polynom,std::vector<DecompositionMember> vector, const Integer &ord);
  	};

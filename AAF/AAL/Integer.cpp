@@ -67,8 +67,8 @@
 
 namespace AAL
 {
-//***********************************  Конструкторы  *******************************************
-	//private метод
+//***********************************  РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹  *******************************************
+	//private РјРµС‚РѕРґ
 	Integer::Integer(bool sign, uint numberDigits, uint maximumDigits)
 	{
 		SetData(numberDigits, maximumDigits, maximumDigits != 0);
@@ -102,12 +102,12 @@ namespace AAL
 	}
 //**********************************************************************************************
 
-//*************************  Преобразование и считывание из сторк ******************************
+//*************************  РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚РѕСЂРє ******************************
 	//(c) Mamontov
 	Integer& Integer::Parse(const std::string dataString, NumericSystem system)
 	{
 		if(system != Bin && system != Oct && system != Dec && system != Hex && system != Tern)
-			throw new Exception("основание не определено");	//std::invalid_argument(system + " - основание не определено");
+			throw new Exception("РѕСЃРЅРѕРІР°РЅРёРµ РЅРµ РѕРїСЂРµРґРµР»РµРЅРѕ");	//std::invalid_argument(system + " - РѕСЃРЅРѕРІР°РЅРёРµ РЅРµ РѕРїСЂРµРґРµР»РµРЅРѕ");
 		setZero();
 		uint length = (uint)dataString.length();
 		if(length)
@@ -132,7 +132,7 @@ namespace AAL
 						Add(*this, digit);
 				}
 				else
-					throw new Exception(std::string("Число задано в непредусмотренном формате:(")+dataString+std::string(")"));
+					throw new Exception(std::string("Р§РёСЃР»Рѕ Р·Р°РґР°РЅРѕ РІ РЅРµРїСЂРµРґСѓСЃРјРѕС‚СЂРµРЅРЅРѕРј С„РѕСЂРјР°С‚Рµ:(")+dataString+std::string(")"));
 			}
 			_sign = dataString[0] == '-';
 		}
@@ -143,7 +143,7 @@ namespace AAL
 	std::string Integer::ToString(NumericSystem system) const
 	{
 		if(system != Bin && system != Oct && system != Dec && system != Hex && system != Tern)
-			throw new Exception(system + " - основание не определено");
+			throw new Exception(system + " - РѕСЃРЅРѕРІР°РЅРёРµ РЅРµ РѕРїСЂРµРґРµР»РµРЅРѕ");
 
 		std::string dataString;
 		if(!isZero())
@@ -173,7 +173,7 @@ namespace AAL
 
 //**********************************************************************************************
 
-//***************************************  Методы акцепторы   **********************************
+//***************************************  РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹   **********************************
 	//simple method
 	Integer& Integer::setOne(bool sign)
 	{
@@ -324,7 +324,7 @@ namespace AAL
 		}
 		return true;
 	}
-//Методы тестирования простоты
+//РњРµС‚РѕРґС‹ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ РїСЂРѕСЃС‚РѕС‚С‹
       bool Integer::TestLukaLemera(Integer degree){
           Integer  Mersen_Number = Pow(2,degree) - 1;
           if(Mersen_Number.MillerRabinTest())
@@ -345,7 +345,7 @@ namespace AAL
             return false;
            }
         else
-           throw new Exception("Введите разложение n-1 (или p-1)");
+           throw new Exception("Р’РІРµРґРёС‚Рµ СЂР°Р·Р»РѕР¶РµРЅРёРµ n-1 (РёР»Рё p-1)");
       }
       bool Integer::TestPoklingtona(std::vector<DecompositionMember> vector, Integer Mersen_Number){
           if(vector.size() >=1)
@@ -358,14 +358,14 @@ namespace AAL
            return false;
           }
           else
-           throw new Exception("Введите разложение n-1 (или p-1)");
+           throw new Exception("Р’РІРµРґРёС‚Рµ СЂР°Р·Р»РѕР¶РµРЅРёРµ n-1 (РёР»Рё p-1)");
       }
-//Получение разложения из базы
+//РџРѕР»СѓС‡РµРЅРёРµ СЂР°Р·Р»РѕР¶РµРЅРёСЏ РёР· Р±Р°Р·С‹
       std::vector<DecompositionMember> GetDecomposition(const Integer number, bool &composite)
 	  {
 		return DecompositionManager::Instance().getDecomposition(number, &composite);
       }
- //Функция Эйлера
+ //Р¤СѓРЅРєС†РёСЏ Р­Р№Р»РµСЂР°
   Integer& Integer::Euler(std::vector<DecompositionMember> vector)
   {
     if(vector.size() >= 1)
@@ -385,7 +385,7 @@ namespace AAL
      return *this = euler;
     }
     else
-      throw new Exception("Введите разложение порядка группы");
+      throw new Exception("Р’РІРµРґРёС‚Рµ СЂР°Р·Р»РѕР¶РµРЅРёРµ РїРѕСЂСЏРґРєР° РіСЂСѓРїРїС‹");
   }
 
 	//(c) Mamontov, TEST(Integer, isPrime)
@@ -399,7 +399,7 @@ namespace AAL
         bool Integer::isGenerator(Integer & module, std::vector<DecompositionMember>& mulGroupOrdDecomposition) const
         {
                 if(!module.isPrime())
-                        throw new Exception("Модуль должен быть простым числом");
+                        throw new Exception("РњРѕРґСѓР»СЊ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РїСЂРѕСЃС‚С‹Рј С‡РёСЃР»РѕРј");
 
                 if(isZero() || isOne())
                         return false;
@@ -408,7 +408,7 @@ namespace AAL
                 mulGroupOrd--;
 
                 if(!DecompositionMember::isRightDecomposition(mulGroupOrd, mulGroupOrdDecomposition))
-                        throw new Exception("Введите разложение порядка группы");
+                        throw new Exception("Р’РІРµРґРёС‚Рµ СЂР°Р·Р»РѕР¶РµРЅРёРµ РїРѕСЂСЏРґРєР° РіСЂСѓРїРїС‹");
 
                 std::vector<DecompositionMember>::iterator it = mulGroupOrdDecomposition.begin();
                 while(it != mulGroupOrdDecomposition.end())
@@ -427,7 +427,7 @@ namespace AAL
         }
 //**********************************************************************************************
 
-//************************************  Унарные операции   *************************************
+//************************************  РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё   *************************************
 	//(c) Mamontov, TEST(Integer, unaryOperatorSub)
 	Integer Integer::operator-() const
 	{
@@ -500,7 +500,7 @@ namespace AAL
 	}
 //**********************************************************************************************
 
-//*****************************    Операции сравнения    ***************************************
+//*****************************    РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ    ***************************************
 	//(c) Mamontov, TEST(Integer, Compare)
 	Integer Integer::Compare(const Integer& integer) const
 	{
@@ -557,7 +557,7 @@ namespace AAL
 	}
 //**********************************************************************************************
 
-//********************************    Логические операции    ***********************************
+//********************************    Р›РѕРіРёС‡РµСЃРєРёРµ РѕРїРµСЂР°С†РёРё    ***********************************
 	//private method
 	const Integer* Integer::Max(const Integer& a, const Integer &b, CompareIndicator ind)
 	{
@@ -600,7 +600,7 @@ namespace AAL
 	Integer& Integer::Xor(Integer& a, Integer& b)
 	{
 		if(a.isNegative() || b.isNegative())
-			throw new Exception("Числа a и b не должны быть отрицательными");
+			throw new Exception("Р§РёСЃР»Р° a Рё b РЅРµ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹РјРё");
 
 		Xor_Base(a, b);
 		return *this;
@@ -623,7 +623,7 @@ namespace AAL
 	Integer& Integer::Or(Integer& a, Integer& b)
 	{
 		if(a.isNegative() || b.isNegative())
-			throw new Exception("Числа a и b не должны быть отрицательными");
+			throw new Exception("Р§РёСЃР»Р° a Рё b РЅРµ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹РјРё");
 
 		Or_Base(a, b);
 		return *this;
@@ -645,7 +645,7 @@ namespace AAL
 	Integer& Integer::And(Integer& a, Integer& b)
 	{
 		if(a.isNegative() || b.isNegative())
-			throw new Exception("Числа a и b не должны быть отрицательными");
+			throw new Exception("Р§РёСЃР»Р° a Рё b РЅРµ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹РјРё");
 
 		And_Base(a, b);
 		return *this;
@@ -662,14 +662,14 @@ namespace AAL
 	Integer& Integer::Not(Integer &integer)
 	{
 		if(integer.isNegative())
-			throw new Exception("Число integer не должно быть отрицательным");
+			throw new Exception("Р§РёСЃР»Рѕ integer РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Рј");
 
 		Not_Base(integer);
 		return *this;
 	}
 //**********************************************************************************************
 
-//***************************    Операции побитового сдвига    *********************************
+//***************************    РћРїРµСЂР°С†РёРё РїРѕР±РёС‚РѕРІРѕРіРѕ СЃРґРІРёРіР°    *********************************
 	//simple method
 	Integer Integer::operator<<(int numberBits) const
 	{
@@ -699,7 +699,7 @@ namespace AAL
 	}
 //**********************************************************************************************
 
-//******************************    Операция сложения    ***************************************
+//******************************    РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ    ***************************************
 	//private method
 	void Integer::AddImpl(const Integer *a, const Integer *b)
 	{
@@ -786,7 +786,7 @@ namespace AAL
 	Integer& Integer::ModAddInFp(Integer &a, Integer &b, Integer &module)
 	{
                 if(!module.isPrime())
-                        throw new Exception("p должно быть простым.");
+                        throw new Exception("p РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїСЂРѕСЃС‚С‹Рј.");
 
 		return ModAdd(a, b, module);
 
@@ -794,7 +794,7 @@ namespace AAL
 
 //**********************************************************************************************
 
-//******************************    Операция вычитания    **************************************
+//******************************    РћРїРµСЂР°С†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ    **************************************
 	//private method
 	void Integer::SubImpl(const Integer *a, const Integer *b)
 	{
@@ -878,7 +878,7 @@ namespace AAL
   	{
                 if(!module.isPrime())
 		{
-                        throw new Exception("p должно быть простым.");
+                        throw new Exception("p РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїСЂРѕСЃС‚С‹Рј.");
                 }
 
                 Sub(a, b);
@@ -887,7 +887,7 @@ namespace AAL
 
 //**********************************************************************************************
 
-//******************************    Операция умножения    **************************************
+//******************************    РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ    **************************************
 	//private method
 	const Integer *Integer::Copy(const Integer &integer, Integer *integerNotEqual)
 	{
@@ -961,7 +961,7 @@ namespace AAL
 	{
                 if(!module.isPrime())
 		{
-                        throw new Exception("p должно быть простым.");
+                        throw new Exception("p РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїСЂРѕСЃС‚С‹Рј.");
                 }
 
                 return ModMul(a, b, module);
@@ -969,7 +969,7 @@ namespace AAL
 
 //**********************************************************************************************
 
-//******************************    Операция деления    ****************************************
+//******************************    РћРїРµСЂР°С†РёСЏ РґРµР»РµРЅРёСЏ    ****************************************
 	//private method
 	void Integer::Div_by_SmallDivider(const Integer *a, const Integer *b, Integer *remainder)
 	{
@@ -995,7 +995,7 @@ namespace AAL
 			Div_by_SmallDivider(a, b, remainder);
 		else
 		{
-			//Не объединять в одну строчку, т.к. компилятор C++ Builder-а, работает не правильно!
+			//РќРµ РѕР±СЉРµРґРёРЅСЏС‚СЊ РІ РѕРґРЅСѓ СЃС‚СЂРѕС‡РєСѓ, С‚.Рє. РєРѕРјРїРёР»СЏС‚РѕСЂ C++ Builder-Р°, СЂР°Р±РѕС‚Р°РµС‚ РЅРµ РїСЂР°РІРёР»СЊРЅРѕ!
 			double ee = (std::log((double)b->_digits[b->_numberDigits-1])/std::log(2.0));
 			int e = getDigitSizeInBits() - 1 - (int)ee;
 
@@ -1097,9 +1097,9 @@ namespace AAL
 	Integer &Integer::Div(Integer &a, Integer &b, Integer *remainder)
 	{
 		if(this == remainder)
-			throw new Exception("Частное и остаток не могут быть одним числом");
+			throw new Exception("Р§Р°СЃС‚РЅРѕРµ Рё РѕСЃС‚Р°С‚РѕРє РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РѕРґРЅРёРј С‡РёСЃР»РѕРј");
 		if(b.isZero())
-			throw new Exception("Деление на ноль");
+			throw new Exception("Р”РµР»РµРЅРёРµ РЅР° РЅРѕР»СЊ");
 
 		CompareIndicator compare = a.CmpImpl(b);
 		if(a.isZero() || compare == Smaller)
@@ -1146,14 +1146,14 @@ namespace AAL
 		    return *this;
                 }
                 else
-                        throw new Exception("А1 и А2 должны быть взаимно простыми с n");
+                        throw new Exception("Рђ1 Рё Рђ2 РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІР·Р°РёРјРЅРѕ РїСЂРѕСЃС‚С‹РјРё СЃ n");
 	}
 
         Integer& Integer::DivInFp(Integer &a, Integer &b, Integer &module, Integer *remainder)
 	{
                 if(!module.isPrime())
                 {
-                        throw new Exception("р должно быть простым.");
+                        throw new Exception("СЂ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїСЂРѕСЃС‚С‹Рј.");
                 }
 
                 Integer copy_a(a), copy_b(b), c;
@@ -1169,7 +1169,7 @@ namespace AAL
 
 //**********************************************************************************************
 
-//***************************    Операция приведения по модулю    ******************************
+//***************************    РћРїРµСЂР°С†РёСЏ РїСЂРёРІРµРґРµРЅРёСЏ РїРѕ РјРѕРґСѓР»СЋ    ******************************
 	//simple method
 	Integer operator%(const Integer &a, const Integer &b)
 	{
@@ -1187,7 +1187,7 @@ namespace AAL
 	Integer& Integer::Mod(Integer &a, Integer &b)
 	{
                 if(b.isZero())
-			throw new Exception("Деление на ноль");
+			throw new Exception("Р”РµР»РµРЅРёРµ РЅР° РЅРѕР»СЊ");
                 if(a.isZero())
 			return setZero();
 
@@ -1218,7 +1218,7 @@ namespace AAL
 	Integer& Integer::ModPositive(Integer& module)
 	{
 		if(module._sign)
-			throw new Exception("Модуль - отрицательное число");
+			throw new Exception("РњРѕРґСѓР»СЊ - РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРµ С‡РёСЃР»Рѕ");
 
                 if(isZero())
                         return *this;
@@ -1230,12 +1230,12 @@ namespace AAL
 	}
 //**********************************************************************************************
 
-//***************************    Операция возведение в степень    ******************************
+//***************************    РћРїРµСЂР°С†РёСЏ РІРѕР·РІРµРґРµРЅРёРµ РІ СЃС‚РµРїРµРЅСЊ    ******************************
 	//private method
 	Integer& Integer::PowImpl(const Integer &a, const Integer &b,const Integer *module)
 	{
 		if(b.isNegative())
-			throw new Exception("Число b - отрицательное, результат не определен");
+			throw new Exception("Р§РёСЃР»Рѕ b - РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРµ, СЂРµР·СѓР»СЊС‚Р°С‚ РЅРµ РѕРїСЂРµРґРµР»РµРЅ");
 
 		Integer *aa = const_cast<Integer*>(Copy(a));
 		Integer *bb = const_cast<Integer*>(Copy(b));
@@ -1282,7 +1282,7 @@ namespace AAL
 	{
                 if(!module.isPrime())
                 {
-                        throw new Exception("р должно быть простым.");
+                        throw new Exception("СЂ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїСЂРѕСЃС‚С‹Рј.");
                 }
 
                 return PowImpl(a, b, &module);
@@ -1290,7 +1290,7 @@ namespace AAL
 
 //**********************************************************************************************
 
-//*************************   Операция извлечения квадратного корня   **************************
+//*************************   РћРїРµСЂР°С†РёСЏ РёР·РІР»РµС‡РµРЅРёСЏ РєРІР°РґСЂР°С‚РЅРѕРіРѕ РєРѕСЂРЅСЏ   **************************
 	//simple method
 	Integer& Integer::Sqrt()
 	{
@@ -1301,7 +1301,7 @@ namespace AAL
 	Integer& Integer::Sqrt(Integer& integer)
 	{
 		if(integer.isNegative())
-			throw new Exception("Число integer не должно быть отрицательным");
+			throw new Exception("Р§РёСЃР»Рѕ integer РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Рј");
 
 		if(integer.isZero())
 			return setZero();
@@ -1354,12 +1354,12 @@ return *this = X;
 }
 //**********************************************************************************************
 
-//********************************   Алгоритмы Евклида   ***************************************
+//********************************   РђР»РіРѕСЂРёС‚РјС‹ Р•РІРєР»РёРґР°   ***************************************
 	//(c) Mamontov, TEST(Integer, Euclid)
 	Integer& Integer::Euclid(const Integer& a, Integer& b)
 	{
 		if(a.isZero() && b.isZero())
-			throw new Exception("a и b не могут быть оба равны 0");
+			throw new Exception("a Рё b РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РѕР±Р° СЂР°РІРЅС‹ 0");
 
 		if(a.isZero() || b.isZero())
 		{
@@ -1393,7 +1393,7 @@ return *this = X;
 	Integer& Integer::BinaryGCD(Integer& a, Integer& b)
 	{
 		if(a.isZero() && b.isZero())
-			throw new Exception("a и b не могут быть оба равны 0 ");
+			throw new Exception("a Рё b РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РѕР±Р° СЂР°РІРЅС‹ 0 ");
 
 		if(a.isZero() || b.isZero())
 		{
@@ -1460,9 +1460,9 @@ return *this = X;
 	Integer& Integer::ExEuclid(Integer &a, Integer &b, Integer &x, Integer &y)
 	{
 		if(this == &x || this == &y || &x == &y)
-			throw new Exception("НОД(a,b) и числа x и y такие, что ax+by=НОД(a,b) не могут быть одним числом");
+			throw new Exception("РќРћР”(a,b) Рё С‡РёСЃР»Р° x Рё y С‚Р°РєРёРµ, С‡С‚Рѕ ax+by=РќРћР”(a,b) РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РѕРґРЅРёРј С‡РёСЃР»РѕРј");
 		if(a.isZero() && b.isZero())
-			throw new Exception("a и b не могут быть оба равны 0 сразу");
+			throw new Exception("a Рё b РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РѕР±Р° СЂР°РІРЅС‹ 0 СЃСЂР°Р·Сѓ");
 
 		if(a.isZero())
 			return simpleExEuclid(b, x, y);
@@ -1525,7 +1525,7 @@ return *this = X;
 		return *this;
 	}
 //------------------------------------------------------------------------------
-//--------НОК------------------------------------------------------------------
+//--------РќРћРљ------------------------------------------------------------------
 Integer& Integer::SCM(Integer &a, Integer &b)
 {
   Integer mult,evc;
@@ -1536,7 +1536,7 @@ Integer& Integer::SCM(Integer &a, Integer &b)
 }
 //**********************************************************************************************
 
-//***********************************   Генерация чисел   **************************************
+//***********************************   Р“РµРЅРµСЂР°С†РёСЏ С‡РёСЃРµР»   **************************************
 	//simple method
 	Integer& Integer::Generate(uint numberBits)
 	{
@@ -1578,7 +1578,7 @@ Integer& Integer::SCM(Integer &a, Integer &b)
 	Integer& Integer::GenerateOdd(uint numberBits)
 	{
 		if(!numberBits)
-			throw new Exception("Нет нечетных чисел длины 0 бит");
+			throw new Exception("РќРµС‚ РЅРµС‡РµС‚РЅС‹С… С‡РёСЃРµР» РґР»РёРЅС‹ 0 Р±РёС‚");
 		Generate(numberBits);
 		_digits[0] |= 1;
 		return *this;
@@ -1588,7 +1588,7 @@ Integer& Integer::SCM(Integer &a, Integer &b)
 	Integer& Integer::GenerateOdd(const Integer& module)
 	{
 		if(module.isZero())
-			throw new Exception("Введите n или p");
+			throw new Exception("Р’РІРµРґРёС‚Рµ n РёР»Рё p");
 		Generate(module);
 		_digits[0] |= 1;
 		return *this;
@@ -1614,7 +1614,7 @@ Integer& Integer::SCM(Integer &a, Integer &b)
 		} while(!isPrime());
 		return *this;
 	}
-// генерация достоверного простого числа
+// РіРµРЅРµСЂР°С†РёСЏ РґРѕСЃС‚РѕРІРµСЂРЅРѕРіРѕ РїСЂРѕСЃС‚РѕРіРѕ С‡РёСЃР»Р°
 Integer& Integer::GeneratePrime(const Integer& module,std::vector<DecompositionMember> vector)
 {
  if(vector.size() >= 1)
@@ -1627,13 +1627,13 @@ Integer& Integer::GeneratePrime(const Integer& module,std::vector<DecompositionM
    return *this = a;
  }
  else
-			throw new Exception("Введите разложение n-1 (или p-1)");
+			throw new Exception("Р’РІРµРґРёС‚Рµ СЂР°Р·Р»РѕР¶РµРЅРёРµ n-1 (РёР»Рё p-1)");
 }
 //-------------------------------------------------------------------------------
 Integer& Integer::WrappingGenerate(Integer& forwrap, const Integer &module)
 {
     if(forwrap.getNumberBits() >= module.getNumberBits())
-        throw new Exception("В размещаемой информации должно быть меньше битов чем в модуле");
+        throw new Exception("Р’ СЂР°Р·РјРµС‰Р°РµРјРѕР№ РёРЅС„РѕСЂРјР°С†РёРё РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ Р±РёС‚РѕРІ С‡РµРј РІ РјРѕРґСѓР»Рµ");
 
 
     unsigned int forwrapNumberDidgits = forwrap.ToString().length();
@@ -1653,15 +1653,15 @@ Integer& Integer::WrappingGenerate(Integer& forwrap, const Integer &module)
 
 //**********************************************************************************************
 
-//**************************  Вычисление символов Якоби и Лежандра  ****************************
+//**************************  Р’С‹С‡РёСЃР»РµРЅРёРµ СЃРёРјРІРѕР»РѕРІ РЇРєРѕР±Рё Рё Р›РµР¶Р°РЅРґСЂР°  ****************************
 	//(c) Mamontov, TEST(Integer, LegendreSymbol)
 	int Integer::LegendreSymbol(Integer& module)
 	{
         if(module.MillerRabinTest())
         {	if(isZero())
-		  	throw new Exception("Входной параметр не может быть 0");
+		  	throw new Exception("Р’С…РѕРґРЅРѕР№ РїР°СЂР°РјРµС‚СЂ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ 0");
 		if(module.isZero())
-		  	throw new Exception("Модуль не может быть 0");
+		  	throw new Exception("РњРѕРґСѓР»СЊ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ 0");
 
 		  Integer degree(module);
 		  --degree;
@@ -1679,14 +1679,14 @@ Integer& Integer::WrappingGenerate(Integer& forwrap, const Integer &module)
                   return -2;
         }
         else
-		throw new Exception("A2 не является простым числом");
+		throw new Exception("A2 РЅРµ СЏРІР»СЏРµС‚СЃСЏ РїСЂРѕСЃС‚С‹Рј С‡РёСЃР»РѕРј");
 	}
 
 	//(c) Mamontov, TEST(Integer, JacobySymbol)
 	int Integer::JacobySymbol(Integer& n)
 	{
 		if(n.isZero())
-			throw new Exception("n не может быть 0");
+			throw new Exception("n РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ 0");
 
 		if(isZero())
 			return 0;
@@ -1715,7 +1715,7 @@ Integer& Integer::WrappingGenerate(Integer& forwrap, const Integer &module)
 	}
 //**********************************************************************************************
 
-//************************  Операции мультипликативной группы и поля  **************************
+//************************  РћРїРµСЂР°С†РёРё РјСѓР»СЊС‚РёРїР»РёРєР°С‚РёРІРЅРѕР№ РіСЂСѓРїРїС‹ Рё РїРѕР»СЏ  **************************
 	//simple method
 	bool Integer::InMulGroup(Integer& groupModule)
 	{
@@ -1727,16 +1727,16 @@ Integer& Integer::WrappingGenerate(Integer& forwrap, const Integer &module)
 	{
                 if(!groupModule.isPrime())
                 {
-                        throw new Exception("р должно быть простым.");
+                        throw new Exception("СЂ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїСЂРѕСЃС‚С‹Рј.");
                 }
 
-                // todo: заменить на проверку i mod p != 0
+                // todo: Р·Р°РјРµРЅРёС‚СЊ РЅР° РїСЂРѕРІРµСЂРєСѓ i mod p != 0
                 return InMulGroup(groupModule);
 	}
 Integer& Integer::elementOrder(Integer &groupModule, Integer &num,std::vector<DecompositionMember> vector, const Integer &ord )
 {
   if(!num.InMulGroup(groupModule))
-    throw new Exception("элемент не принадлежит мультипликативной группе");
+    throw new Exception("СЌР»РµРјРµРЅС‚ РЅРµ РїСЂРёРЅР°РґР»РµР¶РёС‚ РјСѓР»СЊС‚РёРїР»РёРєР°С‚РёРІРЅРѕР№ РіСЂСѓРїРїРµ");
   if(vector.size() >= 1)
   {
     std::vector<DecompositionMember>::iterator it;
@@ -1762,12 +1762,12 @@ Integer& Integer::elementOrder(Integer &groupModule, Integer &num,std::vector<De
     return *rez;
   }
   else
-     throw new Exception("Введите разложение порядка группы.");
+     throw new Exception("Р’РІРµРґРёС‚Рµ СЂР°Р·Р»РѕР¶РµРЅРёРµ РїРѕСЂСЏРґРєР° РіСЂСѓРїРїС‹.");
 }
 bool Integer::isGenerator(Integer &groupModule, Integer &num,std::vector<DecompositionMember> vector, Integer &ord)
 {
   if(!num.InMulGroup(groupModule))
-    throw new Exception("элемент не принадлежит мультипликативной группе");
+    throw new Exception("СЌР»РµРјРµРЅС‚ РЅРµ РїСЂРёРЅР°РґР»РµР¶РёС‚ РјСѓР»СЊС‚РёРїР»РёРєР°С‚РёРІРЅРѕР№ РіСЂСѓРїРїРµ");
     if(vector.size() >= 1)
     {   AAL::Integer m(ord);
        // AAL::Integer b(polynom.ToString(),Bin);
@@ -1776,7 +1776,7 @@ bool Integer::isGenerator(Integer &groupModule, Integer &num,std::vector<Decompo
         return true;
     }
   else
-   throw new Exception("Введите разложение порядка группы.");
+   throw new Exception("Р’РІРµРґРёС‚Рµ СЂР°Р·Р»РѕР¶РµРЅРёРµ РїРѕСЂСЏРґРєР° РіСЂСѓРїРїС‹.");
 return false;
 }
 	//simple method
@@ -1793,7 +1793,7 @@ return false;
     if(Euclid(*integ,mod) == 1)
     { integer = *integ;
     if(!integer.InMulGroup(module))
-			  throw new Exception("Число не принадлежит мультипликативной группе");
+			  throw new Exception("Р§РёСЃР»Рѕ РЅРµ РїСЂРёРЅР°РґР»РµР¶РёС‚ РјСѓР»СЊС‚РёРїР»РёРєР°С‚РёРІРЅРѕР№ РіСЂСѓРїРїРµ");
 
       Integer *m = const_cast<Integer*>(Copy(module, &integer));
 
@@ -1807,14 +1807,14 @@ return false;
 		  return *this;
    }
     else
-   throw new Exception("A1 и n должны быть взаимно просты.");
+   throw new Exception("A1 Рё n РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІР·Р°РёРјРЅРѕ РїСЂРѕСЃС‚С‹.");
 	}
 
  	Integer& Integer::InverseInFp(Integer &integer, Integer &module)
 	{
                 if(!module.isPrime())
                 {
-                        throw new Exception("p должно быть простым.");
+                        throw new Exception("p РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїСЂРѕСЃС‚С‹Рј.");
                 }
 
                 return Inverse(integer, module);
@@ -1826,16 +1826,16 @@ return false;
     if(module.isPrime())
 		  {return ModSqrt(*this, module);}
     else
-      throw new Exception("p должно быть простым.");
+      throw new Exception("p РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїСЂРѕСЃС‚С‹Рј.");
 	}
 
 	//(c) Morozov, TEST(Integer, ModSqrt)
 	Integer& Integer::ModSqrt(Integer &integer, Integer &module)
 	{
 		if(!module.isPrime())
-			throw new Exception("Модуль должен быть простым");
+			throw new Exception("РњРѕРґСѓР»СЊ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РїСЂРѕСЃС‚С‹Рј");
 		if(integer.LegendreSymbol(module)!=1)
-			throw new Exception("Число не является квадратичным вычетом");
+			throw new Exception("Р§РёСЃР»Рѕ РЅРµ СЏРІР»СЏРµС‚СЃСЏ РєРІР°РґСЂР°С‚РёС‡РЅС‹Рј РІС‹С‡РµС‚РѕРј");
 		if(integer.isZero())
 			return *this = integer;
 
@@ -1886,7 +1886,7 @@ return false;
 				n.ModMul(prom, *this, *p);
 				s.ModPow(n, degree, *p);
 				if(!s.isOne())
-        degreeJ.Add(degreeJ, Integer(one << i));// Integer(one << i), а не one << i, чтобы внутрь метода не пердавался временный объект который может быть удалён
+        degreeJ.Add(degreeJ, Integer(one << i));// Integer(one << i), Р° РЅРµ one << i, С‡С‚РѕР±С‹ РІРЅСѓС‚СЂСЊ РјРµС‚РѕРґР° РЅРµ РїРµСЂРґР°РІР°Р»СЃСЏ РІСЂРµРјРµРЅРЅС‹Р№ РѕР±СЉРµРєС‚ РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ СѓРґР°Р»С‘РЅ
 				degree >>= 1;
         if(!degreeJ.isZero())
 				{
@@ -1902,7 +1902,7 @@ return false;
 				prom.ModMul(n, s, *p);
 				n.ModPow(prom, degree, *p);
 				if(!n.isOne())
-          degreeJ.Add(degreeJ, Integer(one << i)); // Integer(one << i), а не one << i, чтобы внутрь метода не пердавался временный объект который может быть удалён
+          degreeJ.Add(degreeJ, Integer(one << i)); // Integer(one << i), Р° РЅРµ one << i, С‡С‚РѕР±С‹ РІРЅСѓС‚СЂСЊ РјРµС‚РѕРґР° РЅРµ РїРµСЂРґР°РІР°Р»СЃСЏ РІСЂРµРјРµРЅРЅС‹Р№ РѕР±СЉРµРєС‚ РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ СѓРґР°Р»С‘РЅ
 				if(i!=alpha-2)
 					degree >>= 1;
 			}

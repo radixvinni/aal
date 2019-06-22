@@ -25,14 +25,14 @@ namespace AAL
         public:
                 Polynom A0;
                 Polynom A1;
-	//Конструкторы
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
 		PolynomGF3();
     PolynomGF3(const PolynomGF3 &polynom);
 		PolynomGF3(const std::string dataString);
     ~PolynomGF3();
 
-	//Преобразование и считывание из сторк
+	//РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚РѕСЂРє
 	public:
 		PolynomGF3& Parse(const std::string dataString);
 		std::string i_to_str(uint x) const;
@@ -40,13 +40,13 @@ namespace AAL
         public:
                 bool isZero() const;
                 bool isOne() const;
-  //Унарные операции
+  //РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		//Polynom operator~() const;
 		//Polynom& OnesComplement();
 		PolynomGF3& operator= (const PolynomGF3& polynom);
 
-        //Методы акцепторы
+        //РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	public:
     bool isIrreducible() const;
     bool isPrimitivity() const;
@@ -55,7 +55,7 @@ namespace AAL
 		PolynomGF3& setZero();
     uint getBit(uint index) const;
     void setBit(uint index, uint bit);
-        //Операции сравнения
+        //РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
     friend bool operator==(const PolynomGF3& a, const PolynomGF3& b);
 		friend bool operator!=(const PolynomGF3& a, const PolynomGF3& b);
@@ -64,7 +64,7 @@ namespace AAL
 		friend bool operator>(const PolynomGF3& a, const PolynomGF3& b);
 		friend bool operator>=(const PolynomGF3& a, const PolynomGF3& b);
 
-       //Операции побитового сдвига
+       //РћРїРµСЂР°С†РёРё РїРѕР±РёС‚РѕРІРѕРіРѕ СЃРґРІРёРіР°
 	public:
 		PolynomGF3 operator<<(int numberBits) const;
 		PolynomGF3& operator<<=(int numberBits);
@@ -72,21 +72,21 @@ namespace AAL
 		PolynomGF3& operator>>=(int numberBits);
 
 
-       //Операция сложения
+       //РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
 	public:
 		friend PolynomGF3 operator+(const PolynomGF3 &a, const PolynomGF3 &b);
 		PolynomGF3& operator+=(PolynomGF3 &polynom);
 		PolynomGF3& Add(PolynomGF3 &a, PolynomGF3 &b);
     PolynomGF3& ModAdd(PolynomGF3 &a, PolynomGF3 &b, PolynomGF3 &module);
     PolynomGF3& AddInGF3_n(PolynomGF3 &a, PolynomGF3 &b, PolynomGF3 &module);
-       //Операция вычитания
+       //РћРїРµСЂР°С†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ
 	public:
 		friend PolynomGF3 operator-(const PolynomGF3 &a, const PolynomGF3 &b);
 		PolynomGF3& operator-=(PolynomGF3 &polynom);
 		PolynomGF3& Sub(PolynomGF3 &a, PolynomGF3 &b);
 		PolynomGF3& ModSub(PolynomGF3 &a, PolynomGF3 &b, PolynomGF3& module);
 
-        //Операция умножения
+        //РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ
 	public:
 		friend PolynomGF3 operator*(const PolynomGF3 &a, const PolynomGF3 &b);
 		PolynomGF3& operator*=(PolynomGF3 &polynom);
@@ -94,13 +94,13 @@ namespace AAL
     PolynomGF3& ModMul(PolynomGF3 a, PolynomGF3 b, PolynomGF3 &module);
     PolynomGF3& MulGF3_n(PolynomGF3 &a, PolynomGF3 &b, PolynomGF3 &module);
 
-        //Операция деление
+        //РћРїРµСЂР°С†РёСЏ РґРµР»РµРЅРёРµ
  	public:
 		friend PolynomGF3 operator/(const PolynomGF3 &a, const PolynomGF3 &b);
 		PolynomGF3& operator/=(PolynomGF3 &polynom);
 		PolynomGF3& Div(PolynomGF3 &a, PolynomGF3 &b, PolynomGF3 *remainder = NULL);
 
-        //Операция приведения по модулю
+        //РћРїРµСЂР°С†РёСЏ РїСЂРёРІРµРґРµРЅРёСЏ РїРѕ РјРѕРґСѓР»СЋ
 	public:
 		friend PolynomGF3 operator%(const PolynomGF3 &a, const PolynomGF3 &b);
 		PolynomGF3& operator%=(PolynomGF3 &polynom);
@@ -142,17 +142,17 @@ namespace AAL
      std::string ToStringByPowers() const;
 
 
-	  // Тесты поля на образование ОНБ и ГНБ
-      // ОНБ 1
+	  // РўРµСЃС‚С‹ РїРѕР»СЏ РЅР° РѕР±СЂР°Р·РѕРІР°РЅРёРµ РћРќР‘ Рё Р“РќР‘
+      // РћРќР‘ 1
       bool ONB1Test(const uint n) const;
-      // ОНБ 2
+      // РћРќР‘ 2
       bool ONB2Test(const uint n) const;
-      // ОНБ 3
+      // РћРќР‘ 3
       bool ONB3Test(const uint n) const;
-      // ГНБ
+      // Р“РќР‘
       bool GNBTest(const uint n, const int type) const;
 
-     //тест образующего элемента и определение порядка элемента в группе
+     //С‚РµСЃС‚ РѕР±СЂР°Р·СѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р° Рё РѕРїСЂРµРґРµР»РµРЅРёРµ РїРѕСЂСЏРґРєР° СЌР»РµРјРµРЅС‚Р° РІ РіСЂСѓРїРїРµ
      Integer& elementOrder(PolynomGF3 &groupModule, PolynomGF3 &polynom,std::vector<DecompositionMember> vector, const Integer &ord );
      bool isGenerator(PolynomGF3 &groupModule, PolynomGF3 &polynom,std::vector<DecompositionMember> vector, const Integer &ord);
 

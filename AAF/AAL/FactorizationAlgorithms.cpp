@@ -93,7 +93,7 @@ x.SquareRoot(num);
 
 DecVector FactorizationAlgorithms::FermaAlgorithmDecomposition(){
 if (!number.isOdd())
-     throw new Exception("Число четно");
+     throw new Exception("Р§РёСЃР»Рѕ С‡РµС‚РЅРѕ");
 else{
 DecVector vector;
 Integer Int_degree("1");
@@ -199,7 +199,7 @@ DecVector FactorizationAlgorithms::MsieveDecomposition()
  std::string s1=number.strr();
 if (s1.length()>275 )
   {
-   throw new Exception("Разлагаемое число не должно содержать более чем 275 десятичных знаков!");
+   throw new Exception("Р Р°Р·Р»Р°РіР°РµРјРѕРµ С‡РёСЃР»Рѕ РЅРµ РґРѕР»Р¶РЅРѕ СЃРѕРґРµСЂР¶Р°С‚СЊ Р±РѕР»РµРµ С‡РµРј 275 РґРµСЃСЏС‚РёС‡РЅС‹С… Р·РЅР°РєРѕРІ!");
    return fail;
 
   }
@@ -208,8 +208,8 @@ if (FileExists("msieve.log"))
 #ifndef USE_MSIEVE
 if (!FileExists("msieve.exe"))
  {
- //throw std::domain_error("Не найден файл msieve.exe!");
- throw new Exception("Не найден файл msieve.exe");
+ //throw std::domain_error("РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» msieve.exe!");
+ throw new Exception("РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» msieve.exe");
  return fail;
  }
  std::string s= "msieve.exe -e -v -m -p ";
@@ -227,7 +227,7 @@ if (!FileExists("msieve.exe"))
     {
         return fail;
     }
-  // Ждём, пока процесс не выполнится:
+  // Р–РґС‘Рј, РїРѕРєР° РїСЂРѕС†РµСЃСЃ РЅРµ РІС‹РїРѕР»РЅРёС‚СЃСЏ:
   WaitForSingleObject(PrInfo.hProcess,INFINITE);
 #else
 	//ref:msieve_main
@@ -257,7 +257,7 @@ if (!FileExists("msieve.exe"))
          return fail;
         }
    std::string isfinished =res[res.size()-1];
-   if (isfinished.find("elapsed time")==std::string::npos) throw new Exception("Операция отменена пользователем");
+   if (isfinished.find("elapsed time")==std::string::npos) throw new Exception("РћРїРµСЂР°С†РёСЏ РѕС‚РјРµРЅРµРЅР° РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј");
    for (int j=0;j<res.size();j++)
     {
       std::string str=res[j];
@@ -294,7 +294,7 @@ else
    };
 
  if(complite_factorize==false)
-     throw new Exception("В разложении присутствуют составные множители");
+     throw new Exception("Р’ СЂР°Р·Р»РѕР¶РµРЅРёРё РїСЂРёСЃСѓС‚СЃС‚РІСѓСЋС‚ СЃРѕСЃС‚Р°РІРЅС‹Рµ РјРЅРѕР¶РёС‚РµР»Рё");
 
 return result;
 

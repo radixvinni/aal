@@ -18,7 +18,7 @@
 #include "PolynomGF2_mY_7.h"
 namespace AAL
 {
- //***********************************  Конструкторы  *******************************************
+ //***********************************  РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹  *******************************************
     //(c) Belova, TEST(PolynomGF2_m_4, EmptyConstructor)
 /*  PolynomGF2_m_4::PolynomGF2_m_4() :
         _a0(), _a1(), _a2(), _a3(), _module(), _modPolynom("11001")
@@ -170,10 +170,10 @@ namespace AAL
     {
         _modPolynom = modPolynom;
         if((modPolynom.getNumberBits()-1)!=4)
-            throw std::out_of_range("модулярные многочлен порождающий расширение поля должны быть степени 4");
+            throw new Exception("РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅ РїРѕСЂРѕР¶РґР°СЋС‰РёР№ СЂР°СЃС€РёСЂРµРЅРёРµ РїРѕР»СЏ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЃС‚РµРїРµРЅРё 4");
     }
 //------------------------------------------------------------------------------
-//******************************    Операция сложения    ***************************************
+//******************************    РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ    ***************************************
     //simple method
     PolynomGF2_m_4 operator+(const PolynomGF2_m_4 &a, const PolynomGF2_m_4 &b)
     {
@@ -193,9 +193,9 @@ namespace AAL
     PolynomGF2_m_4& PolynomGF2_m_4::Add(PolynomGF2_m_4 &a, PolynomGF2_m_4 &b)
     {
         if(a.getModPolynom() != b.getModPolynom() || a.getModule() != b.getModule())
-                        throw new Exception("модулярные многочлены должны быть равны");
+                        throw new Exception("РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅС‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°РІРЅС‹");
          if(a.getModPolynom().isIrreducible() == false || b.getModPolynom().isIrreducible() == false)
-                        throw new Exception("f(x) - должен быть неприводим");
+                        throw new Exception("f(x) - РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРј");
         _modPolynom = a._modPolynom;
         _module=a._module;
         _a0.ModAdd(a._a0, b._a0, _module);
@@ -208,7 +208,7 @@ namespace AAL
          s = _a3.ToString();
         return *this;
     }
-//******************************    Операция умножения    **************************************
+//******************************    РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ    **************************************
     //simple method
     PolynomGF2_m_4 operator*(const PolynomGF2_m_4 &a, const PolynomGF2_m_4 &b)
     {
@@ -235,9 +235,9 @@ namespace AAL
         Polynom e4, e41,e42,e43;
         Polynom e5,e51,e52,e6;
         if(a.getModPolynom() != b.getModPolynom() || a.getModule() != b.getModule())
-                        throw new Exception("модулярные многочлены должны быть равны");
+                        throw new Exception("РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅС‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°РІРЅС‹");
          if(a.getModPolynom().isIrreducible() == false || b.getModPolynom().isIrreducible() == false)
-                        throw new Exception("f(x) - должен быть неприводим");
+                        throw new Exception("f(x) - РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРј");
 
         _modPolynom = a._modPolynom;
         _module = a._module;
@@ -260,7 +260,7 @@ namespace AAL
         s = _a3.ToString();
         return *this;
     }
-// простой метод возведения в степень 2 по модулю
+// РїСЂРѕСЃС‚РѕР№ РјРµС‚РѕРґ РІРѕР·РІРµРґРµРЅРёСЏ РІ СЃС‚РµРїРµРЅСЊ 2 РїРѕ РјРѕРґСѓР»СЋ
     PolynomGF2_m_4& PolynomGF2_m_4::Square(PolynomGF2_m_4 &a)
     {
         Polynom e0;
@@ -272,7 +272,7 @@ namespace AAL
         if(a.isZero())
             return setZero();
          if(a.getModPolynom().isIrreducible() == false)
-                        throw new Exception("f(x) - должен быть неприводим");
+                        throw new Exception("f(x) - РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРј");
 
         e0.ModMul(a._a0,a._a0, _module);
         e2 = e22.ModMul(a._a1,a._a1,_module);
@@ -288,18 +288,18 @@ namespace AAL
         s = _a3.ToString();
         return *this;
     }
-  //возведение в степень
+  //РІРѕР·РІРµРґРµРЅРёРµ РІ СЃС‚РµРїРµРЅСЊ
   PolynomGF2_m_4& PolynomGF2_m_4::Pow(PolynomGF2_m_4 &a, Integer n)
   {
     if(n.isNegative())
-        throw new Exception("Число n - отрицательное результат не определен");
+        throw new Exception("Р§РёСЃР»Рѕ n - РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРµ СЂРµР·СѓР»СЊС‚Р°С‚ РЅРµ РѕРїСЂРµРґРµР»РµРЅ");
     if(n == 1)
     {
         *this = a;
         return *this;
     }
     if(a.getModPolynom().isIrreducible() == false)
-                        throw new Exception("f(x) - должен быть неприводим");
+                        throw new Exception("f(x) - РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРј");
 
     _modPolynom = a._modPolynom;
     _module=a._module;
@@ -325,7 +325,7 @@ namespace AAL
     st = _a3.ToString();
     return *this;
   }
-  //инвертирование
+  //РёРЅРІРµСЂС‚РёСЂРѕРІР°РЅРёРµ
   //------------------------------------------------------------------------------
 
     //simple method
@@ -333,7 +333,7 @@ namespace AAL
     {
         return Inverse(*this, module);
     }
-  //определение степени многочлена
+  //РѕРїСЂРµРґРµР»РµРЅРёРµ СЃС‚РµРїРµРЅРё РјРЅРѕРіРѕС‡Р»РµРЅР°
     int PolynomGF2_m_4::deg() const
     {
         if(_a0.isZero() && _a1.isZero() && _a2.isZero() && _a3.isZero())
@@ -392,7 +392,7 @@ namespace AAL
     PolynomGF2_m_4& PolynomGF2_m_4::Inverse(PolynomGF2_m_4 &polynom, Polynom &module)
     {
                  if(polynom.getModPolynom().isIrreducible() == false)
-                        throw new Exception("f(x) - должен быть неприводим");
+                        throw new Exception("f(x) - РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРј");
 
         PolynomGF2_mY_7 d2("0","0","0","0","0","0","0",module.ToString()),d1("1","0","0","0","0","0","0",module.ToString()),w1;
         PolynomGF2_mY_7 u("1","1","0","0","1","0","0",module.ToString()),w,r,c,_c;
@@ -560,7 +560,7 @@ namespace AAL
         *this = result;
         return *this;
     }
-   // извлечение квадратного корня
+   // РёР·РІР»РµС‡РµРЅРёРµ РєРІР°РґСЂР°С‚РЅРѕРіРѕ РєРѕСЂРЅСЏ
    PolynomGF2_m_4& PolynomGF2_m_4::Sqrt(PolynomGF2_m_4 &a, Polynom &module)
    {
         PolynomGF2_m_4 result;
@@ -573,10 +573,10 @@ namespace AAL
         *this = result;
         return *this;
    }
-   //тест образующего элемента, определение порядка элемента
+   //С‚РµСЃС‚ РѕР±СЂР°Р·СѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°, РѕРїСЂРµРґРµР»РµРЅРёРµ РїРѕСЂСЏРґРєР° СЌР»РµРјРµРЅС‚Р°
    Integer& PolynomGF2_m_4::elementOrder(Polynom &groupModule, PolynomGF2_m_4 &polynom,std::vector<DecompositionMember> vector, const Integer &ord )
 {
-  if(!groupModule.isIrreducible()) throw new Exception("Модуль должен быть неприводим.");
+  if(!groupModule.isIrreducible()) throw new Exception("РњРѕРґСѓР»СЊ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРј.");
   if(vector.size() >= 1)
   {
     std::vector<DecompositionMember>::iterator it;
@@ -604,7 +604,7 @@ namespace AAL
     return *rez;
   }
   else
-     throw new Exception("Введите разложение порядка группы.");
+     throw new Exception("Р’РІРµРґРёС‚Рµ СЂР°Р·Р»РѕР¶РµРЅРёРµ РїРѕСЂСЏРґРєР° РіСЂСѓРїРїС‹.");
 }
 bool PolynomGF2_m_4::isGenerator(Polynom &groupModule, PolynomGF2_m_4 &polynom,std::vector<DecompositionMember> vector, const Integer &ord)
 {
@@ -616,7 +616,7 @@ bool PolynomGF2_m_4::isGenerator(Polynom &groupModule, PolynomGF2_m_4 &polynom,s
         return true;
     }
   else
-   throw new Exception("Введите разложение порядка группы.");
+   throw new Exception("Р’РІРµРґРёС‚Рµ СЂР°Р·Р»РѕР¶РµРЅРёРµ РїРѕСЂСЏРґРєР° РіСЂСѓРїРїС‹.");
 return false;
 }
 void PolynomGF2_m_4::exist(Polynom &a, Polynom& module)

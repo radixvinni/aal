@@ -15,7 +15,7 @@
 using namespace AAL;
 
 /*
-	Êîíñòðóêòîðû êëàññà PolynomGF3
+	Конструкторы класса PolynomGF3
 */
 TEST(PolynomGF7, EmptyConstructor)
 {
@@ -24,7 +24,7 @@ TEST(PolynomGF7, EmptyConstructor)
 }
 
 /*
-        Óíàðíûå îïåðàöèè
+        Унарные операции
 */
 
 TEST(PolynomGF7, operatorEqual)
@@ -47,7 +47,7 @@ TEST(PolynomGF7, operatorEqual)
 }
 
 
-/*        Ìåòîäû àêöåïòîðû
+/*        Методы акцепторы
 */
 /*
 TEST(PolynomGF3, SetData)
@@ -135,7 +135,7 @@ TEST(PolynomGF3, GenerateIrreducible)
 }
 */
 /*
-        Îïåðàöèè ñðàâíåíèÿ
+        Операции сравнения
 */
 /*TEST(PolynomGF3, Smaller)
 {
@@ -145,7 +145,7 @@ TEST(PolynomGF3, GenerateIrreducible)
 
 
 /*
-	Îïåðàöèè ïîáèòîâîãî ñäâèãà
+	Операции побитового сдвига
 */
 TEST(PolynomGF7, SHL)
 {
@@ -170,7 +170,7 @@ TEST(PolynomGF7, SHR)
 }
 
 /*
-        Îïåðàöèÿ ñëîæåíèÿ
+        Операция сложения
 */
 TEST(PolynomGF7, Sub)
 {
@@ -207,7 +207,7 @@ TEST(PolynomGF7, Add)
 
 
 /*
-	Îïåðàöèÿ óìíîæåíèÿ
+	Операция умножения
 */
 
 TEST(PolynomGF7, MulToConstant)
@@ -270,7 +270,7 @@ TEST(PolynomGF7, MulGF7_2n)
 }
 
 /*
-	Îïåðàöèÿ ïðèâåäåíèÿ ïî ìîäóëþ
+	Операция приведения по модулю
 */
 TEST(PolynomGF7, Div)
 {
@@ -332,6 +332,7 @@ TEST(PolynomGF7, Pow)
           CHECK(c1.Pow(a,AAL::Integer(2),module) == c2.ModMul(a,a,module));
 
 }
+/*
 TEST(PolynomGF7, Inverse)
 {
         PolynomGF7 a3("300"),c1,c11;
@@ -347,8 +348,7 @@ TEST(PolynomGF7, Inverse)
 }
 
 /*
-/*
-	Îïåðàöèÿ äåëåíèå
+	Операция деление
 */
   /*
 TEST(PolynomGF3, Div)
@@ -409,7 +409,7 @@ TEST(PolynomGF3, ModPow)
         CHECK(i1 == k.ModPow(i1,iB,m));
 }
 
-/* Òåñòû ×åðíûøåâîé */
+/* Тесты Чернышевой */
 /*
 TEST(PolynomGF3, getPowersOfPolynom)
 {

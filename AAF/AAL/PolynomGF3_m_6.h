@@ -35,18 +35,18 @@ namespace AAL
             PolynomGF3 _a5;
             PolynomGF3 _module;
             PolynomGF3 _modPolynom;
-	//Конструкторы
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
 		PolynomGF3_m_6();
 		PolynomGF3_m_6(const PolynomGF3_m_6 &polynom);
 		PolynomGF3_m_6(const std::string a0, const std::string a1, const std::string a2, const std::string a3, const std::string a4, const std::string a5, const std::string module);
-	//Преобразование и считывание из строк
+	//РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚СЂРѕРє
 	public:
 /*		Polynom& Parse(const std::string dataString, PolynomSystem system=BackBin);
 		std::string ToString(PolynomSystem system=BackBin) const;
         std::string ToString(const std::string dataString);
 */
-	//Методы акцепторы
+	//РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	public:
 		PolynomGF3_m_6& setOne();
 		    PolynomGF3_m_6& setZero();
@@ -75,41 +75,41 @@ namespace AAL
         //Generation
         public:
         PolynomGF3_m_6& Generate(PolynomGF3& module);
-	//Унарные операции
+	//РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		PolynomGF3_m_6& operator= (const PolynomGF3_m_6& polynom);
 
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
 		friend bool operator==(const PolynomGF3_m_6& a, const PolynomGF3_m_6& b);
 		friend bool operator!=(const PolynomGF3_m_6& a, const PolynomGF3_m_6& b);
 
-	//Операция сложения
+	//РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
 	public:
 		friend PolynomGF3_m_6 operator+(const PolynomGF3_m_6 &a, const PolynomGF3_m_6 &b);
 		PolynomGF3_m_6& operator+=(PolynomGF3_m_6 &polynom);
 		PolynomGF3_m_6& Add(PolynomGF3_m_6 &a, PolynomGF3_m_6 &b);
-    //Операция умножения
+    //РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ
 	public:
 		friend PolynomGF3_m_6 operator*(const PolynomGF3_m_6 &a, const PolynomGF3_m_6 &b);
 		PolynomGF3_m_6& operator*=(PolynomGF3_m_6 &polynom);
 		PolynomGF3_m_6& Mul(PolynomGF3_m_6 &a, const PolynomGF3_m_6 &b);
-    //Операция возведение в степень
+    //РћРїРµСЂР°С†РёСЏ РІРѕР·РІРµРґРµРЅРёРµ РІ СЃС‚РµРїРµРЅСЊ
 	public:
 		PolynomGF3_m_6& Cube(PolynomGF3_m_6 &a);
 		PolynomGF3_m_6& Pow(PolynomGF3_m_6 &a, const Integer &n);
-    //символ Лежандра
+    //СЃРёРјРІРѕР» Р›РµР¶Р°РЅРґСЂР°
         PolynomGF3_m_6& LegendreSymbol(PolynomGF3_m_6 &a, PolynomGF3 &module);
-    //извлечение квадратного корня
+    //РёР·РІР»РµС‡РµРЅРёРµ РєРІР°РґСЂР°С‚РЅРѕРіРѕ РєРѕСЂРЅСЏ
     public:
          PolynomGF3_m_6& CubeRoot(PolynomGF3_m_6 &a, PolynomGF3 &module);
          PolynomGF3_m_6& Sqrt(PolynomGF3_m_6 &a, PolynomGF3 &module,Integer &s,Integer &T);
-    //инвертирование
+    //РёРЅРІРµСЂС‚РёСЂРѕРІР°РЅРёРµ
     public:
         PolynomGF3_m_6& Inverse(PolynomGF3 &module);
         PolynomGF3_m_6& Inverse(PolynomGF3_m_6 &polynom, PolynomGF3 &module);
 
-    //Тест образующего элемента
+    //РўРµСЃС‚ РѕР±СЂР°Р·СѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
     Integer& elementOrder(PolynomGF3 &groupModule, PolynomGF3_m_6 &polynom,std::vector<DecompositionMember> vector, const Integer &ord );
     bool isGenerator(PolynomGF3 &groupModule, PolynomGF3_m_6 &polynom,std::vector<DecompositionMember> vector, Integer &ord);
     public:

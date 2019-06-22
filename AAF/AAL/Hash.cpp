@@ -15,7 +15,7 @@ static void MD2Transform PROTO_LIST
 static void MD2_memcpy PROTO_LIST ((POINTER, POINTER, unsigned int));
 static void MD2_memset PROTO_LIST ((POINTER, int, unsigned int));
 
-// Перестановка 0.. 255 построенная из цифр пи. Это дает "случайную" нелинейную операцию замены байта
+// РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° 0.. 255 РїРѕСЃС‚СЂРѕРµРЅРЅР°СЏ РёР· С†РёС„СЂ РїРё. Р­С‚Рѕ РґР°РµС‚ "СЃР»СѓС‡Р°Р№РЅСѓСЋ" РЅРµР»РёРЅРµР№РЅСѓСЋ РѕРїРµСЂР°С†РёСЋ Р·Р°РјРµРЅС‹ Р±Р°Р№С‚Р°
 
 static unsigned char PI_SUBST[256] = {
   41, 46, 67, 201, 162, 216, 124, 1, 61, 54, 84, 161, 236, 240, 6,
@@ -57,9 +57,9 @@ static unsigned char *PADDING_MD2[] = {
     "\020\020\020\020\020\020\020\020\020\020\020\020\020\020\020\020"
 };
 
-// инициализация MD2. Начинаем операцию MD2, записываем нов. контекст.
+// РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ MD2. РќР°С‡РёРЅР°РµРј РѕРїРµСЂР°С†РёСЋ MD2, Р·Р°РїРёСЃС‹РІР°РµРј РЅРѕРІ. РєРѕРЅС‚РµРєСЃС‚.
 
-void MD2Init (MD2_CTX *context)                                                /* контекст */
+void MD2Init (MD2_CTX *context)                                                /* РєРѕРЅС‚РµРєСЃС‚ */
 {
   context->count = 0;
   MD2_memset ((POINTER)context->state, 0, sizeof (context->state));
@@ -68,17 +68,17 @@ void MD2Init (MD2_CTX *context)                                                /
 
 // MD2 block update operation.
 
-void MD2Update (MD2_CTX *context, unsigned char *input, unsigned int inputLen) /* контекст, входной блок, длина входного блока */
+void MD2Update (MD2_CTX *context, unsigned char *input, unsigned int inputLen) /* РєРѕРЅС‚РµРєСЃС‚, РІС…РѕРґРЅРѕР№ Р±Р»РѕРє, РґР»РёРЅР° РІС…РѕРґРЅРѕРіРѕ Р±Р»РѕРєР° */
 {
   unsigned int i, index, partLen;
 
-  /* Оновляем кол-во байт mod 16 */
+  /* РћРЅРѕРІР»СЏРµРј РєРѕР»-РІРѕ Р±Р°Р№С‚ mod 16 */
   index = context->count;
   context->count = (index + inputLen) & 0xf;
 
   partLen = 16 - index;
 
-  // Преобразуем столько раз,сколько возможно
+  // РџСЂРµРѕР±СЂР°Р·СѓРµРј СЃС‚РѕР»СЊРєРѕ СЂР°Р·,СЃРєРѕР»СЊРєРѕ РІРѕР·РјРѕР¶РЅРѕ
   if (inputLen >= partLen) {
     MD2_memcpy ((POINTER)&context->buffer[index], (POINTER)input, partLen);
     MD2Transform (context->state, context->checksum, context->buffer);
@@ -91,17 +91,17 @@ void MD2Update (MD2_CTX *context, unsigned char *input, unsigned int inputLen) /
   else
     i = 0;
 
-  /* Помещаем в буфер ост. часть вх. сообщения */
+  /* РџРѕРјРµС‰Р°РµРј РІ Р±СѓС„РµСЂ РѕСЃС‚. С‡Р°СЃС‚СЊ РІС…. СЃРѕРѕР±С‰РµРЅРёСЏ */
   MD2_memcpy
     ((POINTER)&context->buffer[index], (POINTER)&input[i], inputLen-i);
 }
 
-/* Окончание MD2. Завершение операции преобразование,
-записываем преобразованное сообщение и зануляем контекст.
+/* РћРєРѕРЅС‡Р°РЅРёРµ MD2. Р—Р°РІРµСЂС€РµРЅРёРµ РѕРїРµСЂР°С†РёРё РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ,
+Р·Р°РїРёСЃС‹РІР°РµРј РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ Рё Р·Р°РЅСѓР»СЏРµРј РєРѕРЅС‚РµРєСЃС‚.
  */
 void MD2Final (unsigned char digest[16], MD2_CTX *context)
-/* преобразованное сообщение */
-/* контекст */
+/* РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ */
+/* РєРѕРЅС‚РµРєСЃС‚ */
 {
   unsigned int index, padLen;
 
@@ -273,7 +273,7 @@ static unsigned char PADDING_MD4[64] = {
 /* MD4 initialization. Begins an MD4 operation, writing a new context.
  */
 void MD4Init (MD4_CTX *context)
-/* контекст */
+/* РєРѕРЅС‚РµРєСЃС‚ */
 {
   context->count[0] = context->count[1] = 0;
 
@@ -290,9 +290,9 @@ void MD4Init (MD4_CTX *context)
      context.
  */
 void MD4Update (MD4_CTX *context, unsigned char *input, unsigned int inputLen)
-/* контекст */
-/* входной блок */
-/* длина входного блока */
+/* РєРѕРЅС‚РµРєСЃС‚ */
+/* РІС…РѕРґРЅРѕР№ Р±Р»РѕРє */
+/* РґР»РёРЅР° РІС…РѕРґРЅРѕРіРѕ Р±Р»РѕРєР° */
 {
   unsigned int i, index, partLen;
 
@@ -331,8 +331,8 @@ void MD4Update (MD4_CTX *context, unsigned char *input, unsigned int inputLen)
      the message digest and zeroizing the context.
  */
 void MD4Final (unsigned char digest[16], MD4_CTX *context)
-/* преобразованное сообщение */
-/* контекст */
+/* РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ */
+/* РєРѕРЅС‚РµРєСЃС‚ */
 {
   unsigned char bits[8];
   unsigned int index, padLen;
@@ -599,7 +599,7 @@ static unsigned char PADDING_MD5[64] = {
 /* MD5 initialization. Begins an MD5 operation, writing a new context.
  */
 void MD5Init (MD5_CTX *context)
-/* контекст */
+/* РєРѕРЅС‚РµРєСЃС‚ */
 {
   context->count[0] = context->count[1] = 0;
 
@@ -615,9 +615,9 @@ void MD5Init (MD5_CTX *context)
      processing another message block, and updating the context.
  */
 void MD5Update (MD5_CTX *context, unsigned char *input, unsigned int inputLen)
-/* контекст */
-/* входной блок */
-/* длина входного блока */
+/* РєРѕРЅС‚РµРєСЃС‚ */
+/* РІС…РѕРґРЅРѕР№ Р±Р»РѕРє */
+/* РґР»РёРЅР° РІС…РѕРґРЅРѕРіРѕ Р±Р»РѕРєР° */
 {
   unsigned int i, index, partLen;
 
@@ -655,7 +655,7 @@ void MD5Update (MD5_CTX *context, unsigned char *input, unsigned int inputLen)
  */
 void MD5Final (unsigned char digest[16], MD5_CTX *context)
 /* message digest */
-/* контекст */
+/* РєРѕРЅС‚РµРєСЃС‚ */
 {
   unsigned char bits[8];
   unsigned int index, padLen;

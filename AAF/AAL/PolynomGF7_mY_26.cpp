@@ -17,7 +17,7 @@
 #include "DecompositionManager.h"
 namespace AAL
 {
- //***********************************  Конструкторы  *******************************************
+ //***********************************  РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹  *******************************************
 	//(c) Belova, TEST(PolynomGF2_mY_7, EmptyConstructor)
 	PolynomGF7_mY_26::PolynomGF7_mY_26() :
         _a0(), _a1(), _a2(), _a3(), _a4(), _a5(), _a6(),  _a7(), _a8(), _a9(), _a10(), _a11(), _a12(), _a13(), _a14(), _a15(), _a16(), _a17(), _a18(), _a19(),  _a20(), _a21(), _a22(), _a23(), _a24(), _a25(),_module(), _modPolynom("410000000000001")
@@ -94,7 +94,7 @@ namespace AAL
             return true;
         return false;
     }
-    //определение степени многочлена
+    //РѕРїСЂРµРґРµР»РµРЅРёРµ СЃС‚РµРїРµРЅРё РјРЅРѕРіРѕС‡Р»РµРЅР°
     int PolynomGF7_mY_26::deg() const
     {
         PolynomGF7 mod = _module;
@@ -576,10 +576,10 @@ namespace AAL
     {
         _modPolynom = modPolynom;
         if((modPolynom.getNumberBits()-1)!= 7)
-            throw std::out_of_range("модулярные многочлен порождающий расширение поля должны быть степени 7");
+            throw new Exception("РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅ РїРѕСЂРѕР¶РґР°СЋС‰РёР№ СЂР°СЃС€РёСЂРµРЅРёРµ РїРѕР»СЏ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЃС‚РµРїРµРЅРё 7");
     }
 //------------------------------------------------------------------------------
-//******************************    Операция сложения    ***************************************
+//******************************    РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ    ***************************************
 	//simple method
 	PolynomGF7_mY_26 operator+(const PolynomGF7_mY_26 &a, const PolynomGF7_mY_26 &b)
 	{
@@ -599,9 +599,9 @@ namespace AAL
 	PolynomGF7_mY_26& PolynomGF7_mY_26::Add(PolynomGF7_mY_26 &a, PolynomGF7_mY_26 &b)
 	{
         if(a.getModPolynom() != b.getModPolynom() || a.getModule() != b.getModule())
-                        throw std::out_of_range("модулярные многочлены должны быть равны");
+                        throw new Exception("РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅС‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°РІРЅС‹");
      //   if(a.getModule().isIrreducible() == false || b.getModule().isIrreducible() == false)
-       //                 throw new Exception("f(x) - должен быть неприводим");
+       //                 throw new Exception("f(x) - РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРј");
 
         _modPolynom = a.getModPolynom();
         _module=a._module;
@@ -660,7 +660,7 @@ namespace AAL
 
         return *this;
 	}
-//******************************    Операция умножения    **************************************
+//******************************    РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ    **************************************
 	// (c) Morozov, TEST(PolynomGF2_m_4, Mul)
 	PolynomGF7_mY_26& PolynomGF7_mY_26::Mul(PolynomGF7_m14 &a, PolynomGF7_m14 &b)
 	{
@@ -695,9 +695,9 @@ namespace AAL
         PolynomGF7 six("6"),minus2b("0"),three("3");
         minus2b.Mul(six,four);
         if(a.getModPolynom() != b.getModPolynom() || a.getModule() != b.getModule())
-                        throw std::out_of_range("модулярные многочлены должны быть равны");
+                        throw new Exception("РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅС‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°РІРЅС‹");
  //       if(a.getModule().isIrreducible() == false || b.getModule().isIrreducible() == false)
- //                       throw new Exception("f(x) - должен быть неприводим");
+ //                       throw new Exception("f(x) - РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРј");
         _modPolynom = a._modPolynom;
         _module = a._module;
 
@@ -821,9 +821,9 @@ namespace AAL
         PolynomGF7 a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,a20,a21,a22,a23,a24,a25;
         PolynomGF7 b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21,b22,b23,b24,b25;        std::string s;
         if(a.getModPolynom() != b.getModPolynom() || a.getModule() != b.getModule())
-                        throw std::out_of_range("модулярные многочлены должны быть равны");
+                        throw new Exception("РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅС‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°РІРЅС‹");
 //        if(a.getModule().isIrreducible() == false || b.getModule().isIrreducible() == false)
-//                        throw new Exception("f(x) - должен быть неприводим");
+//                        throw new Exception("f(x) - РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРј");
 
         _modPolynom = a.getModPolynom();
         _module = a.getModule();
@@ -1031,9 +1031,9 @@ namespace AAL
         PolynomGF7 b0;
 
         if(a.getModule() != b.getModule())
-                        throw std::out_of_range("модулярные многочлены должны быть равны");
+                        throw new Exception("РјРѕРґСѓР»СЏСЂРЅС‹Рµ РјРЅРѕРіРѕС‡Р»РµРЅС‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°РІРЅС‹");
 //        if(a.getModule().isIrreducible() == false || b.getModule().isIrreducible() == false)
-//                        throw new Exception("f(x) - должен быть неприводим");
+//                        throw new Exception("f(x) - РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРј");
 
         _modPolynom = a._modPolynom;
         _module = a._module;
@@ -1167,10 +1167,10 @@ namespace AAL
                 o_st.append("0");
             }
  //             if(aa.getModule().isIrreducible() == false)
- //                       throw new Exception("f(x) - должен быть неприводим");
+ //                       throw new Exception("f(x) - РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРј");
 
               if(a.deg() + d > 25)
-                        throw std::out_of_range("ошибка deg(a) + d должнобыть <= 25");
+                        throw new Exception("РѕС€РёР±РєР° deg(a) + d РґРѕР»Р¶РЅРѕР±С‹С‚СЊ <= 25");
               for(int i = 0; i < d; i++)
               {
                 e1 = e1.setZero(module);
@@ -1493,7 +1493,7 @@ namespace AAL
         deg_a = a.deg();
         deg_b = b.deg();
 //        if(a.getModule().isIrreducible() == false || b.getModule().isIrreducible() == false)
-//                        throw new Exception("f(x) - должен быть неприводим");
+//                        throw new Exception("f(x) - РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРїСЂРёРІРѕРґРёРј");
 
         if(deg_a < deg_b)
         {

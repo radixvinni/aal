@@ -22,34 +22,34 @@ using std::string;
 
 namespace AAL
 {
-  // характеристика поля
+  // С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєР° РїРѕР»СЏ
   const int P = 2; 
 
   class Matrix
   {
     public:
-      // способ "зашифровки" - по строкам, по столбцам
+      // СЃРїРѕСЃРѕР± "Р·Р°С€РёС„СЂРѕРІРєРё" - РїРѕ СЃС‚СЂРѕРєР°Рј, РїРѕ СЃС‚РѕР»Р±С†Р°Рј
       enum CodingSystem {ON_LINE = 1, ON_COLUMN = 2};
-      // вид треугольной матрицы
-      // не приведена, справа-налево, слева-направо
+      // РІРёРґ С‚СЂРµСѓРіРѕР»СЊРЅРѕР№ РјР°С‚СЂРёС†С‹
+      // РЅРµ РїСЂРёРІРµРґРµРЅР°, СЃРїСЂР°РІР°-РЅР°Р»РµРІРѕ, СЃР»РµРІР°-РЅР°РїСЂР°РІРѕ
       enum TrianType {NONE = 0, RIGHT = 1, LEFT = 2};
     private:
-      // длина слова - 8 бит (тип uchar)
+      // РґР»РёРЅР° СЃР»РѕРІР° - 8 Р±РёС‚ (С‚РёРї uchar)
       static const int Len_Word = 8;
-      // способ "зашифровки" - по строкам, по столбцам
+      // СЃРїРѕСЃРѕР± "Р·Р°С€РёС„СЂРѕРІРєРё" - РїРѕ СЃС‚СЂРѕРєР°Рј, РїРѕ СЃС‚РѕР»Р±С†Р°Рј
       CodingSystem  CodeWord;
-      // приведена ли матрица к треугольному виду или нет и к какому
+      // РїСЂРёРІРµРґРµРЅР° Р»Рё РјР°С‚СЂРёС†Р° Рє С‚СЂРµСѓРіРѕР»СЊРЅРѕРјСѓ РІРёРґСѓ РёР»Рё РЅРµС‚ Рё Рє РєР°РєРѕРјСѓ
       TrianType IsTrian;
-      // невырождена ли матрица
-      // вырождена {false}, невырождена {true}
-      // всегда предполагаем, что матрица невырождена
+      // РЅРµРІС‹СЂРѕР¶РґРµРЅР° Р»Рё РјР°С‚СЂРёС†Р°
+      // РІС‹СЂРѕР¶РґРµРЅР° {false}, РЅРµРІС‹СЂРѕР¶РґРµРЅР° {true}
+      // РІСЃРµРіРґР° РїСЂРµРґРїРѕР»Р°РіР°РµРј, С‡С‚Рѕ РјР°С‚СЂРёС†Р° РЅРµРІС‹СЂРѕР¶РґРµРЅР°
       bool IsNonSign;
-      // столбцов и строк в бинарной матрице
+      // СЃС‚РѕР»Р±С†РѕРІ Рё СЃС‚СЂРѕРє РІ Р±РёРЅР°СЂРЅРѕР№ РјР°С‚СЂРёС†Рµ
       uint ColCount, RowCount;
-      // матрица, представляет собой вектор полиномов
+      // РјР°С‚СЂРёС†Р°, РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ СЃРѕР±РѕР№ РІРµРєС‚РѕСЂ РїРѕР»РёРЅРѕРјРѕРІ
       vector<Polynom*> plMatrix;
     private:
-      // только для внутреннего использования
+      // С‚РѕР»СЊРєРѕ РґР»СЏ РІРЅСѓС‚СЂРµРЅРЅРµРіРѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
       //friend void createUnitaryMatrixLeft(uint aRowCount, uint aColCount, CodingSystem aCodeWord, Matrix& A);
       void createUnitaryMatrixLeft(uint aRowCount, uint aColCount, CodingSystem aCodeWord, Matrix& A);
       //friend void createUnitaryMatrixRight(int aRowCount, int aColCount, CodingSystem aCodeWord, Matrix& A);
@@ -62,7 +62,7 @@ namespace AAL
       void getSizeMatrixByte(uint &nColCount, uint &nRowCount);
 
     public:
-      // конструкторы/деструкторы
+      // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹/РґРµСЃС‚СЂСѓРєС‚РѕСЂС‹
       Matrix();
       Matrix(const Matrix& matrix);
       Matrix(CodingSystem aCodeWord, uint aColCount, uint aRowCount);
@@ -91,15 +91,15 @@ namespace AAL
       uint getRowCount() const;
       uint getSizeWordInBits() const;
 
-      // унарные операции
+      // СѓРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
       Matrix& operator= (const Matrix& matrix);
 
-      // операции сравнения
+      // РѕРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
       friend bool operator==(const Matrix& a, const Matrix& b);
       friend bool operator!=(const Matrix& a, const Matrix& b);
       friend bool equalityParams(const Matrix& a, const Matrix& b);
 
-      // служебные функции
+      // СЃР»СѓР¶РµР±РЅС‹Рµ С„СѓРЅРєС†РёРё
       bool isZero() const;
       //bool isOne() const;
       uint getColCountMatrixByte() const;
@@ -108,42 +108,42 @@ namespace AAL
 	  std::string i_to_str(uint x) const;
       string ToStringLine();
       string ToStringNotNullBits();
-      // генерация матрицы для нормальной системы
+      // РіРµРЅРµСЂР°С†РёСЏ РјР°С‚СЂРёС†С‹ РґР»СЏ РЅРѕСЂРјР°Р»СЊРЅРѕР№ СЃРёСЃС‚РµРјС‹
       friend void generateMatrix(const Polynom& plBegin, int nPow, Matrix& A);
       //void generateMatrix(const Polynom& plBegin, int nPow, Matrix& A);
 
 
-      //алгоритмы работы  с матрицей
-      // смена зашифровки
+      //Р°Р»РіРѕСЂРёС‚РјС‹ СЂР°Р±РѕС‚С‹  СЃ РјР°С‚СЂРёС†РµР№
+      // СЃРјРµРЅР° Р·Р°С€РёС„СЂРѕРІРєРё
       Matrix& conversionMatrix();
-      // приведение к треугольному виду
+      // РїСЂРёРІРµРґРµРЅРёРµ Рє С‚СЂРµСѓРіРѕР»СЊРЅРѕРјСѓ РІРёРґСѓ
       Matrix& gausRightTrian();
       Matrix& gausLeftTrianBits();
       Matrix& gausRightTrianBits();
       Matrix& konovalcevRightTrian();
       Matrix& konovalcevLeftTrianBits();
       Matrix& konovalcevRightTrianBits();
-      // проверка на невырожденность
+      // РїСЂРѕРІРµСЂРєР° РЅР° РЅРµРІС‹СЂРѕР¶РґРµРЅРЅРѕСЃС‚СЊ
       bool nonsignMatrix();
-      // приведение к диагональному виду
+      // РїСЂРёРІРµРґРµРЅРёРµ Рє РґРёР°РіРѕРЅР°Р»СЊРЅРѕРјСѓ РІРёРґСѓ
       Matrix& gausRightDiag();
       Matrix& gausLeftDiagBits();
       Matrix& gausRightDiagBits();
       Matrix& diagWithoutNonsign();
-      // обращение матрицы
+      // РѕР±СЂР°С‰РµРЅРёРµ РјР°С‚СЂРёС†С‹
       Matrix& reverseLeftBits();
       Matrix& reverseRight();
 
-    // решение СЛАУ
+    // СЂРµС€РµРЅРёРµ РЎР›РђРЈ
     public:
       Matrix & Transpose();
       Polynom SolveLinearEquationSystem(const Matrix & A, const Polynom & right);
       Matrix& gausRightTrianForEquation(Polynom & right);
       Matrix& gausRightDiagForEquation(Polynom & right);
     public:
-      std::string ToString() const;// TODO: реализовать
+      std::string ToString() const;// TODO: СЂРµР°Р»РёР·РѕРІР°С‚СЊ
 
-      // операции с матрицами и векторами
+      // РѕРїРµСЂР°С†РёРё СЃ РјР°С‚СЂРёС†Р°РјРё Рё РІРµРєС‚РѕСЂР°РјРё
       friend Polynom mulVecToMatrix(const Polynom& plA, const Matrix& mtB);
       friend Polynom mulMatrixToVec(const Polynom& plA, const Matrix& mtB);
       Matrix& mul(const Matrix& mtA, const Matrix& mtB);

@@ -46,11 +46,11 @@ TEST(IntegerBinomEllipticCurve,InGroup)
 {
         IntegerBinomModulePolynom modPol(AAL::Integer("1"),AAL::Integer("0"),AAL::Integer("11"));
         IntegerBinom zero(AAL::Integer("0"), AAL::Integer("0"), modPol);
-        //IntegerBinom a(AAL::Integer("-3"), AAL::Integer("0"), modPol); // -3 не подходит так как не принадлежит GF(p)
+        //IntegerBinom a(AAL::Integer("-3"), AAL::Integer("0"), modPol); // -3 РЅРµ РїРѕРґС…РѕРґРёС‚ С‚Р°Рє РєР°Рє РЅРµ РїСЂРёРЅР°РґР»РµР¶РёС‚ GF(p)
         IntegerBinom a(AAL::Integer("8"), AAL::Integer("0"), modPol);
         IntegerBinom b(AAL::Integer("0"), AAL::Integer("0"), modPol);
 
-        // Y^2 = X^3 - 3X или Y^2 = X^3 + 8X
+        // Y^2 = X^3 - 3X РёР»Рё Y^2 = X^3 + 8X
         IntegerBinomEllipticCurve curve(a, b);
 
         CHECK(curve.inGroup(zero, zero));

@@ -12,8 +12,8 @@
 #include <algorithm>
 namespace AAL
 {
-//****************************  Класс Эллиптических кривых над GF(p^2)   ************************
-//*********************************      Конструкторы       *************************************
+//****************************  РљР»Р°СЃСЃ Р­Р»Р»РёРїС‚РёС‡РµСЃРєРёС… РєСЂРёРІС‹С… РЅР°Рґ GF(p^2)   ************************
+//*********************************      РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹       *************************************
         IntegerBinomEllipticCurve::IntegerBinomEllipticCurve()
         {
                 _a = new IntegerBinom();
@@ -22,7 +22,7 @@ namespace AAL
         IntegerBinomEllipticCurve::IntegerBinomEllipticCurve(const IntegerBinom & a, const IntegerBinom & b)
         {
                 if(a.getModulePolynom() != b.getModulePolynom())
-                        throw new Exception("Коэффициенты кривой должны принадлежать одному полю");
+                        throw new Exception("РљРѕСЌС„С„РёС†РёРµРЅС‚С‹ РєСЂРёРІРѕР№ РґРѕР»Р¶РЅС‹ РїСЂРёРЅР°РґР»РµР¶Р°С‚СЊ РѕРґРЅРѕРјСѓ РїРѕР»СЋ");
 
                 _a = new IntegerBinom(a);
                 _b = new IntegerBinom(b);
@@ -37,7 +37,7 @@ namespace AAL
                 delete _a, _b;
         }
 //***********************************************************************************************
-//*****************************        Методы акцепторы        **********************************
+//*****************************        РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹        **********************************
         const IntegerBinomModulePolynom& IntegerBinomEllipticCurve::getModulePolynom() const
         {
                 return _a->getModulePolynom();
@@ -63,7 +63,7 @@ namespace AAL
                 return *this;
         }
 //***********************************************************************************************
-//********************************      Операции сравнения      *********************************
+//********************************      РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ      *********************************
         bool operator==(const IntegerBinomEllipticCurve &eCurve1, const IntegerBinomEllipticCurve &eCurve2)
         {
                 return *eCurve1._a == *eCurve2._a && *eCurve1._b == *eCurve2._b;
@@ -73,7 +73,7 @@ namespace AAL
                 return !(eCurve1 == eCurve2);
         }
 //***********************************************************************************************
-//*************************        Принадлежность точки к кривой      ***************************
+//*************************        РџСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ С‚РѕС‡РєРё Рє РєСЂРёРІРѕР№      ***************************
         bool IntegerBinomEllipticCurve::inGroup(const IntegerBinom &x, const IntegerBinom &y) const
         {
                 if(getModulePolynom() != x.getModulePolynom() || getModulePolynom() != y.getModulePolynom())
@@ -101,7 +101,7 @@ namespace AAL
                 return result;
         }
 //***********************************************************************************************
-//*************************        Создание Групп                     ***************************
+//*************************        РЎРѕР·РґР°РЅРёРµ Р“СЂСѓРїРї                     ***************************
         uint IntegerBinomEllipticCurve::getMaxModuleForGroupCreation() const
         {
                 return 20;
@@ -112,11 +112,11 @@ namespace AAL
                         return false;
                 return true;
         }
-        // простой перебор всех возможных вариантов
+        // РїСЂРѕСЃС‚РѕР№ РїРµСЂРµР±РѕСЂ РІСЃРµС… РІРѕР·РјРѕР¶РЅС‹С… РІР°СЂРёР°РЅС‚РѕРІ
         std::vector<IntegerBinomEllipticPoint> IntegerBinomEllipticCurve::CreateGroup() const
         {
                 if(!isGroupSmallEnoughForGroupCreation())
-                        throw new Exception("Модуль должен быть меньше " +Integer(getMaxModuleForGroupCreation()).ToString());
+                        throw new Exception("РњРѕРґСѓР»СЊ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ " +Integer(getMaxModuleForGroupCreation()).ToString());
 
                 std::vector<IntegerBinomEllipticPoint> group;
 
@@ -151,12 +151,12 @@ namespace AAL
         std::vector<IntegerBinomEllipticPoint> IntegerBinomEllipticCurve::CreateSpinningGroup(const Integer &n) const
         {
                 if(n.isZero())
-                        throw new Exception("n не должно быть равно 0");
+                        throw new Exception("n РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ СЂР°РІРЅРѕ 0");
 
                 std::vector<IntegerBinomEllipticPoint> group(CreateGroup());
 
                 if((n >= group.size()) || (group.size() % n) != 0)
-                        throw new Exception("n должно делить порядок группы");
+                        throw new Exception("n РґРѕР»Р¶РЅРѕ РґРµР»РёС‚СЊ РїРѕСЂСЏРґРѕРє РіСЂСѓРїРїС‹");
 
                 return CreateSpinningGroup(n, group);
         }
@@ -210,12 +210,12 @@ namespace AAL
         std::vector<std::vector<IntegerBinomEllipticPoint> >  IntegerBinomEllipticCurve::CreateFactorGroup(const Integer &n) const
         {
                 if(n.isZero())
-                        throw new Exception("n не должно быть равно 0");
+                        throw new Exception("n РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ СЂР°РІРЅРѕ 0");
 
                 std::vector<IntegerBinomEllipticPoint> group(CreateGroup());
 
                 if((n >= group.size()) || (group.size() % n) != 0)
-                        throw new Exception("n должно делить порядок группы");
+                        throw new Exception("n РґРѕР»Р¶РЅРѕ РґРµР»РёС‚СЊ РїРѕСЂСЏРґРѕРє РіСЂСѓРїРїС‹");
 
                 return CreateFactorGroup(n, group);
         }
@@ -250,7 +250,7 @@ namespace AAL
         }
 
 //***********************************************************************************************
-//**************************    Операция работы со строками        ******************************
+//**************************    РћРїРµСЂР°С†РёСЏ СЂР°Р±РѕС‚С‹ СЃРѕ СЃС‚СЂРѕРєР°РјРё        ******************************
         std::string IntegerBinomEllipticCurve::FactorToTexString(std::vector<std::vector<IntegerBinomEllipticPoint> > & factor)
         {
                 return Converter::FactorToTexString(factor);
@@ -262,8 +262,8 @@ namespace AAL
 //***********************************************************************************************
 //***********************************************************************************************
 
-//**********************************  Класс точка эллиптичиской кривой  *************************
-//********************************      Конструкторы       **************************************
+//**********************************  РљР»Р°СЃСЃ С‚РѕС‡РєР° СЌР»Р»РёРїС‚РёС‡РёСЃРєРѕР№ РєСЂРёРІРѕР№  *************************
+//********************************      РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹       **************************************
     IntegerBinomEllipticPoint::IntegerBinomEllipticPoint()
     {
         _curve = new IntegerBinomEllipticCurve();
@@ -294,7 +294,7 @@ namespace AAL
     }
 
 //***********************************************************************************************
-//****************************       Методы акцепторы        ************************************
+//****************************       РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹        ************************************
         const IntegerBinomEllipticCurve& IntegerBinomEllipticPoint::getCurve()
         {
                 return *_curve;
@@ -302,12 +302,12 @@ namespace AAL
         const IntegerBinom& IntegerBinomEllipticPoint::getX()
         {
                 if(!isInfinite())return *_x;
-                throw new Exception("Точка на бесконечности");
+                throw new Exception("РўРѕС‡РєР° РЅР° Р±РµСЃРєРѕРЅРµС‡РЅРѕСЃС‚Рё");
         }
         const IntegerBinom& IntegerBinomEllipticPoint::getY()
         {
                 if(!isInfinite())return *_y;
-                throw new Exception("Точка на бесконечности");
+                throw new Exception("РўРѕС‡РєР° РЅР° Р±РµСЃРєРѕРЅРµС‡РЅРѕСЃС‚Рё");
         }
         IntegerBinomEllipticCurve& IntegerBinomEllipticPoint::setCurve(IntegerBinomEllipticCurve &eCurve)
         {
@@ -332,7 +332,7 @@ namespace AAL
                 if(!_curve->inGroup(*_x, *_y))
                 {
                     _infinite = infinite;
-                    throw new Exception("Точка не лежит на кривой");
+                    throw new Exception("РўРѕС‡РєР° РЅРµ Р»РµР¶РёС‚ РЅР° РєСЂРёРІРѕР№");
                 }
                 return *this;
         }
@@ -352,7 +352,7 @@ namespace AAL
                 return negateEPoint == *this;
         }
 //***********************************************************************************************
-//****************************         Унарные операции          ********************************
+//****************************         РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё          ********************************
         IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::operator=(const IntegerBinomEllipticPoint &ePoint)
         {
                 *_curve = *ePoint._curve;
@@ -362,7 +362,7 @@ namespace AAL
                 return *this;
         }
 //***********************************************************************************************
-//*********************************       Операции сравнения        *****************************
+//*********************************       РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ        *****************************
         bool operator==(const IntegerBinomEllipticPoint &ePoint1, const IntegerBinomEllipticPoint &ePoint2)
         {
                 if(ePoint1.isInfinite() && ePoint2.isInfinite())
@@ -379,7 +379,7 @@ namespace AAL
                 return !(ePoint1 == ePoint2);
         }
 //***********************************************************************************************
-//**************************   Операция взятия противоположной точки   **************************
+//**************************   РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕР№ С‚РѕС‡РєРё   **************************
         IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::Negate()
         {
                 return Negate(*this);
@@ -396,7 +396,7 @@ namespace AAL
                 return *this;
         }
 //***********************************************************************************************
-//*****************************        Операция сложение        *********************************
+//*****************************        РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёРµ        *********************************
         IntegerBinomEllipticPoint operator+(IntegerBinomEllipticPoint &ePoint1, IntegerBinomEllipticPoint &ePoint2)
         {
                 IntegerBinomEllipticPoint res;
@@ -409,7 +409,7 @@ namespace AAL
     IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::Add(IntegerBinomEllipticPoint &ePoint1, IntegerBinomEllipticPoint &ePoint2)
         {
                 if(*ePoint1._curve != *ePoint2._curve)
-            throw new Exception("Точки лежат на разных кривых");
+            throw new Exception("РўРѕС‡РєРё Р»РµР¶Р°С‚ РЅР° СЂР°Р·РЅС‹С… РєСЂРёРІС‹С…");
 
         *_curve = *ePoint1._curve;
 
@@ -468,7 +468,7 @@ namespace AAL
         return *this;
         }
 //***********************************************************************************************
-//******************************      Операция удвоения       ***********************************
+//******************************      РћРїРµСЂР°С†РёСЏ СѓРґРІРѕРµРЅРёСЏ       ***********************************
         IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::Double()
         {
                 return Double(*this);
@@ -480,7 +480,7 @@ namespace AAL
 
 
 //***********************************************************************************************
-//**************************    Операция умножения на константу    ******************************
+//**************************    РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РЅР° РєРѕРЅСЃС‚Р°РЅС‚Сѓ    ******************************
     IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::Mul(IntegerBinomEllipticPoint &ePoint, Integer &integer)
     {
         if(ePoint.isInfinite() || integer.isZero())
@@ -507,8 +507,8 @@ namespace AAL
         return *this;
     }
 //***********************************************************************************************
-//**************************    Операция нахождения порядка точки  ******************************
-        // простой алгоритм, последовательное сложение
+//**************************    РћРїРµСЂР°С†РёСЏ РЅР°С…РѕР¶РґРµРЅРёСЏ РїРѕСЂСЏРґРєР° С‚РѕС‡РєРё  ******************************
+        // РїСЂРѕСЃС‚РѕР№ Р°Р»РіРѕСЂРёС‚Рј, РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕРµ СЃР»РѕР¶РµРЅРёРµ
         Integer IntegerBinomEllipticPoint::Order()
         {
                 if(isInfinite())
@@ -530,13 +530,13 @@ namespace AAL
         }
 
 //***********************************************************************************************
-//*******    Операция функции искажающего отображения ((x,0),(y,0)) => ((-x,0),(0,y))     *******
+//*******    РћРїРµСЂР°С†РёСЏ С„СѓРЅРєС†РёРё РёСЃРєР°Р¶Р°СЋС‰РµРіРѕ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ ((x,0),(y,0)) => ((-x,0),(0,y))     *******
         IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::Distortion(IntegerBinomEllipticPoint& point)
         {
                 if(point.isInfinite())
-                        throw new Exception("Точка должна быть конечной");
+                        throw new Exception("РўРѕС‡РєР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РєРѕРЅРµС‡РЅРѕР№");
                 if(!point.getX().getB().isZero() || !point.getY().getB().isZero())
-                        throw new Exception("Точка должна быть представлена в виде:((x,0),(y,0))");
+                        throw new Exception("РўРѕС‡РєР° РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅР° РІ РІРёРґРµ:((x,0),(y,0))");
 
                 setCurve(const_cast<IntegerBinomEllipticCurve &>(point.getCurve()));
                 setXY(point.getX(), point.getY());
@@ -551,12 +551,12 @@ namespace AAL
         }
 
 //***********************************************************************************************
-//*****************************       Генерация точки         ***********************************
-        // реализован случай для кривой с коэф-ми a=(a1,0), b=(b1,0)
+//*****************************       Р“РµРЅРµСЂР°С†РёСЏ С‚РѕС‡РєРё         ***********************************
+        // СЂРµР°Р»РёР·РѕРІР°РЅ СЃР»СѓС‡Р°Р№ РґР»СЏ РєСЂРёРІРѕР№ СЃ РєРѕСЌС„-РјРё a=(a1,0), b=(b1,0)
         IntegerBinomEllipticPoint& IntegerBinomEllipticPoint::Generate()
         {
                 if(!getCurve().getA().getB().isZero() || !getCurve().getB().getB().isZero())
-                        throw new Exception("Коффициенты кривой должны быть представлены в виде: a=(a1,0), b=(b1,0)");
+                        throw new Exception("РљРѕС„С„РёС†РёРµРЅС‚С‹ РєСЂРёРІРѕР№ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РїСЂРµРґСЃС‚Р°РІР»РµРЅС‹ РІ РІРёРґРµ: a=(a1,0), b=(b1,0)");
 
                 setInfinite(false);
                 EllipticCurve curve(const_cast<Integer &>(getCurve().getModule()),
@@ -573,7 +573,7 @@ namespace AAL
                 return *this;
         }
 //***********************************************************************************************
-//**************************    Операция работы со строками        ******************************
+//**************************    РћРїРµСЂР°С†РёСЏ СЂР°Р±РѕС‚С‹ СЃРѕ СЃС‚СЂРѕРєР°РјРё        ******************************
         std::string IntegerBinomEllipticPoint::ToString()
         {
                 if(isInfinite())

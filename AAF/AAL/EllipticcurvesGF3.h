@@ -15,8 +15,8 @@
 
 
 namespace AAL
-{       // класс эллиптических кривых над полем GF(3^n)
-        // вид: Y^2 = X^3 + a2*X^2 +a4*X + a6
+{       // РєР»Р°СЃСЃ СЌР»Р»РёРїС‚РёС‡РµСЃРєРёС… РєСЂРёРІС‹С… РЅР°Рґ РїРѕР»РµРј GF(3^n)
+        // РІРёРґ: Y^2 = X^3 + a2*X^2 +a4*X + a6
         class EllipticCurveGF3
 	{
         private:
@@ -24,14 +24,14 @@ namespace AAL
                 PolynomGF3 *_a4;
                 PolynomGF3 *_a6;
                 PolynomGF3 *_module;
-	//Конструкторы
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	public:
 		//default: Y^2 = X^3 + X^2 +X + 1 (mod m(x) = 1+x+x^3)
 		EllipticCurveGF3();
 		EllipticCurveGF3(PolynomGF3 &module, PolynomGF3 &a2, PolynomGF3 &a4, PolynomGF3 &a6);
 		EllipticCurveGF3(const EllipticCurveGF3 &eCurve);
 		~EllipticCurveGF3();
-	//Методы акцепторы
+	//РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 	public:
     PolynomGF3& setModule(PolynomGF3 &module);
     PolynomGF3& getModule() const;
@@ -42,20 +42,20 @@ namespace AAL
 		PolynomGF3& setA4(PolynomGF3 &a4);
 		PolynomGF3& setA6(PolynomGF3 &a6);
 
-	//Унарные операции
+	//РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		EllipticCurveGF3& operator=(const EllipticCurveGF3 &eCurve);
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
     bool equals(const EllipticCurveGF3 &eCurve) const;
     friend bool operator==(const EllipticCurveGF3 &eCurve1, const EllipticCurveGF3 &eCurve2);
 		friend bool operator!=(const EllipticCurveGF3 &eCurve1, const EllipticCurveGF3 &eCurve2);
-	//Принадлежность точки к кривой
+	//РџСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ С‚РѕС‡РєРё Рє РєСЂРёРІРѕР№
 	public:
 		bool inGroup(PolynomGF3 &x, PolynomGF3 &y) const;
         };
  //*****************************************************************************
- // класс точки эллиптических кривых над полем GF(3^n)
+ // РєР»Р°СЃСЃ С‚РѕС‡РєРё СЌР»Р»РёРїС‚РёС‡РµСЃРєРёС… РєСЂРёРІС‹С… РЅР°Рґ РїРѕР»РµРј GF(3^n)
  class EllipticPointGF3
  {
   protected:
@@ -69,7 +69,7 @@ namespace AAL
     EllipticPointGF3(const EllipticCurveGF3 &eCurve);
     EllipticPointGF3(const EllipticPointGF3 &ePoint);
     ~EllipticPointGF3();
-  //Методы акцепторы
+  //РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
   public:
     EllipticCurveGF3& getCurve();
     EllipticCurveGF3& setCurve(EllipticCurveGF3& curve);
@@ -83,38 +83,38 @@ namespace AAL
     friend bool operator==(const EllipticPointGF3 &ePoint1, const EllipticPointGF3 &ePoint2);
     friend bool operator!=(const EllipticPointGF3 &ePoint1, const EllipticPointGF3 &ePoint2);
 
-  //Операция взятия противоположной точки (-P)
+  //РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕР№ С‚РѕС‡РєРё (-P)
   public:
     EllipticPointGF3& Negate();
     EllipticPointGF3& Negate(EllipticPointGF3 &ePoint);
-  //Операция сложение
+  //РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёРµ
   public:
     EllipticPointGF3& operator+=(EllipticPointGF3 &ePoint);
     EllipticPointGF3& Add(EllipticPointGF3 &ePoint1, EllipticPointGF3 &ePoint2);
 
-  //Операция удвоения
+  //РћРїРµСЂР°С†РёСЏ СѓРґРІРѕРµРЅРёСЏ
 	public:
 		EllipticPointGF3& Double();
 		EllipticPointGF3& Double(EllipticPointGF3 &ePoint);
 
-	//Операция умножения на константу
+	//РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РЅР° РєРѕРЅСЃС‚Р°РЅС‚Сѓ
 	public:
     EllipticPointGF3& operator*=(Integer &i);
     EllipticPointGF3& Mul(EllipticPointGF3 &ePoint,Integer &integer);
 
-  // Генерация точки
+  // Р“РµРЅРµСЂР°С†РёСЏ С‚РѕС‡РєРё
   public:
     EllipticPointGF3& Generate();
     EllipticPointGF3& Generate(const PolynomGF3 &mes);
 
-  //Унарные операции
+  //РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
   private:
-    EllipticPointGF3& operator=(const EllipticPointGF3 &ePoint);// запертил автогенерацию
+    EllipticPointGF3& operator=(const EllipticPointGF3 &ePoint);// Р·Р°РїРµСЂС‚РёР» Р°РІС‚РѕРіРµРЅРµСЂР°С†РёСЋ
   public:
   AAL::PolynomGF3_m_6& DLK(EllipticPointGF3 &ePoint1,EllipticPointGF3 &ePoint2,AAL::PolynomGF3_m_6 &ro,AAL::PolynomGF3_m_6 &si,int n,AAL::PolynomGF3_m_6 &b,PolynomGF3 &mod);
   public:
   PolynomGF3_m_6& findRo(PolynomGF3 &module, PolynomGF3_m_6 &b );
-  //Извлечение корня
+  //РР·РІР»РµС‡РµРЅРёРµ РєРѕСЂРЅСЏ
 //public:
   // EllipticPointGF3& Square1()
   };

@@ -28,18 +28,18 @@ namespace AAL
 		friend class Polynom;
     friend class PolinomGF3;
 	public:
-		//Преобразования в класс Integer
+		//РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РІ РєР»Р°СЃСЃ Integer
 		static Integer ToInteger(const std::string &dataString, NumericSystem system=Dec);
 		static Integer ToInteger(const Polynom &polynom);
 		static Integer ToInteger(const PolynomGF3 &polynom);
 		static Integer ToInteger(std::string &polynom);
 
-		//Преобразования в класс Polynom
+		//РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РІ РєР»Р°СЃСЃ Polynom
 		static Polynom ToPolynom(const std::string &dataString, PolynomSystem system=BackBin);
 		static Polynom ToPolynom(const Integer &integer);
-    //Преобразование в класс PolynomGF3
+    //РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РІ РєР»Р°СЃСЃ PolynomGF3
     static PolynomGF3 ToPolynomGF3(const Integer &integer);
-		//Преобразование в строку
+		//РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РІ СЃС‚СЂРѕРєСѓ
 		static std::string ToString(const Integer &integer, NumericSystem system=Dec);
 		static std::string ToString(const Polynom &polynom, PolynomSystem system=BackBin);
 

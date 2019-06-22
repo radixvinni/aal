@@ -26,14 +26,14 @@ namespace AAL
                 Polynom A1;
                 Polynom A2;
 
-	//Êîíñòðóêòîðû
+	//Конструкторы
 	public:
 		PolynomGF7();
     PolynomGF7(const PolynomGF7 &polynom);
 		PolynomGF7(const std::string dataString);
     ~PolynomGF7();
 
-	//Ïðåîáðàçîâàíèå è ñ÷èòûâàíèå èç ñòîðê
+	//Преобразование и считывание из сторк
 	public:
        		PolynomGF7& Parse(const std::string dataString);
 		std::string ToString() const;
@@ -42,13 +42,13 @@ namespace AAL
                 bool isZero() const;
                 bool isOne() const;
 
-  //Óíàðíûå îïåðàöèè
+  //Унарные операции
 	public:
 		//Polynom operator~() const;
 		//Polynom& OnesComplement();
 		PolynomGF7& operator= (const PolynomGF7& polynom);
 
-        //Ìåòîäû àêöåïòîðû
+        //Методы акцепторы
 	public:
 //    bool isIrreducible() const;
 //    bool isPrimitivity() const;
@@ -59,7 +59,7 @@ namespace AAL
 
     uint getBit(uint index) const;
     void setBit(uint index, uint bit);
-        //Îïåðàöèè ñðàâíåíèÿ
+        //Операции сравнения
 	public:
     friend bool operator==(const PolynomGF7& a, const PolynomGF7& b);
 		friend bool operator!=(const PolynomGF7& a, const PolynomGF7& b);
@@ -68,7 +68,7 @@ namespace AAL
 		friend bool operator>(const PolynomGF3& a, const PolynomGF3& b);
 		friend bool operator>=(const PolynomGF3& a, const PolynomGF3& b);
 */
-       //Îïåðàöèè ïîáèòîâîãî ñäâèãà
+       //Операции побитового сдвига
 	public:
 		PolynomGF7 operator<<(int numberBits) const;
 		PolynomGF7& operator<<=(int numberBits);
@@ -76,7 +76,7 @@ namespace AAL
 		PolynomGF7& operator>>=(int numberBits);
 
 
-       //Îïåðàöèÿ ñëîæåíèÿ
+       //Операция сложения
 	public:
 		PolynomGF7 operator-(const PolynomGF7 &b) const;
 		PolynomGF7& operator-=(const PolynomGF7 &polynom);
@@ -87,13 +87,13 @@ namespace AAL
 		PolynomGF7& Add(PolynomGF7 &a, PolynomGF7 &b);
     PolynomGF7& ModAdd(PolynomGF7 &a, PolynomGF7 &b, PolynomGF7 &module);
 /*    PolynomGF3& AddInGF3_n(PolynomGF3 &a, PolynomGF3 &b, PolynomGF3 &module);
-       //Îïåðàöèÿ âû÷èòàíèÿ
+       //Операция вычитания
 	public:
 		friend PolynomGF3 operator-(const PolynomGF3 &a, const PolynomGF3 &b);
 		PolynomGF3& operator-=(PolynomGF3 &polynom);
 		PolynomGF3& Sub(PolynomGF3 &a, PolynomGF3 &b);
 */
-        //Îïåðàöèÿ óìíîæåíèÿ
+        //Операция умножения
 	public:
 		friend PolynomGF7 operator*(const PolynomGF7 &a, const PolynomGF7 &b);
 		PolynomGF7& operator*=(PolynomGF7 &polynom);
@@ -105,13 +105,13 @@ namespace AAL
                 PolynomGF7& MulGF7_2n(PolynomGF7 &a, PolynomGF7 &b,PolynomGF7 &c, PolynomGF7 &d, PolynomGF7 &module,PolynomGF7 *g = NULL);
                 PolynomGF7& MulGF7_14n(PolynomGF7 &a, PolynomGF7 &b,PolynomGF7 &module);
 
-        //Îïåðàöèÿ äåëåíèå
+        //Операция деление
  	public:
 		PolynomGF7 operator/(const PolynomGF7 &b) const;
 		PolynomGF7& operator/=(const PolynomGF7 &polynom);
 		PolynomGF7& Div(const PolynomGF7 &a, const PolynomGF7 &b, PolynomGF7 *remainder = NULL);
 
-        //Îïåðàöèÿ ïðèâåäåíèÿ ïî ìîäóëþ
+        //Операция приведения по модулю
 	public:
 		friend PolynomGF7 operator%(const PolynomGF7 &a, const PolynomGF7 &b);
 		PolynomGF7& operator%=(PolynomGF7 &polynom);
@@ -153,17 +153,17 @@ namespace AAL
      std::string ToStringByPowers() const;
 
 
-	  // Òåñòû ïîëÿ íà îáðàçîâàíèå ÎÍÁ è ÃÍÁ
-      // ÎÍÁ 1
+	  // Тесты поля на образование ОНБ и ГНБ
+      // ОНБ 1
       bool ONB1Test(const uint n) const;
-      // ÎÍÁ 2
+      // ОНБ 2
       bool ONB2Test(const uint n) const;
-      // ÎÍÁ 3
+      // ОНБ 3
       bool ONB3Test(const uint n) const;
-      // ÃÍÁ
+      // ГНБ
       bool GNBTest(const uint n, const int type) const;
 
-     //òåñò îáðàçóþùåãî ýëåìåíòà è îïðåäåëåíèå ïîðÿäêà ýëåìåíòà â ãðóïïå
+     //тест образующего элемента и определение порядка элемента в группе
      Integer& elementOrder(PolynomGF3 &groupModule, PolynomGF3 &polynom,std::vector<DecompositionMember> vector, Integer &ord );
      bool isGenerator(PolynomGF3 &groupModule, PolynomGF3 &polynom,std::vector<DecompositionMember> vector, Integer &ord);
    */

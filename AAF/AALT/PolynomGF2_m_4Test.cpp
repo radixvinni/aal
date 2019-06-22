@@ -18,7 +18,7 @@
 using namespace AAL;
 
 /*
-	Конструкторы класса PolynomGF2_m_4
+	РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ РєР»Р°СЃСЃР° PolynomGF2_m_4
 */
 
 TEST(PolynomGF2_m_4, EmptyConstructor)

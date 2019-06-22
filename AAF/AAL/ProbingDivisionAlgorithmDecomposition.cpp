@@ -44,7 +44,7 @@ void  ProbingDivisionAlgorithmDecomposition::ExecProcess(char *Proc,DWORD Flags)
     {
         //return ;
     }
-  // Ждём, пока процесс не выполнится:
+  // Р–РґС‘Рј, РїРѕРєР° РїСЂРѕС†РµСЃСЃ РЅРµ РІС‹РїРѕР»РЅРёС‚СЃСЏ:
   WaitForSingleObject(PrInfo.hProcess,INFINITE);
 }
 

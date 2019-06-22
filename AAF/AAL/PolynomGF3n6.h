@@ -29,19 +29,19 @@ namespace AAL
                 PolynomGF3 _a6;
                 PolynomGF3 _module;
                 PolynomGF3 _modulePolynom;
-        //Конструкторы
+        //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
         public:
-                // (0,0) по модулю 1 + X^2, p = 7
+                // (0,0) РїРѕ РјРѕРґСѓР»СЋ 1 + X^2, p = 7
                 PolynomN6();
                 PolynomN6(const PolynomN6 & polynom);
                 PolynomN6(const PolynomGF3& a1, const PolynomGF3& a2, const PolynomGF3& a3, const PolynomGF3& a4,const PolynomGF3& a5,const PolynomGF3& a6,const PolynomGF3& mpolynom ,const PolynomGF3& modulePolynom);
                 PolynomN6(const std::string dataString,const PolynomGF3& mpolynom ,const PolynomGF3& modulePolynom);
                 ~PolynomN6();
-        //Преобразование и считывание из строк
+        //РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Рё СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· СЃС‚СЂРѕРє
 	public:
 		std::string ToString() const;
                 void FromString(std::string s);
-        //Методы акцепторы
+        //РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
         public:
                 bool isZero() const;
                 bool isOne() const;
@@ -66,40 +66,40 @@ namespace AAL
                 void setModule(const PolynomGF3& modulePolynom);
                 Integer getMulGroupOrder() const;
                 bool isPrimitivity() const;
-        //Унарные операции
+        //РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё
 	public:
 		PolynomN6& operator= (const PolynomN6& polynom);
-	//Операции сравнения
+	//РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ
 	public:
                 friend bool operator==(const PolynomN6& a, const PolynomN6& b);
 		friend bool operator!=(const PolynomN6& a, const PolynomN6& b);
-        //Операция сложения
+        //РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
 	public:
 		friend PolynomN6 operator+(const PolynomN6 &a, const PolynomN6 &b);
 		PolynomN6& operator+=(PolynomN6 & polynom);
 		PolynomN6& Add(PolynomN6 &a, PolynomN6 &b);
-        //Операция вычитания
+        //РћРїРµСЂР°С†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ
 	public:
 		friend PolynomN6 operator-(const PolynomN6 &a, const PolynomN6 &b);
 		PolynomN6& operator-=(PolynomN6 & polynom);
 		PolynomN6& Sub(PolynomN6 &a, PolynomN6 &b);
-        //Операция взятия противоположного элемента
+        //РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 	public:
 		PolynomN6& Negate();
 		PolynomN6& Negate(PolynomN6 &polynom);
-        //Операция умножения
+        //РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ
 	public:
 		friend PolynomN6 operator*(const PolynomN6 &a, const PolynomN6 &b);
 		PolynomN6& operator*=(PolynomN6 & polynom);
 		PolynomN6& Mul(PolynomN6 &a, PolynomN6 &b);
-        //Операция возведения в степень
+        //РћРїРµСЂР°С†РёСЏ РІРѕР·РІРµРґРµРЅРёСЏ РІ СЃС‚РµРїРµРЅСЊ
 	public:
 		PolynomN6& Pow(PolynomN6 &a, Integer &n);
-        //Операция взятия обратного элемента
+        //РћРїРµСЂР°С†РёСЏ РІР·СЏС‚РёСЏ РѕР±СЂР°С‚РЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 	public:
                 PolynomN6& Inverse();
 		PolynomN6& Inverse(PolynomN6 &a);
-        // Операции генерации
+        // РћРїРµСЂР°С†РёРё РіРµРЅРµСЂР°С†РёРё
         public:
 		PolynomN6& Generate();
             PolynomN6& Square(PolynomN6 &a);

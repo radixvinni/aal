@@ -1,5 +1,5 @@
-#define USE_MIRACL
-#define USE_MSIEVE
+/* #undef USE_MIRACL */
+/* #undef USE_MSIEVE */
 
 #ifdef USE_MIRACL
 
@@ -22,7 +22,14 @@ int modpol_main(int argc,char **argv);
 #endif
 
 //другие способы: http://www.rsdn.ru/article/qna/baseserv/fileexist.xml
+#ifdef __MINGW32__
+#include <io.h>
+bool inline FileExists(const char *fname){
+  return access(fname, 0) != -1;
+}
+#else
 #define FileExists(fname) (std::ifstream(fname) != NULL)
+#endif
 
 #ifdef USE_MSIEVE
 //msieve library

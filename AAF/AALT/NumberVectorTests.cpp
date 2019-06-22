@@ -12,7 +12,7 @@
 using namespace AAL;
 
 /*
-	Конструкторы класса Integer
+	РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ РєР»Р°СЃСЃР° Integer
 */
 TEST(NumberVector, EmptyConstructor)
 {
@@ -37,7 +37,7 @@ TEST(NumberVector, StringConstructor)
 }
 
 /*
-	Методы акцепторы
+	РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹
 */
 /*TEST(Integer, getNumberBits)
 {
@@ -68,7 +68,7 @@ TEST(Integer, setDigit)
 }*/
 
 /*
-	Унарные операторы
+	РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С‚РѕСЂС‹
 */
 /*TEST(Integer, operatorEqual)
 {
@@ -90,7 +90,7 @@ TEST(Integer, setDigit)
 }/*
 
 /*
-	Операция сложения
+	РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
 */
 /*TEST(Integer, Add)
 {
@@ -109,7 +109,7 @@ TEST(Integer, setDigit)
 }*/
 
 /*
-	Операция вычитания
+	РћРїРµСЂР°С†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ
 */
 /*TEST(Integer, Sub)
 {
@@ -132,7 +132,7 @@ TEST(Integer, setDigit)
 }*/
 
 /*
-	Тесты для парсинга и перевода в строку
+	РўРµСЃС‚С‹ РґР»СЏ РїР°СЂСЃРёРЅРіР° Рё РїРµСЂРµРІРѕРґР° РІ СЃС‚СЂРѕРєСѓ
 */
 /*TEST(Integer, SimpleParse)
 {

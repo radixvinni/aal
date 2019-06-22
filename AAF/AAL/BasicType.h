@@ -26,16 +26,16 @@
     add the suffix `LL' to the integer. To make an integer constant of type unsigned long long int,
     add the suffix `ULL' to the integer.
 
-    Мне нравится фраза "at least 64 bits wide", на linux x86_64 это будет работать или там будет long??
-    Я пробовал использовать int64_t, он гарантировано 64 бита, но он объявляется через typedef, поэтому если
-    "unsigned __int64" написано, то это не будет работать
+    РњРЅРµ РЅСЂР°РІРёС‚СЃСЏ С„СЂР°Р·Р° "at least 64 bits wide", РЅР° linux x86_64 СЌС‚Рѕ Р±СѓРґРµС‚ СЂР°Р±РѕС‚Р°С‚СЊ РёР»Рё С‚Р°Рј Р±СѓРґРµС‚ long??
+    РЇ РїСЂРѕР±РѕРІР°Р» РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ int64_t, РѕРЅ РіР°СЂР°РЅС‚РёСЂРѕРІР°РЅРѕ 64 Р±РёС‚Р°, РЅРѕ РѕРЅ РѕР±СЉСЏРІР»СЏРµС‚СЃСЏ С‡РµСЂРµР· typedef, РїРѕСЌС‚РѕРјСѓ РµСЃР»Рё
+    "unsigned __int64" РЅР°РїРёСЃР°РЅРѕ, С‚Рѕ СЌС‚Рѕ РЅРµ Р±СѓРґРµС‚ СЂР°Р±РѕС‚Р°С‚СЊ
 */
 #if defined(__GNUC__) || defined (__APPLE_CC__)
 #define __int64 long long
 #endif
 
 /*
-		Это мой набросок класса исключений
+		Р­С‚Рѕ РјРѕР№ РЅР°Р±СЂРѕСЃРѕРє РєР»Р°СЃСЃР° РёСЃРєР»СЋС‡РµРЅРёР№
 */
 namespace AAL
 {
@@ -45,32 +45,6 @@ namespace AAL
 		Exception(std::string str):error_message(str){}
 		virtual ~Exception()throw(){}
 		virtual const char* what() const throw(){return error_message.c_str();}
-		//из 866 в 1251
-		const char* cp866()const{ 
-			char* msg=new char[256];
-			strcpy(msg,error_message.c_str());
-			for( char *c=msg; *c!=0; ++c ) {
-				if( *c>='А' && *c<='п' )
-					*c -= 64;
-				else if( *c>='р' && *c<='я' )
-					*c -= 16;
-			}
-			return msg;
-		}
-		//из 1251 в utf8
-		const char* cp1251()const{ 
-			unsigned char* msg=new unsigned char[512];
-			int i=0;
-			for( unsigned char *c=(unsigned char *)error_message.c_str(); *c!=0; ++c ) {
-				if( *c>=192 && *c<=239 )
-					{ msg[i++]=208; msg[i++] = *c -48; }
-				else if( *c>=240 && *c<=255 )
-					{ msg[i++]=209; msg[i++] = *c -112; }
-					else msg[i++] = *c; 
-			}
-			msg[i]=0;
-			return (const char*) msg;
-		}
 	private:
 		std::string error_message;
 	};
@@ -85,29 +59,29 @@ namespace AAL
 	enum CompareIndicator { Smaller=-1, Equal=0, Bigger=1 };
 
 	/*
-		Данный класс может использоваться с размером 1<=sizof(Type)<=4
-		это связанно с реализацией битовых сдвигов
+		Р”Р°РЅРЅС‹Р№ РєР»Р°СЃСЃ РјРѕР¶РµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ СЃ СЂР°Р·РјРµСЂРѕРј 1<=sizof(Type)<=4
+		СЌС‚Рѕ СЃРІСЏР·Р°РЅРЅРѕ СЃ СЂРµР°Р»РёР·Р°С†РёРµР№ Р±РёС‚РѕРІС‹С… СЃРґРІРёРіРѕРІ
 
-		В силу ограничений Visual C++ и C++ Builder, реализация должна
-		находиться в классе, что является весьма не понятным явлением.
+		Р’ СЃРёР»Сѓ РѕРіСЂР°РЅРёС‡РµРЅРёР№ Visual C++ Рё C++ Builder, СЂРµР°Р»РёР·Р°С†РёСЏ РґРѕР»Р¶РЅР°
+		РЅР°С…РѕРґРёС‚СЊСЃСЏ РІ РєР»Р°СЃСЃРµ, С‡С‚Рѕ СЏРІР»СЏРµС‚СЃСЏ РІРµСЃСЊРјР° РЅРµ РїРѕРЅСЏС‚РЅС‹Рј СЏРІР»РµРЅРёРµРј.
 	*/
 
 	template <class Type>
 	class BasicType
     {
-	public://это очень плохо!!! это ужасно!!! но по другому никак.
+	public://СЌС‚Рѕ РѕС‡РµРЅСЊ РїР»РѕС…Рѕ!!! СЌС‚Рѕ СѓР¶Р°СЃРЅРѕ!!! РЅРѕ РїРѕ РґСЂСѓРіРѕРјСѓ РЅРёРєР°Рє.
 		uint  _numberDigits;
 		uint  _maximumDigits;
 		Type* _digits;
 
-	//***********************************  Конструкторы  *******************************************
+	//***********************************  РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹  *******************************************
 	protected:
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void SetData(uint numberDigits, uint maximumDigits, bool isSetDigits=false)
 		{
 			if(numberDigits > maximumDigits)
-				throw new Exception("Аргументы numberDigits и maximumDigits не входят в интервал допустимых значений: numberDigits > maximumDigits");
+				throw new Exception("РђСЂРіСѓРјРµРЅС‚С‹ numberDigits Рё maximumDigits РЅРµ РІС…РѕРґСЏС‚ РІ РёРЅС‚РµСЂРІР°Р» РґРѕРїСѓСЃС‚РёРјС‹С… Р·РЅР°С‡РµРЅРёР№: numberDigits > maximumDigits");
 
 			_numberDigits = numberDigits;
 			_maximumDigits = maximumDigits;
@@ -147,17 +121,17 @@ namespace AAL
 		}
 	//**********************************************************************************************
 
-	//********************************  Методы для работы с памятью  *******************************
+	//********************************  РњРµС‚РѕРґС‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РїР°РјСЏС‚СЊСЋ  *******************************
 	protected:
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void RemoveElderNulls()
 		{
 			while(_numberDigits && !_digits[_numberDigits-1])
 				_numberDigits--;
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void setNumberDigits(uint numberDigits)
 		{
 			_numberDigits = numberDigits;
@@ -170,7 +144,7 @@ namespace AAL
 			}
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void setNumberDigitsWithSetElderNulls(uint numberDigits)
 		{
 			if(numberDigits == _numberDigits)
@@ -198,7 +172,7 @@ namespace AAL
 			if(maximumDigits != _maximumDigits)
 			{
 				if(_numberDigits > maximumDigits)
-					throw new Exception("Аргумент maximumDigits не входит в интервал допустимых значений: _numberDigits > maximumDigits");
+					throw new Exception("РђСЂРіСѓРјРµРЅС‚ maximumDigits РЅРµ РІС…РѕРґРёС‚ РІ РёРЅС‚РµСЂРІР°Р» РґРѕРїСѓСЃС‚РёРјС‹С… Р·РЅР°С‡РµРЅРёР№: _numberDigits > maximumDigits");
 
 				_maximumDigits = maximumDigits;
 				Type* digits = NULL;
@@ -219,7 +193,7 @@ namespace AAL
 		}
 	//**********************************************************************************************
 
-	//***************************************  Методы акцепторы   **********************************
+	//***************************************  РњРµС‚РѕРґС‹ Р°РєС†РµРїС‚РѕСЂС‹   **********************************
 		int getDigitSizeInBytes() const
 		{
 			return sizeof(Type);
@@ -231,7 +205,7 @@ namespace AAL
 		}
 
 		protected:
-	  //protected метод
+	  //protected РјРµС‚РѕРґ
 		uint getElderBit() const
 		{
 			uint i = getDigitSizeInBits() - 1;
@@ -240,27 +214,27 @@ namespace AAL
 			return i+1;
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void setOne_Base()
 		{
 			setNumberDigits(1);
 			_digits[0] = 1;
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void setNumber_Base(Type number)
 		{
 			setNumberDigits(1);
 			_digits[0] = number;
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void setZero_Base()
 		{
 			_numberDigits = 0;
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		bool isNumber_Base(Type number) const
 		{
 			return _numberDigits == 1 && _digits[0] == number;
@@ -372,10 +346,10 @@ namespace AAL
 		}
 	//**********************************************************************************************
 
-	//************************************  Унарные операции   *************************************
+	//************************************  РЈРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С†РёРё   *************************************
 	protected:
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void OnesComplement_Base()
 		{
 			for(uint i=0; i<_numberDigits; i++)
@@ -383,7 +357,7 @@ namespace AAL
 			RemoveElderNulls();
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void Assign_Base(const BasicType& basicType)
 		{
 			if(this->CmpImpl(basicType) == Equal)
@@ -399,10 +373,10 @@ namespace AAL
 		}
 	//**********************************************************************************************
 
-	//*****************************    Операции сравнения    ***************************************
+	//*****************************    РћРїРµСЂР°С†РёРё СЃСЂР°РІРЅРµРЅРёСЏ    ***************************************
 	protected:
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		CompareIndicator CmpImpl(const BasicType& basicType) const
 		{
 			if(this == &basicType)
@@ -426,10 +400,10 @@ namespace AAL
 		}
 	//**********************************************************************************************
 
-	//********************************    Логические операции    ***********************************
+	//********************************    Р›РѕРіРёС‡РµСЃРєРёРµ РѕРїРµСЂР°С†РёРё    ***********************************
 	protected:
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		BasicType* Max(BasicType& a, BasicType& b, CompareIndicator ind)
 		{
 			BasicType* max = (ind == Bigger) ? &a : &b;
@@ -438,7 +412,7 @@ namespace AAL
 			return max;
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		BasicType* Min(BasicType& a, BasicType& b, CompareIndicator ind)
 		{
 			BasicType* min = (ind == Bigger) ? &b : &a;
@@ -447,14 +421,14 @@ namespace AAL
 			return min;
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void Disposal(BasicType& a, BasicType& b)
 		{
 			if(this != &a && this != &b)
 				delete this;
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void Xor_Base(BasicType& a, BasicType& b)
 		{
 			CompareIndicator compare = a.CmpImpl(b);
@@ -479,7 +453,7 @@ namespace AAL
 			min->Disposal(a, b);
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void Or_Base(BasicType& a, BasicType& b)
 		{
 			CompareIndicator compare = a.CmpImpl(b);
@@ -510,7 +484,7 @@ namespace AAL
 			min->Disposal(a, b);
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void And_Base(BasicType& a, BasicType& b)
 		{
 			if(a.isZero() || b.isZero())
@@ -537,7 +511,7 @@ namespace AAL
 			min->Disposal(a, b);
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void Not_Base(BasicType& basicType)
 		{
 			if(basicType.isOne())
@@ -565,40 +539,40 @@ namespace AAL
 		}
 	//**********************************************************************************************
 
-	//***************************    Операции побитового сдвига    *********************************
+	//***************************    РћРїРµСЂР°С†РёРё РїРѕР±РёС‚РѕРІРѕРіРѕ СЃРґРІРёРіР°    *********************************
 	protected:
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		Type ShiftedLeftWord_UpperByte(uint numberDigit, Type *digits, int countShift)
 		{
 			return (Type)(((((unsigned __int64)digits[numberDigit]<<getDigitSizeInBits())+digits[numberDigit-1])<<countShift)>>getDigitSizeInBits());
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		Type ShiftedRightWord_LowerByte(uint numberDigit, Type *digits, int countShift)
 		{
 			return (Type)((((unsigned __int64)digits[numberDigit]<<getDigitSizeInBits())+digits[numberDigit - 1])>>countShift);
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		Type ShiftedLeftByte_LowerByte(uint numberDigit, Type *digits, int countShift)
 		{
 			return (Type)(digits[numberDigit]<<countShift);
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		Type ShiftedRightByte_LowerByte(uint numberDigit, Type *digits, int countShift)
 		{
 			return (Type)(digits[numberDigit]>>countShift);
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		Type ShiftedLeftByte_UpperByte(uint numberDigit, Type *digits, int countShift)
 		{
 			return (Type)((((unsigned __int64)digits[numberDigit])<<countShift)>>getDigitSizeInBits());
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void LeftShift_Base(int numberBits)
 		{
 			if(isZero() || !numberBits)
@@ -633,7 +607,7 @@ namespace AAL
 			}
 		}
 
-		//protected метод
+		//protected РјРµС‚РѕРґ
 		void RightShift_Base(int numberBits)
 		{
 			if(isZero() || !numberBits)

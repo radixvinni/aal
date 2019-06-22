@@ -81,8 +81,8 @@ namespace AAL {
 		PolynomGF7N(int a_deg);
 		PolynomGF7N(const PolynomGF7N & a_pgf7);
 
-		/** параметр\ a_coeffs - массив коэффициентов полинома
-		 *  параметр\ a_size   - размер массива: степень полинома + 1*/
+		/** \param a_coeffs - массив коэффициентов полинома
+		 *  \param a_size   - размер массива: степень полинома + 1*/
 		PolynomGF7N(aal_uint16 * a_coeffs, int a_size);
 		PolynomGF7N(string & a_strgf7);
 		PolynomGF7N(char *a_str);
@@ -96,7 +96,7 @@ namespace AAL {
 		void SetDeg(int a_deg){ m_deg = a_deg; }  // Устанавливает степень полинома
 
 		/** Проверяется условие равенства '0' всех коэффициентов полинома
-		*  \return             - true - все кожффициенты = 0 */
+		*  \return             - true - все коэффициенты = 0 */
 		bool isNull();
 
 		// Возвращает указатель на массив коэффициентов полинома
@@ -180,12 +180,12 @@ namespace AAL {
 		*  \return произведение */
 		aal_uint16 gf7_add_coeffs(aal_uint16 & a_val1, aal_uint16 & a_val2);
 
+		static PolynomGF7N default_quot;
 		/** Деление полиномов с остатком с использованием побитовых операций
 		 *  \param  a_pol1      - 1-й делимое
 		 *  \param  a_pol2      - 2-й делитель
 		 *  \param  a_pol_quot - полином для хранения частного (необязательный параметр) 
 		 *  \return             - остаток от деления a_pol1 на a_pol2 */
-		static PolynomGF7N default_quot;
 		PolynomGF7N & Div(PolynomGF7N & a_pol1, PolynomGF7N & a_pol2, PolynomGF7N & a_pol_quot = default_quot);
 
 		/** Обращение полинома на основании алгоритма Евклида
@@ -306,7 +306,7 @@ namespace AAL {
 		*  \return            - степень полинома a_pol^a_deg */
 		PolynomGF7N & PowGF7_n_ONB(PolynomGF7N & a_pol, aal_uint32 a_deg, PolynomGF7N & a_pol_mod);
 
-		/* Тестирование неприводимости многочлена 
+		/** Тестирование неприводимости многочлена 
 		* \param a_pol - тестируемый полином */
 		bool isIrreducible();
 

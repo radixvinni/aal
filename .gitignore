@@ -16,3 +16,5 @@ AAL.py
 
 *.cxx
 .vscode
+html
+.DS_Store

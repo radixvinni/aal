@@ -121,11 +121,7 @@ TEST(PolynomGF7N, MUL_GNB) {
 			prod.RedundantToReduced(prod, i);
 			prod.ReducedToPolynomial(prod, i);
 
-			if (prod == xbetalon) {
-				continue;
-			} else {
-				CHECK(false);
-			}
+			CHECK (prod == xbetalon);
 		}
 	}
 }

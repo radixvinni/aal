@@ -2022,8 +2022,8 @@ namespace AAL {
 		// Количество 7-ок в результирующем полиноме
 		int seven_groups_count = ((prod_deg + 1) % 7 == 0) ? (prod_deg + 1) / 7 : ((prod_deg + 1) / 7) + 1;
 		int len = seven_groups_count * 7;
-		aal_uint16* y = new aal_uint16[len]{};
-		aal_uint16* v = new aal_uint16[len]{};
+		aal_uint16* y = new aal_uint16[len]{{}};
+		aal_uint16* v = new aal_uint16[len]{{}};
 
 		PolynomGF7N tmpPol(len - 1);
 		aal_uint16* pol = tmpPol.GetCoeffsPtr();
@@ -2210,8 +2210,8 @@ namespace AAL {
 		// Количество 7-ок в результирующем полиноме
 		int seven_groups_count = ((prod_deg + 1) % 7 == 0) ? (prod_deg + 1) / 7 : ((prod_deg + 1) / 7) + 1;
 		int len = seven_groups_count * 7;
-		aal_uint16* y = new aal_uint16[len]{};
-		aal_uint16* v = new aal_uint16[len]{};
+		aal_uint16* y = new aal_uint16[len]{{}};
+		aal_uint16* v = new aal_uint16[len]{{}};
 
 		PolynomGF7N tmpPol(len - 1);
 		aal_uint16* pol = tmpPol.GetCoeffsPtr();
@@ -2421,8 +2421,8 @@ namespace AAL {
 
 	PolynomGF7N & PolynomGF7N::PToR_TEST_OLD(PolynomGF7N & a_pol, int a_n, int& add_f0, int& add_fk, int& mul_f0, int& mul_fk, int& b_size, int& k_step) {
 
-		aal_uint16* y = new aal_uint16[2401]{};
-		aal_uint16* v = new aal_uint16[2401]{};
+		aal_uint16* y = new aal_uint16[2401]{{}};
+		aal_uint16* v = new aal_uint16[2401]{{}};
 
 		PolynomGF7N tmpPol(2400);
 		aal_uint16* pol = tmpPol.GetCoeffsPtr();
@@ -2557,8 +2557,8 @@ namespace AAL {
 		// Количество 7-ок в результирующем полиноме
 		int seven_groups_count = ((prod_deg + 1) % 7 == 0) ? (prod_deg + 1) / 7 : ((prod_deg + 1) / 7) + 1;
 		int len = seven_groups_count * 7;
-		aal_uint16* y = new aal_uint16[len]{};
-		aal_uint16* v = new aal_uint16[len]{};
+		aal_uint16* y = new aal_uint16[len]{{}};
+		aal_uint16* v = new aal_uint16[len]{{}};
 
 		PolynomGF7N tmpPol(len - 1);
 		aal_uint16* pol = tmpPol.GetCoeffsPtr();
@@ -2744,8 +2744,8 @@ namespace AAL {
 		// Количество 7-ок в результирующем полиноме
 		int seven_groups_count = ((prod_deg + 1) % 7 == 0) ? (prod_deg + 1) / 7 : ((prod_deg + 1) / 7) + 1;
 		int len = seven_groups_count * 7;
-		aal_uint16* y = new aal_uint16[len]{};
-		aal_uint16* v = new aal_uint16[len]{};
+		aal_uint16* y = new aal_uint16[len]{{}};
+		aal_uint16* v = new aal_uint16[len]{{}};
 
 		PolynomGF7N tmpPol(len - 1);
 		aal_uint16* pol = tmpPol.GetCoeffsPtr();

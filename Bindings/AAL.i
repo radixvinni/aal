@@ -173,6 +173,13 @@ Integer.InverseInFp = lambda s,a,m: s.InverseInFp_(a,m).Add(s,m) if temp.Inverse
        return tmp;
    }
 };
+%extend AAL::PolynomGF7N {
+   char *__repr__() {
+       static char tmp[1024];
+       sprintf(tmp,"AAL.PolynomGF7N(%s)", $self->ToString().c_str());
+       return tmp;
+   }
+};
 %extend AAL::Matrix {
    char *__repr__() {
        static char tmp[1024];

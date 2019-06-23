@@ -90,7 +90,7 @@ namespace AAL {
 		PolynomGF7N(aal_uint16 * a_coeffs, int a_size);
 		/** Конструктор строковый */
 		PolynomGF7N(string & a_strgf7);
-		/** Конструктор строковой */
+		/** Конструктор строковый */
 		PolynomGF7N(char *a_str);
 		/** Деструктор */
 		~PolynomGF7N();
@@ -131,7 +131,7 @@ namespace AAL {
 
 		/** Сдвиг полинома вправо на a_val коэффициентов (умножение на полином x^a_val) упаковка в 3 массива */
 		void Shift_R_ParallelPack(aal_uint32 a_val);
-		/** Сдвиг полинома вправо на a_val коэффициентов (умножение на полином x^a_val) упаковка в 3 массива */
+		/** Сдвиг полинома влево на a_val коэффициентов (умножение на полином x^a_val) упаковка в 3 массива */
 		void Shift_L_ParallelPack(aal_uint32 a_val);
 
 		/** Разложение показателя степени по степеням a_p */
@@ -167,9 +167,9 @@ namespace AAL {
 		/** Перегрузка операторa = */
 		PolynomGF7N & operator =  (PolynomGF7N a_pol);
 		/** Перегрузка логических операторов: == */
-		const bool & operator == (PolynomGF7N & a_pol);
+		const bool operator == (PolynomGF7N & a_pol);
 		/** Перегрузка логических операторов: != */
-		const bool & operator != (PolynomGF7N & a_pol);
+		const bool operator != (PolynomGF7N & a_pol);
 
 	//###############################################################################################
 	// ОСНОВНЫЕ АРИФМЕТИЧЕСКИЕ ОПЕРАЦИИ НАД ПОЛИНОМАМИ

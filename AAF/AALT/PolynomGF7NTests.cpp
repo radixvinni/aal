@@ -17,6 +17,29 @@
 
 using namespace AAL;
 using namespace std;
+TEST(PolynomGF7N, SHR)
+{
+	PolynomGF7N i("1002000210101010012101010100012101000121001022211111111111111111111111000001111222111211121112110020011211211211110001011121211111111");
+	PolynomGF7N j("0000000000000000000000000000000000000000000001002000210101010012101010100012101000121001022211111111111111111111111000001111222111211121112110020011211211211110001011121211111111");
+	PolynomGF7N k;
+
+	k.Shift_R_ParallelPack(100);
+	i.Shift_R_ParallelPack(45);
+	CHECK(i == j);
+	CHECK(k.isNull());
+}
+
+TEST(PolynomGF7N, SHL)
+{
+	PolynomGF7N i("102020201010121001110121010001020100010100101111121111211121121112111200000211211121121121112112001021111111111111201001121121121111");
+	PolynomGF7N j("10100101111121111211121121112111200000211211121121121112112001021111111111111201001121121121111");
+	PolynomGF7N k;
+
+	k.Shift_L_ParallelPack(10001);
+	i.Shift_L_ParallelPack(37);
+	CHECK(i == j);
+	CHECK(k.isNull());
+}
 
 TEST(PolynomGF7N, Add) {
 	PolynomGF7N p1("1234525");
@@ -50,6 +73,35 @@ TEST(PolynomGF7N, Mul) {
 	CHECK(!(c.Mul(p1, p2) != res_1));
 	CHECK(!(c.Mul(p1, p3) != res_2));
 	CHECK(!(c.Mul(res_1, pol_0) != pol_0));
+}
+TEST(PolynomGF7, Sub)
+{
+	PolynomGF7N i("162025");
+	PolynomGF7N j("111111");
+        PolynomGF7N k("051614");
+        PolynomGF7N zero("0");
+        CHECK(i.Sub(i, j) == k);
+        CHECK(j.ToString() == "111111");
+		CHECK(j.Sub(j, zero).ToString() == "111111");
+        CHECK(j.Sub(zero,zero).isNull());
+}
+
+TEST(PolynomGF7, Add2)
+{
+	PolynomGF7N i("162025");
+	PolynomGF7N j("141125");
+	PolynomGF7N k("233143");
+	PolynomGF7N i1("0346061");
+	PolynomGF7N i11("3460610");
+	PolynomGF7N i111("3036601");
+	PolynomGF7N zero("0");
+	CHECK(i1.Add(i1, i11) == i111);
+	CHECK(i.ToString()=="162025");
+	CHECK(j.ToString() == "141125");
+	CHECK(i.Add(i,j) == k);
+	CHECK(j.Add(j, zero).ToString() == "141125" && !j.isNull() && zero.isNull());
+	CHECK(j.Add(zero,zero).isNull());
+
 }
 
 TEST(PolynomGF7N, Div) {

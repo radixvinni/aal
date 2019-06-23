@@ -66,8 +66,8 @@ namespace AAL {
 		m_pcoeffs = new aal_uint16 [m_deg+1];
 		memset(m_pcoeffs, 0x0, sizeof(aal_uint16)*(m_deg+1));
 		for(int i = 0; i <= m_deg; i++){
-			char s = a_str[i];
-			m_pcoeffs[i] = atoi(&s);            
+			char s[2] = {a_str[i], 0};
+			m_pcoeffs[i] = atoi(s);       
 		}
 		memset(m_b0, 0x0, sizeof(m_b0));
 		memset(m_b1, 0x0, sizeof(m_b1));
@@ -83,8 +83,8 @@ namespace AAL {
 		m_pcoeffs = new aal_uint16 [m_deg+1];
 		memset(m_pcoeffs, 0x0, sizeof(aal_uint16)*(m_deg+1));
 		for(int i = 0; i <= m_deg; i++){
-			char s = a_str[i];
-			m_pcoeffs[i] = atoi(&s);            
+			char s[2] = {a_str[i], 0};
+			m_pcoeffs[i] = atoi(s);
 		}
 
 		memset(m_b0, 0x0, sizeof(m_b0));
@@ -291,7 +291,7 @@ namespace AAL {
 		return nullptr;
 	}
 
-	const bool & PolynomGF7N::operator == (PolynomGF7N & a_pol){
+	const bool PolynomGF7N::operator == (PolynomGF7N & a_pol){
 		UnPackToParPack();
 		a_pol.UnPackToParPack();
 
@@ -320,7 +320,7 @@ namespace AAL {
 		}
 	}
 
-	const bool & PolynomGF7N::operator != (PolynomGF7N & a_pol){
+	const bool PolynomGF7N::operator != (PolynomGF7N & a_pol){
 		UnPackToParPack();
 		a_pol.UnPackToParPack();
 

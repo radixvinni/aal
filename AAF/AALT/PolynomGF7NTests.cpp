@@ -74,7 +74,7 @@ TEST(PolynomGF7N, Mul) {
 	CHECK(!(c.Mul(p1, p3) != res_2));
 	CHECK(!(c.Mul(res_1, pol_0) != pol_0));
 }
-TEST(PolynomGF7, Sub)
+TEST(PolynomGF7N, Sub)
 {
 	PolynomGF7N i("162025");
 	PolynomGF7N j("111111");
@@ -86,7 +86,7 @@ TEST(PolynomGF7, Sub)
         CHECK(j.Sub(zero,zero).isNull());
 }
 
-TEST(PolynomGF7, Add2)
+TEST(PolynomGF7N, Add2)
 {
 	PolynomGF7N i("162025");
 	PolynomGF7N j("141125");
@@ -177,6 +177,78 @@ TEST(PolynomGF7N, MUL_GNB) {
 		}
 	}
 }
+
+TEST(PolynomGF7N, Mul2)
+{
+	PolynomGF7N i("162025");
+	PolynomGF7N j("333333");
+	PolynomGF7N k ("30665636001");
+
+	CHECK(k == i.Mul(i,j));
+}
+TEST(PolynomGF7N, ModMul)
+{
+	PolynomGF7N i("162025");
+	PolynomGF7N j("333333");
+	PolynomGF7N k ("364656360");
+	PolynomGF7N f("1200000001");
+	k.TrimZero();
+	CHECK(k == i.ModMul(i,j,f));
+
+	PolynomGF7N i1("461002325412");
+	PolynomGF7N j1("312563254");
+	PolynomGF7N k1("650643002");
+        PolynomGF7N f1("1200000001");
+        CHECK(k1 == i1.ModMul(i1,j1,f1));
+
+	PolynomGF7N i3("135");
+	PolynomGF7N j3("135");
+	PolynomGF7N k3("343");
+        PolynomGF7N f3("1111");
+        CHECK(k3 == i3.ModMul(i3,j3,f3));
+
+}
+
+TEST(PolynomGF7N, Div2)
+{
+	PolynomGF7N a("162025");
+	PolynomGF7N b("333333");
+	PolynomGF7N ab("30665636001");
+	PolynomGF7N r, rm;
+	//CHECK(ab/a == b);
+	CHECK(r.Div(ab, b, rm).isNull() && rm == a && r.isNull());
+}
+TEST(PolynomGF7N, ModPow)
+{
+        PolynomGF7N a("030"),b("110"),c("0"),c2("0");
+        PolynomGF7N d("002"),c1("0"),c3("0"),d1("100");
+        PolynomGF7N a1("12345612345612345612345612345");
+        PolynomGF7N module("130000000000000000000000000001");
+        PolynomGF7N ax("3"),bx("1");
+        c.ModMul(a1,a1,module);
+        std::string s = c.ToString();
+        c.ModMul(c,a1,module);
+        s = c.ToString();
+        c.ModMul(c,a1,module);
+        s = c.ToString();
+        c.ModMul(c,a1,module);
+        s = c.ToString();
+        c.ModMul(c,a1,module);
+        s = c.ToString();
+        c.ModMul(c,a1,module);
+        s = c.ToString();
+
+		c2.ModPow(a1,7,module);
+		CHECK(c2 == c);
+		c1 = c;
+		PolynomGF7N module1("1101");
+		d1.TrimZero();
+		CHECK(c3.ModPow(b,342,module1) == d1);
+		s = c3.ToString();
+		CHECK(c1.ModPow(a,2,module) == c2.ModMul(a,a,module));
+
+}
+
 /*
 TEST(PolynomGF7N, POW_GNB) {
 	PolynomGF7N x1, x2, pol, irr;

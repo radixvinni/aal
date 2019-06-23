@@ -241,12 +241,6 @@ TEST(PolynomGF7, ModMul)
         PolynomGF7 f1("1200000001");
         CHECK(k1.ToString() == i1.ModMul(i1,j1,f1).ToString());
 
-	PolynomGF7 i2("00001000000000");
-	PolynomGF7 j2("00010000000000");
-	PolynomGF7 k2 ("0121");
-        PolynomGF7 f2("1101");
-        CHECK(k2.ToString() == i2.ModMul(i2,j2,f2).ToString());
-
 	PolynomGF7 i3("135");
 	PolynomGF7 j3("135");
 	PolynomGF7 k3("343");

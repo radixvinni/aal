@@ -206,7 +206,7 @@ Integer.InverseInFp = lambda s,a,m: s.InverseInFp_(a,m).Add(s,m) if temp.Inverse
 %extend AAL::IntegerBinomEllipticCurve {
    char *__repr__() {
        static char tmp[1024];
-       sprintf(tmp,"AAL.IntegerBinomEllipticPoint(a=%s,b=%s)", $self->getA().ToString().c_str(),$self->getB().ToString().c_str());
+       sprintf(tmp,"AAL.IntegerBinomEllipticCurve(a=%s,b=%s)", $self->getA().ToString().c_str(),$self->getB().ToString().c_str());
        return tmp;
    }
 };

@@ -384,14 +384,18 @@ namespace AAL
 
                 if(squareCoef.isZero())
                         return *this;
-
-                // редуцирование
-                Integer multiplier(module - squareCoef);
-                temp1.ModMul(multiplier, const_cast<Integer &>(_modulePolynom.getA0()), module);
+		
+		// исправлено 13.07.2019
+                _a.ModSub(_a, squareCoef, module);
+                
+		// редуцирование
+                /*
+		Integer multiplier(module - squareCoef);
+		temp1.ModMul(multiplier, const_cast<Integer &>(_modulePolynom.getA0()), module);
                 temp2.ModMul(multiplier, const_cast<Integer &>(_modulePolynom.getA1()), module);
                 _a.ModAdd(_a, temp1, module);
                 _b.ModAdd(_b, temp2, module);                
-
+		*/
                 return *this;
         }
 

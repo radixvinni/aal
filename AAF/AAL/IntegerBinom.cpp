@@ -386,11 +386,11 @@ namespace AAL
                         return *this;
 		
 		// исправлено 13.07.2019
-                _a.ModAdd(_a, module - squareCoef, module);
+                Integer multiplier(module - squareCoef);
+		_a.ModAdd(_a, multiplier, module);
                 
 		// редуцирование
                 /*
-		Integer multiplier(module - squareCoef);
 		temp1.ModMul(multiplier, const_cast<Integer &>(_modulePolynom.getA0()), module);
                 temp2.ModMul(multiplier, const_cast<Integer &>(_modulePolynom.getA1()), module);
                 _a.ModAdd(_a, temp1, module);

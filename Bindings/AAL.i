@@ -213,6 +213,9 @@ Integer.InverseInFp = lambda s,a,m: s.InverseInFp_(a,m).Add(s,m) if temp.Inverse
 %extend AAL::IntegerBinomEllipticPoint {
    char *__repr__() {
        static char tmp[1024];
+       if ($self->isInfinite())
+       sprintf(tmp,"AAL.IntegerBinomEllipticPoint(точка на бесконечности)");
+       else
        sprintf(tmp,"AAL.IntegerBinomEllipticPoint(x=%s,y=%s)", $self->getX().ToString().c_str(),$self->getY().ToString().c_str());
        return tmp;
    }

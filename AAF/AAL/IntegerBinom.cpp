@@ -386,7 +386,7 @@ namespace AAL
                         return *this;
 		
 		// исправлено 13.07.2019
-                _a.ModSub(_a, squareCoef, module);
+                _a.ModAdd(_a, module - squareCoef, module);
                 
 		// редуцирование
                 /*

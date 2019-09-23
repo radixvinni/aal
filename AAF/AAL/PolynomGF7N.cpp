@@ -5,7 +5,7 @@
 	This file contains definitions and implementations of the following classes:
 		PolynomGF7N
 */
-#include "PolynomGF7.h"
+#include "PolynomGF7N.h"
 #include <iostream>
 
 namespace AAL {
@@ -717,7 +717,7 @@ namespace AAL {
 			return *this;
 		}
 		else {
-			throw new exception("f(x) должен быть неприводимым.");
+			throw new Exception("f(x) должен быть неприводимым.");
 		}
 
 	}
@@ -996,7 +996,7 @@ namespace AAL {
 			return *this;
 		}
 		else {
-			throw new exception("f(x) должен быть неприводимым.");
+			throw new Exception("f(x) должен быть неприводимым.");
 		}
 
 	}
@@ -1167,7 +1167,7 @@ namespace AAL {
 	PolynomGF7N & PolynomGF7N::GCD(PolynomGF7N & a_pol1, PolynomGF7N & a_pol2) {
 
 		if (a_pol1.isNull() && a_pol2.isNull()) {
-			throw exception("Оба полинома нулевые.");
+			throw Exception("Оба полинома нулевые.");
 		}
 		else {
 			if (!a_pol1.isNull() && !a_pol2.isNull()) {
@@ -1576,7 +1576,7 @@ namespace AAL {
 			return (*this);
 		}
 		else {
-			throw new exception("f(x) должен быть неприводимым.");
+			throw new Exception("f(x) должен быть неприводимым.");
 		}
 
 
@@ -1877,7 +1877,7 @@ namespace AAL {
 
 	PolynomGF7N & PolynomGF7N::GenerateBinIrreducible(const aal_uint32 a_deg) {
 		if (a_deg < 2)
-			throw new exception("Степень полинома меньше 2.");
+			throw new Exception("Степень полинома меньше 2.");
 
 		PolynomGF7N X(a_deg);
 		aal_uint16 *p = X.GetCoeffsPtr();
@@ -1900,7 +1900,7 @@ namespace AAL {
 
 	PolynomGF7N & PolynomGF7N::GenerateTrinIrreducible(const aal_uint32 a_deg) {
 		if (a_deg < 2)
-			throw new exception("Степень полинома меньше 2.");
+			throw new Exception("Степень полинома меньше 2.");
 		PolynomGF7N X(a_deg);
 		aal_uint16 *p = X.GetCoeffsPtr();
 		p[a_deg] = 1;
@@ -1938,7 +1938,7 @@ namespace AAL {
 
 	PolynomGF7N & PolynomGF7N::GenerateGNBIrreducible(const aal_uint32 a_deg) {
 		if (a_deg < 2)
-			throw new exception("Степень полинома меньше 2.");
+			throw new Exception("Степень полинома меньше 2.");
 		PolynomGF7N f0("1");
 		PolynomGF7N f1("11");
 		PolynomGF7N f;
@@ -1955,7 +1955,7 @@ namespace AAL {
 			}
 		}
 		else {
-			throw new exception("Для указанной степени расширения поля не существует оптимальных нормальных базисов.");
+			throw new Exception("Для указанной степени расширения поля не существует оптимальных нормальных базисов.");
 		}
 
 		(*this) = f;
@@ -1965,7 +1965,7 @@ namespace AAL {
 	int PolynomGF7N::ElementOrder(PolynomGF7N & a_pol, PolynomGF7N & a_pol_mod, const int a_ord) {
 
 		if (a_ord < 1)
-			throw new exception("Порядок группы не может быть меньше 1.");
+			throw new Exception("Порядок группы не может быть меньше 1.");
 
 		UnPackToParPack();
 

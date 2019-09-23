@@ -2,8 +2,7 @@
 		MPEI Algebraic Abstractions Library,
 		2007-2019,
 		Moscow Power Engineering Institute
-
-        This file contains definitions and definitions of the following classes:
+		This file contains definitions and definitions of the following classes:
 			PolynomGF7N
 */
 #ifndef _include_PolynomGF7N_h
@@ -34,19 +33,19 @@ namespace AAL {
 	// Размер массива упакованных коэффициентов полинома
 	const int TYPE_LEN = 32;
 	const int LOG2_TYPE_LEN = 5;
-	const int PAR_PACK_LEN = DEG_MAX/TYPE_LEN + 1;
+	const int PAR_PACK_LEN = DEG_MAX / TYPE_LEN + 1;
 
 	// таблица частного для различных сочетаний делимого и делителя в поле GF7
 	// индекс строки - значение делителя-1, индекс столбца - значение делимого
-	const aal_uint16 qcoeff[6][7] = {{0, 1, 2, 3, 4, 5, 6},
-									{0, 4, 1, 5, 2, 6, 3},
-									{0, 5, 3, 1, 6, 4, 2},
-									{0, 2, 4, 6, 1, 3, 5},
-									{0, 3, 6, 2, 5, 1, 4},
-									{0, 6, 5, 4, 3, 2, 1}};
+	const aal_uint16 qcoeff[6][7] = { { 0, 1, 2, 3, 4, 5, 6 },
+	{ 0, 4, 1, 5, 2, 6, 3 },
+	{ 0, 5, 3, 1, 6, 4, 2 },
+	{ 0, 2, 4, 6, 1, 3, 5 },
+	{ 0, 3, 6, 2, 5, 1, 4 },
+	{ 0, 6, 5, 4, 3, 2, 1 } };
 
 	// Структура для хранения множителей при разложении чисел
-	struct DecompositionMemberN{
+	struct DecompositionMemberN {
 		aal_uint32 value; // значение множителя
 		aal_uint32 deg; // степень множителя
 	};
@@ -75,18 +74,18 @@ namespace AAL {
 	// Полином над полем GF[7]
 	class PolynomGF7N {
 
-	// КОНСТРУКТОРЫ
+		// КОНСТРУКТОРЫ
 	public:
 		/** Конструктор нулевого полинома */
 		PolynomGF7N();
 		/** Конструктор нулевого полинома заданой длины */
 		PolynomGF7N(int a_deg);
 		/** Конструктор копирования*/
-		PolynomGF7N(const PolynomGF7N & a_pgf7);
+		PolynomGF7N(const PolynomGF7N& a_pgf7);
 
 		/** Конструктор:
-		 * \param a_coeffs - массив коэффициентов полинома
-		 *  \param a_size   - размер массива: степень полинома + 1*/
+		* \param a_coeffs - массив коэффициентов полинома
+		*  \param a_size   - размер массива: степень полинома + 1*/
 		PolynomGF7N(aal_uint16 * a_coeffs, int a_size);
 		/** Конструктор строковый */
 		PolynomGF7N(string & a_strgf7);
@@ -95,23 +94,23 @@ namespace AAL {
 		/** Деструктор */
 		~PolynomGF7N();
 
-	//###############################################################################################
-	// ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ
+		//###############################################################################################
+		// ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ
 	public:
 
 		/** Возвращает степень полинома */
-		int GetDeg()const;                             
+		int GetDeg() const;
 		/** Устанавливает степень полинома */
-		void SetDeg(int a_deg){ m_deg = a_deg; }  
+		void SetDeg(int a_deg) { m_deg = a_deg; }
 
 		/** Проверяется условие равенства '0' всех коэффициентов полинома
 		*  \return             - true - все коэффициенты = 0 */
-		bool isNull();
+		bool isNull() const;
 
 		/** Возвращает указатель на массив коэффициентов полинома */
 		aal_uint16 * GetCoeffsPtr() const;
-		/** Возвращает указатель на массив 0-х, 1-х или 2-х битов коэффициентов 
-		 * \param a_num = {0, 1, 2}
+		/** Возвращает указатель на массив 0-х, 1-х или 2-х битов коэффициентов
+		* \param a_num = {0, 1, 2}
 		*/
 		aal_uint32 * GetParCoeffsPtr(int a_num) const;
 
@@ -127,7 +126,7 @@ namespace AAL {
 		void TrimZero();
 
 		/** Генерация случайного полинома из кольца, образованным многочленом a_mod_pol, степень генерируемоо полинома на 1 меньше степени a_mod_pol */
-		PolynomGF7N& Generate(PolynomGF7N& a_mod_pol);
+		PolynomGF7N& Generate(const PolynomGF7N& a_mod_pol);
 
 		/** Сдвиг полинома вправо на a_val коэффициентов (умножение на полином x^a_val) упаковка в 3 массива */
 		void Shift_R_ParallelPack(aal_uint32 a_val);
@@ -135,44 +134,34 @@ namespace AAL {
 		void Shift_L_ParallelPack(aal_uint32 a_val);
 
 		/** Разложение показателя степени по степеням a_p */
-		void DegDecomp(aal_uint32 *a_decomp, aal_uint32 a_deg, int a_p);
+		void DegDecomp(aal_uint32 *a_decomp, aal_uint32 a_deg, int a_p) const;
 		/** Количество элементов в массиве разложения */
-		int DegDecompLength(aal_uint32 a_val, int a_p);
-		
+		int DegDecompLength(aal_uint32 a_val, int a_p) const;
+
 		/** Метод вычисления перестановки для переставленного базиса */
-		vector<int> GetPermutation(int a_n);
+		vector<int> GetPermutation(int a_n) const;
 		/** Метод вычисления обратной перестановки к заданной */
-		vector<int> InversePermutation(std::vector<int>& a_perm);
+		vector<int> InversePermutation(std::vector<int>& a_perm) const;
 
 		/** Разложение числа на простые множители
 		*  \param  a_fact - вектор разложения
 		*  \param  a_deg - разлагаемая степень
 		*  \param  degreeFlag = false (по умолчанию), если требуется разложение без
-								показателей степеней у множителей (с дублированием множителей)
+		показателей степеней у множителей (с дублированием множителей)
 		*  \param  degreeFlag = true, если требуется разложение с показателями степеней
 		*  \return        - произведение */
-		void Factorization(std::vector<DecompositionMemberN>& a_fact, aal_uint32 a_deg, bool degreeFlag = false);
-
-		/** Функция, меняющая порядок следования битов в 32 битном целом числе на противоположный */
-		aal_uint32 reverseBits(aal_uint32 n) {
-			n = (n >> 1) & 0x55555555 | (n << 1) & 0xaaaaaaaa;
-			n = (n >> 2) & 0x33333333 | (n << 2) & 0xcccccccc;
-			n = (n >> 4) & 0x0f0f0f0f | (n << 4) & 0xf0f0f0f0;
-			n = (n >> 8) & 0x00ff00ff | (n << 8) & 0xff00ff00;
-			n = (n >> 16) & 0x0000ffff | (n << 16) & 0xffff0000;
-			return n;
-		}
+		void Factorization(std::vector<DecompositionMemberN>& a_fact, aal_uint32 a_deg, bool degreeFlag = false) const;
 
 	public:
-		/** Перегрузка операторa = */
-		PolynomGF7N & operator =  (PolynomGF7N a_pol);
 		/** Перегрузка логических операторов: == */
-		const bool operator == (PolynomGF7N & a_pol);
+		bool operator == (const PolynomGF7N& a_pol) const;
 		/** Перегрузка логических операторов: != */
-		const bool operator != (PolynomGF7N & a_pol);
+		bool operator != (const PolynomGF7N& a_pol) const;
+		/** Перегрузка операторa = */
+		PolynomGF7N& operator =  (const PolynomGF7N& a_pol);
 
-	//###############################################################################################
-	// ОСНОВНЫЕ АРИФМЕТИЧЕСКИЕ ОПЕРАЦИИ НАД ПОЛИНОМАМИ
+		//###############################################################################################
+		// ОСНОВНЫЕ АРИФМЕТИЧЕСКИЕ ОПЕРАЦИИ НАД ПОЛИНОМАМИ
 	public:
 
 		/** Побитовое умножение двух элементов поля GF(7)
@@ -180,83 +169,83 @@ namespace AAL {
 		*  \param  a_val1 - 1-е слагаемое
 		*  \param  a_val1 - 2-е слагаемое
 		*  \return произведение */
-		aal_uint16 gf7_mul_coeffs(aal_uint16 & a_val1, aal_uint16 & a_val2);
+		aal_uint16 gf7_mul_coeffs(aal_uint16& a_val1, aal_uint16& a_val2);
 
 		/** Побитовое сложение двух элементов поля GF(7)
 		*  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова
 		*  \param  a_val1 - 1-е слагаемое
 		*  \param  a_val1 - 2-е слагаемое
 		*  \return произведение */
-		aal_uint16 gf7_add_coeffs(aal_uint16 & a_val1, aal_uint16 & a_val2);
+		aal_uint16 gf7_add_coeffs(aal_uint16& a_val1, aal_uint16& a_val2);
 
 		static PolynomGF7N default_quot;
 		/** Деление полиномов с остатком с использованием побитовых операций
-		 *  \param  a_pol1      - 1-й делимое
-		 *  \param  a_pol2      - 2-й делитель
-		 *  \param  a_pol_quot - полином для хранения частного (необязательный параметр) 
-		 *  \return             - остаток от деления a_pol1 на a_pol2 */
-		PolynomGF7N & Div(PolynomGF7N & a_pol1, PolynomGF7N & a_pol2, PolynomGF7N & a_pol_quot = default_quot);
+		*  \param  a_pol1      - 1-й делимое
+		*  \param  a_pol2      - 2-й делитель
+		*  \param  a_pol_quot  - полином для хранения частного (необязательный параметр)
+		*  \return             - остаток от деления a_pol1 на a_pol2 */
+		PolynomGF7N& Div(PolynomGF7N& a_pol1, PolynomGF7N& a_pol2, PolynomGF7N& a_pol_quot = default_quot);
 
 		/** Обращение полинома на основании алгоритма Евклида
-		 *  с использованием побитовых операций
-		 *  \param  a_pol          - обращаемый полином
-		 *  \param  a_simple_pol   - полином, взаимно простой с первым
-		 *  \param  a_is_irr       - признак второго полинома (если =true - неприводимый)
-		 *  \return                - обратный полином */
-		PolynomGF7N & InverseMod(PolynomGF7N & a_pol, PolynomGF7N & a_simple_pol, bool a_is_irr);
+		*  с использованием побитовых операций
+		*  \param  a_pol          - обращаемый полином
+		*  \param  a_simple_pol   - полином, взаимно простой с первым
+		*  \param  a_is_irr       - признак второго полинома (если =true - неприводимый)
+		*  \return                - обратный полином */
+		PolynomGF7N& InverseMod(PolynomGF7N& a_pol, PolynomGF7N& a_simple_pol, bool a_is_irr);
 
 		/** побитовое сложение двух полиномов в кольце GF(7)[X]
-		 *  с упаковкой коэффициентов в три массива
-		 *  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
-		 *  \param  a_pol1 - 1-е слагаемое
-		 *  \param  a_pol2 - 2-е слагаемое
-		 *  \return        - сумма */
-		PolynomGF7N & Add( PolynomGF7N & a_pol1, PolynomGF7N & a_pol2);
+		*  с упаковкой коэффициентов в три массива
+		*  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
+		*  \param  a_pol1 - 1-е слагаемое
+		*  \param  a_pol2 - 2-е слагаемое
+		*  \return        - сумма */
+		PolynomGF7N& Add(PolynomGF7N& a_pol1, PolynomGF7N& a_pol2);
 
 		/** побитовое сложение двух полиномов в кольце GF7[X](x)mod f(x)
-		 *  с упаковкой коэффициентов в три массива
-		 *  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
-		 *
-		 *  \param  a_pol1 - 1-е слагаемое
-		 *  \param  a_pol2 - 2-е слагаемое
-		 *  \return        - сумма */
-		PolynomGF7N & ModAdd(PolynomGF7N & a_pol1, PolynomGF7N & a_pol2, PolynomGF7N & a_pol_mod);
+		*  с упаковкой коэффициентов в три массива
+		*  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
+		*
+		*  \param  a_pol1 - 1-е слагаемое
+		*  \param  a_pol2 - 2-е слагаемое
+		*  \return        - сумма */
+		PolynomGF7N& ModAdd(PolynomGF7N& a_pol1, PolynomGF7N& a_pol2, PolynomGF7N& a_pol_mod);
 
 		/** побитовое сложение двух полиномов в GF(7^n)
-		 *  с упаковкой коэффициентов в три массива
-		 *  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
-		 *
-		 *  \param  a_pol1 - 1-е слагаемое
-		 *  \param  a_pol2 - 2-е слагаемое
-		 *  \return        - сумма */
-		PolynomGF7N & AddInGF7_n( PolynomGF7N & a_pol1, PolynomGF7N & a_pol2, PolynomGF7N & a_pol_mod);
+		*  с упаковкой коэффициентов в три массива
+		*  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
+		*
+		*  \param  a_pol1 - 1-е слагаемое
+		*  \param  a_pol2 - 2-е слагаемое
+		*  \return        - сумма */
+		PolynomGF7N& AddInGF7_n(PolynomGF7N& a_pol1, PolynomGF7N& a_pol2, PolynomGF7N& a_pol_mod);
 
 		/** побитовое умножение двух полиномов в кольце GF(7)[X]
-		 *  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
-		 *  с упаковкой в три массива типа aal_uint32 СТОЛБИКОМ
-		 *
-		 *  \param  a_pol1 - 1-й сомножитель
-		 *  \param  a_pol2 - 2-й сомножитель
-		 *  \return        - произведение */
-		PolynomGF7N & Mul(PolynomGF7N & a_pol1, PolynomGF7N & a_pol2);
+		*  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
+		*  с упаковкой в три массива типа aal_uint32 СТОЛБИКОМ
+		*
+		*  \param  a_pol1 - 1-й сомножитель
+		*  \param  a_pol2 - 2-й сомножитель
+		*  \return        - произведение */
+		PolynomGF7N& Mul(PolynomGF7N& a_pol1, PolynomGF7N& a_pol2);
 
 		/** побитовое умножение двух полиномов в кольце GF(7)[X] mod f(x)
-		 *  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
-		 *  с упаковкой в три массива типа aal_uint32 СТОЛБИКОМ
-		 *
-		 *  \param  a_pol1 - 1-й сомножитель
-		 *  \param  a_pol2 - 2-й сомножитель
-		 *  \return        - произведение */
-		PolynomGF7N & ModMul(PolynomGF7N & a_pol1, PolynomGF7N & a_pol2, PolynomGF7N & a_pol_mod);
+		*  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
+		*  с упаковкой в три массива типа aal_uint32 СТОЛБИКОМ
+		*
+		*  \param  a_pol1 - 1-й сомножитель
+		*  \param  a_pol2 - 2-й сомножитель
+		*  \return        - произведение */
+		PolynomGF7N& ModMul(PolynomGF7N& a_pol1, PolynomGF7N& a_pol2, PolynomGF7N& a_pol_mod);
 
-				/** побитовое умножение двух полиномов в поле GF(7^n)
-		 *  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
-		 *  с упаковкой в три массива типа aal_uint32 СТОЛБИКОМ
-		 *
-		 *  \param  a_pol1 - 1-й сомножитель
-		 *  \param  a_pol2 - 2-й сомножитель
-		 *  \return        - произведение */
-		PolynomGF7N & MulGF7_n(PolynomGF7N & a_pol1, PolynomGF7N & a_pol2, PolynomGF7N & a_pol_mod);
+		/** побитовое умножение двух полиномов в поле GF(7^n)
+		*  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
+		*  с упаковкой в три массива типа aal_uint32 СТОЛБИКОМ
+		*
+		*  \param  a_pol1 - 1-й сомножитель
+		*  \param  a_pol2 - 2-й сомножитель
+		*  \return        - произведение */
+		PolynomGF7N& MulGF7_n(PolynomGF7N& a_pol1, PolynomGF7N& a_pol2, PolynomGF7N& a_pol_mod);
 
 		/** побитовое умножение двух полиномов в поле GF(7^n)
 		*  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
@@ -267,44 +256,44 @@ namespace AAL {
 		*  \param  a_pol2 - 2-й сомножитель
 		*  \param  a_n    - степень расширения поля
 		*  \return        - произведение */
-		PolynomGF7N & MulGF7_n_ONB(PolynomGF7N & a_pol1, PolynomGF7N & a_pol2, int a_n);
+		PolynomGF7N& MulGF7_n_ONB(PolynomGF7N& a_pol1, PolynomGF7N& a_pol2, int a_n);
 
 		/** побитовое вычитание двух полиномов над полем GF7[X]
-		 *  с упаковкой в три массива типа aal_uint32
-		 *  \param  a_pol1 - уменьшаемое
-		 *  \param  a_pol2 - вычитаемое
-		 *  \return        - разность */
-		PolynomGF7N & Sub( PolynomGF7N & a_pol1, PolynomGF7N & a_pol2);
+		*  с упаковкой в три массива типа aal_uint32
+		*  \param  a_pol1 - уменьшаемое
+		*  \param  a_pol2 - вычитаемое
+		*  \return        - разность */
+		PolynomGF7N& Sub(PolynomGF7N& a_pol1, PolynomGF7N& a_pol2);
 
 		/** Вычисление НОД двух полиномов по алгоритму Евклида
-		 *  с использованием стандартных операций
-		 *  \param  a_pol1      - 1-й полином
-		 *  \param  a_pol2      - 2-й полином   
-		 *  \return             - НОД a_pol1 и a_pol2 */
-		PolynomGF7N & GCD(PolynomGF7N & a_pol1, PolynomGF7N & a_pol2);
+		*  с использованием стандартных операций
+		*  \param  a_pol1      - 1-й полином
+		*  \param  a_pol2      - 2-й полином
+		*  \return             - НОД a_pol1 и a_pol2 */
+		PolynomGF7N& GCD(PolynomGF7N& a_pol1, PolynomGF7N& a_pol2);
 
 		/** Возведение полинома a_pol в степень a_deg в кольце GF(7)[x]
-		 *  с использованием операций упаковки 3x32
-		 *  \param  a_pol      - полином
-		 *  \param  a_deg      - показатель степени   
-		 *  \return             - степень полинома a_pol^a_deg */
-		PolynomGF7N & Pow(PolynomGF7N & a_pol, aal_uint32 a_deg);
+		*  с использованием операций упаковки 3x32
+		*  \param  a_pol      - полином
+		*  \param  a_deg      - показатель степени
+		*  \return             - степень полинома a_pol^a_deg */
+		PolynomGF7N& Pow(PolynomGF7N& a_pol, aal_uint32 a_deg);
 
 		/** Возведение полинома a_pol в степень a_deg в кольце GF(7)[x] mod f(x)
-		 *  с использованием операций упаковки 3x32
-		 *  \param  a_pol      - полином
-		 *  \param  a_deg      - показатель степени
-		 *  \param  a_pol_mod  - модулярный полином 
-		 *  \return            - степень полинома a_pol^a_deg */
-		PolynomGF7N & ModPow(PolynomGF7N & a_pol, aal_uint32 a_deg, PolynomGF7N & a_pol_mod);
+		*  с использованием операций упаковки 3x32
+		*  \param  a_pol      - полином
+		*  \param  a_deg      - показатель степени
+		*  \param  a_pol_mod  - модулярный полином
+		*  \return            - степень полинома a_pol^a_deg */
+		PolynomGF7N& ModPow(PolynomGF7N& a_pol, aal_uint32 a_deg, PolynomGF7N& a_pol_mod);
 
 		/** Возведение полинома a_pol в степень a_deg GF(7^n)
-		 *  с использованием операций упаковки 3x32
-		 *  \param  a_pol      - полином
-		 *  \param  a_deg      - показатель степени
-		 *  \param  a_pol_mod  - неприводимый модулярный полином 
-		 *  \return            - степень полинома a_pol^a_deg */
-		PolynomGF7N & PowGF7_n(PolynomGF7N & a_pol, aal_uint32 a_deg, PolynomGF7N & a_pol_mod);
+		*  с использованием операций упаковки 3x32
+		*  \param  a_pol      - полином
+		*  \param  a_deg      - показатель степени
+		*  \param  a_pol_mod  - неприводимый модулярный полином
+		*  \return            - степень полинома a_pol^a_deg */
+		PolynomGF7N& PowGF7_n(PolynomGF7N& a_pol, aal_uint32 a_deg, PolynomGF7N& a_pol_mod);
 
 		/** Возведение полинома a_pol в степень a_deg GF(7^n)
 		*  с использованием ОНБ 2 или 3 типов при возведении в степень характеристики поля.
@@ -313,46 +302,46 @@ namespace AAL {
 		*  \param  a_deg      - показатель степени
 		*  \param  a_pol_mod  - неприводимый модулярный полином
 		*  \return            - степень полинома a_pol^a_deg */
-		PolynomGF7N & PowGF7_n_ONB(PolynomGF7N & a_pol, aal_uint32 a_deg, PolynomGF7N & a_pol_mod);
+		PolynomGF7N& PowGF7_n_ONB(PolynomGF7N& a_pol, aal_uint32 a_deg, PolynomGF7N& a_pol_mod);
 
-		/** Тестирование неприводимости многочлена 
+		/** Тестирование неприводимости многочлена
 		* \param a_pol - тестируемый полином */
-		bool isIrreducible();
+		bool isIrreducible() const;
 
 		/** Генерация неприводимого двучлена
-		 *  \param  a_deg      - степень генерируемого полинома
-		 *  \return            - неприводимый двучлен над GF7 */
-		PolynomGF7N & GenerateBinIrreducible(aal_uint32 a_deg);
+		*  \param  a_deg      - степень генерируемого полинома
+		*  \return            - неприводимый двучлен над GF7 */
+		PolynomGF7N& GenerateBinIrreducible(const aal_uint32 a_deg);
 
 		/** Генерация неприводимого трёхчлена
-		 *  \param  a_deg      - степень генерируемого полинома
-		 *  \return            - неприводимый двучлен над GF7 */
-		PolynomGF7N & GenerateTrinIrreducible(aal_uint32 a_deg);
+		*  \param  a_deg      - степень генерируемого полинома
+		*  \return            - неприводимый двучлен над GF7 */
+		PolynomGF7N& GenerateTrinIrreducible(const aal_uint32 a_deg);
 
 		/** Генерация неприводимого полинома для ОНБ 2-го или 3-го типа
 		*  \param  a_deg      - степень генерируемого полинома
 		*  \return            - неприводимый двучлен над GF7 */
-		PolynomGF7N & GenerateGNBIrreducible(aal_uint32 a_deg);
+		PolynomGF7N& GenerateGNBIrreducible(const aal_uint32 a_deg);
 
 		/** Вычсление порядка элемента (полинома) мультипликативной группы поля GF(7^n)
-		 *  \param  a_pol      - элемент мультипликативной группы
-		 *  \param  a_pol_mod  - неприводимый многочлен над полем GF(7^n)
-		 *  \param  a_ord      - порядок мультипликативной группы поля
-		 *  \return            - порядок элемента мультипликативной группы поля GF(7^n) */
-		int ElementOrder(PolynomGF7N & a_pol, PolynomGF7N & a_pol_mod, const int a_ord);
+		*  \param  a_pol      - элемент мультипликативной группы
+		*  \param  a_pol_mod  - неприводимый многочлен над полем GF(7^n)
+		*  \param  a_ord      - порядок мультипликативной группы поля
+		*  \return            - порядок элемента мультипликативной группы поля GF(7^n) */
+		int ElementOrder(PolynomGF7N& a_pol, PolynomGF7N& a_pol_mod, const int a_ord);
 
 		/** Тестирование образующего элемента
-		 *  \param  a_pol      - элемент мультипликативной группы
-		 *  \param  a_pol_mod  - неприводимый многочлен над полем GF(7^n)
-		 *  \param  a_ord      - порядок поля
-		 *  \return            - неприводимый двучлен над GF7 */
-		bool IsGenerator(PolynomGF7N & a_pol, PolynomGF7N & a_pol_mod, const int a_ord);
+		*  \param  a_pol      - элемент мультипликативной группы
+		*  \param  a_pol_mod  - неприводимый многочлен над полем GF(7^n)
+		*  \param  a_ord      - порядок поля
+		*  \return            - неприводимый двучлен над GF7 */
+		bool IsGenerator(PolynomGF7N& a_pol, PolynomGF7N& a_pol_mod, const int a_ord);
 
 		/** Тестирование полинома на примитивность
-		 *  \param  a_pol      - многочлен над полем GF(7^n)
-		 *  \return            - true, если полином примитивный
-								 false - в противном случае */
-		bool isPrimitivity();
+		*  \param  a_pol      - многочлен над полем GF(7^n)
+		*  \return            - true, если полином примитивный
+		false - в противном случае */
+		bool isPrimitivity() const;
 
 		/** Функция, проверяющая существования гауссова нормального базиса
 		*  1-го или 2-го порядка для указанной степени расширения поля
@@ -361,60 +350,60 @@ namespace AAL {
 		*		   1 - существует гауссов нормальный базис 1-го порядка
 		*		   2 - существует гауссов нормальный базис 2-го порядка
 		*		   3 - существуют гауссовы нормальные базисы 1-го и 2-го порядка*/
-		int GNB_Test(int a_n);
+		int GNB_Test(const int a_n) const;
 
 		/** побитовое сложение 32 чисел над полем GF7[X]
-		 *  с упаковкой в три массива типа aal_uint32
-		 *  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
-		 *
-		 *  \param  a_val1 - 1-е слагаемое
-		 *  \param  a_val2 - 2-е слагаемое
-		 *  \return        - сумма */
+		*  с упаковкой в три массива типа aal_uint32
+		*  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
+		*
+		*  \param  a_val1 - 1-е слагаемое
+		*  \param  a_val2 - 2-е слагаемое
+		*  \return        - сумма */
 		void gf7_sum_Parallelpack(const aal_uint32 a_val11,
-								const aal_uint32 a_val12,
-								const aal_uint32 a_val13,
-								const aal_uint32 a_val21,
-								const aal_uint32 a_val22,
-								const aal_uint32 a_val23,
-								aal_uint32 *a_sum1,
-								aal_uint32 *a_sum2,
-								aal_uint32 *a_sum3);
+			const aal_uint32 a_val12,
+			const aal_uint32 a_val13,
+			const aal_uint32 a_val21,
+			const aal_uint32 a_val22,
+			const aal_uint32 a_val23,
+			aal_uint32 *a_sum1,
+			aal_uint32 *a_sum2,
+			aal_uint32 *a_sum3);
 
 		/** побитовое умножение 32 чисел над полем GF7[X]
-		 *  с упаковкой в три массива типа aal_uint32
-		 *  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
-		 *
-		 *  \param  a_val1 - 1-е слагаемое
-		 *  \param  a_val2 - 2-е слагаемое
-		 *  \return        - произведение */
+		*  с упаковкой в три массива типа aal_uint32
+		*  по алгоритму из статьи С.Б.Гашкова, А.Б.Фролова и др.
+		*
+		*  \param  a_val1 - 1-е слагаемое
+		*  \param  a_val2 - 2-е слагаемое
+		*  \return        - произведение */
 		void gf7_mul_Parallelpack(const aal_uint32 a_val11,
-								const aal_uint32 a_val12,
-								const aal_uint32 a_val13,
-								const aal_uint32 a_val21,
-								const aal_uint32 a_val22,
-								const aal_uint32 a_val23,
-								aal_uint32 *a_prod1,
-								aal_uint32 *a_prod2,
-								aal_uint32 *a_prod3);
+			const aal_uint32 a_val12,
+			const aal_uint32 a_val13,
+			const aal_uint32 a_val21,
+			const aal_uint32 a_val22,
+			const aal_uint32 a_val23,
+			aal_uint32 *a_prod1,
+			aal_uint32 *a_prod2,
+			aal_uint32 *a_prod3);
 
 
 		/** Побитовое умножение полинома на число в GF7[X]
-		 *  \param  a_pol1 - полином
-		 *  \param  a_val  - константа
-		 *  \return произведение */
-		PolynomGF7N & gf7_mult_num_ParPack(PolynomGF7N & a_pol, aal_uint32 a_val);
+		*  \param  a_pol1 - полином
+		*  \param  a_val  - константа
+		*  \return произведение */
+		PolynomGF7N& gf7_mult_num_ParPack(PolynomGF7N& a_pol, aal_uint32 a_val);
 
 		/** Возведение в 7 степень в полиномиальном базисе
 		*  \param  a_pol - полином
 		*  \return       - полином в степени 7 */
-		PolynomGF7N & Pow7(PolynomGF7N & a_pol);
+		PolynomGF7N& Pow7(PolynomGF7N& a_pol);
 
 		/** Возведение в степень характеристики поля в переставленном базисе
 		*  \param  a_pol      - полином
 		*  \param  a_7deg     - показатель степени характеристики поля
 		*  \param  a_pol_mod  - неприводимый многочлен
 		*  \return            - полином в степени 7^a_7deg */
-		PolynomGF7N & Pow7_NB(PolynomGF7N & a_pol, aal_uint32 a_7deg, PolynomGF7N & a_pol_mod);
+		PolynomGF7N& Pow7_NB(PolynomGF7N& a_pol, aal_uint32 a_7deg, PolynomGF7N& a_pol_mod);
 
 		/** Возведение в степень характеристики поля в переставленном базисе
 		*   используется в ТЕСТОВОМ методе возведения полинома в любую степень для сравнения
@@ -425,57 +414,57 @@ namespace AAL {
 		*  \param  a_7deg     - показатель степени характеристики поля
 		*  \param  a_n        - степень расширения поля
 		*  \return            - полином в степени 7^a_7deg */
-		PolynomGF7N & Pow7_NB_TEST(PolynomGF7N & a_pol, vector<int>& a_perm, vector<int> a_inv_perm, int a_7deg, int a_n);
+		PolynomGF7N& Pow7_NB_TEST(PolynomGF7N& a_pol, vector<int>& a_perm, vector<int> a_inv_perm, int a_7deg, int a_n);
 
 		/** Возведение элемента поля в степень
 		*  \param  a_elem - элемент поля GF(p)
 		*  \param  a_deg  - показатель степени
 		*  \param  a_p    - характеристика поля
 		*  \return        - степень a_deg элемента поля a_elem */
-		aal_uint32 PowGFp(aal_uint32 a_elem, int a_deg, int a_p);
+		aal_uint32 PowGFp(aal_uint32 a_elem, int a_deg, int a_p) const; 
 
-	// ###############################################################################################
-	// МЕТОДЫ ПЕРЕВОДА В НОРМАЛЬНЫЕ БАЗИСЫ
+		// ###############################################################################################
+		// МЕТОДЫ ПЕРЕВОДА В НОРМАЛЬНЫЕ БАЗИСЫ
 	public:
 		/** Перевод из полиномиального базиса в приведённый
 		* param a_pol - полином в полиномиальном базисе
 		*  \return полином в приведённом базисе */
-		PolynomGF7N & PolynomialToReduced(PolynomGF7N & a_pol, int a_n);
+		PolynomGF7N& PolynomialToReduced(const PolynomGF7N& a_pol, int a_n);
 		/** тест */
-		PolynomGF7N & PToR_TEST(PolynomGF7N & a_pol, int a_n, int& add_f0, int& add_fk, int& mul_f0, int& mul_fk, int& b_size, int& k_step);
+		PolynomGF7N& PToR_TEST(PolynomGF7N& a_pol, int a_n, int& add_f0, int& add_fk, int& mul_f0, int& mul_fk, int& b_size, int& k_step);
 		/** тест */
-		PolynomGF7N & PToR_TEST_OLD(PolynomGF7N & a_pol, int a_n, int& add_f0, int& add_fk, int& mul_f0, int& mul_fk, int& b_size, int& k_step);
+		PolynomGF7N& PToR_TEST_OLD(PolynomGF7N& a_pol, int a_n, int& add_f0, int& add_fk, int& mul_f0, int& mul_fk, int& b_size, int& k_step);
 
 		/** Перевод из приведённого базиса в полиномиальный
 		* param a_pol - полином в приведённом базисе
 		*  \return полином в приведённом базисе */
-		PolynomGF7N & ReducedToPolynomial(PolynomGF7N & a_pol, int a_n);
+		PolynomGF7N& ReducedToPolynomial(const PolynomGF7N& a_pol, int a_n);
 		/** тест */
-		PolynomGF7N & RToP_TEST(PolynomGF7N & a_pol, int a_n, int& add_f0, int& add_fk, int& mul_f0, int& mul_fk, int& b_size, int& k_step);
-		
+		PolynomGF7N& RToP_TEST(PolynomGF7N& a_pol, int a_n, int& add_f0, int& add_fk, int& mul_f0, int& mul_fk, int& b_size, int& k_step);
+
 		/** Перевод из приведённого базиса в полиномиальный
 		* param a_pol - полином в приведённом базисе
 		* param a_n   - степень расширения поля
 		*  \return полином в приведённом базисе */
-		PolynomGF7N & ReducedToRedundant(PolynomGF7N & a_pol, int a_n);
+		PolynomGF7N& ReducedToRedundant(const PolynomGF7N& a_pol, int a_n);
 
 		/** Перевод из редундантного базиса в приведённый
 		* param a_pol - полином в редундантном базисе
 		* param a_n   - степень расширения поля
 		*  \return полином в приведённом базисе */
-		PolynomGF7N & RedundantToReduced(PolynomGF7N & a_pol, int a_n);
+		PolynomGF7N& RedundantToReduced(const PolynomGF7N& a_pol, int a_n);
 
 		/** Перевод из приведённого базиса в переставленный
 		* param a_pol - полином в приведённом базисе
 		* param a_n   - степень расширения поля
 		*  \return полином в переставленном базисе */
-		PolynomGF7N & ReducedToPermuted(PolynomGF7N & a_pol, int a_n);
+		PolynomGF7N& ReducedToPermuted(const PolynomGF7N& a_pol, int a_n);
 
 		/** Перевод из переставленного базиса в приведённый
 		* param a_pol - полином в переставленном базисе
 		* param a_n   - степень расширения поля
 		*  \return полином в приведённом базисе */
-		PolynomGF7N & PermutedToReduced(PolynomGF7N & a_pol, int a_n);
+		PolynomGF7N& PermutedToReduced(const PolynomGF7N& a_pol, int a_n);
 
 	private:
 		// степень полинома
@@ -493,5 +482,5 @@ namespace AAL {
 		aal_uint32 m_b2[PAR_PACK_LEN];
 
 	};
-};
+}
 #endif

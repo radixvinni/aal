@@ -1,16 +1,12 @@
 /*
-MPEI Algebraic Abstractions Library,
-2007-2019,
-Moscow Power Engineering Institute
-This file contains definitions and implementations of the following classes:
-PolynomGF7N
+	MPEI Algebraic Abstractions Library,
+	2007-2019,
+	Moscow Power Engineering Institute
+	This file contains definitions and implementations of the following classes:
+		PolynomGF7N
 */
 #include "PolynomGF7.h"
-#include <intrin.h>
 #include <iostream>
-
-#pragma intrinsic(__rdtsc)
-#pragma optimize( "", off )
 
 namespace AAL {
 	PolynomGF7N::PolynomGF7N() {
@@ -3170,4 +3166,4 @@ namespace AAL {
 		return 0;
 	}
 
-}
+};

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 2.8)
 set (CMAKE_CXX_STANDARD 11)
 project(MpeiAAL)
 include(ExternalProject)
@@ -53,6 +53,7 @@ set (HEADERS
 		../AAF/AAL/TableManager.h
 		)
 set (SOURCES 
+		funTD.cpp
 		../AAF/AAL/Converter.cpp
 		../AAF/AAL/DecompositionManager.cpp
 		../AAF/AAL/Ellipticcurves.cpp
@@ -168,7 +169,7 @@ if (USE_MSIEVE)
 	ExternalProject_Add(msieve
 	  PREFIX .
 	#  SVN_REPOSITORY https://msieve.svn.sourceforge.net/svnroot/msieve/trunk
-	  SVN_REPOSITORY https://svn.code.sf.net/p/msieve/code/trunk
+	  SVN_REPOSITORY https://svn.code.sf.net/p/msieve/code/tags/1.53
 	  CONFIGURE_COMMAND ""
 	 # PATCH_COMMAND patch -t -N -p0 < ../../msieve.patch
 	  BUILD_COMMAND make -C ../msieve all
@@ -221,7 +222,7 @@ endif (GENERATE_BINDINGS)
 if (MSVC)
 	add_definitions (/W0)
 elseif (CMAKE_COMPILER_IS_GNUCXX)
-	add_definitions (-w -fPIC)
+	add_definitions (-w -fPIC -std=c++0x)
 endif (MSVC)
 
 ADD_CUSTOM_TARGET(ChangeLog

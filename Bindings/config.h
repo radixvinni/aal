@@ -29,7 +29,7 @@ bool inline FileExists(const char *fname){
 }
 #else
 #include <unistd.h>
-#define FileExists(fname) (access(fname, 0) == -1)
+#define FileExists(fname) (access(fname, 0) != -1)
 #endif
 
 #ifdef USE_MSIEVE

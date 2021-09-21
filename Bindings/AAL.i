@@ -1,6 +1,7 @@
 %module AAL
 %include <python/stl.i>
 %include "std_vector.i"
+%include "std_set.i"
 
 /*Get rid of this. Something like %include <typemaps.i> should help with this maybe*/
 %apply bool* INPUT { bool* composit };
@@ -32,9 +33,11 @@
 #include "./AAF/AAL/NumberVector.h"
 #include "./AAF/AAL/PolynomGF7.h"
 #include "./AAF/AAL/PolynomGF7N.h"
+#include "./Bindings/funTD.h"
 
 #include <vector>
 #include <string>
+#include <set>
 
 using namespace AAL;
 %}
@@ -43,6 +46,7 @@ using namespace AAL;
 %template(ucharBasicType) AAL::BasicType<AAL::uchar>;
 %template(uintBasicType) AAL::BasicType<AAL::uint>;
 
+%include "./Bindings/funTD.h"
 %include "./AAF/AAL/Integer.h"
 %include "./AAF/AAL/Algorithms.h"
 %include "./AAF/AAL/DecompositionManager.h"
@@ -71,6 +75,7 @@ using namespace AAL;
 namespace std {
     %template(StrVector) vector<string>;
     %template(IntVector) vector<int>;
+    %template(IntVectorSet) set<vector<int>>;
     %template(DecompositionMemberVector) vector<AAL::DecompositionMember>;
     %template(IntegerBinomVector) vector<AAL::IntegerBinom>;
     %template(IntegerBinomEllipticPointVector) vector<AAL::IntegerBinomEllipticPoint>;

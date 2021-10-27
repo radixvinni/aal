@@ -22,7 +22,7 @@ int modpol_main(int argc,char **argv);
 #endif
 
 //другие способы: http://www.rsdn.ru/article/qna/baseserv/fileexist.xml
-#ifdef __MINGW32__
+#if defined(_MSC_VER) || defined(__MINGW32__)
 #include <io.h>
 bool inline FileExists(const char *fname){
   return access(fname, 0) != -1;

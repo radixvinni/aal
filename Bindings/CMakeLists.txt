@@ -54,6 +54,7 @@ set (HEADERS
 		)
 set (SOURCES 
 		funTD.cpp
+		funCPG.cpp
 		../AAF/AAL/Converter.cpp
 		../AAF/AAL/DecompositionManager.cpp
 		../AAF/AAL/Ellipticcurves.cpp

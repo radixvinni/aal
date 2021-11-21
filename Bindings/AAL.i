@@ -34,6 +34,7 @@
 #include "./AAF/AAL/PolynomGF7.h"
 #include "./AAF/AAL/PolynomGF7N.h"
 #include "./Bindings/funTD.h"
+#include "./Bindings/funCPG.h"
 
 #include <vector>
 #include <string>
@@ -47,6 +48,7 @@ using namespace AAL;
 %template(uintBasicType) AAL::BasicType<AAL::uint>;
 
 %include "./Bindings/funTD.h"
+%include "./Bindings/funCPG.h"
 %include "./AAF/AAL/Integer.h"
 %include "./AAF/AAL/Algorithms.h"
 %include "./AAF/AAL/DecompositionManager.h"

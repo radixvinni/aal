@@ -54,6 +54,7 @@ set (HEADERS
 		)
 set (SOURCES 
 		funTD.cpp
+		funAPG.cpp
 		funCPG.cpp
 		../AAF/AAL/Converter.cpp
 		../AAF/AAL/DecompositionManager.cpp

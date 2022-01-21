@@ -613,6 +613,33 @@ vector<int> Algoritm1(int j1, int j2, vector<int> dfst, int v, int k, vector<int
 	return rez;
 }
 
+string out_alg1_en(int j1, int j2, vector<int> out)
+{
+	string res;
+	if (out.size() == 1)
+	{
+		res = "Key of direct connection of nodes " + to_string(j1) + " and " + to_string(j2)
+			+ " : " + to_string(out[0]);
+	}
+	else
+		if (out.size() == 2)
+		{
+			res = "Node connection key " + to_string(j1) + " and " + to_string(j2)
+				+ " through node " + to_string(out[1]) + " : " + to_string(out[0]);
+		}
+		else
+			if (out.size() == 5)
+			{
+				res = "Node " + to_string(out[0]) + " through node " + to_string(out[1]) +
+					" connected to node " + to_string(out[2]) + ", that is connected with a key " + to_string(out[3]) +
+					" to node " + to_string(out[4]);
+			}
+			else
+				res = "There is no connection (direct or through one intermediary) between the nodes " + to_string(j1) +
+				" and " + to_string(j2) + " !";
+	return res + "\n\n";
+}
+
 
 vector<string> Algoritm2(int j1, int j2, vector<int> dfst, int v, int k, vector<int> L_key, set<vector<int>> L_blockkey, set<vector<int>> L_blockblock, vector<int> L_block)
 {
@@ -855,7 +882,7 @@ vector<vector<int>> Algoritm3_normal(vector<int> j1, vector<int> j2, vector<int>
 				rez[2] = j2;
 				return rez;
 			}
-			else if ((!pcel(prom2, L_pc)) && (!blockpcel(j1, L_blpc)) && (!blockpcel(prom2, L_blpc)) 
+			else if ((!pcel(prom2, L_pc)) && (!pcel(prom1, L_pc)) && (!blockpcel(j1, L_blpc)) && (!blockpcel(prom2, L_blpc))
 				&& (!dblockpcel(prom2, L_dblpc)) && (!dblockpcel(prom1, L_dblpc)) && (!blockpcel(prom1, L_blpc)) && (!blockpcel(j2, L_blpc))
 				&& (blockexistance(j1[0], L_block)) && (blockexistance(j2[0], L_block)))
 			{
@@ -973,5 +1000,25 @@ string out_alg3_nat(vector<vector<int>> out)
 	}
 	else
 		res = "Связи между указанными компьютерами нет!";
+	return res;
+}
+
+string out_alg3_nat_en(vector<vector<int>> out)
+{
+	string res = "";
+	int sz = out.size();
+	vector<int> comp;
+	if (sz > 1)
+	{
+		for (int i = 0; i < sz - 1; i++)
+		{
+			comp = out[i];
+			res = res + "(" + to_string(comp[0]) + "," + to_string(comp[1]) + ")->";
+		}
+		comp = out[sz - 1];
+		res = res + "(" + to_string(comp[0]) + "," + to_string(comp[1]) + ")";
+	}
+	else
+		res = "There is no connection between the specified computers!";
 	return res;
 }

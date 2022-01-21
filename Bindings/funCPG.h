@@ -80,6 +80,8 @@ vector<string> Algoritm2(int j1, int j2, vector<int> dfst, int v, int k, vector<
 
 string out_alg2(vector<string> out);
 
+string out_alg1_en(int j1, int j2, vector<int> out);
+
 //Исключенные компьютеры
 bool pcel(vector<int> pc, set<vector<int>> L_pc);
 
@@ -106,5 +108,5 @@ vector<vector<int>> Algoritm3(vector<int> j1, vector<int> j2, vector<int> dfst, 
 
 string out_alg3_nat(vector<vector<int>> out);
 
-
+string out_alg3_nat_en(vector<vector<int>> out);
 

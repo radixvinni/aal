@@ -866,7 +866,7 @@ vector<vector<int>> Algoritm3_normal(vector<int> j1, vector<int> j2, int n, int 
 				rez[2] = j2;
 				return rez;
 			}
-			else if ((!pcel(prom2, L_pc)) && (!blockpcel(j1, L_blpc)) && (!blockpcel(prom2, L_blpc))
+			else if ((!pcel(prom2, L_pc)) && (!pcel(prom1, L_pc)) && (!blockpcel(j1, L_blpc)) && (!blockpcel(prom2, L_blpc))
 				&& (!dblockpcel(prom2, L_dblpc)) && (!dblockpcel(prom1, L_dblpc)) && (!blockpcel(prom1, L_blpc)) && (!blockpcel(j2, L_blpc))
 				&& (blockexistence(j1[0], L_block)) && (blockexistence(j2[0], L_block)))
 			{

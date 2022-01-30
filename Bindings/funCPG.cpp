@@ -862,7 +862,7 @@ vector<vector<int>> Algoritm3_normal(vector<int> j1, vector<int> j2, vector<int>
 			vector<int> prom2(2);
 			prom2[0] = j1[0];
 			prom2[1] = el;
-			if ((el == j1[1]) && (!pcel(prom1, L_pc)) && (!blockpcel(j1, L_blpc)) && (!dblockpcel(j1, L_dblpc))
+			if ((el == j1[1]) && (!pcel(prom1, L_pc)) && (!dblockpcel(j1, L_dblpc))
 				&& (!dblockpcel(prom1, L_dblpc)) && (!blockpcel(prom1, L_blpc)) && (!blockpcel(j2, L_blpc)) 
 				&& (blockexistance(j1[0], L_block)) && (blockexistance(j2[0], L_block)))
 			{
@@ -873,7 +873,7 @@ vector<vector<int>> Algoritm3_normal(vector<int> j1, vector<int> j2, vector<int>
 				return rez;
 			}
 			else if ((el == j2[1]) && (!pcel(prom2, L_pc)) && (!blockpcel(j1, L_blpc)) && (!blockpcel(prom2, L_blpc))
-				&& (!dblockpcel(prom2, L_dblpc)) && (!dblockpcel(j2, L_dblpc)) && (!blockpcel(j2, L_blpc))
+				&& (!dblockpcel(prom2, L_dblpc)) && (!dblockpcel(j2, L_dblpc))
 				&& (blockexistance(j1[0], L_block)) && (blockexistance(j2[0], L_block)))
 			{
 				rez = vector<vector<int>>(3);
@@ -935,7 +935,7 @@ vector<vector<int>> Algoritm3(vector<int> j1, vector<int> j2, vector<int> dfst, 
 			vector<int> cens1 = cens(cc, true, dfst, v, k);
 			for (int j = 0; j < cens1.size(); j++)
 			{
-				if ((blockexistance(j, L_block)))
+				if ((blockexistance(cens1[j], L_block)))
 				{
 					vector<int> prom1(2);
 					prom1[0] = cens1[j];

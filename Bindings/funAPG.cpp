@@ -643,29 +643,69 @@ vector<string> PolDualAcicleBlok(int s, int n, int k, int d, Polynom f)
 // Пересечение блоков, содержащихся в списке arr
 vector<int> cens(vector<int> arr, bool dual, int n, int k, int d, Polynom f)
 {
-	vector<int> rez;
+	if (arr.size() == 0)
+	{
+		return {};
+	}
+	for (int i = 0; i < arr.size(); i++)
+	{
+		if ((arr[i] < 0))
+		{
+			return {};
+		}
+	}
+	int s = arr[0];
+	set<int> rez;
+	set<int> buf;
 	if (dual == false)
 	{
-		rez = AcicleBlok(arr[0], n, k, d, f);
+		vector<int> bl = AcicleBlok(s,n,k,d,f);
+		for (const auto &item : bl)
+		{
+			rez.insert(item);
+		}
 	}
 	else
 	{
-		rez = DualAcicleBlok(arr[0], n, k, d, f);
+		vector<int> bl = DualAcicleBlok(s,n,k,d,f);
+		for (const auto &item : bl)
+		{
+			rez.insert(item);
+		}
 	}
 	for (int i = 1; i < arr.size(); i++)
 	{
-		vector<int> prom;
-		vector<int> dbl = DualAcicleBlok(arr[i], n, k, d, f);
-		for (auto j : rez)
+		buf = rez;
+		rez.clear();
+		s = arr[i];
+		set<int> bl;
+		if (dual == false)
 		{
-			if (find(dbl.begin(), dbl.end(), j) != dbl.end())
+			vector<int> blp = AcicleBlok(s,n,k,d,f);
+			for (const auto &item : blp)
 			{
-				prom.push_back(j);
+				bl.insert(item);
 			}
 		}
-		rez = prom;
+		else
+		{
+			vector<int> blp = DualAcicleBlok(s,n,k,d,f);
+			for (const auto &item : blp)
+			{
+				bl.insert(item);
+			}
+		}
+		for (const auto &item : buf)
+		{
+			if (bl.find(item) != bl.end())
+			{
+				rez.insert(item);
+			}
+		}
 	}
-	return rez;
+	vector<int> output(rez.size());
+	copy(rez.begin(), rez.end(), output.begin());
+	return output;
 }
 
 int id(int j)
@@ -846,7 +886,7 @@ vector<vector<int>> Algoritm3_normal(vector<int> j1, vector<int> j2, int n, int 
 			vector<int> prom2(2);
 			prom2[0] = j1[0];
 			prom2[1] = el;
-			if ((el == j1[1]) && (!pcel(prom1, L_pc)) && (!blockpcel(j1, L_blpc)) && (!dblockpcel(j1, L_dblpc))
+			if ((el == j1[1]) && (!pcel(prom1, L_pc)) && (!dblockpcel(j1, L_dblpc))
 				&& (!dblockpcel(prom1, L_dblpc)) && (!blockpcel(prom1, L_blpc)) && (!blockpcel(j2, L_blpc))
 				&& (blockexistence(j1[0], L_block)) && (blockexistence(j2[0], L_block)))
 			{
@@ -857,7 +897,7 @@ vector<vector<int>> Algoritm3_normal(vector<int> j1, vector<int> j2, int n, int 
 				return rez;
 			}
 			else if ((el == j2[1]) && (!pcel(prom2, L_pc)) && (!blockpcel(j1, L_blpc)) && (!blockpcel(prom2, L_blpc))
-				&& (!dblockpcel(prom2, L_dblpc)) && (!dblockpcel(j2, L_dblpc)) && (!blockpcel(j2, L_blpc))
+				&& (!dblockpcel(prom2, L_dblpc)) && (!dblockpcel(j2, L_dblpc))
 				&& (blockexistence(j1[0], L_block)) && (blockexistence(j2[0], L_block)))
 			{
 				rez = vector<vector<int>>(3);
@@ -919,7 +959,7 @@ vector<vector<int>> Algoritm3(vector<int> j1, vector<int> j2, int n, int v, int 
 			vector<int> cens1 = cens(cc, true, n, k, d, f);
 			for (int j = 0; j < cens1.size(); j++)
 			{
-				if ((blockexistence(j, L_block)))
+				if ((blockexistence(cens1[j], L_block)))
 				{
 					vector<int> prom1(2);
 					prom1[0] = cens1[j];

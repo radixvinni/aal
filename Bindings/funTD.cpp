@@ -1,6 +1,7 @@
 
 //#include "stdafx.h"
 #include "funTD.h"
+#include "funCPG.h"
 #include <iostream>
 #include <iostream>
 #include "./AAF/AAL/Polynom.h"
@@ -1239,6 +1240,426 @@ string outF2l(Polynom pol)
 					else
 						rez = rez + " z";
 				}
+		}
+	}
+	return rez;
+}
+
+vector<vector<int>> Algoritm3_normal(vector<int> j1, vector<int> j2, int n, int l, int p, int m, int k, Polynom x, Polynom f,
+	set<vector<int>> L_pc, set<vector<int>> L_blpc, set<vector<int>> L_dblpc, vector<int> L_block, vector<int> L_dblock)
+{
+	vector<vector<int>> rez;
+	rez = vector<vector<int>>(0);
+	if (pcel(j1, L_pc) || pcel(j2, L_pc))
+	{
+		return rez;
+	}
+	if ((j1[0] == j2[0]) && (!blockpcel(j1, L_blpc)) && (!blockpcel(j2, L_blpc)) && blockexistence(j1[0], L_block))
+	{
+		rez = vector<vector<int>>(2);
+		rez[0] = j1;
+		rez[1] = j2;
+		return rez;
+	}
+	if ((j1[1] == j2[1]) && (!dblockpcel(j1, L_dblpc)) && (!dblockpcel(j2, L_dblpc)) && dblockexistance(j2[1], L_dblock)
+		&& blockexistence(j1[0], L_block) && blockexistence(j2[0], L_block))
+	{
+		rez = vector<vector<int>>(2);
+		rez[0] = j1;
+		rez[1] = j2;
+		return rez;
+	}
+	vector<int> cc(2);
+	cc[0] = j1[0];
+	cc[1] = j2[0];
+	vector<int> cens0 = cens(id_block(cc[0], l, p, m, n, x, f), id_block(cc[1], l, p, m, n, x, f), l, p, k, n, m, x, f);
+	for (const auto &el : cens0)
+	{
+		if (dblockexistance(el, L_dblock))
+		{
+			vector<int> prom1(2);
+			prom1[0] = j2[0];
+			prom1[1] = el;
+			vector<int> prom2(2);
+			prom2[0] = j1[0];
+			prom2[1] = el;
+			if ((el == j1[1]) && (!pcel(prom1, L_pc)) && (!blockpcel(j1, L_blpc)) && (!dblockpcel(j1, L_dblpc))
+				&& (!dblockpcel(prom1, L_dblpc)) && (!blockpcel(prom1, L_blpc)) && (!blockpcel(j2, L_blpc))
+				&& (blockexistence(j1[0], L_block)) && (blockexistence(j2[0], L_block)))
+			{
+				rez = vector<vector<int>>(3);
+				rez[0] = j1;
+				rez[1] = prom1;
+				rez[2] = j2;
+				return rez;
+			}
+			else if ((el == j2[1]) && (!pcel(prom2, L_pc)) && (!blockpcel(j1, L_blpc)) && (!blockpcel(prom2, L_blpc))
+				&& (!dblockpcel(prom2, L_dblpc)) && (!dblockpcel(j2, L_dblpc)) && (!blockpcel(j2, L_blpc))
+				&& (blockexistence(j1[0], L_block)) && (blockexistence(j2[0], L_block)))
+			{
+				rez = vector<vector<int>>(3);
+				rez[0] = j1;
+				rez[1] = prom2;
+				rez[2] = j2;
+				return rez;
+			}
+			else if ((!pcel(prom2, L_pc)) && (!pcel(prom1, L_pc)) && (!blockpcel(j1, L_blpc)) && (!blockpcel(prom2, L_blpc))
+				&& (!dblockpcel(prom2, L_dblpc)) && (!dblockpcel(prom1, L_dblpc)) && (!blockpcel(prom1, L_blpc)) && (!blockpcel(j2, L_blpc))
+				&& (blockexistence(j1[0], L_block)) && (blockexistence(j2[0], L_block)))
+			{
+				if (prom1 == prom2)
+				{
+					rez = vector<vector<int>>(3);
+					rez[0] = j1;
+					rez[1] = prom2;
+					rez[2] = j2;
+					return rez;
+				}
+				rez = vector<vector<int>>(4);
+				rez[0] = j1;
+				rez[1] = prom2;
+				rez[2] = prom1;
+				rez[3] = j2;
+				return rez;
+			}
+		}
+
+	}
+
+	return rez;
+}
+
+
+vector<vector<int>> Algoritm3(vector<int> j1, vector<int> j2, int n, int l, int p, int m, int k, Polynom x, Polynom f,
+	set<vector<int>> L_pc, set<vector<int>> L_blpc, set<vector<int>> L_dblpc, vector<int> L_block, vector<int> L_dblock)
+{
+	vector<vector<int>> rez;
+	rez = vector<vector<int>>(0);
+	if (pcel(j1, L_pc) || pcel(j2, L_pc) || (!blockexistence(j1[0], L_block)) || (!blockexistence(j2[0], L_block)))
+	{
+		return rez;
+	}
+	rez = Algoritm3_normal(j1, j2, n, l, p, m, k, x, f, L_pc, L_blpc, L_dblpc, L_block, L_dblock);
+	if (rez.size() != 0)
+	{
+		return rez;
+	}
+	vector<int> cc(2);
+	vector<int> bl1, bl2;
+	if (m == 2) {
+		vector<int> bl1 = TDknBlockcreation(j1[0], l, p, n, k, f, x);
+		vector<int> bl2 = TDknBlockcreation(j2[0], l, p, n, k, f, x);
+	}
+	if (m == 3) {
+		vector<int> bl1 = TD3knBlockcreation(j1[0], l, p, n, k, f, x);
+		vector<int> bl2 = TD3knBlockcreation(j2[0], l, p, n, k, f, x);
+	}
+	for (int el1 = 0; el1 < k; el1++)
+	{
+		for (int el2 = 0; el2 < k; el2++)
+		{
+			cc[0] = bl1[el1];
+			cc[1] = bl1[el2];
+			vector<int> cens1 = cens(id_block(cc[0], l, p, m, n, x, f), id_block(cc[1], l, p, m, n, x, f), l, p, k, n, m, x, f); 
+			for (int j = 0; j < cens1.size(); j++)
+			{
+				if ((blockexistence(j, L_block)))
+				{
+					vector<int> prom1(2);
+					prom1[0] = cens1[j];
+					prom1[1] = bl1[el1];
+					vector<int> prom2(2);
+					prom2[0] = cens1[j];
+					prom2[1] = bl1[el2];
+					vector<vector<int>> rez1 = Algoritm3_normal(j1, prom1, n, l, p, m, k, x, f, L_pc, L_blpc, L_dblpc, L_block, L_dblock);
+					vector<vector<int>> rez2 = Algoritm3_normal(prom2, j2, n, l, p, m, k, x, f, L_pc, L_blpc, L_dblpc, L_block, L_dblock);
+					vector<vector<int>> rez3(0);
+					if (prom1 != prom2)
+						rez3 = Algoritm3_normal(prom1, prom2, n, l, p, m, k, x, f, L_pc, L_blpc, L_dblpc, L_block, L_dblock);
+					int s1 = rez1.size();
+					int s2 = rez2.size();
+					int s3 = rez3.size();
+					if ((s1 != 0) && (s2 != 0) && ((s3 != 0) || (prom1 == prom2)))
+					{
+						int ss = s1 + s2 + s3 - 1;
+						if (s3 != 0)
+							ss--;
+						int num = 0;
+						rez = vector<vector<int>>(ss);
+						for (int i = 0; i < s1; i++)
+						{
+							rez[num] = rez1[i];
+							num++;
+						}
+						for (int i = 1; i < s3; i++)
+						{
+							rez[num] = rez3[i];
+							num++;
+						}
+						for (int i = 1; i < s2; i++)
+						{
+							rez[num] = rez2[i];
+							num++;
+						}
+						return rez;
+					}
+				}
+			}
+		}
+	}
+	return rez;
+}
+
+vector<int> censfa3(vector<int> arr, bool dual, int m, int l, int p,int n, int k, Polynom f, Polynom x) {
+	if (arr.size() == 0)
+	{
+		return {};
+	}
+	for (int i = 0; i < arr.size(); i++)
+	{
+		if ((arr[i] < 0))
+		{
+			return {};
+		}
+	}
+	int s = arr[0];
+	set<int> rez;
+	set<int> buf;
+	if (dual == false)
+	{
+		vector<int> bl;
+		if (m == 2) {
+			bl = TDknBlockcreation(s,l,p,n,m,f,x);
+		}
+		if (m == 3) {
+			bl = TD3knBlockcreation(s,l,p,n,m,f,x);
+		}
+		for (const auto &item : bl)
+		{
+			rez.insert(item);
+		}
+	}
+	else
+	{
+		vector<int> bl;
+		if (m == 2) {
+			bl = GTDknN(s,l,p,n,m,f,x);
+		}
+		if (m == 3) {
+			bl = GTD3knN(s,l,p,n,m,f,x);
+		}
+		for (const auto &item : bl)
+		{
+			rez.insert(item);
+		}
+	}
+	for (int i = 1; i < arr.size(); i++)
+	{
+		buf = rez;
+		rez.clear();
+		s = arr[i];
+		set<int> bl;
+		if (dual == false)
+		{
+			vector<int> blp;
+			if (m == 2) {
+				blp = TDknBlockcreation(s,l,p,n,m,f,x);
+			}
+			if (m == 3) {
+				blp = TD3knBlockcreation(s,l,p,n,m,f,x);
+			}
+			for (const auto &item : blp)
+			{
+				bl.insert(item);
+			}
+		}
+		else
+		{
+			vector<int> blp;
+			if (m == 2) {
+				blp = GTDknN(s, l, p, n, m, f, x);
+			}
+			if (m == 3) {
+				blp = GTD3knN(s, l, p, n, m, f, x);
+			}
+			for (const auto &item : blp)
+			{
+				bl.insert(item);
+			}
+		}
+		for (const auto &item : buf)
+		{
+			if (bl.find(item) != bl.end())
+			{
+				rez.insert(item);
+			}
+		}
+	}
+	vector<int> output(rez.size());
+	copy(rez.begin(), rez.end(), output.begin());
+	return output;
+}
+
+vector<vector<int>> Algoritm3_normalTD(vector<int> j1, vector<int> j2, int n, int l, int p, int m, int k, Polynom x, Polynom f,
+	set<vector<int>> L_pc, set<vector<int>> L_blpc, set<vector<int>> L_dblpc, vector<int> L_block, vector<int> L_dblock)
+{
+	vector<vector<int>> rez;
+	rez = vector<vector<int>>(0);
+	if (pcel(j1, L_pc) || pcel(j2, L_pc))
+	{
+		return rez;
+	}
+	if ((j1[0] == j2[0]) && (!blockpcel(j1, L_blpc)) && (!blockpcel(j2, L_blpc)) && blockexistence(j1[0], L_block))
+	{
+		rez = vector<vector<int>>(2);
+		rez[0] = j1;
+		rez[1] = j2;
+		return rez;
+	}
+	if ((j1[1] == j2[1]) && (!dblockpcel(j1, L_dblpc)) && (!dblockpcel(j2, L_dblpc)) && dblockexistance(j2[1], L_dblock)
+		&& blockexistence(j1[0], L_block) && blockexistence(j2[0], L_block))
+	{
+		rez = vector<vector<int>>(2);
+		rez[0] = j1;
+		rez[1] = j2;
+		return rez;
+	}
+	vector<int> cc(2);
+	cc[0] = j1[0];
+	cc[1] = j2[0];
+	vector<int> cens0 = censfa3(cc, false, m, l, p, n, k, f, x);
+	for (const auto &el : cens0)
+	{
+		if (dblockexistance(el, L_dblock))
+		{
+			vector<int> prom1(2);
+			prom1[0] = j2[0];
+			prom1[1] = el;
+			vector<int> prom2(2);
+			prom2[0] = j1[0];
+			prom2[1] = el;
+			if ((el == j1[1]) && (!pcel(prom1, L_pc)) && (!dblockpcel(j1, L_dblpc))
+				&& (!dblockpcel(prom1, L_dblpc)) && (!blockpcel(prom1, L_blpc)) && (!blockpcel(j2, L_blpc))
+				&& (blockexistence(j1[0], L_block)) && (blockexistence(j2[0], L_block)))
+			{
+				rez = vector<vector<int>>(3);
+				rez[0] = j1;
+				rez[1] = prom1;
+				rez[2] = j2;
+				return rez;
+			}
+			else if ((el == j2[1]) && (!pcel(prom2, L_pc)) && (!blockpcel(j1, L_blpc)) && (!blockpcel(prom2, L_blpc))
+				&& (!dblockpcel(prom2, L_dblpc)) && (!dblockpcel(j2, L_dblpc))
+				&& (blockexistence(j1[0], L_block)) && (blockexistence(j2[0], L_block)))
+			{
+				rez = vector<vector<int>>(3);
+				rez[0] = j1;
+				rez[1] = prom2;
+				rez[2] = j2;
+				return rez;
+			}
+			else if ((!pcel(prom2, L_pc)) && (!pcel(prom1, L_pc)) && (!blockpcel(j1, L_blpc)) && (!blockpcel(prom2, L_blpc))
+				&& (!dblockpcel(prom2, L_dblpc)) && (!dblockpcel(prom1, L_dblpc)) && (!blockpcel(prom1, L_blpc)) && (!blockpcel(j2, L_blpc))
+				&& (blockexistence(j1[0], L_block)) && (blockexistence(j2[0], L_block)))
+			{
+				if (prom1 == prom2)
+				{
+					rez = vector<vector<int>>(3);
+					rez[0] = j1;
+					rez[1] = prom2;
+					rez[2] = j2;
+					return rez;
+				}
+				rez = vector<vector<int>>(4);
+				rez[0] = j1;
+				rez[1] = prom2;
+				rez[2] = prom1;
+				rez[3] = j2;
+				return rez;
+			}
+		}
+
+	}
+
+	return rez;
+}
+
+
+vector<vector<int>> Algoritm3TD(vector<int> j1, vector<int> j2, int n, int l, int p, int m, int k, Polynom x, Polynom f,
+	set<vector<int>> L_pc, set<vector<int>> L_blpc, set<vector<int>> L_dblpc, vector<int> L_block, vector<int> L_dblock)
+{
+	vector<vector<int>> rez;
+	rez = vector<vector<int>>(0);
+	if (pcel(j1, L_pc) || pcel(j2, L_pc) || (!blockexistence(j1[0], L_block)) || (!blockexistence(j2[0], L_block)))
+	{
+		return rez;
+	}
+	rez = Algoritm3_normalTD(j1, j2, n, l, p, m, k, x, f, L_pc, L_blpc, L_dblpc, L_block, L_dblock);
+	if (rez.size() != 0)
+	{
+		return rez;
+	}
+	vector<int> cc(2);
+	vector<int> bl1, bl2;
+	if (m == 2) {
+		bl1 = TDknBlockcreation(j1[0], l, p, n, k, f, x);
+		bl2 = TDknBlockcreation(j2[0], l, p, n, k, f, x);
+	}
+	if (m == 3) {
+		bl1 = TD3knBlockcreation(j1[0], l, p, n, k, f, x);
+		bl2 = TD3knBlockcreation(j2[0], l, p, n, k, f, x);
+	}
+	for (int el1 = 0; el1 < k; el1++)
+	{
+		for (int el2 = 0; el2 < k; el2++)
+		{
+			cc[0] = bl1[el1];
+			cc[1] = bl1[el2];
+			vector<int> cens1 = censfa3(cc, true, m, l, p, n, k, f, x);
+			for (int j = 0; j < cens1.size(); j++)
+			{
+				if ((blockexistence(cens1[j], L_block)))
+				{
+					vector<int> prom1(2);
+					prom1[0] = cens1[j];
+					prom1[1] = bl1[el1];
+					vector<int> prom2(2);
+					prom2[0] = cens1[j];
+					prom2[1] = bl1[el2];
+					vector<vector<int>> rez1 = Algoritm3_normalTD(j1, prom1, n, l, p, m, k, x, f, L_pc, L_blpc, L_dblpc, L_block, L_dblock);
+					vector<vector<int>> rez2 = Algoritm3_normalTD(prom2, j2, n, l, p, m, k, x, f, L_pc, L_blpc, L_dblpc, L_block, L_dblock);
+					vector<vector<int>> rez3(0);
+					if (prom1 != prom2)
+						rez3 = Algoritm3_normalTD(prom1, prom2, n, l, p, m, k, x, f, L_pc, L_blpc, L_dblpc, L_block, L_dblock);
+					int s1 = rez1.size();
+					int s2 = rez2.size();
+					int s3 = rez3.size();
+					if ((s1 != 0) && (s2 != 0) && ((s3 != 0) || (prom1 == prom2)))
+					{
+						int ss = s1 + s2 + s3 - 1;
+						if (s3 != 0)
+							ss--;
+						int num = 0;
+						rez = vector<vector<int>>(ss);
+						for (int i = 0; i < s1; i++)
+						{
+							rez[num] = rez1[i];
+							num++;
+						}
+						for (int i = 1; i < s3; i++)
+						{
+							rez[num] = rez3[i];
+							num++;
+						}
+						for (int i = 1; i < s2; i++)
+						{
+							rez[num] = rez2[i];
+							num++;
+						}
+						return rez;
+					}
+				}
+			}
 		}
 	}
 	return rez;

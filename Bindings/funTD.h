@@ -27,8 +27,8 @@ bool NextSet(vector<int> &a, int n, int m);
 Polynom razlP(int p, int num, int l);
 Polynom genPrimitiveF2l(int p, int l);
 string outF2l(Polynom pol);
-//�������� � ��� �� ����������� ��������� � ������ ������� - ����� ��������� � ��������!
-//��� ������ ����� ���������
+
+
 vector<int> decToN(int a,int n);
 vector<string> PhiInverse(int j, int l, int p, int m, int n, Polynom x, Polynom f);
 vector<string> id_block(int j, int l, int p, int m, int n, Polynom x, Polynom f);
@@ -54,3 +54,9 @@ string out_alg3(vector<vector<int>> out);
 string out_set_vector_dig2(set<vector<int>> out);
 string out_vector(vector<int> out);
 //set<vector<int>> split_str_in_set_vec_int(string str_sp);
+
+vector<int> censfa3(vector<int> arr, bool dual, int m, int l, int p, int n, int k, Polynom f, Polynom x);
+vector<vector<int>> Algoritm3_normalTD(vector<int> j1, vector<int> j2, int n, int l, int p, int m, int k, Polynom x, Polynom f,
+	set<vector<int>> L_pc, set<vector<int>> L_blpc, set<vector<int>> L_dblpc, vector<int> L_block, vector<int> L_dblock);
+vector<vector<int>> Algoritm3TD(vector<int> j1, vector<int> j2, int n, int l, int p, int m, int k, Polynom x, Polynom f,
+	set<vector<int>> L_pc, set<vector<int>> L_blpc, set<vector<int>> L_dblpc, vector<int> L_block, vector<int> L_dblock);

@@ -43,6 +43,7 @@ vector<int> dualhiinv(int s, int n, int k, int d, Polynom f);
 string id_str(int num, int n, int k, int d, Polynom f);
 vector<int> Algoritm1(int j1, int j2, vector<int> Lkey, vector<int> Lblock, set<vector<int>> Lblockkey, set<vector<int>> Lblockblock, int n, int k, int d, Polynom f);
 vector<string> Algoritm2(int j1, int j2, vector<int> Lkey, vector<int> Lblock, set<vector<int>> Lblockkey, set<vector<int>> Lblockblock, int n, int v, int k, int d, Polynom f);
+
 vector<vector<int>> Algoritm3_normal(vector<int> j1, vector<int> j2, int n, int v, int k, int d, Polynom f,
 	set<vector<int>> L_pc, set<vector<int>> L_blpc, set<vector<int>> L_dblpc, vector<int> L_block, vector<int> L_dblock);
 vector<vector<int>> Algoritm3(vector<int> j1, vector<int> j2, int n, int v, int k, int d, Polynom f,
